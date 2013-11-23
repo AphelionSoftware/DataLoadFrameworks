@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/4/2013 10:00:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="MGS-VAIOPRO"
+  DTS:CreatorName="MGS-VaioPro\MarkGStacey"
+  DTS:DTSID="{C35F5D1F-F364-4AC3-8B45-36A7CFDD7D74}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{17AB18F9-A499-4566-BD9F-E804A4819824}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7238AC74-9924-469D-BAED-CF2B76AB012B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strCatalogName">
+      <DTS:VariableValue
+        DTS:DataType="8">KARTA</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{310C17CC-9D2E-459A-85A9-041EB6C7A70A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;&lt;Discover xmlns=\&quot;urn:schemas-microsoft-com:xml-analysis\&quot;&gt;&#xA;&#x9;&lt;RequestType&gt;MDSCHEMA_DIMENSIONS&lt;/RequestType&gt;&#xA;&#x9;&lt;Restrictions&gt;&#xA;&#x9;&#x9;&lt;RestrictionList xmlns=\&quot;urn:schemas-microsoft-com:xml-analysis\&quot;&gt;&#xA;&#x9;&#x9;&#x9;&lt;CUBE_NAME&gt;Model&lt;/CUBE_NAME&gt;&#xA;&#x9;&#x9;&lt;/RestrictionList&gt;&#xA;&#x9;&lt;/Restrictions&gt;&#xA;&#x9;&lt;Properties&gt;&#xA;&#x9;&#x9;&lt;PropertyList xmlns=\&quot;urn:schemas-microsoft-com:xml-analysis\&quot;&gt;&#xA;&#x9;&#x9;&#x9;&lt;Timeout&gt;0&lt;/Timeout&gt;&#xA;&#x9;&#x9;&#x9;&#xA;&#xA;&lt;Catalog&gt;&quot;  &#xA;+&#xA; @[User::strCatalogName] &#xA;+ &#xA; &quot;&lt;/Catalog&gt;&#xA;&#xA;&#xA;&#x9;&#x9;&#x9;&lt;Content&gt;SchemaData&lt;/Content&gt;&#xA;&#x9;&#x9;&#x9;&lt;Format&gt;Tabular&lt;/Format&gt;&#xA;&#x9;&#x9;&lt;/PropertyList&gt;&#xA;&#x9;&lt;/Properties&gt;&#xA;&lt;/Discover&gt;&#xA;&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strXMLADiscoverTables">
+      <DTS:VariableValue
+        DTS:DataType="8">&lt;Discover xmlns="urn:schemas-microsoft-com:xml-analysis"&gt;
+	&lt;RequestType&gt;MDSCHEMA_DIMENSIONS&lt;/RequestType&gt;
+	&lt;Restrictions&gt;
+		&lt;RestrictionList xmlns="urn:schemas-microsoft-com:xml-analysis"&gt;
+			&lt;CUBE_NAME&gt;Model&lt;/CUBE_NAME&gt;
+		&lt;/RestrictionList&gt;
+	&lt;/Restrictions&gt;
+	&lt;Properties&gt;
+		&lt;PropertyList xmlns="urn:schemas-microsoft-com:xml-analysis"&gt;
+			&lt;Timeout&gt;0&lt;/Timeout&gt;
+			
+
+&lt;Catalog&gt;KARTA&lt;/Catalog&gt;
+
+
+			&lt;Content&gt;SchemaData&lt;/Content&gt;
+			&lt;Format&gt;Tabular&lt;/Format&gt;
+		&lt;/PropertyList&gt;
+	&lt;/Properties&gt;
+&lt;/Discover&gt;
+</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F41A7EB0-D30A-4F2C-BF63-1FEFA0D6F3F3}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Multicast"
+              componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLEDB_DiscoverTables"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_DiscoverTables"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[$Account].[$Account]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLEDB_DiscoverTables.Connections[OleDbConnection]"
+                  connectionManagerID="{1892401C-7744-420A-A256-DAE7D9E1BD2F}:invalid"
+                  connectionManagerRefId="{1892401C-7744-420A-A256-DAE7D9E1BD2F}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[RowNumber]]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[RowNumber]]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[RowNumber]]"
+                      name="[$Account].[RowNumber]"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[DimAccountKey]]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[DimAccountKey]]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[DimAccountKey]]"
+                      name="[$Account].[DimAccountKey]"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[DimAccountID]]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[DimAccountID]]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[DimAccountID]]"
+                      name="[$Account].[DimAccountID]"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[Code]]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[Code]]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[Code]]"
+                      name="[$Account].[Code]"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[Name]]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[Name]]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[Name]]"
+                      name="[$Account].[Name]"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[Type]]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[Type]]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].Columns[[$Account].[Type]]"
+                      name="[$Account].[Type]"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[RowNumber]]"
+                      dataType="wstr"
+                      length="255"
+                      name="[$Account].[RowNumber]" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[DimAccountKey]]"
+                      dataType="wstr"
+                      length="255"
+                      name="[$Account].[DimAccountKey]" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[DimAccountID]]"
+                      dataType="wstr"
+                      length="255"
+                      name="[$Account].[DimAccountID]" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[Code]]"
+                      dataType="wstr"
+                      length="255"
+                      name="[$Account].[Code]" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[Name]]"
+                      dataType="wstr"
+                      length="255"
+                      name="[$Account].[Name]" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output].ExternalColumns[[$Account].[Type]]"
+                      dataType="wstr"
+                      length="255"
+                      name="[$Account].[Type]" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[RowNumber]]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[RowNumber]]"
+                      name="[$Account].[RowNumber]" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[DimAccountKey]]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[DimAccountKey]]"
+                      name="[$Account].[DimAccountKey]" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[DimAccountID]]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[DimAccountID]]"
+                      name="[$Account].[DimAccountID]" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[Code]]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[Code]]"
+                      name="[$Account].[Code]" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[Name]]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[Name]]"
+                      name="[$Account].[Name]" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[Type]]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[[$Account].[Type]]"
+                      name="[$Account].[Type]" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLEDB_DiscoverTables.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="155.771431237824,82.4000011668486" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Data Flow Task\OLEDB_DiscoverTables"
+          TopLeft="146.628573939265,138.070590182902" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Data Flow Task\Multicast"
+          TopLeft="219.200003746578,258.58823893194" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="240.228573939265,179.670590182902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.9714298073127,78.917648749038"
+              Start="0,0"
+              End="38.9714298073127,71.417648749038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.458824374519" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.458824374519"
+                    Point2="0,39.458824374519"
+                    Point3="4,39.458824374519" />
+                  <mssgle:LineSegment
+                    End="34.9714298073127,39.458824374519" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.9714298073127,39.458824374519"
+                    Point2="38.9714298073127,39.458824374519"
+                    Point3="38.9714298073127,43.458824374519" />
+                  <mssgle:LineSegment
+                    End="38.9714298073127,71.417648749038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="11.4857149036563,44.458824374519,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLEDB_DiscoverTables">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
