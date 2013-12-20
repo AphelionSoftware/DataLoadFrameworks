@@ -10,12 +10,12 @@ begin
 	SELECT 
 		  [ExternalID] as [Job ID]
 		  ,a.Name as [Appliction]
-		  ,ai.externalreference as [Instance]
+		  ,ai.ExternalReference as [Instance]
 		  ,[CreatedDate] as [Created Date]
 		  ,[CreatedBy] as [Created By]
 	  FROM [dbo].[Job] j, [dbo].[Application] a, [dbo].[ApplicationInstance] ai
 	  where ai.ID = j.ApplicationInstanceID
-	  and a.ID = ai.applicationID
+	  and a.ID = ai.ApplicationID
 
 
 end

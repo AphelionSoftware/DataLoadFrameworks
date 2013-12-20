@@ -16,7 +16,7 @@ declare @ApplicationInstanceID int
 
 	set nocount on
 
-	select @ApplicationInstanceID = ID from dbo.applicationinstance where externalreference = @ApplicationInstance
+	select @ApplicationInstanceID = ID from dbo.ApplicationInstance where ExternalReference = @ApplicationInstance
 
 	if (@ApplicationInstanceID is null)
 	begin
@@ -32,7 +32,7 @@ declare @ApplicationInstanceID int
 
 	If @@Error = 0 
 	Begin
-		set @jobid = convert(varchar(255), @uniqueID);  
+		set @JobID = convert(varchar(255), @uniqueID);  
 	End
 	 
 end

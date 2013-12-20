@@ -1,7 +1,7 @@
 ﻿-- =============================================
 -- Author:		Louis van der Merwe
 -- =============================================
-CREATE PROCEDURE [dbo].[getRequestParameters]
+CREATE PROCEDURE [dbo].[GetRequestParameters]
 										@RequestID int,
 										@JobID int,
 										@isBatch bit

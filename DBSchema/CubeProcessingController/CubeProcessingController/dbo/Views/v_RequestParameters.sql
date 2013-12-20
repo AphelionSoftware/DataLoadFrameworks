@@ -27,11 +27,11 @@ as
 			[Admin_Email]
 		from 
 			dbo.ProcessQueue p,
-			dbo.job j,
+			dbo.Job j,
 			dbo.ApplicationInstance ai,
 			dbo.[Table] t
 		where 
-			j.id = p.JobID
+			j.ID = p.JobID
 			and ai.ID = j.ApplicationInstanceID
 			and t.ID = p.TableID
 			and t.ApplicationID = ai.ApplicationID

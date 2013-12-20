@@ -14,7 +14,7 @@ begin
 	select
 		j.ExternalID as [Job ID]
 		, a.Name as [Appliction]
-		, ai.externalreference as [Instance]
+		, ai.ExternalReference as [Instance]
 		, p.ID as [Request ID]
 		, t.DBTableName as [Table]
 		, s.Name as [Request Status]
@@ -26,10 +26,10 @@ begin
 		, ed.ID [Error Code]
 		, ed.isWarning [Is Warning]
 	from 
-		[job] j inner join [ProcessQueue] p on p.jobid = j.ID
-		inner join [applicationInstance] ai on ai.id = j.ApplicationInstanceID
-		inner join [application] a on a.id = ai.applicationid
-		inner join [Table] t on t.applicationid = a.id and t.ID = p.TableID
+		[Job] j inner join [ProcessQueue] p on p.JobID = j.ID
+		inner join ApplicationInstance ai on ai.ID = j.ApplicationInstanceID
+		inner join [Application] a on a.ID = ai.ApplicationID
+		inner join [Table] t on t.ApplicationID = a.ID and t.ID = p.TableID
 		inner join [Status] s on s.ID = p.StatusID
 		left outer join [ErrorLog] e on e.ProcessQueueID = p.ID 
 		left join [ErrorDefinition] ed on ed.ID = e.ErrorDefinitionID		

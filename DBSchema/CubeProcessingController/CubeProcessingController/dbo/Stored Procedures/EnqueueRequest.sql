@@ -29,7 +29,7 @@ BEGIN
 		return
 	end
 
-	select @ApplicationID = ApplicationID from dbo.applicationinstance a, dbo.job j where a.ID = j.ApplicationInstanceID and j.ID = @JobID
+	select @ApplicationID = ApplicationID from dbo.ApplicationInstance a, dbo.Job j where a.ID = j.ApplicationInstanceID and j.ID = @JobID
 
 	if (@ApplicationID is null)
 	begin

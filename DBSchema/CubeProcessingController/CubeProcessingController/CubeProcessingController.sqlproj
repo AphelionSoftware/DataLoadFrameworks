@@ -63,6 +63,10 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Views\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Types" />
+    <Folder Include="dbo\Types\User Defined Table Types" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Application.sql" />
@@ -87,8 +91,19 @@
     <Build Include="dbo\Stored Procedures\QueryJobStatus.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStatus.sql" />
     <Build Include="dbo\Tables\ExpectedSchedule.sql" />
+    <Build Include="dbo\Tables\ExpectedScheduleDetail.sql" />
+    <Build Include="dbo\Types\User Defined Table Types\TableListType.sql" />
+    <Build Include="dbo\Stored Procedures\AddExpectedSchedule.sql" />
+    <Build Include="dbo\Stored Procedures\CheckExpectedSchedule.sql" />
+    <Build Include="dbo\Stored Procedures\ForceExpectedSchedule.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CubeProcessingController.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CubeProcessingController.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

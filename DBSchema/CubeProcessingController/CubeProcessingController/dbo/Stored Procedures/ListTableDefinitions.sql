@@ -13,7 +13,7 @@ BEGIN
 	SELECT 
 		   [DBTableName] as [Table]
 		  ,[IsPartitioned] as [Is Partitioned]
-	  FROM [dbo].[Table] t, [dbo].[application] a
+	  FROM [dbo].[Table] t, [dbo].[Application] a
 	  where t.ApplicationID = a.ID
 	  and a.Name = @Application
 
