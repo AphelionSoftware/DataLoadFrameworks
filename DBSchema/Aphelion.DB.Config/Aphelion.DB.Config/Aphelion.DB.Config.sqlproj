@@ -57,5 +57,64 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Balancing" />
+    <Folder Include="Balancing\Tables" />
+    <Folder Include="CubeProcessingController" />
+    <Folder Include="ETL" />
+    <Folder Include="ETL\Tables" />
+    <Folder Include="Security" />
+    <Folder Include="CubeProcessingController\Stored Procedures" />
+    <Folder Include="CubeProcessingController\Tables" />
+    <Folder Include="CubeProcessingController\Types" />
+    <Folder Include="CubeProcessingController\Views" />
+    <Folder Include="CubeProcessingController\Types\User Defined Table Types" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Balancing\Tables\DataSources.sql" />
+    <Build Include="Balancing\Tables\DataSourceTypes.sql" />
+    <Build Include="Balancing\Tables\FunctionalAreas.sql" />
+    <Build Include="Balancing\Tables\Queries.sql" />
+    <Build Include="Balancing\Tables\Reports.sql" />
+    <Build Include="Balancing\Tables\Tests.sql" />
+    <Build Include="ETL\Tables\DWLoaderStepDetails.sql" />
+    <Build Include="ETL\Tables\PackageLoad.sql" />
+    <Build Include="ETL\Tables\PackageLoadStep.sql" />
+    <Build Include="ETL\Tables\StepType.sql" />
+    <Build Include="Security\Balancing.sql" />
+    <Build Include="Security\CubeProcessingController.sql" />
+    <Build Include="Security\ETL.sql" />
+    <Build Include="CubeProcessingController\Views\v_RequestParameters.sql" />
+    <Build Include="CubeProcessingController\Types\User Defined Table Types\TableListType.sql" />
+    <Build Include="CubeProcessingController\Tables\Application.sql" />
+    <Build Include="CubeProcessingController\Tables\ApplicationInstance.sql" />
+    <Build Include="CubeProcessingController\Tables\ErrorDefinition.sql" />
+    <Build Include="CubeProcessingController\Tables\ErrorLog.sql" />
+    <Build Include="CubeProcessingController\Tables\ExpectedSchedule.sql" />
+    <Build Include="CubeProcessingController\Tables\ExpectedScheduleDetail.sql" />
+    <Build Include="CubeProcessingController\Tables\Job.sql" />
+    <Build Include="CubeProcessingController\Tables\ProcessQueue.sql" />
+    <Build Include="CubeProcessingController\Tables\Status.sql" />
+    <Build Include="CubeProcessingController\Tables\Table.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\AddExpectedSchedule.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\CheckExpectedSchedule.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\CreateJob.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\EnqueueRequest.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\ForceExpectedSchedule.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\GetRequestParameters.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\ListApplicationInstances.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\ListApplications.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\ListJobs.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\ListTableDefinitions.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\LogError.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\PollProcessingQueue.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\ProcessBatch.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\QueryJobStatus.sql" />
+    <Build Include="CubeProcessingController\Stored Procedures\UpdateStatus.sql" />
+    <Build Include="ETL\Sequence.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
