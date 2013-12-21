@@ -7,12 +7,12 @@
   DTS:CreatorName="DEV\gsmith"
   DTS:DTSID="{000891D6-14F8-41A3-BC29-31258BAEDDE9}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LastModifiedProductVersion="11.0.3369.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="2_PartitionProcess"
   DTS:PackageType="5"
-  DTS:VersionBuild="54"
-  DTS:VersionGUID="{4AC7F7B1-E578-4A7D-9025-1A1E18715DDE}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{4FD370A0-8D41-452B-9765-ABF6C1F13731}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -653,8 +653,8 @@ where [refTable].[TableName] = ? and [refTable].[PartitionName] = ?</property>
     , 'SELECT * FROM ' + t.DBTableName 
 	  + ' WHERE ' + t.PartitionColumn + ' &gt;= ' + CONVERT(VARCHAR(100),pq.StartPartitionValue)
 	  + ' AND ' + t.PartitionColumn + ' &lt;= ' + CONVERT(VARCHAR(100),pq.EndPartitionValue) AS PartitionQuery
-FROM ProcessQueue		pq
-JOIN [Table]	t
+FROM [CubeProcessingController].ProcessQueue		pq
+JOIN [CubeProcessingController].[Table]	t
 	ON pq.TableID = t.ID
 WHERE t.IsPartitioned = 1
   AND JobID = ?</property>
@@ -684,7 +684,7 @@ WHERE t.IsPartitioned = 1
                     <connection
                       refId="Package\SEQ_UsePartitionsInALookup\DFT_Check partition and process\OLESRC_PartitionList.Connections[OleDbConnection]"
                       connectionManagerID="{8C28BF41-C0DB-4361-8B97-9C5912F97C2D}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[CubeProcessingController]"
+                      connectionManagerRefId="Project.ConnectionManagers[Aphelion DB Config]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>

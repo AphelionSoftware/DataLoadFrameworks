@@ -7,12 +7,12 @@
   DTS:CreatorName="DEV\gsmith"
   DTS:DTSID="{C50E3D8B-DE31-411E-98DC-D43FC82B8718}"
   DTS:ExecutableType="SSIS.Package.3"
-  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LastModifiedProductVersion="11.0.3369.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="1_DimensionProcess"
   DTS:PackageType="5"
-  DTS:VersionBuild="66"
-  DTS:VersionGUID="{4BE49FCC-7D72-4826-AB4D-48631C59CD47}">
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{0EB446A3-217A-4113-8426-F891CFD09A23}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -374,8 +374,8 @@ where [refTable].[DimensionName] = ?</property>
                       description="The SQL command to be executed."
                       name="SqlCommand"
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT t.CubeTableName
-FROM ProcessQueue		pq
-JOIN [Table]	t
+FROM [CubeProcessingController].ProcessQueue		pq
+JOIN [CubeProcessingController].[Table]	t
 	ON pq.TableID = t.ID
 WHERE t.IsPartitioned = 0
   AND JobID = ?</property>
@@ -405,7 +405,7 @@ WHERE t.IsPartitioned = 0
                     <connection
                       refId="Package\SEQ_UseDimsInALookup\DFT_Check dimension and process\OLESRC_DimList.Connections[OleDbConnection]"
                       connectionManagerID="{8C28BF41-C0DB-4361-8B97-9C5912F97C2D}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[CubeProcessingController]"
+                      connectionManagerRefId="Project.ConnectionManagers[Aphelion DB Config]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
