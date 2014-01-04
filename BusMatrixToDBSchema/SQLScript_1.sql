@@ -1,4 +1,4 @@
-/****** Object:  Database Okavango    Script Date: 1/4/2014 7:49:11 PM ******/
+/****** Object:  Database Okavango    Script Date: 1/4/2014 9:58:46 PM ******/
 
 
 USE Master;
@@ -25,6 +25,2209 @@ IF EXISTS (SELECT Name FROM sys.extended_properties WHERE Name = 'Description')
     EXEC sys.sp_dropextendedproperty @name = 'Description'
 EXEC sys.sp_addextendedproperty @name = 'Description', @value = 'Default description - you should change this.';
 GO
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimDate */
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+DROP TABLE DimDate;
+GO
+
+
+/* Create table Shared.DimDate */
+CREATE TABLE Shared.DimDate
+(
+   DimDateID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimDate
+ADD CONSTRAINT pk_DimDateID
+PRIMARY KEY CLUSTERED
+(
+   DimDateID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimDate_SourceKey
+ON Shared.DimDate
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimDate',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimDate',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimDate',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimDate',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimDate',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimTime */
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+DROP TABLE DimTime;
+GO
+
+
+/* Create table Shared.DimTime */
+CREATE TABLE Shared.DimTime
+(
+   DimTimeID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimTime
+ADD CONSTRAINT pk_DimTimeID
+PRIMARY KEY CLUSTERED
+(
+   DimTimeID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimTime_SourceKey
+ON Shared.DimTime
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTime',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTime',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTime',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTime',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTime',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimUnit */
+IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
+DROP TABLE DimUnit;
+GO
+
+
+/* Create table Shared.DimUnit */
+CREATE TABLE Shared.DimUnit
+(
+   DimUnitID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimUnit
+ADD CONSTRAINT pk_DimUnitID
+PRIMARY KEY CLUSTERED
+(
+   DimUnitID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimUnit_SourceKey
+ON Shared.DimUnit
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimUnit',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimUnit',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimUnit',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimUnit',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimUnit',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimCurrency */
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+DROP TABLE DimCurrency;
+GO
+
+
+/* Create table Shared.DimCurrency */
+CREATE TABLE Shared.DimCurrency
+(
+   DimCurrencyID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   DimCountryID INT,
+   ISOCode CHAR(3),
+   CurrencySymbol NVARCHAR(1),
+   StartDateID INT,
+   EndDateID INT,
+   Version INT,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimCurrency
+ADD CONSTRAINT pk_DimCurrencyID
+PRIMARY KEY CLUSTERED
+(
+   DimCurrencyID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimCurrency_SourceKey
+ON Shared.DimCurrency
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+ALTER TABLE Shared.DimCurrency
+ADD CONSTRAINT uc_DimCurrency_StartDateID
+UNIQUE
+(
+   StartDateID
+)
+GO
+
+
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCountry') IS NOT NULL
+   ALTER TABLE Shared.DimCurrency
+   ADD CONSTRAINT fk_DimCurrency_DimCountryID
+   FOREIGN KEY
+   (
+       DimCountryID
+   )
+   REFERENCES
+       Shared.DimCountry(DimCountryID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimCountryID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'DimCountryID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'DimCountryID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'ISOCode',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'ISOCode';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'ISOCode';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'CurrencySymbol',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'CurrencySymbol';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'CurrencySymbol';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'StartDateID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'StartDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'StartDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'EndDateID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'EndDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'EndDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'Version',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'Version';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCurrency',
+@level2type=N'COLUMN',
+@level2name=N'Version';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimEventType */
+IF OBJECT_ID('Shared.DimEventType') IS NOT NULL
+DROP TABLE DimEventType;
+GO
+
+
+/* Create table Shared.DimEventType */
+CREATE TABLE Shared.DimEventType
+(
+   DimEventTypeID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimEventType
+ADD CONSTRAINT pk_DimEventTypeID
+PRIMARY KEY CLUSTERED
+(
+   DimEventTypeID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimEventType_SourceKey
+ON Shared.DimEventType
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEventType',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEventType',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEventType',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEventType',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEventType',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimOperator */
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+DROP TABLE DimOperator;
+GO
+
+
+/* Create table Shared.DimOperator */
+CREATE TABLE Shared.DimOperator
+(
+   DimOperatorID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   EmployeeID INT,
+   FirstName VARCHAR(255),
+   LastName VARCHAR(255),
+   TelephoneNumber VARCHAR(255),
+   DateOfBirth INT,
+   PassportNumber VARCHAR(255),
+   EmailAddress VARCHAR(255),
+   NationalIdentificationNumber VARCHAR(255),
+   HireDate INT,
+   TerminationDate INT,
+   DimOrganisationLevel5ID INT,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimOperator
+ADD CONSTRAINT pk_DimOperatorID
+PRIMARY KEY CLUSTERED
+(
+   DimOperatorID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimOperator_SourceKey
+ON Shared.DimOperator
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Shared.DimOperator
+   ADD CONSTRAINT fk_DimOperator_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'EmployeeID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'EmployeeID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'EmployeeID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'FirstName',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'FirstName';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'FirstName';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'LastName',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'LastName';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'LastName';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TelephoneNumber',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'TelephoneNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'TelephoneNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DateOfBirth',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'DateOfBirth';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'DateOfBirth';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'PassportNumber',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'PassportNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'PassportNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'EmailAddress',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'EmailAddress';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'EmailAddress';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'NationalIdentificationNumber',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'NationalIdentificationNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'NationalIdentificationNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'HireDate',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'HireDate';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'HireDate';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TerminationDate',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'TerminationDate';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'TerminationDate';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimOrganisationLevel5ID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'DimOrganisationLevel5ID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimOperator',
+@level2type=N'COLUMN',
+@level2name=N'DimOrganisationLevel5ID';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimPayload */
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+DROP TABLE DimPayload;
+GO
+
+
+/* Create table Shared.DimPayload */
+CREATE TABLE Shared.DimPayload
+(
+   DimPayloadID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   PayloadUnitID INT,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimPayload
+ADD CONSTRAINT pk_DimPayloadID
+PRIMARY KEY CLUSTERED
+(
+   DimPayloadID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimPayload_SourceKey
+ON Shared.DimPayload
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'PayloadUnitID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'PayloadUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPayload',
+@level2type=N'COLUMN',
+@level2name=N'PayloadUnitID';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimProduct */
+IF OBJECT_ID('Shared.DimProduct') IS NOT NULL
+DROP TABLE DimProduct;
+GO
+
+
+/* Create table Shared.DimProduct */
+CREATE TABLE Shared.DimProduct
+(
+   DimProductID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   ProductUnitID INT,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimProduct
+ADD CONSTRAINT pk_DimProductID
+PRIMARY KEY CLUSTERED
+(
+   DimProductID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimProduct_SourceKey
+ON Shared.DimProduct
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'ProductUnitID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'ProductUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProduct',
+@level2type=N'COLUMN',
+@level2name=N'ProductUnitID';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimRegion */
+IF OBJECT_ID('Shared.DimRegion') IS NOT NULL
+DROP TABLE DimRegion;
+GO
+
+
+/* Create table Shared.DimRegion */
+CREATE TABLE Shared.DimRegion
+(
+   DimRegionID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   [Geography] [GEOGRAPHY],
+   TopoJSONurl VARCHAR(255),
+   GeoJSONurl VARCHAR(255),
+   AreaSQM DECIMAL(18,5),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimRegion
+ADD CONSTRAINT pk_DimRegionID
+PRIMARY KEY CLUSTERED
+(
+   DimRegionID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimRegion_SourceKey
+ON Shared.DimRegion
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'[Geography]',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TopoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'GeoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaSQM',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimRegion',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimCountry */
+IF OBJECT_ID('Shared.DimCountry') IS NOT NULL
+DROP TABLE DimCountry;
+GO
+
+
+/* Create table Shared.DimCountry */
+CREATE TABLE Shared.DimCountry
+(
+   DimCountryID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   DimRegionID INT,
+   [Geography] [GEOGRAPHY],
+   TopoJSONurl VARCHAR(255),
+   GeoJSONurl VARCHAR(255),
+   AreaSQM DECIMAL(18,5),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimCountry
+ADD CONSTRAINT pk_DimCountryID
+PRIMARY KEY CLUSTERED
+(
+   DimCountryID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimCountry_SourceKey
+ON Shared.DimCountry
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimRegion') IS NOT NULL
+   ALTER TABLE Shared.DimCountry
+   ADD CONSTRAINT fk_DimCountry_DimRegionID
+   FOREIGN KEY
+   (
+       DimRegionID
+   )
+   REFERENCES
+       Shared.DimRegion(DimRegionID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimRegionID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'DimRegionID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'DimRegionID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'[Geography]',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TopoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'GeoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaSQM',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCountry',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimProvince_State */
+IF OBJECT_ID('Shared.DimProvince_State') IS NOT NULL
+DROP TABLE DimProvince_State;
+GO
+
+
+/* Create table Shared.DimProvince_State */
+CREATE TABLE Shared.DimProvince_State
+(
+   DimProvince_StateID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   DimCountryID INT,
+   [Geography] [GEOGRAPHY],
+   TopoJSONurl VARCHAR(255),
+   GeoJSONurl VARCHAR(255),
+   AreaSQM DECIMAL(18,5),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimProvince_State
+ADD CONSTRAINT pk_DimProvince_StateID
+PRIMARY KEY CLUSTERED
+(
+   DimProvince_StateID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimProvince_State_SourceKey
+ON Shared.DimProvince_State
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCountry') IS NOT NULL
+   ALTER TABLE Shared.DimProvince_State
+   ADD CONSTRAINT fk_DimProvince_State_DimCountryID
+   FOREIGN KEY
+   (
+       DimCountryID
+   )
+   REFERENCES
+       Shared.DimCountry(DimCountryID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimCountryID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'DimCountryID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'DimCountryID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'[Geography]',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TopoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'GeoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaSQM',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimProvince_State',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimCity */
+IF OBJECT_ID('Shared.DimCity') IS NOT NULL
+DROP TABLE DimCity;
+GO
+
+
+/* Create table Shared.DimCity */
+CREATE TABLE Shared.DimCity
+(
+   DimCityID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   DimProvince_StateID INT,
+   [Geography] [GEOGRAPHY],
+   TopoJSONurl VARCHAR(255),
+   GeoJSONurl VARCHAR(255),
+   AreaSQM DECIMAL(18,5),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimCity
+ADD CONSTRAINT pk_DimCityID
+PRIMARY KEY CLUSTERED
+(
+   DimCityID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimCity_SourceKey
+ON Shared.DimCity
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimProvince_State') IS NOT NULL
+   ALTER TABLE Shared.DimCity
+   ADD CONSTRAINT fk_DimCity_DimProvince_StateID
+   FOREIGN KEY
+   (
+       DimProvince_StateID
+   )
+   REFERENCES
+       Shared.DimProvince_State(DimProvince_StateID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimProvince_StateID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'DimProvince_StateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'DimProvince_StateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'[Geography]',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TopoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'GeoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaSQM',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCity',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
 
 DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
 IF SCHEMA_ID('Shared')IS NULL
@@ -220,6 +2423,1769 @@ exec sys.sp_addextendedproperty
 @level1name=N'DimArea',
 @level2type=N'COLUMN',
 @level2name=N'AreaSQM';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimLocation */
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+DROP TABLE DimLocation;
+GO
+
+
+/* Create table Shared.DimLocation */
+CREATE TABLE Shared.DimLocation
+(
+   DimLocationID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   AreaID INT,
+   Latitude VARCHAR(255),
+   Longitude VARCHAR(255),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimLocation
+ADD CONSTRAINT pk_DimLocationID
+PRIMARY KEY CLUSTERED
+(
+   DimLocationID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimLocation_SourceKey
+ON Shared.DimLocation
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'AreaID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'AreaID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'Latitude',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'Latitude';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'Latitude';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'Longitude',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'Longitude';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimLocation',
+@level2type=N'COLUMN',
+@level2name=N'Longitude';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimPointOfInterest */
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+DROP TABLE DimPointOfInterest;
+GO
+
+
+/* Create table Shared.DimPointOfInterest */
+CREATE TABLE Shared.DimPointOfInterest
+(
+   DimPointOfInterestID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   AreaID INT,
+   [Geography] [GEOGRAPHY],
+   TopoJSONurl VARCHAR(255),
+   GeoJSONurl VARCHAR(255),
+   AreaSQM DECIMAL(18,5),
+   UpperBoundary DECIMAL(18,5),
+   LowerBoundary DECIMAL(18,5),
+   RightBoundary DECIMAL(18,5),
+   LeftBoundary DECIMAL(18,5),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimPointOfInterest
+ADD CONSTRAINT pk_DimPointOfInterestID
+PRIMARY KEY CLUSTERED
+(
+   DimPointOfInterestID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimPointOfInterest_SourceKey
+ON Shared.DimPointOfInterest
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'AreaID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'AreaID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'[Geography]',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TopoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'GeoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaSQM',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'UpperBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'UpperBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'UpperBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'LowerBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'LowerBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'LowerBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'RightBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'RightBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'RightBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'LeftBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'LeftBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimPointOfInterest',
+@level2type=N'COLUMN',
+@level2name=N'LeftBoundary';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimSite */
+IF OBJECT_ID('Shared.DimSite') IS NOT NULL
+DROP TABLE DimSite;
+GO
+
+
+/* Create table Shared.DimSite */
+CREATE TABLE Shared.DimSite
+(
+   DimSiteID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   AreaID INT,
+   [Geography] [GEOGRAPHY],
+   TopoJSONurl VARCHAR(255),
+   GeoJSONurl VARCHAR(255),
+   AreaSQM DECIMAL(18,5),
+   UpperBoundary DECIMAL(18,5),
+   LowerBoundary DECIMAL(18,5),
+   RightBoundary DECIMAL(18,5),
+   LeftBoundary DECIMAL(18,5),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimSite
+ADD CONSTRAINT pk_DimSiteID
+PRIMARY KEY CLUSTERED
+(
+   DimSiteID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimSite_SourceKey
+ON Shared.DimSite
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'AreaID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'AreaID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'[Geography]',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'Geography';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'TopoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'TopoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'GeoJSONurl',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'GeoJSONurl';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AreaSQM',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'AreaSQM';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'UpperBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'UpperBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'UpperBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'LowerBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'LowerBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'LowerBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'RightBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'RightBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'RightBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'LeftBoundary',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'LeftBoundary';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimSite',
+@level2type=N'COLUMN',
+@level2name=N'LeftBoundary';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimManufacturer */
+IF OBJECT_ID('Shared.DimManufacturer') IS NOT NULL
+DROP TABLE DimManufacturer;
+GO
+
+
+/* Create table Shared.DimManufacturer */
+CREATE TABLE Shared.DimManufacturer
+(
+   DimManufacturerID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   CountryID INT,
+   Brand VARCHAR(255),
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimManufacturer
+ADD CONSTRAINT pk_DimManufacturerID
+PRIMARY KEY CLUSTERED
+(
+   DimManufacturerID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimManufacturer_SourceKey
+ON Shared.DimManufacturer
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'CountryID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'CountryID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'CountryID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'Brand',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'Brand';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimManufacturer',
+@level2type=N'COLUMN',
+@level2name=N'Brand';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimModel */
+IF OBJECT_ID('Shared.DimModel') IS NOT NULL
+DROP TABLE DimModel;
+GO
+
+
+/* Create table Shared.DimModel */
+CREATE TABLE Shared.DimModel
+(
+   DimModelID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   DimManufacturerID INT,
+   Capacity DECIMAL(18,5),
+   CapacityUnitID INT,
+   Range DECIMAL(18,5),
+   RangeUnitID INT,
+   ModelYear INT,
+   ModelMonth TINYINT,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimModel
+ADD CONSTRAINT pk_DimModelID
+PRIMARY KEY CLUSTERED
+(
+   DimModelID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimModel_SourceKey
+ON Shared.DimModel
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimManufacturer') IS NOT NULL
+   ALTER TABLE Shared.DimModel
+   ADD CONSTRAINT fk_DimModel_DimManufacturerID
+   FOREIGN KEY
+   (
+       DimManufacturerID
+   )
+   REFERENCES
+       Shared.DimManufacturer(DimManufacturerID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimManufacturerID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'DimManufacturerID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'DimManufacturerID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'Capacity',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'Capacity';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'Capacity';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'CapacityUnitID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'CapacityUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'CapacityUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'Range',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'Range';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'Range';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'RangeUnitID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'RangeUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'RangeUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'ModelYear',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'ModelYear';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'ModelYear';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'ModelMonth',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'ModelMonth';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimModel',
+@level2type=N'COLUMN',
+@level2name=N'ModelMonth';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimEquipment */
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+DROP TABLE DimEquipment;
+GO
+
+
+/* Create table Shared.DimEquipment */
+CREATE TABLE Shared.DimEquipment
+(
+   DimEquipmentID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   AssetCode VARCHAR(255),
+   SerialNumber VARCHAR(255),
+   DimModelID INT,
+   DimManufactureDateID INT,
+   DimPurchaseDateID INT,
+   DimVelocityUnitID INT,
+   DimEnergyConsumptionUnitID INT,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimEquipment
+ADD CONSTRAINT pk_DimEquipmentID
+PRIMARY KEY CLUSTERED
+(
+   DimEquipmentID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimEquipment_SourceKey
+ON Shared.DimEquipment
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+IF OBJECT_ID('Shared.DimModel') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimModelID
+   FOREIGN KEY
+   (
+       DimModelID
+   )
+   REFERENCES
+       Shared.DimModel(DimModelID);
+GO
+
+
+IF OBJECT_ID('Shared.DimManufactureDate') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimManufactureDateID
+   FOREIGN KEY
+   (
+       DimManufactureDateID
+   )
+   REFERENCES
+       Shared.DimManufactureDate(DimManufactureDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPurchaseDate') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimPurchaseDateID
+   FOREIGN KEY
+   (
+       DimPurchaseDateID
+   )
+   REFERENCES
+       Shared.DimPurchaseDate(DimPurchaseDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimVelocityUnit') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimVelocityUnitID
+   FOREIGN KEY
+   (
+       DimVelocityUnitID
+   )
+   REFERENCES
+       Shared.DimVelocityUnit(DimVelocityUnitID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEnergyConsumptionUnit') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimEnergyConsumptionUnitID
+   FOREIGN KEY
+   (
+       DimEnergyConsumptionUnitID
+   )
+   REFERENCES
+       Shared.DimEnergyConsumptionUnit(DimEnergyConsumptionUnitID);
+GO
+
+
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'AssetCode',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'AssetCode';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'AssetCode';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'SerialNumber',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'SerialNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'SerialNumber';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimModelID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimModelID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimModelID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimManufactureDateID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimManufactureDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimManufactureDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimPurchaseDateID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimPurchaseDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimPurchaseDateID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimVelocityUnitID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimVelocityUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimVelocityUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'DisplayName',
+@value=N'DimEnergyConsumptionUnitID',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimEnergyConsumptionUnitID';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'UnknownMember',
+@value=N'Inferred',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimEquipment',
+@level2type=N'COLUMN',
+@level2name=N'DimEnergyConsumptionUnitID';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimTripCategory */
+IF OBJECT_ID('Shared.DimTripCategory') IS NOT NULL
+DROP TABLE DimTripCategory;
+GO
+
+
+/* Create table Shared.DimTripCategory */
+CREATE TABLE Shared.DimTripCategory
+(
+   DimTripCategoryID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimTripCategory
+ADD CONSTRAINT pk_DimTripCategoryID
+PRIMARY KEY CLUSTERED
+(
+   DimTripCategoryID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimTripCategory_SourceKey
+ON Shared.DimTripCategory
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTripCategory',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTripCategory',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTripCategory',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTripCategory',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimTripCategory',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
+GO
+
+
+DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
+IF SCHEMA_ID('Shared')IS NULL
+EXEC sp_executesql @sql;
+GO
+
+
+/* Drop table DimCostType */
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+DROP TABLE DimCostType;
+GO
+
+
+/* Create table Shared.DimCostType */
+CREATE TABLE Shared.DimCostType
+(
+   DimCostTypeID INT NOT NULL,
+   Name VARCHAR(255) NULL,
+   Code VARCHAR(50) NULL,
+   SourceKey VARCHAR(255) NOT NULL,
+   SourceKeyHash BIGINT NOT NULL,
+   DeltaHash BIGINT NOT NULL,
+   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
+   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+);
+GO
+
+
+ALTER TABLE Shared.DimCostType
+ADD CONSTRAINT pk_DimCostTypeID
+PRIMARY KEY CLUSTERED
+(
+   DimCostTypeID
+);
+GO
+
+
+CREATE UNIQUE NONCLUSTERED INDEX ix_DimCostType_SourceKey
+ON Shared.DimCostType
+(
+    SourceKey
+);
+GO
+
+
+--Add UNIQUE Constraints...
+--Add Foreign Keys...
+--Table extended properties...
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCostType',
+@level2type=N'COLUMN',
+@level2name=N'Name';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'2',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCostType',
+@level2type=N'COLUMN',
+@level2name=N'Code';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKey',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCostType',
+@level2type=N'COLUMN',
+@level2name=N'SourceKey';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'BusinessKeyHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCostType',
+@level2type=N'COLUMN',
+@level2name=N'SourceKeyHash';
+GO
+
+exec sys.sp_addextendedproperty
+@name=N'SCDType',
+@value=N'DeltaHash',
+@level0type=N'SCHEMA',
+@level0name=N'Shared',
+@level1type=N'TABLE',
+@level1name=N'DimCostType',
+@level2type=N'COLUMN',
+@level2name=N'DeltaHash';
 GO
 
 
@@ -1279,954 +5245,6 @@ EXEC sp_executesql @sql;
 GO
 
 
-/* Drop table DimCity */
-IF OBJECT_ID('Shared.DimCity') IS NOT NULL
-DROP TABLE DimCity;
-GO
-
-
-/* Create table Shared.DimCity */
-CREATE TABLE Shared.DimCity
-(
-   DimCityID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimCity
-ADD CONSTRAINT pk_DimCityID
-PRIMARY KEY CLUSTERED
-(
-   DimCityID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimCity_SourceKey
-ON Shared.DimCity
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCity',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimContinent */
-IF OBJECT_ID('Shared.DimContinent') IS NOT NULL
-DROP TABLE DimContinent;
-GO
-
-
-/* Create table Shared.DimContinent */
-CREATE TABLE Shared.DimContinent
-(
-   DimContinentID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimContinent
-ADD CONSTRAINT pk_DimContinentID
-PRIMARY KEY CLUSTERED
-(
-   DimContinentID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimContinent_SourceKey
-ON Shared.DimContinent
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimContinent',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimCostType */
-IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
-DROP TABLE DimCostType;
-GO
-
-
-/* Create table Shared.DimCostType */
-CREATE TABLE Shared.DimCostType
-(
-   DimCostTypeID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimCostType
-ADD CONSTRAINT pk_DimCostTypeID
-PRIMARY KEY CLUSTERED
-(
-   DimCostTypeID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimCostType_SourceKey
-ON Shared.DimCostType
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCostType',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCostType',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCostType',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCostType',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCostType',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimCountry */
-IF OBJECT_ID('Shared.DimCountry') IS NOT NULL
-DROP TABLE DimCountry;
-GO
-
-
-/* Create table Shared.DimCountry */
-CREATE TABLE Shared.DimCountry
-(
-   DimCountryID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimCountry
-ADD CONSTRAINT pk_DimCountryID
-PRIMARY KEY CLUSTERED
-(
-   DimCountryID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimCountry_SourceKey
-ON Shared.DimCountry
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCountry',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimCurrency */
-IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
-DROP TABLE DimCurrency;
-GO
-
-
-/* Create table Shared.DimCurrency */
-CREATE TABLE Shared.DimCurrency
-(
-   DimCurrencyID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   CountryID INT,
-   ISOCode CHAR(3),
-   CurrencySymbol NVARCHAR(1),
-   StartDateID INT,
-   EndDateID INT,
-   Version INT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimCurrency
-ADD CONSTRAINT pk_DimCurrencyID
-PRIMARY KEY CLUSTERED
-(
-   DimCurrencyID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimCurrency_SourceKey
-ON Shared.DimCurrency
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
-ALTER TABLE Shared.DimCurrency
-ADD CONSTRAINT uc_DimCurrency_StartDateID
-UNIQUE
-(
-   StartDateID
-)
-GO
-
-
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'CountryID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'CountryID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'CountryID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'ISOCode',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'ISOCode';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'ISOCode';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'CurrencySymbol',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'CurrencySymbol';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'CurrencySymbol';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'StartDateID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'StartDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'StartDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'EndDateID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'EndDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'EndDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'Version',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'Version';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimCurrency',
-@level2type=N'COLUMN',
-@level2name=N'Version';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
 /* Drop table DimCustomerLevel1 */
 IF OBJECT_ID('Shared.DimCustomerLevel1') IS NOT NULL
 DROP TABLE DimCustomerLevel1;
@@ -2879,577 +5897,6 @@ exec sys.sp_addextendedproperty
 @level1name=N'DimCustomerLevel3',
 @level2type=N'COLUMN',
 @level2name=N'DimCustomerLevel2ID';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimDate */
-IF OBJECT_ID('Shared.DimDate') IS NOT NULL
-DROP TABLE DimDate;
-GO
-
-
-/* Create table Shared.DimDate */
-CREATE TABLE Shared.DimDate
-(
-   DimDateID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimDate
-ADD CONSTRAINT pk_DimDateID
-PRIMARY KEY CLUSTERED
-(
-   DimDateID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimDate_SourceKey
-ON Shared.DimDate
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimDate',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimDate',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimDate',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimDate',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimDate',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimEquipment */
-IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
-DROP TABLE DimEquipment;
-GO
-
-
-/* Create table Shared.DimEquipment */
-CREATE TABLE Shared.DimEquipment
-(
-   DimEquipmentID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   AssetCode VARCHAR(255),
-   SerialNumber VARCHAR(255),
-   DimModelID INT,
-   DimManufacturerID INT,
-   DimManufactureDateID INT,
-   DimPurchaseDateID INT,
-   DimVelocityUnitID INT,
-   DimEnergyConsumptionUnitID INT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimEquipment
-ADD CONSTRAINT pk_DimEquipmentID
-PRIMARY KEY CLUSTERED
-(
-   DimEquipmentID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimEquipment_SourceKey
-ON Shared.DimEquipment
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
-IF OBJECT_ID('Shared.DimModel') IS NOT NULL
-   ALTER TABLE Shared.DimEquipment
-   ADD CONSTRAINT fk_DimEquipment_DimModelID
-   FOREIGN KEY
-   (
-       DimModelID
-   )
-   REFERENCES
-       Shared.DimModel(DimModelID);
-GO
-
-
-IF OBJECT_ID('Shared.DimManufacturer') IS NOT NULL
-   ALTER TABLE Shared.DimEquipment
-   ADD CONSTRAINT fk_DimEquipment_DimManufacturerID
-   FOREIGN KEY
-   (
-       DimManufacturerID
-   )
-   REFERENCES
-       Shared.DimManufacturer(DimManufacturerID);
-GO
-
-
-IF OBJECT_ID('Shared.DimManufactureDate') IS NOT NULL
-   ALTER TABLE Shared.DimEquipment
-   ADD CONSTRAINT fk_DimEquipment_DimManufactureDateID
-   FOREIGN KEY
-   (
-       DimManufactureDateID
-   )
-   REFERENCES
-       Shared.DimManufactureDate(DimManufactureDateID);
-GO
-
-
-IF OBJECT_ID('Shared.DimPurchaseDate') IS NOT NULL
-   ALTER TABLE Shared.DimEquipment
-   ADD CONSTRAINT fk_DimEquipment_DimPurchaseDateID
-   FOREIGN KEY
-   (
-       DimPurchaseDateID
-   )
-   REFERENCES
-       Shared.DimPurchaseDate(DimPurchaseDateID);
-GO
-
-
-IF OBJECT_ID('Shared.DimVelocityUnit') IS NOT NULL
-   ALTER TABLE Shared.DimEquipment
-   ADD CONSTRAINT fk_DimEquipment_DimVelocityUnitID
-   FOREIGN KEY
-   (
-       DimVelocityUnitID
-   )
-   REFERENCES
-       Shared.DimVelocityUnit(DimVelocityUnitID);
-GO
-
-
-IF OBJECT_ID('Shared.DimEnergyConsumptionUnit') IS NOT NULL
-   ALTER TABLE Shared.DimEquipment
-   ADD CONSTRAINT fk_DimEquipment_DimEnergyConsumptionUnitID
-   FOREIGN KEY
-   (
-       DimEnergyConsumptionUnitID
-   )
-   REFERENCES
-       Shared.DimEnergyConsumptionUnit(DimEnergyConsumptionUnitID);
-GO
-
-
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AssetCode',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'AssetCode';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'AssetCode';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'SerialNumber',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'SerialNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'SerialNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimModelID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimModelID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimModelID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimManufacturerID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimManufacturerID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimManufacturerID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimManufactureDateID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimManufactureDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimManufactureDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimPurchaseDateID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimPurchaseDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimPurchaseDateID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimVelocityUnitID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimVelocityUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimVelocityUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimEnergyConsumptionUnitID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimEnergyConsumptionUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEquipment',
-@level2type=N'COLUMN',
-@level2name=N'DimEnergyConsumptionUnitID';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimEventType */
-IF OBJECT_ID('Shared.DimEventType') IS NOT NULL
-DROP TABLE DimEventType;
-GO
-
-
-/* Create table Shared.DimEventType */
-CREATE TABLE Shared.DimEventType
-(
-   DimEventTypeID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimEventType
-ADD CONSTRAINT pk_DimEventTypeID
-PRIMARY KEY CLUSTERED
-(
-   DimEventTypeID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimEventType_SourceKey
-ON Shared.DimEventType
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEventType',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEventType',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEventType',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEventType',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimEventType',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
 GO
 
 
@@ -4229,944 +6676,6 @@ EXEC sp_executesql @sql;
 GO
 
 
-/* Drop table DimLocation */
-IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
-DROP TABLE DimLocation;
-GO
-
-
-/* Create table Shared.DimLocation */
-CREATE TABLE Shared.DimLocation
-(
-   DimLocationID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   AreaID INT,
-   Latitude VARCHAR(255),
-   Longitude VARCHAR(255),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimLocation
-ADD CONSTRAINT pk_DimLocationID
-PRIMARY KEY CLUSTERED
-(
-   DimLocationID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimLocation_SourceKey
-ON Shared.DimLocation
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'AreaID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'AreaID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'Latitude',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'Latitude';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'Latitude';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'Longitude',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'Longitude';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimLocation',
-@level2type=N'COLUMN',
-@level2name=N'Longitude';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimManufacturer */
-IF OBJECT_ID('Shared.DimManufacturer') IS NOT NULL
-DROP TABLE DimManufacturer;
-GO
-
-
-/* Create table Shared.DimManufacturer */
-CREATE TABLE Shared.DimManufacturer
-(
-   DimManufacturerID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   CountryID INT,
-   Brand VARCHAR(255),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimManufacturer
-ADD CONSTRAINT pk_DimManufacturerID
-PRIMARY KEY CLUSTERED
-(
-   DimManufacturerID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimManufacturer_SourceKey
-ON Shared.DimManufacturer
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'CountryID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'CountryID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'CountryID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'Brand',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'Brand';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimManufacturer',
-@level2type=N'COLUMN',
-@level2name=N'Brand';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimModel */
-IF OBJECT_ID('Shared.DimModel') IS NOT NULL
-DROP TABLE DimModel;
-GO
-
-
-/* Create table Shared.DimModel */
-CREATE TABLE Shared.DimModel
-(
-   DimModelID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   Capacity DECIMAL(18,5),
-   CapacityUnitID INT,
-   Range DECIMAL(18,5),
-   RangeUnitID INT,
-   ModelYear INT,
-   ModelMonth TINYINT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimModel
-ADD CONSTRAINT pk_DimModelID
-PRIMARY KEY CLUSTERED
-(
-   DimModelID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimModel_SourceKey
-ON Shared.DimModel
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'Capacity',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'Capacity';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'Capacity';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'CapacityUnitID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'CapacityUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'CapacityUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'Range',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'Range';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'Range';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'RangeUnitID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'RangeUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'RangeUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'ModelYear',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'ModelYear';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'ModelYear';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'ModelMonth',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'ModelMonth';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimModel',
-@level2type=N'COLUMN',
-@level2name=N'ModelMonth';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimOperator */
-IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
-DROP TABLE DimOperator;
-GO
-
-
-/* Create table Shared.DimOperator */
-CREATE TABLE Shared.DimOperator
-(
-   DimOperatorID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   EmployeeID INT,
-   FirstName VARCHAR(255),
-   LastName VARCHAR(255),
-   TelephoneNumber VARCHAR(255),
-   DateOfBirth INT,
-   PassportNumber VARCHAR(255),
-   EmailAddress VARCHAR(255),
-   NationalIdentificationNumber VARCHAR(255),
-   HireDate INT,
-   TerminationDate INT,
-   DimOrganisationLevel5ID INT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimOperator
-ADD CONSTRAINT pk_DimOperatorID
-PRIMARY KEY CLUSTERED
-(
-   DimOperatorID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimOperator_SourceKey
-ON Shared.DimOperator
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
-IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
-   ALTER TABLE Shared.DimOperator
-   ADD CONSTRAINT fk_DimOperator_DimOrganisationLevel5ID
-   FOREIGN KEY
-   (
-       DimOrganisationLevel5ID
-   )
-   REFERENCES
-       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
-GO
-
-
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'EmployeeID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'EmployeeID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'EmployeeID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'FirstName',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'FirstName';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'FirstName';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'LastName',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'LastName';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'LastName';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TelephoneNumber',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'TelephoneNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'TelephoneNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DateOfBirth',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'DateOfBirth';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'DateOfBirth';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'PassportNumber',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'PassportNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'PassportNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'EmailAddress',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'EmailAddress';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'EmailAddress';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'NationalIdentificationNumber',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'NationalIdentificationNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'NationalIdentificationNumber';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'HireDate',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'HireDate';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'HireDate';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TerminationDate',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'TerminationDate';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'TerminationDate';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOperator',
-@level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
 /* Drop table DimOrganisationLevel1 */
 IF OBJECT_ID('Shared.DimOrganisationLevel1') IS NOT NULL
 DROP TABLE DimOrganisationLevel1;
@@ -5702,16 +7211,7 @@ GO
 CREATE TABLE Shared.DimOrganisationLevel5
 (
    DimOrganisationLevel5ID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   DimOrganisationLevel4ID INT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
+   RunID INT NOT NULL
 );
 GO
 
@@ -5721,1621 +7221,6 @@ ADD CONSTRAINT pk_DimOrganisationLevel5ID
 PRIMARY KEY CLUSTERED
 (
    DimOrganisationLevel5ID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimOrganisationLevel5_SourceKey
-ON Shared.DimOrganisationLevel5
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
-IF OBJECT_ID('Shared.DimOrganisationLevel4') IS NOT NULL
-   ALTER TABLE Shared.DimOrganisationLevel5
-   ADD CONSTRAINT fk_DimOrganisationLevel5_DimOrganisationLevel4ID
-   FOREIGN KEY
-   (
-       DimOrganisationLevel4ID
-   )
-   REFERENCES
-       Shared.DimOrganisationLevel4(DimOrganisationLevel4ID);
-GO
-
-
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'DimOrganisationLevel4ID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel4ID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimOrganisationLevel5',
-@level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel4ID';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimPayload */
-IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
-DROP TABLE DimPayload;
-GO
-
-
-/* Create table Shared.DimPayload */
-CREATE TABLE Shared.DimPayload
-(
-   DimPayloadID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   PayloadUnitID INT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimPayload
-ADD CONSTRAINT pk_DimPayloadID
-PRIMARY KEY CLUSTERED
-(
-   DimPayloadID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimPayload_SourceKey
-ON Shared.DimPayload
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'PayloadUnitID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'PayloadUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPayload',
-@level2type=N'COLUMN',
-@level2name=N'PayloadUnitID';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimPointOfInterest */
-IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
-DROP TABLE DimPointOfInterest;
-GO
-
-
-/* Create table Shared.DimPointOfInterest */
-CREATE TABLE Shared.DimPointOfInterest
-(
-   DimPointOfInterestID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   AreaID INT,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   UpperBoundary DECIMAL(18,5),
-   LowerBoundary DECIMAL(18,5),
-   RightBoundary DECIMAL(18,5),
-   LeftBoundary DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimPointOfInterest
-ADD CONSTRAINT pk_DimPointOfInterestID
-PRIMARY KEY CLUSTERED
-(
-   DimPointOfInterestID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimPointOfInterest_SourceKey
-ON Shared.DimPointOfInterest
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'AreaID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'AreaID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'UpperBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'UpperBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'UpperBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'LowerBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'LowerBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'LowerBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'RightBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'RightBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'RightBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'LeftBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'LeftBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimPointOfInterest',
-@level2type=N'COLUMN',
-@level2name=N'LeftBoundary';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimProduct */
-IF OBJECT_ID('Shared.DimProduct') IS NOT NULL
-DROP TABLE DimProduct;
-GO
-
-
-/* Create table Shared.DimProduct */
-CREATE TABLE Shared.DimProduct
-(
-   DimProductID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   ProductUnitID INT,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimProduct
-ADD CONSTRAINT pk_DimProductID
-PRIMARY KEY CLUSTERED
-(
-   DimProductID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimProduct_SourceKey
-ON Shared.DimProduct
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'ProductUnitID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'ProductUnitID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProduct',
-@level2type=N'COLUMN',
-@level2name=N'ProductUnitID';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimProvince_State */
-IF OBJECT_ID('Shared.DimProvince_State') IS NOT NULL
-DROP TABLE DimProvince_State;
-GO
-
-
-/* Create table Shared.DimProvince_State */
-CREATE TABLE Shared.DimProvince_State
-(
-   DimProvince_StateID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimProvince_State
-ADD CONSTRAINT pk_DimProvince_StateID
-PRIMARY KEY CLUSTERED
-(
-   DimProvince_StateID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimProvince_State_SourceKey
-ON Shared.DimProvince_State
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimProvince_State',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimRegion */
-IF OBJECT_ID('Shared.DimRegion') IS NOT NULL
-DROP TABLE DimRegion;
-GO
-
-
-/* Create table Shared.DimRegion */
-CREATE TABLE Shared.DimRegion
-(
-   DimRegionID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimRegion
-ADD CONSTRAINT pk_DimRegionID
-PRIMARY KEY CLUSTERED
-(
-   DimRegionID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimRegion_SourceKey
-ON Shared.DimRegion
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimRegion',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimSite */
-IF OBJECT_ID('Shared.DimSite') IS NOT NULL
-DROP TABLE DimSite;
-GO
-
-
-/* Create table Shared.DimSite */
-CREATE TABLE Shared.DimSite
-(
-   DimSiteID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   AreaID INT,
-   [Geography] [GEOGRAPHY],
-   TopoJSONurl VARCHAR(255),
-   GeoJSONurl VARCHAR(255),
-   AreaSQM DECIMAL(18,5),
-   UpperBoundary DECIMAL(18,5),
-   LowerBoundary DECIMAL(18,5),
-   RightBoundary DECIMAL(18,5),
-   LeftBoundary DECIMAL(18,5),
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimSite
-ADD CONSTRAINT pk_DimSiteID
-PRIMARY KEY CLUSTERED
-(
-   DimSiteID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimSite_SourceKey
-ON Shared.DimSite
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaID',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'AreaID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'AreaID';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'[Geography]',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'Geography';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'TopoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'TopoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'GeoJSONurl',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'GeoJSONurl';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'AreaSQM',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'AreaSQM';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'UpperBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'UpperBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'UpperBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'LowerBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'LowerBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'LowerBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'RightBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'RightBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'RightBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'DisplayName',
-@value=N'LeftBoundary',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'LeftBoundary';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'UnknownMember',
-@value=N'Inferred',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimSite',
-@level2type=N'COLUMN',
-@level2name=N'LeftBoundary';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimTime */
-IF OBJECT_ID('Shared.DimTime') IS NOT NULL
-DROP TABLE DimTime;
-GO
-
-
-/* Create table Shared.DimTime */
-CREATE TABLE Shared.DimTime
-(
-   DimTimeID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimTime
-ADD CONSTRAINT pk_DimTimeID
-PRIMARY KEY CLUSTERED
-(
-   DimTimeID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimTime_SourceKey
-ON Shared.DimTime
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTime',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTime',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTime',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTime',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTime',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimTripCategory */
-IF OBJECT_ID('Shared.DimTripCategory') IS NOT NULL
-DROP TABLE DimTripCategory;
-GO
-
-
-/* Create table Shared.DimTripCategory */
-CREATE TABLE Shared.DimTripCategory
-(
-   DimTripCategoryID INT NOT NULL,
-   Name VARCHAR(255) NULL,
-   Code VARCHAR(50) NULL,
-   SourceKey VARCHAR(255) NOT NULL,
-   SourceKeyHash BIGINT NOT NULL,
-   DeltaHash BIGINT NOT NULL,
-   sysModifiedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysModifiedOn DATETIME NOT NULL DEFAULT GETDATE(),
-   sysCreatedBy VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
-   sysCreatedOn DATETIME NOT NULL DEFAULT GETDATE()
-);
-GO
-
-
-ALTER TABLE Shared.DimTripCategory
-ADD CONSTRAINT pk_DimTripCategoryID
-PRIMARY KEY CLUSTERED
-(
-   DimTripCategoryID
-);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX ix_DimTripCategory_SourceKey
-ON Shared.DimTripCategory
-(
-    SourceKey
-);
-GO
-
-
---Add UNIQUE Constraints...
---Add Foreign Keys...
---Table extended properties...
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTripCategory',
-@level2type=N'COLUMN',
-@level2name=N'Name';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'2',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTripCategory',
-@level2type=N'COLUMN',
-@level2name=N'Code';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKey',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTripCategory',
-@level2type=N'COLUMN',
-@level2name=N'SourceKey';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'BusinessKeyHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTripCategory',
-@level2type=N'COLUMN',
-@level2name=N'SourceKeyHash';
-GO
-
-exec sys.sp_addextendedproperty
-@name=N'SCDType',
-@value=N'DeltaHash',
-@level0type=N'SCHEMA',
-@level0name=N'Shared',
-@level1type=N'TABLE',
-@level1name=N'DimTripCategory',
-@level2type=N'COLUMN',
-@level2name=N'DeltaHash';
-GO
-
-
-DECLARE @sql AS NVARCHAR(200) = N'CREATE SCHEMA Shared';
-IF SCHEMA_ID('Shared')IS NULL
-EXEC sp_executesql @sql;
-GO
-
-
-/* Drop table DimUnit */
-IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
-DROP TABLE DimUnit;
-GO
-
-
-/* Create table Shared.DimUnit */
-CREATE TABLE Shared.DimUnit
-(
-   DimUnitID INT NOT NULL,
-   RunID INT NOT NULL
-);
-GO
-
-
-ALTER TABLE Shared.DimUnit
-ADD CONSTRAINT pk_DimUnitID
-PRIMARY KEY CLUSTERED
-(
-   DimUnitID
 );
 GO
 
