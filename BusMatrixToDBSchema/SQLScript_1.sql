@@ -1,4 +1,4 @@
-/****** Object:  Database Okavango    Script Date: 1/4/2014 6:00:42 PM ******/
+/****** Object:  Database Okavango    Script Date: 1/4/2014 7:49:11 PM ******/
 
 
 USE Master;
@@ -377,6 +377,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimAvailabilityLevel1') IS NOT NULL
+   ALTER TABLE Shared.DimAvailabilityLevel2
+   ADD CONSTRAINT fk_DimAvailabilityLevel2_DimAvailabilityLevel1ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel1ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel1(DimAvailabilityLevel1ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -505,6 +517,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimAvailabilityLevel2') IS NOT NULL
+   ALTER TABLE Shared.DimAvailabilityLevel3
+   ADD CONSTRAINT fk_DimAvailabilityLevel3_DimAvailabilityLevel2ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel2ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel2(DimAvailabilityLevel2ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -633,6 +657,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimAvailabilityLevel3') IS NOT NULL
+   ALTER TABLE Shared.DimAvailabilityLevel4
+   ADD CONSTRAINT fk_DimAvailabilityLevel4_DimAvailabilityLevel3ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel3ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel3(DimAvailabilityLevel3ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -761,6 +797,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimAvailabilityLevel4') IS NOT NULL
+   ALTER TABLE Shared.DimAvailabilityLevel5
+   ADD CONSTRAINT fk_DimAvailabilityLevel5_DimAvailabilityLevel4ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel4ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel4(DimAvailabilityLevel4ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -994,6 +1042,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimChartOfAccountsLevel1') IS NOT NULL
+   ALTER TABLE Shared.DimChartOfAccountsLevel2
+   ADD CONSTRAINT fk_DimChartOfAccountsLevel2_DimChartOfAccountsLevel1ID
+   FOREIGN KEY
+   (
+       DimChartOfAccountsLevel1ID
+   )
+   REFERENCES
+       Shared.DimChartOfAccountsLevel1(DimChartOfAccountsLevel1ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -1122,6 +1182,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimChartOfAccountsLevel2') IS NOT NULL
+   ALTER TABLE Shared.DimChartOfAccountsLevel3
+   ADD CONSTRAINT fk_DimChartOfAccountsLevel3_DimChartOfAccountsLevel2ID
+   FOREIGN KEY
+   (
+       DimChartOfAccountsLevel2ID
+   )
+   REFERENCES
+       Shared.DimChartOfAccountsLevel2(DimChartOfAccountsLevel2ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -1950,6 +2022,15 @@ GO
 
 
 --Add UNIQUE Constraints...
+ALTER TABLE Shared.DimCurrency
+ADD CONSTRAINT uc_DimCurrency_StartDateID
+UNIQUE
+(
+   StartDateID
+)
+GO
+
+
 --Add Foreign Keys...
 --Table extended properties...
 exec sys.sp_addextendedproperty
@@ -2390,6 +2471,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCustomerLevel1') IS NOT NULL
+   ALTER TABLE Shared.DimCustomerLevel2
+   ADD CONSTRAINT fk_DimCustomerLevel2_DimCustomerLevel1ID
+   FOREIGN KEY
+   (
+       DimCustomerLevel1ID
+   )
+   REFERENCES
+       Shared.DimCustomerLevel1(DimCustomerLevel1ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -2610,6 +2703,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCustomerLevel2') IS NOT NULL
+   ALTER TABLE Shared.DimCustomerLevel3
+   ADD CONSTRAINT fk_DimCustomerLevel3_DimCustomerLevel2ID
+   FOREIGN KEY
+   (
+       DimCustomerLevel2ID
+   )
+   REFERENCES
+       Shared.DimCustomerLevel2(DimCustomerLevel2ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -2938,6 +3043,78 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimModel') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimModelID
+   FOREIGN KEY
+   (
+       DimModelID
+   )
+   REFERENCES
+       Shared.DimModel(DimModelID);
+GO
+
+
+IF OBJECT_ID('Shared.DimManufacturer') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimManufacturerID
+   FOREIGN KEY
+   (
+       DimManufacturerID
+   )
+   REFERENCES
+       Shared.DimManufacturer(DimManufacturerID);
+GO
+
+
+IF OBJECT_ID('Shared.DimManufactureDate') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimManufactureDateID
+   FOREIGN KEY
+   (
+       DimManufactureDateID
+   )
+   REFERENCES
+       Shared.DimManufactureDate(DimManufactureDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPurchaseDate') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimPurchaseDateID
+   FOREIGN KEY
+   (
+       DimPurchaseDateID
+   )
+   REFERENCES
+       Shared.DimPurchaseDate(DimPurchaseDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimVelocityUnit') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimVelocityUnitID
+   FOREIGN KEY
+   (
+       DimVelocityUnitID
+   )
+   REFERENCES
+       Shared.DimVelocityUnit(DimVelocityUnitID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEnergyConsumptionUnit') IS NOT NULL
+   ALTER TABLE Shared.DimEquipment
+   ADD CONSTRAINT fk_DimEquipment_DimEnergyConsumptionUnitID
+   FOREIGN KEY
+   (
+       DimEnergyConsumptionUnitID
+   )
+   REFERENCES
+       Shared.DimEnergyConsumptionUnit(DimEnergyConsumptionUnitID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -3536,6 +3713,30 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimExceptionLevel1') IS NOT NULL
+   ALTER TABLE Shared.DimExceptionLevel3
+   ADD CONSTRAINT fk_DimExceptionLevel3_DimExceptionLevel1ID
+   FOREIGN KEY
+   (
+       DimExceptionLevel1ID
+   )
+   REFERENCES
+       Shared.DimExceptionLevel1(DimExceptionLevel1ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimExceptionLevel2') IS NOT NULL
+   ALTER TABLE Shared.DimExceptionLevel3
+   ADD CONSTRAINT fk_DimExceptionLevel3_DimExceptionLevel2ID
+   FOREIGN KEY
+   (
+       DimExceptionLevel2ID
+   )
+   REFERENCES
+       Shared.DimExceptionLevel2(DimExceptionLevel2ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -3791,6 +3992,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimExclusionLevel1') IS NOT NULL
+   ALTER TABLE Shared.DimExclusionLevel2
+   ADD CONSTRAINT fk_DimExclusionLevel2_DimExclusionLevel1ID
+   FOREIGN KEY
+   (
+       DimExclusionLevel1ID
+   )
+   REFERENCES
+       Shared.DimExclusionLevel1(DimExclusionLevel1ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -3919,6 +4132,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimExclusionLevel2') IS NOT NULL
+   ALTER TABLE Shared.DimExclusionLevel3
+   ADD CONSTRAINT fk_DimExclusionLevel3_DimExclusionLevel2ID
+   FOREIGN KEY
+   (
+       DimExclusionLevel2ID
+   )
+   REFERENCES
+       Shared.DimExclusionLevel2(DimExclusionLevel2ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -4625,6 +4850,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Shared.DimOperator
+   ADD CONSTRAINT fk_DimOperator_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -5078,6 +5315,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimOrganisationLevel1') IS NOT NULL
+   ALTER TABLE Shared.DimOrganisationLevel2
+   ADD CONSTRAINT fk_DimOrganisationLevel2_DimOrganisationLevel1ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel1ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel1(DimOrganisationLevel1ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -5206,6 +5455,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimOrganisationLevel2') IS NOT NULL
+   ALTER TABLE Shared.DimOrganisationLevel3
+   ADD CONSTRAINT fk_DimOrganisationLevel3_DimOrganisationLevel2ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel2ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel2(DimOrganisationLevel2ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -5334,6 +5595,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimOrganisationLevel3') IS NOT NULL
+   ALTER TABLE Shared.DimOrganisationLevel4
+   ADD CONSTRAINT fk_DimOrganisationLevel4_DimOrganisationLevel3ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel3ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel3(DimOrganisationLevel3ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -5462,6 +5735,18 @@ GO
 
 --Add UNIQUE Constraints...
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimOrganisationLevel4') IS NOT NULL
+   ALTER TABLE Shared.DimOrganisationLevel5
+   ADD CONSTRAINT fk_DimOrganisationLevel5_DimOrganisationLevel4ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel4ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel4(DimOrganisationLevel4ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'SCDType',
@@ -7078,7 +7363,7 @@ CREATE TABLE Activity.FactActivityDetail
    DimDateID INT,
    DimTimeID INT,
    DimEquipmentID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    EnergyConsumption DECIMAL(18,2),
    Acceleration DECIMAL(18,2),
    Velocity DECIMAL(18,2),
@@ -7103,43 +7388,55 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactActivityDetail
-ADD CONSTRAINT uc_FactActivityDetail_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivityDetail
-ADD CONSTRAINT uc_FactActivityDetail_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivityDetail
-ADD CONSTRAINT uc_FactActivityDetail_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivityDetail
-ADD CONSTRAINT uc_FactActivityDetail_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactActivityDetail
+   ADD CONSTRAINT fk_FactActivityDetail_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactActivityDetail
+   ADD CONSTRAINT fk_FactActivityDetail_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Activity.FactActivityDetail
+   ADD CONSTRAINT fk_FactActivityDetail_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactActivityDetail
+   ADD CONSTRAINT fk_FactActivityDetail_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -7176,13 +7473,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactActivityDetail',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -7303,7 +7600,7 @@ CREATE TABLE Exceptions.FactActivityException
    FactActivityExceptionID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimExceptionID INT,
+   DimExceptionLevel3ID INT,
    DimEquipmentID INT,
    EnergyConsumption DECIMAL(18,2),
    Acceleration DECIMAL(18,2),
@@ -7329,43 +7626,55 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Exceptions.FactActivityException
-ADD CONSTRAINT uc_FactActivityException_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityException
-ADD CONSTRAINT uc_FactActivityException_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityException
-ADD CONSTRAINT uc_FactActivityException_DimExceptionID
-UNIQUE
-(
-   DimExceptionID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityException
-ADD CONSTRAINT uc_FactActivityException_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityException
+   ADD CONSTRAINT fk_FactActivityException_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityException
+   ADD CONSTRAINT fk_FactActivityException_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimExceptionLevel3') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityException
+   ADD CONSTRAINT fk_FactActivityException_DimExceptionLevel3ID
+   FOREIGN KEY
+   (
+       DimExceptionLevel3ID
+   )
+   REFERENCES
+       Shared.DimExceptionLevel3(DimExceptionLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityException
+   ADD CONSTRAINT fk_FactActivityException_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -7391,13 +7700,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExceptionID',
+@value=N'DimExceptionLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactActivityException',
 @level2type=N'COLUMN',
-@level2name=N'DimExceptionID';
+@level2name=N'DimExceptionLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -7528,7 +7837,7 @@ CREATE TABLE Exceptions.FactActivityExclusion
 (
    FactActivityExclusionID INT NOT NULL,
    DimDateID INT,
-   DimExclusionID INT,
+   DimExclusionLevel3ID INT,
    DimEquipmentID INT,
    DimLocationID INT,
    DimPointOfInterestID INT,
@@ -7547,52 +7856,67 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Exceptions.FactActivityExclusion
-ADD CONSTRAINT uc_FactActivityExclusion_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityExclusion
-ADD CONSTRAINT uc_FactActivityExclusion_DimExclusionID
-UNIQUE
-(
-   DimExclusionID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityExclusion
-ADD CONSTRAINT uc_FactActivityExclusion_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityExclusion
-ADD CONSTRAINT uc_FactActivityExclusion_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactActivityExclusion
-ADD CONSTRAINT uc_FactActivityExclusion_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityExclusion
+   ADD CONSTRAINT fk_FactActivityExclusion_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimExclusionLevel3') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityExclusion
+   ADD CONSTRAINT fk_FactActivityExclusion_DimExclusionLevel3ID
+   FOREIGN KEY
+   (
+       DimExclusionLevel3ID
+   )
+   REFERENCES
+       Shared.DimExclusionLevel3(DimExclusionLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityExclusion
+   ADD CONSTRAINT fk_FactActivityExclusion_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityExclusion
+   ADD CONSTRAINT fk_FactActivityExclusion_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Exceptions.FactActivityExclusion
+   ADD CONSTRAINT fk_FactActivityExclusion_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -7607,13 +7931,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExclusionID',
+@value=N'DimExclusionLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactActivityExclusion',
 @level2type=N'COLUMN',
-@level2name=N'DimExclusionID';
+@level2name=N'DimExclusionLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -7671,7 +7995,7 @@ CREATE TABLE Activity.FactActivitySummary
    DimLocationID INT,
    DimPayloadID INT,
    DimSiteID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimPayloadUnitID INT,
    Duration DECIMAL(18,2),
    Payload DECIMAL(18,2),
@@ -7705,70 +8029,91 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimSiteID
-UNIQUE
-(
-   DimSiteID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimPayloadUnitID
-UNIQUE
-(
-   DimPayloadUnitID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimSite') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimSiteID
+   FOREIGN KEY
+   (
+       DimSiteID
+   )
+   REFERENCES
+       Shared.DimSite(DimSiteID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
+   ALTER TABLE Activity.FactActivitySummary
+   ADD CONSTRAINT fk_FactActivitySummary_DimPayloadUnitID
+   FOREIGN KEY
+   (
+       DimPayloadUnitID
+   )
+   REFERENCES
+       Shared.DimUnit(DimUnitID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -7827,13 +8172,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactActivitySummary',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8054,7 +8399,7 @@ CREATE TABLE Costs.FactBudget
    DimCostTypeID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -8073,52 +8418,67 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactBudget
-ADD CONSTRAINT uc_FactBudget_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactBudget
-ADD CONSTRAINT uc_FactBudget_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactBudget
-ADD CONSTRAINT uc_FactBudget_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Costs.FactBudget
-ADD CONSTRAINT uc_FactBudget_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactBudget
-ADD CONSTRAINT uc_FactBudget_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactBudget
+   ADD CONSTRAINT fk_FactBudget_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactBudget
+   ADD CONSTRAINT fk_FactBudget_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Costs.FactBudget
+   ADD CONSTRAINT fk_FactBudget_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactBudget
+   ADD CONSTRAINT fk_FactBudget_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactBudget
+   ADD CONSTRAINT fk_FactBudget_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -8155,13 +8515,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactBudget',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8235,43 +8595,55 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactCapturedCosts
-ADD CONSTRAINT uc_FactCapturedCosts_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactCapturedCosts
-ADD CONSTRAINT uc_FactCapturedCosts_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactCapturedCosts
-ADD CONSTRAINT uc_FactCapturedCosts_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Costs.FactCapturedCosts
-ADD CONSTRAINT uc_FactCapturedCosts_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactCapturedCosts
+   ADD CONSTRAINT fk_FactCapturedCosts_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactCapturedCosts
+   ADD CONSTRAINT fk_FactCapturedCosts_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Costs.FactCapturedCosts
+   ADD CONSTRAINT fk_FactCapturedCosts_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactCapturedCosts
+   ADD CONSTRAINT fk_FactCapturedCosts_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -8360,7 +8732,7 @@ CREATE TABLE Costs.FactCarbonCredits
    DimCostTypeID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    Credits DECIMAL(18,2),
    RunID INT NOT NULL
@@ -8378,61 +8750,79 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonCredits
+   ADD CONSTRAINT fk_FactCarbonCredits_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonCredits
+   ADD CONSTRAINT fk_FactCarbonCredits_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonCredits
+   ADD CONSTRAINT fk_FactCarbonCredits_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonCredits
+   ADD CONSTRAINT fk_FactCarbonCredits_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonCredits
+   ADD CONSTRAINT fk_FactCarbonCredits_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonCredits
+   ADD CONSTRAINT fk_FactCarbonCredits_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -8480,13 +8870,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactCarbonCredits',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8532,7 +8922,7 @@ CREATE TABLE Costs.FactCarbonTax
    DimCostTypeID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -8551,61 +8941,79 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonTax
+   ADD CONSTRAINT fk_FactCarbonTax_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonTax
+   ADD CONSTRAINT fk_FactCarbonTax_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonTax
+   ADD CONSTRAINT fk_FactCarbonTax_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonTax
+   ADD CONSTRAINT fk_FactCarbonTax_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonTax
+   ADD CONSTRAINT fk_FactCarbonTax_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactCarbonTax
+   ADD CONSTRAINT fk_FactCarbonTax_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -8653,13 +9061,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactCarbonTax',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8734,52 +9142,67 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactCostsPerUnit
-ADD CONSTRAINT uc_FactCostsPerUnit_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactCostsPerUnit
-ADD CONSTRAINT uc_FactCostsPerUnit_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Costs.FactCostsPerUnit
-ADD CONSTRAINT uc_FactCostsPerUnit_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactCostsPerUnit
-ADD CONSTRAINT uc_FactCostsPerUnit_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactCostsPerUnit
-ADD CONSTRAINT uc_FactCostsPerUnit_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactCostsPerUnit
+   ADD CONSTRAINT fk_FactCostsPerUnit_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Costs.FactCostsPerUnit
+   ADD CONSTRAINT fk_FactCostsPerUnit_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactCostsPerUnit
+   ADD CONSTRAINT fk_FactCostsPerUnit_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactCostsPerUnit
+   ADD CONSTRAINT fk_FactCostsPerUnit_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactCostsPerUnit
+   ADD CONSTRAINT fk_FactCostsPerUnit_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -8881,7 +9304,7 @@ CREATE TABLE Costs.FactDepreciationCosts
    DimEquipmentID INT,
    DimLocationID INT,
    DimOperatorID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -8900,79 +9323,103 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactDepreciationCosts
+   ADD CONSTRAINT fk_FactDepreciationCosts_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -9042,13 +9489,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactDepreciationCosts',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9103,13 +9550,13 @@ CREATE TABLE Availability.FactEquipmentAvailability
    FactEquipmentAvailabilityID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimAvailabilityID INT,
+   DimAvailabilityLevel5ID INT,
    DimEquipmentID INT,
    DimOperatorID INT,
    DimLocationID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    Seconds DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -9126,88 +9573,115 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimAvailabilityID
-UNIQUE
-(
-   DimAvailabilityID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimAvailabilityLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimAvailabilityLevel5ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel5ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel5(DimAvailabilityLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailability
+   ADD CONSTRAINT fk_FactEquipmentAvailability_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -9233,13 +9707,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityID',
+@value=N'DimAvailabilityLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityID';
+@level2name=N'DimAvailabilityLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9299,13 +9773,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9336,12 +9810,12 @@ GO
 CREATE TABLE Availability.FactEquipmentAvailabilityTargets
 (
    FactEquipmentAvailabilityTargetsID INT NOT NULL,
-   DimAvailabilityID INT,
+   DimAvailabilityLevel5ID INT,
    DimEquipmentID INT,
    DimOperatorID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    [Percent] DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -9358,71 +9832,89 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimAvailabilityID
-UNIQUE
-(
-   DimAvailabilityID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimAvailabilityLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailabilityTargets
+   ADD CONSTRAINT fk_FactEquipmentAvailabilityTargets_DimAvailabilityLevel5ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel5ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel5(DimAvailabilityLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailabilityTargets
+   ADD CONSTRAINT fk_FactEquipmentAvailabilityTargets_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailabilityTargets
+   ADD CONSTRAINT fk_FactEquipmentAvailabilityTargets_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailabilityTargets
+   ADD CONSTRAINT fk_FactEquipmentAvailabilityTargets_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailabilityTargets
+   ADD CONSTRAINT fk_FactEquipmentAvailabilityTargets_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactEquipmentAvailabilityTargets
+   ADD CONSTRAINT fk_FactEquipmentAvailabilityTargets_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityID',
+@value=N'DimAvailabilityLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityID';
+@level2name=N'DimAvailabilityLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9471,13 +9963,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9519,7 +10011,7 @@ CREATE TABLE Activity.FactEquipmentEvents
    DimPointOfInterestID INT,
    DimTripCategoryID INT,
    DimSiteID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    RunID INT NOT NULL
 );
 GO
@@ -9535,115 +10027,151 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimEventTypeID
-UNIQUE
-(
-   DimEventTypeID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimStartDateID
-UNIQUE
-(
-   DimStartDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimStartTimeID
-UNIQUE
-(
-   DimStartTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimEndDateID
-UNIQUE
-(
-   DimEndDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimEndTimeID
-UNIQUE
-(
-   DimEndTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimTripCategoryID
-UNIQUE
-(
-   DimTripCategoryID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimSiteID
-UNIQUE
-(
-   DimSiteID
-)
-GO
-
-
-ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEventType') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimEventTypeID
+   FOREIGN KEY
+   (
+       DimEventTypeID
+   )
+   REFERENCES
+       Shared.DimEventType(DimEventTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimStartDateID
+   FOREIGN KEY
+   (
+       DimStartDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimStartTimeID
+   FOREIGN KEY
+   (
+       DimStartTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimEndDateID
+   FOREIGN KEY
+   (
+       DimEndDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimEndTimeID
+   FOREIGN KEY
+   (
+       DimEndTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTripCategory') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimTripCategoryID
+   FOREIGN KEY
+   (
+       DimTripCategoryID
+   )
+   REFERENCES
+       Shared.DimTripCategory(DimTripCategoryID);
+GO
+
+
+IF OBJECT_ID('Shared.DimSite') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimSiteID
+   FOREIGN KEY
+   (
+       DimSiteID
+   )
+   REFERENCES
+       Shared.DimSite(DimSiteID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactEquipmentEvents
+   ADD CONSTRAINT fk_FactEquipmentEvents_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -9768,13 +10296,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 
@@ -9795,7 +10323,7 @@ CREATE TABLE Exceptions.FactEquipmentExclusion
 (
    FactEquipmentExclusionID INT NOT NULL,
    DimDateID INT,
-   DimExclusionID INT,
+   DimExclusionLevel3ID INT,
    DimEquipmentID INT,
    RunID INT NOT NULL
 );
@@ -9812,34 +10340,43 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Exceptions.FactEquipmentExclusion
-ADD CONSTRAINT uc_FactEquipmentExclusion_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactEquipmentExclusion
-ADD CONSTRAINT uc_FactEquipmentExclusion_DimExclusionID
-UNIQUE
-(
-   DimExclusionID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactEquipmentExclusion
-ADD CONSTRAINT uc_FactEquipmentExclusion_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Exceptions.FactEquipmentExclusion
+   ADD CONSTRAINT fk_FactEquipmentExclusion_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimExclusionLevel3') IS NOT NULL
+   ALTER TABLE Exceptions.FactEquipmentExclusion
+   ADD CONSTRAINT fk_FactEquipmentExclusion_DimExclusionLevel3ID
+   FOREIGN KEY
+   (
+       DimExclusionLevel3ID
+   )
+   REFERENCES
+       Shared.DimExclusionLevel3(DimExclusionLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Exceptions.FactEquipmentExclusion
+   ADD CONSTRAINT fk_FactEquipmentExclusion_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -9854,13 +10391,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExclusionID',
+@value=N'DimExclusionLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentExclusion',
 @level2type=N'COLUMN',
-@level2name=N'DimExclusionID';
+@level2name=N'DimExclusionLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9893,8 +10430,8 @@ CREATE TABLE Costs.FactGeneralLedger
    FactGeneralLedgerID INT NOT NULL,
    DimDateID INT,
    DimCostTypeID INT,
-   DimOrganisationID INT,
-   DimChartOfAccountsID INT,
+   DimOrganisationLevel5ID INT,
+   DimChartOfAccountsLevel3ID INT,
    DimCurrencyID INT,
    RunID INT NOT NULL
 );
@@ -9911,52 +10448,67 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimChartOfAccountsID
-UNIQUE
-(
-   DimChartOfAccountsID
-)
-GO
-
-
-ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactGeneralLedger
+   ADD CONSTRAINT fk_FactGeneralLedger_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactGeneralLedger
+   ADD CONSTRAINT fk_FactGeneralLedger_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactGeneralLedger
+   ADD CONSTRAINT fk_FactGeneralLedger_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimChartOfAccountsLevel3') IS NOT NULL
+   ALTER TABLE Costs.FactGeneralLedger
+   ADD CONSTRAINT fk_FactGeneralLedger_DimChartOfAccountsLevel3ID
+   FOREIGN KEY
+   (
+       DimChartOfAccountsLevel3ID
+   )
+   REFERENCES
+       Shared.DimChartOfAccountsLevel3(DimChartOfAccountsLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactGeneralLedger
+   ADD CONSTRAINT fk_FactGeneralLedger_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -9982,24 +10534,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactGeneralLedger',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimChartOfAccountsID',
+@value=N'DimChartOfAccountsLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactGeneralLedger',
 @level2type=N'COLUMN',
-@level2name=N'DimChartOfAccountsID';
+@level2name=N'DimChartOfAccountsLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10034,7 +10586,7 @@ CREATE TABLE Costs.FactInferredCosts
    DimEquipmentID INT,
    DimLocationID INT,
    DimOperatorID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -10053,61 +10605,79 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactInferredCosts
+   ADD CONSTRAINT fk_FactInferredCosts_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactInferredCosts
+   ADD CONSTRAINT fk_FactInferredCosts_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Costs.FactInferredCosts
+   ADD CONSTRAINT fk_FactInferredCosts_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Costs.FactInferredCosts
+   ADD CONSTRAINT fk_FactInferredCosts_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactInferredCosts
+   ADD CONSTRAINT fk_FactInferredCosts_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactInferredCosts
+   ADD CONSTRAINT fk_FactInferredCosts_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -10155,13 +10725,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactInferredCosts',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10216,12 +10786,12 @@ CREATE TABLE Availability.FactOperatorAvailability
    FactOperatorAvailabilityID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimAvailabilityID INT,
+   DimAvailabilityLevel5ID INT,
    DimOperatorID INT,
    DimLocationID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    Seconds DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -10238,79 +10808,103 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimAvailabilityID
-UNIQUE
-(
-   DimAvailabilityID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimAvailabilityLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimAvailabilityLevel5ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel5ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel5(DimAvailabilityLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailability
+   ADD CONSTRAINT fk_FactOperatorAvailability_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -10336,13 +10930,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityID',
+@value=N'DimAvailabilityLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityID';
+@level2name=N'DimAvailabilityLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10391,13 +10985,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10428,11 +11022,11 @@ GO
 CREATE TABLE Availability.FactOperatorAvailabilityTargets
 (
    FactOperatorAvailabilityTargetsID INT NOT NULL,
-   DimAvailabilityID INT,
+   DimAvailabilityLevel5ID INT,
    DimOperatorID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    [Percent] DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -10449,62 +11043,77 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimAvailabilityID
-UNIQUE
-(
-   DimAvailabilityID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimAvailabilityLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailabilityTargets
+   ADD CONSTRAINT fk_FactOperatorAvailabilityTargets_DimAvailabilityLevel5ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel5ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel5(DimAvailabilityLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailabilityTargets
+   ADD CONSTRAINT fk_FactOperatorAvailabilityTargets_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailabilityTargets
+   ADD CONSTRAINT fk_FactOperatorAvailabilityTargets_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailabilityTargets
+   ADD CONSTRAINT fk_FactOperatorAvailabilityTargets_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactOperatorAvailabilityTargets
+   ADD CONSTRAINT fk_FactOperatorAvailabilityTargets_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityID',
+@value=N'DimAvailabilityLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityID';
+@level2name=N'DimAvailabilityLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10542,13 +11151,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10590,7 +11199,7 @@ CREATE TABLE Activity.FactOperatorEvents
    DimPointOfInterestID INT,
    DimTripCategoryID INT,
    DimSiteID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    MaximumBrakingForce DECIMAL(18,2),
    AverageBrakingForce DECIMAL(18,2),
    OutOfBandBrakingForce DECIMAL(18,2),
@@ -10612,115 +11221,151 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimEventTypeID
-UNIQUE
-(
-   DimEventTypeID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimStartDateID
-UNIQUE
-(
-   DimStartDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimStartTimeID
-UNIQUE
-(
-   DimStartTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimEndDateID
-UNIQUE
-(
-   DimEndDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimEndTimeID
-UNIQUE
-(
-   DimEndTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimTripCategoryID
-UNIQUE
-(
-   DimTripCategoryID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimSiteID
-UNIQUE
-(
-   DimSiteID
-)
-GO
-
-
-ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEventType') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimEventTypeID
+   FOREIGN KEY
+   (
+       DimEventTypeID
+   )
+   REFERENCES
+       Shared.DimEventType(DimEventTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimStartDateID
+   FOREIGN KEY
+   (
+       DimStartDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimStartTimeID
+   FOREIGN KEY
+   (
+       DimStartTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimEndDateID
+   FOREIGN KEY
+   (
+       DimEndDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimEndTimeID
+   FOREIGN KEY
+   (
+       DimEndTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTripCategory') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimTripCategoryID
+   FOREIGN KEY
+   (
+       DimTripCategoryID
+   )
+   REFERENCES
+       Shared.DimTripCategory(DimTripCategoryID);
+GO
+
+
+IF OBJECT_ID('Shared.DimSite') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimSiteID
+   FOREIGN KEY
+   (
+       DimSiteID
+   )
+   REFERENCES
+       Shared.DimSite(DimSiteID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactOperatorEvents
+   ADD CONSTRAINT fk_FactOperatorEvents_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -10845,13 +11490,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10938,7 +11583,7 @@ CREATE TABLE Exceptions.FactOperatorExclusion
 (
    FactOperatorExclusionID INT NOT NULL,
    DimDateID INT,
-   DimExclusionID INT,
+   DimExclusionLevel3ID INT,
    DimOperatorID INT,
    RunID INT NOT NULL
 );
@@ -10955,34 +11600,43 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Exceptions.FactOperatorExclusion
-ADD CONSTRAINT uc_FactOperatorExclusion_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactOperatorExclusion
-ADD CONSTRAINT uc_FactOperatorExclusion_DimExclusionID
-UNIQUE
-(
-   DimExclusionID
-)
-GO
-
-
-ALTER TABLE Exceptions.FactOperatorExclusion
-ADD CONSTRAINT uc_FactOperatorExclusion_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Exceptions.FactOperatorExclusion
+   ADD CONSTRAINT fk_FactOperatorExclusion_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimExclusionLevel3') IS NOT NULL
+   ALTER TABLE Exceptions.FactOperatorExclusion
+   ADD CONSTRAINT fk_FactOperatorExclusion_DimExclusionLevel3ID
+   FOREIGN KEY
+   (
+       DimExclusionLevel3ID
+   )
+   REFERENCES
+       Shared.DimExclusionLevel3(DimExclusionLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Exceptions.FactOperatorExclusion
+   ADD CONSTRAINT fk_FactOperatorExclusion_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -10997,13 +11651,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExclusionID',
+@value=N'DimExclusionLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorExclusion',
 @level2type=N'COLUMN',
-@level2name=N'DimExclusionID';
+@level2name=N'DimExclusionLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11038,7 +11692,7 @@ CREATE TABLE Costs.FactPartsCost
    DimTimeID INT,
    DimCostTypeID INT,
    DimEquipmentID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -11057,61 +11711,79 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactPartsCost
+   ADD CONSTRAINT fk_FactPartsCost_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Costs.FactPartsCost
+   ADD CONSTRAINT fk_FactPartsCost_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactPartsCost
+   ADD CONSTRAINT fk_FactPartsCost_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactPartsCost
+   ADD CONSTRAINT fk_FactPartsCost_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactPartsCost
+   ADD CONSTRAINT fk_FactPartsCost_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactPartsCost
+   ADD CONSTRAINT fk_FactPartsCost_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -11159,13 +11831,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactPartsCost',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11226,8 +11898,8 @@ CREATE TABLE Production.FactProduction
    DimProductID INT,
    DimUnitID INT,
    DimPointOfInterestID INT,
-   DimCustomerID INT,
-   DimOrganisationID INT,
+   DimCustomerLevel3ID INT,
+   DimOrganisationLevel5ID INT,
    Units DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -11244,97 +11916,127 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimProductID
-UNIQUE
-(
-   DimProductID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimUnitID
-UNIQUE
-(
-   DimUnitID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimCustomerID
-UNIQUE
-(
-   DimCustomerID
-)
-GO
-
-
-ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimProduct') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimProductID
+   FOREIGN KEY
+   (
+       DimProductID
+   )
+   REFERENCES
+       Shared.DimProduct(DimProductID);
+GO
+
+
+IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimUnitID
+   FOREIGN KEY
+   (
+       DimUnitID
+   )
+   REFERENCES
+       Shared.DimUnit(DimUnitID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCustomerLevel3') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimCustomerLevel3ID
+   FOREIGN KEY
+   (
+       DimCustomerLevel3ID
+   )
+   REFERENCES
+       Shared.DimCustomerLevel3(DimCustomerLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Production.FactProduction
+   ADD CONSTRAINT fk_FactProduction_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -11426,24 +12128,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimCustomerID',
+@value=N'DimCustomerLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProduction',
 @level2type=N'COLUMN',
-@level2name=N'DimCustomerID';
+@level2name=N'DimCustomerLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProduction',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11480,8 +12182,8 @@ CREATE TABLE Production.FactProductionTargets
    DimProductID INT,
    DimUnitID INT,
    DimPointOfInterestID INT,
-   DimCustomerID INT,
-   DimOrganisationID INT,
+   DimCustomerLevel3ID INT,
+   DimOrganisationLevel5ID INT,
    Units DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -11498,79 +12200,103 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimOperatorID
-UNIQUE
-(
-   DimOperatorID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimProductID
-UNIQUE
-(
-   DimProductID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimUnitID
-UNIQUE
-(
-   DimUnitID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimCustomerID
-UNIQUE
-(
-   DimCustomerID
-)
-GO
-
-
-ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOperator') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimOperatorID
+   FOREIGN KEY
+   (
+       DimOperatorID
+   )
+   REFERENCES
+       Shared.DimOperator(DimOperatorID);
+GO
+
+
+IF OBJECT_ID('Shared.DimProduct') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimProductID
+   FOREIGN KEY
+   (
+       DimProductID
+   )
+   REFERENCES
+       Shared.DimProduct(DimProductID);
+GO
+
+
+IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimUnitID
+   FOREIGN KEY
+   (
+       DimUnitID
+   )
+   REFERENCES
+       Shared.DimUnit(DimUnitID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCustomerLevel3') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimCustomerLevel3ID
+   FOREIGN KEY
+   (
+       DimCustomerLevel3ID
+   )
+   REFERENCES
+       Shared.DimCustomerLevel3(DimCustomerLevel3ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Production.FactProductionTargets
+   ADD CONSTRAINT fk_FactProductionTargets_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -11640,24 +12366,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimCustomerID',
+@value=N'DimCustomerLevel3ID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProductionTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimCustomerID';
+@level2name=N'DimCustomerLevel3ID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProductionTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11692,7 +12418,7 @@ CREATE TABLE Costs.FactServiceCost
    DimTimeID INT,
    DimCostTypeID INT,
    DimEquipmentID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -11711,61 +12437,79 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimCostTypeID
-UNIQUE
-(
-   DimCostTypeID
-)
-GO
-
-
-ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
-ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimCurrencyID
-UNIQUE
-(
-   DimCurrencyID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Costs.FactServiceCost
+   ADD CONSTRAINT fk_FactServiceCost_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Costs.FactServiceCost
+   ADD CONSTRAINT fk_FactServiceCost_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCostType') IS NOT NULL
+   ALTER TABLE Costs.FactServiceCost
+   ADD CONSTRAINT fk_FactServiceCost_DimCostTypeID
+   FOREIGN KEY
+   (
+       DimCostTypeID
+   )
+   REFERENCES
+       Shared.DimCostType(DimCostTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Costs.FactServiceCost
+   ADD CONSTRAINT fk_FactServiceCost_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Costs.FactServiceCost
+   ADD CONSTRAINT fk_FactServiceCost_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimCurrency') IS NOT NULL
+   ALTER TABLE Costs.FactServiceCost
+   ADD CONSTRAINT fk_FactServiceCost_DimCurrencyID
+   FOREIGN KEY
+   (
+       DimCurrencyID
+   )
+   REFERENCES
+       Shared.DimCurrency(DimCurrencyID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -11813,13 +12557,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactServiceCost',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11891,25 +12635,31 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Shared.FactUnitConversion
-ADD CONSTRAINT uc_FactUnitConversion_DimSourceUnitIDID
-UNIQUE
-(
-   DimSourceUnitIDID
-)
-GO
-
-
-ALTER TABLE Shared.FactUnitConversion
-ADD CONSTRAINT uc_FactUnitConversion_DimTargetUnitIDID
-UNIQUE
-(
-   DimTargetUnitIDID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
+   ALTER TABLE Shared.FactUnitConversion
+   ADD CONSTRAINT fk_FactUnitConversion_DimSourceUnitIDID
+   FOREIGN KEY
+   (
+       DimSourceUnitIDID
+   )
+   REFERENCES
+       Shared.DimUnit(DimUnitID);
+GO
+
+
+IF OBJECT_ID('Shared.DimUnit') IS NOT NULL
+   ALTER TABLE Shared.FactUnitConversion
+   ADD CONSTRAINT fk_FactUnitConversion_DimTargetUnitIDID
+   FOREIGN KEY
+   (
+       DimTargetUnitIDID
+   )
+   REFERENCES
+       Shared.DimUnit(DimUnitID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -11974,12 +12724,12 @@ CREATE TABLE Availability.FactUptimeplans
    FactUptimeplansID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimAvailabilityID INT,
+   DimAvailabilityLevel5ID INT,
    DimEquipmentID INT,
    DimLocationID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    Seconds DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -11996,79 +12746,103 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimAvailabilityID
-UNIQUE
-(
-   DimAvailabilityID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimPointOfInterestID
-UNIQUE
-(
-   DimPointOfInterestID
-)
-GO
-
-
-ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimAvailabilityLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimAvailabilityLevel5ID
+   FOREIGN KEY
+   (
+       DimAvailabilityLevel5ID
+   )
+   REFERENCES
+       Shared.DimAvailabilityLevel5(DimAvailabilityLevel5ID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPointOfInterest') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimPointOfInterestID
+   FOREIGN KEY
+   (
+       DimPointOfInterestID
+   )
+   REFERENCES
+       Shared.DimPointOfInterest(DimPointOfInterestID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Availability.FactUptimeplans
+   ADD CONSTRAINT fk_FactUptimeplans_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -12094,13 +12868,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityID',
+@value=N'DimAvailabilityLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactUptimeplans',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityID';
+@level2name=N'DimAvailabilityLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12149,13 +12923,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactUptimeplans',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12190,7 +12964,7 @@ CREATE TABLE Activity.FactVehicleActivityDetail
    DimTimeID INT,
    DimEquipmentID INT,
    DimEventTypeID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    BrakingForce DECIMAL(18,2),
    RPM DECIMAL(18,2),
    OdometerReading DECIMAL(18,2),
@@ -12209,52 +12983,67 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactVehicleActivityDetail
-ADD CONSTRAINT uc_FactVehicleActivityDetail_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleActivityDetail
-ADD CONSTRAINT uc_FactVehicleActivityDetail_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleActivityDetail
-ADD CONSTRAINT uc_FactVehicleActivityDetail_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleActivityDetail
-ADD CONSTRAINT uc_FactVehicleActivityDetail_DimEventTypeID
-UNIQUE
-(
-   DimEventTypeID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleActivityDetail
-ADD CONSTRAINT uc_FactVehicleActivityDetail_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleActivityDetail
+   ADD CONSTRAINT fk_FactVehicleActivityDetail_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleActivityDetail
+   ADD CONSTRAINT fk_FactVehicleActivityDetail_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleActivityDetail
+   ADD CONSTRAINT fk_FactVehicleActivityDetail_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEventType') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleActivityDetail
+   ADD CONSTRAINT fk_FactVehicleActivityDetail_DimEventTypeID
+   FOREIGN KEY
+   (
+       DimEventTypeID
+   )
+   REFERENCES
+       Shared.DimEventType(DimEventTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleActivityDetail
+   ADD CONSTRAINT fk_FactVehicleActivityDetail_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -12302,13 +13091,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactVehicleActivityDetail',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12368,7 +13157,7 @@ CREATE TABLE Activity.FactVehicleTrip
    DimLocationID INT,
    DimPayloadID INT,
    DimSiteID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    StartOdometer DECIMAL(18,2),
    EndOdometer DECIMAL(18,2),
    Duration DECIMAL(18,2),
@@ -12388,79 +13177,103 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimTimeID
-UNIQUE
-(
-   DimTimeID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimEventTypeID
-UNIQUE
-(
-   DimEventTypeID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimPayloadID
-UNIQUE
-(
-   DimPayloadID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimSiteID
-UNIQUE
-(
-   DimSiteID
-)
-GO
-
-
-ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimTime') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimTimeID
+   FOREIGN KEY
+   (
+       DimTimeID
+   )
+   REFERENCES
+       Shared.DimTime(DimTimeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEventType') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimEventTypeID
+   FOREIGN KEY
+   (
+       DimEventTypeID
+   )
+   REFERENCES
+       Shared.DimEventType(DimEventTypeID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimPayload') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimPayloadID
+   FOREIGN KEY
+   (
+       DimPayloadID
+   )
+   REFERENCES
+       Shared.DimPayload(DimPayloadID);
+GO
+
+
+IF OBJECT_ID('Shared.DimSite') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimSiteID
+   FOREIGN KEY
+   (
+       DimSiteID
+   )
+   REFERENCES
+       Shared.DimSite(DimSiteID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactVehicleTrip
+   ADD CONSTRAINT fk_FactVehicleTrip_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -12541,13 +13354,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactVehicleTrip',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12614,7 +13427,7 @@ CREATE TABLE Activity.FactXEquipmentActivityDetail
    DimDateID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationID INT,
+   DimOrganisationLevel5ID INT,
    RunID INT NOT NULL
 );
 GO
@@ -12630,43 +13443,55 @@ GO
 
 
 --Add UNIQUE Constraints...
-ALTER TABLE Activity.FactXEquipmentActivityDetail
-ADD CONSTRAINT uc_FactXEquipmentActivityDetail_DimDateID
-UNIQUE
-(
-   DimDateID
-)
-GO
-
-
-ALTER TABLE Activity.FactXEquipmentActivityDetail
-ADD CONSTRAINT uc_FactXEquipmentActivityDetail_DimEquipmentID
-UNIQUE
-(
-   DimEquipmentID
-)
-GO
-
-
-ALTER TABLE Activity.FactXEquipmentActivityDetail
-ADD CONSTRAINT uc_FactXEquipmentActivityDetail_DimLocationID
-UNIQUE
-(
-   DimLocationID
-)
-GO
-
-
-ALTER TABLE Activity.FactXEquipmentActivityDetail
-ADD CONSTRAINT uc_FactXEquipmentActivityDetail_DimOrganisationID
-UNIQUE
-(
-   DimOrganisationID
-)
-GO
-
-
 --Add Foreign Keys...
+IF OBJECT_ID('Shared.DimDate') IS NOT NULL
+   ALTER TABLE Activity.FactXEquipmentActivityDetail
+   ADD CONSTRAINT fk_FactXEquipmentActivityDetail_DimDateID
+   FOREIGN KEY
+   (
+       DimDateID
+   )
+   REFERENCES
+       Shared.DimDate(DimDateID);
+GO
+
+
+IF OBJECT_ID('Shared.DimEquipment') IS NOT NULL
+   ALTER TABLE Activity.FactXEquipmentActivityDetail
+   ADD CONSTRAINT fk_FactXEquipmentActivityDetail_DimEquipmentID
+   FOREIGN KEY
+   (
+       DimEquipmentID
+   )
+   REFERENCES
+       Shared.DimEquipment(DimEquipmentID);
+GO
+
+
+IF OBJECT_ID('Shared.DimLocation') IS NOT NULL
+   ALTER TABLE Activity.FactXEquipmentActivityDetail
+   ADD CONSTRAINT fk_FactXEquipmentActivityDetail_DimLocationID
+   FOREIGN KEY
+   (
+       DimLocationID
+   )
+   REFERENCES
+       Shared.DimLocation(DimLocationID);
+GO
+
+
+IF OBJECT_ID('Shared.DimOrganisationLevel5') IS NOT NULL
+   ALTER TABLE Activity.FactXEquipmentActivityDetail
+   ADD CONSTRAINT fk_FactXEquipmentActivityDetail_DimOrganisationLevel5ID
+   FOREIGN KEY
+   (
+       DimOrganisationLevel5ID
+   )
+   REFERENCES
+       Shared.DimOrganisationLevel5(DimOrganisationLevel5ID);
+GO
+
+
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
@@ -12703,13 +13528,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationID',
+@value=N'DimOrganisationLevel5ID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactXEquipmentActivityDetail',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationID';
+@level2name=N'DimOrganisationLevel5ID';
 GO
 
 
