@@ -1,4 +1,4 @@
-/****** Object:  Database Okavango    Script Date: 1/4/2014 5:46:01 PM ******/
+/****** Object:  Database Okavango    Script Date: 1/4/2014 6:00:42 PM ******/
 
 
 USE Master;
@@ -7078,7 +7078,7 @@ CREATE TABLE Activity.FactActivityDetail
    DimDateID INT,
    DimTimeID INT,
    DimEquipmentID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    EnergyConsumption DECIMAL(18,2),
    Acceleration DECIMAL(18,2),
    Velocity DECIMAL(18,2),
@@ -7131,10 +7131,10 @@ GO
 
 
 ALTER TABLE Activity.FactActivityDetail
-ADD CONSTRAINT uc_FactActivityDetail_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactActivityDetail_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -7176,13 +7176,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactActivityDetail',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -7303,7 +7303,7 @@ CREATE TABLE Exceptions.FactActivityException
    FactActivityExceptionID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimExceptionLevel3ID INT,
+   DimExceptionID INT,
    DimEquipmentID INT,
    EnergyConsumption DECIMAL(18,2),
    Acceleration DECIMAL(18,2),
@@ -7348,10 +7348,10 @@ GO
 
 
 ALTER TABLE Exceptions.FactActivityException
-ADD CONSTRAINT uc_FactActivityException_DimExceptionLevel3ID
+ADD CONSTRAINT uc_FactActivityException_DimExceptionID
 UNIQUE
 (
-   DimExceptionLevel3ID
+   DimExceptionID
 )
 GO
 
@@ -7391,13 +7391,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExceptionLevel3ID',
+@value=N'DimExceptionID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactActivityException',
 @level2type=N'COLUMN',
-@level2name=N'DimExceptionLevel3ID';
+@level2name=N'DimExceptionID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -7528,7 +7528,7 @@ CREATE TABLE Exceptions.FactActivityExclusion
 (
    FactActivityExclusionID INT NOT NULL,
    DimDateID INT,
-   DimExclusionLevel3ID INT,
+   DimExclusionID INT,
    DimEquipmentID INT,
    DimLocationID INT,
    DimPointOfInterestID INT,
@@ -7557,10 +7557,10 @@ GO
 
 
 ALTER TABLE Exceptions.FactActivityExclusion
-ADD CONSTRAINT uc_FactActivityExclusion_DimExclusionLevel3ID
+ADD CONSTRAINT uc_FactActivityExclusion_DimExclusionID
 UNIQUE
 (
-   DimExclusionLevel3ID
+   DimExclusionID
 )
 GO
 
@@ -7607,13 +7607,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExclusionLevel3ID',
+@value=N'DimExclusionID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactActivityExclusion',
 @level2type=N'COLUMN',
-@level2name=N'DimExclusionLevel3ID';
+@level2name=N'DimExclusionID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -7671,8 +7671,8 @@ CREATE TABLE Activity.FactActivitySummary
    DimLocationID INT,
    DimPayloadID INT,
    DimSiteID INT,
-   DimOrganisationLevel5ID INT,
-   DimUnitID INT,
+   DimOrganisationID INT,
+   DimPayloadUnitID INT,
    Duration DECIMAL(18,2),
    Payload DECIMAL(18,2),
    MaximumEnergyConsumption DECIMAL(18,2),
@@ -7751,19 +7751,19 @@ GO
 
 
 ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactActivitySummary_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
 
 ALTER TABLE Activity.FactActivitySummary
-ADD CONSTRAINT uc_FactActivitySummary_DimUnitID
+ADD CONSTRAINT uc_FactActivitySummary_DimPayloadUnitID
 UNIQUE
 (
-   DimUnitID
+   DimPayloadUnitID
 )
 GO
 
@@ -7827,24 +7827,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactActivitySummary',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimUnitID',
+@value=N'DimPayloadUnitID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactActivitySummary',
 @level2type=N'COLUMN',
-@level2name=N'DimUnitID';
+@level2name=N'DimPayloadUnitID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8054,7 +8054,7 @@ CREATE TABLE Costs.FactBudget
    DimCostTypeID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -8101,10 +8101,10 @@ GO
 
 
 ALTER TABLE Costs.FactBudget
-ADD CONSTRAINT uc_FactBudget_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactBudget_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -8155,13 +8155,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactBudget',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8360,7 +8360,7 @@ CREATE TABLE Costs.FactCarbonCredits
    DimCostTypeID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    Credits DECIMAL(18,2),
    RunID INT NOT NULL
@@ -8415,10 +8415,10 @@ GO
 
 
 ALTER TABLE Costs.FactCarbonCredits
-ADD CONSTRAINT uc_FactCarbonCredits_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactCarbonCredits_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -8480,13 +8480,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactCarbonCredits',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8532,7 +8532,7 @@ CREATE TABLE Costs.FactCarbonTax
    DimCostTypeID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -8588,10 +8588,10 @@ GO
 
 
 ALTER TABLE Costs.FactCarbonTax
-ADD CONSTRAINT uc_FactCarbonTax_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactCarbonTax_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -8653,13 +8653,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactCarbonTax',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -8881,7 +8881,7 @@ CREATE TABLE Costs.FactDepreciationCosts
    DimEquipmentID INT,
    DimLocationID INT,
    DimOperatorID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -8955,10 +8955,10 @@ GO
 
 
 ALTER TABLE Costs.FactDepreciationCosts
-ADD CONSTRAINT uc_FactDepreciationCosts_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactDepreciationCosts_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -9042,13 +9042,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactDepreciationCosts',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9103,13 +9103,13 @@ CREATE TABLE Availability.FactEquipmentAvailability
    FactEquipmentAvailabilityID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimAvailabilityLevel5ID INT,
+   DimAvailabilityID INT,
    DimEquipmentID INT,
    DimOperatorID INT,
    DimLocationID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    Seconds DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -9145,10 +9145,10 @@ GO
 
 
 ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimAvailabilityLevel5ID
+ADD CONSTRAINT uc_FactEquipmentAvailability_DimAvailabilityID
 UNIQUE
 (
-   DimAvailabilityLevel5ID
+   DimAvailabilityID
 )
 GO
 
@@ -9199,10 +9199,10 @@ GO
 
 
 ALTER TABLE Availability.FactEquipmentAvailability
-ADD CONSTRAINT uc_FactEquipmentAvailability_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactEquipmentAvailability_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -9233,13 +9233,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityLevel5ID',
+@value=N'DimAvailabilityID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityLevel5ID';
+@level2name=N'DimAvailabilityID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9299,13 +9299,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9336,12 +9336,12 @@ GO
 CREATE TABLE Availability.FactEquipmentAvailabilityTargets
 (
    FactEquipmentAvailabilityTargetsID INT NOT NULL,
-   DimAvailabilityLevel5ID INT,
+   DimAvailabilityID INT,
    DimEquipmentID INT,
    DimOperatorID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    [Percent] DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -9359,10 +9359,10 @@ GO
 
 --Add UNIQUE Constraints...
 ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimAvailabilityLevel5ID
+ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimAvailabilityID
 UNIQUE
 (
-   DimAvailabilityLevel5ID
+   DimAvailabilityID
 )
 GO
 
@@ -9404,10 +9404,10 @@ GO
 
 
 ALTER TABLE Availability.FactEquipmentAvailabilityTargets
-ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactEquipmentAvailabilityTargets_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -9416,13 +9416,13 @@ GO
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityLevel5ID',
+@value=N'DimAvailabilityID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityLevel5ID';
+@level2name=N'DimAvailabilityID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9471,13 +9471,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9511,15 +9511,15 @@ CREATE TABLE Activity.FactEquipmentEvents
    DimDateID INT,
    DimEquipmentID INT,
    DimEventTypeID INT,
-   DimDateID INT,
-   DimTimeID INT,
-   DimDateID INT,
-   DimTimeID INT,
+   DimStartDateID INT,
+   DimStartTimeID INT,
+   DimEndDateID INT,
+   DimEndTimeID INT,
    DimLocationID INT,
    DimPointOfInterestID INT,
    DimTripCategoryID INT,
    DimSiteID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    RunID INT NOT NULL
 );
 GO
@@ -9563,37 +9563,37 @@ GO
 
 
 ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimDateID
+ADD CONSTRAINT uc_FactEquipmentEvents_DimStartDateID
 UNIQUE
 (
-   DimDateID
+   DimStartDateID
 )
 GO
 
 
 ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimTimeID
+ADD CONSTRAINT uc_FactEquipmentEvents_DimStartTimeID
 UNIQUE
 (
-   DimTimeID
+   DimStartTimeID
 )
 GO
 
 
 ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimDateID
+ADD CONSTRAINT uc_FactEquipmentEvents_DimEndDateID
 UNIQUE
 (
-   DimDateID
+   DimEndDateID
 )
 GO
 
 
 ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimTimeID
+ADD CONSTRAINT uc_FactEquipmentEvents_DimEndTimeID
 UNIQUE
 (
-   DimTimeID
+   DimEndTimeID
 )
 GO
 
@@ -9635,10 +9635,10 @@ GO
 
 
 ALTER TABLE Activity.FactEquipmentEvents
-ADD CONSTRAINT uc_FactEquipmentEvents_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactEquipmentEvents_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -9680,46 +9680,46 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimDateID',
+@value=N'DimStartDateID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimDateID';
+@level2name=N'DimStartDateID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimTimeID',
+@value=N'DimStartTimeID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimTimeID';
+@level2name=N'DimStartTimeID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimDateID',
+@value=N'DimEndDateID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimDateID';
+@level2name=N'DimEndDateID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimTimeID',
+@value=N'DimEndTimeID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimTimeID';
+@level2name=N'DimEndTimeID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9768,13 +9768,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 
@@ -9795,7 +9795,7 @@ CREATE TABLE Exceptions.FactEquipmentExclusion
 (
    FactEquipmentExclusionID INT NOT NULL,
    DimDateID INT,
-   DimExclusionLevel3ID INT,
+   DimExclusionID INT,
    DimEquipmentID INT,
    RunID INT NOT NULL
 );
@@ -9822,10 +9822,10 @@ GO
 
 
 ALTER TABLE Exceptions.FactEquipmentExclusion
-ADD CONSTRAINT uc_FactEquipmentExclusion_DimExclusionLevel3ID
+ADD CONSTRAINT uc_FactEquipmentExclusion_DimExclusionID
 UNIQUE
 (
-   DimExclusionLevel3ID
+   DimExclusionID
 )
 GO
 
@@ -9854,13 +9854,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExclusionLevel3ID',
+@value=N'DimExclusionID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactEquipmentExclusion',
 @level2type=N'COLUMN',
-@level2name=N'DimExclusionLevel3ID';
+@level2name=N'DimExclusionID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -9893,8 +9893,8 @@ CREATE TABLE Costs.FactGeneralLedger
    FactGeneralLedgerID INT NOT NULL,
    DimDateID INT,
    DimCostTypeID INT,
-   DimOrganisationLevel5ID INT,
-   DimChartOfAccountsLevel3ID INT,
+   DimOrganisationID INT,
+   DimChartOfAccountsID INT,
    DimCurrencyID INT,
    RunID INT NOT NULL
 );
@@ -9930,19 +9930,19 @@ GO
 
 
 ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactGeneralLedger_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
 
 ALTER TABLE Costs.FactGeneralLedger
-ADD CONSTRAINT uc_FactGeneralLedger_DimChartOfAccountsLevel3ID
+ADD CONSTRAINT uc_FactGeneralLedger_DimChartOfAccountsID
 UNIQUE
 (
-   DimChartOfAccountsLevel3ID
+   DimChartOfAccountsID
 )
 GO
 
@@ -9982,24 +9982,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactGeneralLedger',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimChartOfAccountsLevel3ID',
+@value=N'DimChartOfAccountsID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactGeneralLedger',
 @level2type=N'COLUMN',
-@level2name=N'DimChartOfAccountsLevel3ID';
+@level2name=N'DimChartOfAccountsID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10034,7 +10034,7 @@ CREATE TABLE Costs.FactInferredCosts
    DimEquipmentID INT,
    DimLocationID INT,
    DimOperatorID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -10090,10 +10090,10 @@ GO
 
 
 ALTER TABLE Costs.FactInferredCosts
-ADD CONSTRAINT uc_FactInferredCosts_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactInferredCosts_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -10155,13 +10155,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactInferredCosts',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10216,12 +10216,12 @@ CREATE TABLE Availability.FactOperatorAvailability
    FactOperatorAvailabilityID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimAvailabilityLevel5ID INT,
+   DimAvailabilityID INT,
    DimOperatorID INT,
    DimLocationID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    Seconds DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -10257,10 +10257,10 @@ GO
 
 
 ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimAvailabilityLevel5ID
+ADD CONSTRAINT uc_FactOperatorAvailability_DimAvailabilityID
 UNIQUE
 (
-   DimAvailabilityLevel5ID
+   DimAvailabilityID
 )
 GO
 
@@ -10302,10 +10302,10 @@ GO
 
 
 ALTER TABLE Availability.FactOperatorAvailability
-ADD CONSTRAINT uc_FactOperatorAvailability_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactOperatorAvailability_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -10336,13 +10336,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityLevel5ID',
+@value=N'DimAvailabilityID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityLevel5ID';
+@level2name=N'DimAvailabilityID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10391,13 +10391,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailability',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10428,11 +10428,11 @@ GO
 CREATE TABLE Availability.FactOperatorAvailabilityTargets
 (
    FactOperatorAvailabilityTargetsID INT NOT NULL,
-   DimAvailabilityLevel5ID INT,
+   DimAvailabilityID INT,
    DimOperatorID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    [Percent] DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -10450,10 +10450,10 @@ GO
 
 --Add UNIQUE Constraints...
 ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimAvailabilityLevel5ID
+ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimAvailabilityID
 UNIQUE
 (
-   DimAvailabilityLevel5ID
+   DimAvailabilityID
 )
 GO
 
@@ -10486,10 +10486,10 @@ GO
 
 
 ALTER TABLE Availability.FactOperatorAvailabilityTargets
-ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactOperatorAvailabilityTargets_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -10498,13 +10498,13 @@ GO
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityLevel5ID',
+@value=N'DimAvailabilityID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityLevel5ID';
+@level2name=N'DimAvailabilityID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10542,13 +10542,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorAvailabilityTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10582,15 +10582,15 @@ CREATE TABLE Activity.FactOperatorEvents
    DimDateID INT,
    DimTimeID INT,
    DimEventTypeID INT,
-   DimDateID INT,
-   DimTimeID INT,
-   DimDateID INT,
-   DimTimeID INT,
+   DimStartDateID INT,
+   DimStartTimeID INT,
+   DimEndDateID INT,
+   DimEndTimeID INT,
    DimLocationID INT,
    DimPointOfInterestID INT,
    DimTripCategoryID INT,
    DimSiteID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    MaximumBrakingForce DECIMAL(18,2),
    AverageBrakingForce DECIMAL(18,2),
    OutOfBandBrakingForce DECIMAL(18,2),
@@ -10640,37 +10640,37 @@ GO
 
 
 ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimDateID
+ADD CONSTRAINT uc_FactOperatorEvents_DimStartDateID
 UNIQUE
 (
-   DimDateID
+   DimStartDateID
 )
 GO
 
 
 ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimTimeID
+ADD CONSTRAINT uc_FactOperatorEvents_DimStartTimeID
 UNIQUE
 (
-   DimTimeID
+   DimStartTimeID
 )
 GO
 
 
 ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimDateID
+ADD CONSTRAINT uc_FactOperatorEvents_DimEndDateID
 UNIQUE
 (
-   DimDateID
+   DimEndDateID
 )
 GO
 
 
 ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimTimeID
+ADD CONSTRAINT uc_FactOperatorEvents_DimEndTimeID
 UNIQUE
 (
-   DimTimeID
+   DimEndTimeID
 )
 GO
 
@@ -10712,10 +10712,10 @@ GO
 
 
 ALTER TABLE Activity.FactOperatorEvents
-ADD CONSTRAINT uc_FactOperatorEvents_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactOperatorEvents_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -10757,46 +10757,46 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimDateID',
+@value=N'DimStartDateID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimDateID';
+@level2name=N'DimStartDateID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimTimeID',
+@value=N'DimStartTimeID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimTimeID';
+@level2name=N'DimStartTimeID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimDateID',
+@value=N'DimEndDateID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimDateID';
+@level2name=N'DimEndDateID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimTimeID',
+@value=N'DimEndTimeID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimTimeID';
+@level2name=N'DimEndTimeID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10845,13 +10845,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorEvents',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -10938,7 +10938,7 @@ CREATE TABLE Exceptions.FactOperatorExclusion
 (
    FactOperatorExclusionID INT NOT NULL,
    DimDateID INT,
-   DimExclusionLevel3ID INT,
+   DimExclusionID INT,
    DimOperatorID INT,
    RunID INT NOT NULL
 );
@@ -10965,10 +10965,10 @@ GO
 
 
 ALTER TABLE Exceptions.FactOperatorExclusion
-ADD CONSTRAINT uc_FactOperatorExclusion_DimExclusionLevel3ID
+ADD CONSTRAINT uc_FactOperatorExclusion_DimExclusionID
 UNIQUE
 (
-   DimExclusionLevel3ID
+   DimExclusionID
 )
 GO
 
@@ -10997,13 +10997,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimExclusionLevel3ID',
+@value=N'DimExclusionID',
 @level0type=N'SCHEMA',
 @level0name=N'Exceptions',
 @level1type=N'TABLE',
 @level1name=N'FactOperatorExclusion',
 @level2type=N'COLUMN',
-@level2name=N'DimExclusionLevel3ID';
+@level2name=N'DimExclusionID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11038,7 +11038,7 @@ CREATE TABLE Costs.FactPartsCost
    DimTimeID INT,
    DimCostTypeID INT,
    DimEquipmentID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -11094,10 +11094,10 @@ GO
 
 
 ALTER TABLE Costs.FactPartsCost
-ADD CONSTRAINT uc_FactPartsCost_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactPartsCost_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -11159,13 +11159,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactPartsCost',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11226,8 +11226,8 @@ CREATE TABLE Production.FactProduction
    DimProductID INT,
    DimUnitID INT,
    DimPointOfInterestID INT,
-   DimCustomerLevel3ID INT,
-   DimOrganisationLevel5ID INT,
+   DimCustomerID INT,
+   DimOrganisationID INT,
    Units DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -11317,19 +11317,19 @@ GO
 
 
 ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimCustomerLevel3ID
+ADD CONSTRAINT uc_FactProduction_DimCustomerID
 UNIQUE
 (
-   DimCustomerLevel3ID
+   DimCustomerID
 )
 GO
 
 
 ALTER TABLE Production.FactProduction
-ADD CONSTRAINT uc_FactProduction_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactProduction_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -11426,24 +11426,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimCustomerLevel3ID',
+@value=N'DimCustomerID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProduction',
 @level2type=N'COLUMN',
-@level2name=N'DimCustomerLevel3ID';
+@level2name=N'DimCustomerID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProduction',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11480,8 +11480,8 @@ CREATE TABLE Production.FactProductionTargets
    DimProductID INT,
    DimUnitID INT,
    DimPointOfInterestID INT,
-   DimCustomerLevel3ID INT,
-   DimOrganisationLevel5ID INT,
+   DimCustomerID INT,
+   DimOrganisationID INT,
    Units DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -11553,19 +11553,19 @@ GO
 
 
 ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimCustomerLevel3ID
+ADD CONSTRAINT uc_FactProductionTargets_DimCustomerID
 UNIQUE
 (
-   DimCustomerLevel3ID
+   DimCustomerID
 )
 GO
 
 
 ALTER TABLE Production.FactProductionTargets
-ADD CONSTRAINT uc_FactProductionTargets_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactProductionTargets_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -11640,24 +11640,24 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimCustomerLevel3ID',
+@value=N'DimCustomerID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProductionTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimCustomerLevel3ID';
+@level2name=N'DimCustomerID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Production',
 @level1type=N'TABLE',
 @level1name=N'FactProductionTargets',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11692,7 +11692,7 @@ CREATE TABLE Costs.FactServiceCost
    DimTimeID INT,
    DimCostTypeID INT,
    DimEquipmentID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    DimCurrencyID INT,
    FinancialAmount DECIMAL(18,2),
    Tax DECIMAL(18,2),
@@ -11748,10 +11748,10 @@ GO
 
 
 ALTER TABLE Costs.FactServiceCost
-ADD CONSTRAINT uc_FactServiceCost_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactServiceCost_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -11813,13 +11813,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Costs',
 @level1type=N'TABLE',
 @level1name=N'FactServiceCost',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11872,8 +11872,8 @@ GO
 CREATE TABLE Shared.FactUnitConversion
 (
    FactUnitConversionID INT NOT NULL,
-   DimUnitID INT,
-   DimUnitID INT,
+   DimSourceUnitIDID INT,
+   DimTargetUnitIDID INT,
    ConversionFactor DECIMAL(18,2),
    Scale DECIMAL(18,2),
    RunID INT NOT NULL
@@ -11892,19 +11892,19 @@ GO
 
 --Add UNIQUE Constraints...
 ALTER TABLE Shared.FactUnitConversion
-ADD CONSTRAINT uc_FactUnitConversion_DimUnitID
+ADD CONSTRAINT uc_FactUnitConversion_DimSourceUnitIDID
 UNIQUE
 (
-   DimUnitID
+   DimSourceUnitIDID
 )
 GO
 
 
 ALTER TABLE Shared.FactUnitConversion
-ADD CONSTRAINT uc_FactUnitConversion_DimUnitID
+ADD CONSTRAINT uc_FactUnitConversion_DimTargetUnitIDID
 UNIQUE
 (
-   DimUnitID
+   DimTargetUnitIDID
 )
 GO
 
@@ -11913,24 +11913,24 @@ GO
 --Table extended properties...
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimUnitID',
+@value=N'DimSourceUnitIDID',
 @level0type=N'SCHEMA',
 @level0name=N'Shared',
 @level1type=N'TABLE',
 @level1name=N'FactUnitConversion',
 @level2type=N'COLUMN',
-@level2name=N'DimUnitID';
+@level2name=N'DimSourceUnitIDID';
 GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimUnitID',
+@value=N'DimTargetUnitIDID',
 @level0type=N'SCHEMA',
 @level0name=N'Shared',
 @level1type=N'TABLE',
 @level1name=N'FactUnitConversion',
 @level2type=N'COLUMN',
-@level2name=N'DimUnitID';
+@level2name=N'DimTargetUnitIDID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -11974,12 +11974,12 @@ CREATE TABLE Availability.FactUptimeplans
    FactUptimeplansID INT NOT NULL,
    DimDateID INT,
    DimTimeID INT,
-   DimAvailabilityLevel5ID INT,
+   DimAvailabilityID INT,
    DimEquipmentID INT,
    DimLocationID INT,
    DimPayloadID INT,
    DimPointOfInterestID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    Seconds DECIMAL(18,2),
    RunID INT NOT NULL
 );
@@ -12015,10 +12015,10 @@ GO
 
 
 ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimAvailabilityLevel5ID
+ADD CONSTRAINT uc_FactUptimeplans_DimAvailabilityID
 UNIQUE
 (
-   DimAvailabilityLevel5ID
+   DimAvailabilityID
 )
 GO
 
@@ -12060,10 +12060,10 @@ GO
 
 
 ALTER TABLE Availability.FactUptimeplans
-ADD CONSTRAINT uc_FactUptimeplans_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactUptimeplans_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -12094,13 +12094,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimAvailabilityLevel5ID',
+@value=N'DimAvailabilityID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactUptimeplans',
 @level2type=N'COLUMN',
-@level2name=N'DimAvailabilityLevel5ID';
+@level2name=N'DimAvailabilityID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12149,13 +12149,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Availability',
 @level1type=N'TABLE',
 @level1name=N'FactUptimeplans',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12190,7 +12190,7 @@ CREATE TABLE Activity.FactVehicleActivityDetail
    DimTimeID INT,
    DimEquipmentID INT,
    DimEventTypeID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    BrakingForce DECIMAL(18,2),
    RPM DECIMAL(18,2),
    OdometerReading DECIMAL(18,2),
@@ -12246,10 +12246,10 @@ GO
 
 
 ALTER TABLE Activity.FactVehicleActivityDetail
-ADD CONSTRAINT uc_FactVehicleActivityDetail_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactVehicleActivityDetail_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -12302,13 +12302,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactVehicleActivityDetail',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12368,7 +12368,7 @@ CREATE TABLE Activity.FactVehicleTrip
    DimLocationID INT,
    DimPayloadID INT,
    DimSiteID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    StartOdometer DECIMAL(18,2),
    EndOdometer DECIMAL(18,2),
    Duration DECIMAL(18,2),
@@ -12452,10 +12452,10 @@ GO
 
 
 ALTER TABLE Activity.FactVehicleTrip
-ADD CONSTRAINT uc_FactVehicleTrip_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactVehicleTrip_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -12541,13 +12541,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactVehicleTrip',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 exec sys.sp_addextendedproperty
@@ -12614,7 +12614,7 @@ CREATE TABLE Activity.FactXEquipmentActivityDetail
    DimDateID INT,
    DimEquipmentID INT,
    DimLocationID INT,
-   DimOrganisationLevel5ID INT,
+   DimOrganisationID INT,
    RunID INT NOT NULL
 );
 GO
@@ -12658,10 +12658,10 @@ GO
 
 
 ALTER TABLE Activity.FactXEquipmentActivityDetail
-ADD CONSTRAINT uc_FactXEquipmentActivityDetail_DimOrganisationLevel5ID
+ADD CONSTRAINT uc_FactXEquipmentActivityDetail_DimOrganisationID
 UNIQUE
 (
-   DimOrganisationLevel5ID
+   DimOrganisationID
 )
 GO
 
@@ -12703,13 +12703,13 @@ GO
 
 exec sys.sp_addextendedproperty
 @name=N'DisplayName',
-@value=N'DimOrganisationLevel5ID',
+@value=N'DimOrganisationID',
 @level0type=N'SCHEMA',
 @level0name=N'Activity',
 @level1type=N'TABLE',
 @level1name=N'FactXEquipmentActivityDetail',
 @level2type=N'COLUMN',
-@level2name=N'DimOrganisationLevel5ID';
+@level2name=N'DimOrganisationID';
 GO
 
 
