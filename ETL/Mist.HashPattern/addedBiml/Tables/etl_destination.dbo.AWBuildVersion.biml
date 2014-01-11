@@ -1,0 +1,27 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="AWBuildVersion" SchemaName="etl_destination.dbo">
+    <Columns>
+        <Column Name="SystemInformationID" DataType="Byte" IdentityIncrement="1" />
+        <Column Name="Database Version" DataType="String" Length="25" />
+        <Column Name="VersionDate" DataType="DateTime" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_AWBuildVersion_SystemInformationID">
+            <Columns>
+                <Column ColumnName="SystemInformationID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_AWBuildVersion_SystemInformationID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SystemInformationID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

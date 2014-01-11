@@ -1,0 +1,42 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PurchaseOrderDetail" SchemaName="etl_destination.Purchasing">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID" TableName="etl_destination.Purchasing.PurchaseOrderHeader" Name="PurchaseOrderID" />
+        <Column Name="PurchaseOrderDetailID" IdentityIncrement="1" />
+        <Column Name="DueDate" DataType="DateTime" />
+        <Column Name="OrderQty" DataType="Int16" />
+        <TableReference ForeignKeyNameOverride="FK_PurchaseOrderDetail_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <Column Name="UnitPrice" DataType="Currency" />
+        <Column Name="LineTotal" DataType="Currency" Computed="(isnull([OrderQty]*[UnitPrice],(0.00)))" />
+        <Column Name="ReceivedQty" DataType="Decimal" Precision="8" Scale="2" />
+        <Column Name="RejectedQty" DataType="Decimal" Precision="8" Scale="2" />
+        <Column Name="StockedQty" DataType="Decimal" Precision="9" Scale="2" Computed="(isnull([ReceivedQty]-[RejectedQty],(0.00)))" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID">
+            <Columns>
+                <Column ColumnName="PurchaseOrderID" />
+                <Column ColumnName="PurchaseOrderDetailID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="PurchaseOrderID" />
+                <Column ColumnName="PurchaseOrderDetailID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_PurchaseOrderDetail_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

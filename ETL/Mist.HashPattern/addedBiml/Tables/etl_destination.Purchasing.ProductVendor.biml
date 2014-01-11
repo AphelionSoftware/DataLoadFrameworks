@@ -1,0 +1,48 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductVendor" SchemaName="etl_destination.Purchasing">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_ProductVendor_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <TableReference ForeignKeyNameOverride="FK_ProductVendor_Vendor_BusinessEntityID" TableName="etl_destination.Purchasing.Vendor" Name="BusinessEntityID" />
+        <Column Name="AverageLeadTime" />
+        <Column Name="StandardPrice" DataType="Currency" />
+        <Column Name="LastReceiptCost" DataType="Currency" IsNullable="true" />
+        <Column Name="LastReceiptDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="MinOrderQty" />
+        <Column Name="MaxOrderQty" />
+        <Column Name="OnOrderQty" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_ProductVendor_UnitMeasure_UnitMeasureCode" TableName="etl_destination.Production.UnitMeasure" Name="UnitMeasureCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductVendor_ProductID_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductVendor_ProductID_BusinessEntityID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_ProductVendor_UnitMeasureCode">
+            <Columns>
+                <Column ColumnName="UnitMeasureCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_ProductVendor_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

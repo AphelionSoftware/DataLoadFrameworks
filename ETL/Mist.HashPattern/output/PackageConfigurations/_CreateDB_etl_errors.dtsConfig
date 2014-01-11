@@ -1,0 +1,3 @@
+<DTSConfiguration><DTSConfigurationHeading><DTSConfigurationFileInfo /></DTSConfigurationHeading>
+<Configuration ConfiguredType="Property" Path="\Package.Connections[_CreateDB_etl_errors].Properties[ConnectionString]" ValueType="String"><ConfiguredValue>Provider=SQLNCLI10.1;Data Source=(local);Integrated Security=SSPI;Auto Translate=False</ConfiguredValue></Configuration>
+</DTSConfiguration>

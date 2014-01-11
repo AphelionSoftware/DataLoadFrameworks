@@ -1,0 +1,37 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PersonPhone" SchemaName="etl_destination.Person">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_PersonPhone_Person_BusinessEntityID" TableName="etl_destination.Person.Person" Name="BusinessEntityID" />
+        <Column Name="PhoneNumber" DataType="String" Length="25" />
+        <TableReference ForeignKeyNameOverride="FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID" TableName="etl_destination.Person.PhoneNumberType" Name="PhoneNumberTypeID" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="PhoneNumber" />
+                <Column ColumnName="PhoneNumberTypeID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="PhoneNumber" />
+                <Column ColumnName="PhoneNumberTypeID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_PersonPhone_PhoneNumber">
+            <Columns>
+                <Column ColumnName="PhoneNumber" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

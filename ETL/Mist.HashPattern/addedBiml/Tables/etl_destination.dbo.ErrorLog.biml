@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ErrorLog" SchemaName="etl_destination.dbo">
+    <Columns>
+        <Column Name="ErrorLogID" IdentityIncrement="1" />
+        <Column Name="ErrorTime" DataType="DateTime" Default="(getdate())" />
+        <Column Name="UserName" DataType="String" Length="128" />
+        <Column Name="ErrorNumber" />
+        <Column Name="ErrorSeverity" IsNullable="true" />
+        <Column Name="ErrorState" IsNullable="true" />
+        <Column Name="ErrorProcedure" DataType="String" Length="126" IsNullable="true" />
+        <Column Name="ErrorLine" IsNullable="true" />
+        <Column Name="ErrorMessage" DataType="String" Length="4000" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ErrorLog_ErrorLogID">
+            <Columns>
+                <Column ColumnName="ErrorLogID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ErrorLog_ErrorLogID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ErrorLogID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<# var importResult = ((AstOleDbConnectionNode)RootNode.Connections["etl_destination"]).ImportDB("","",ImportOptions.ExcludeViews); #>
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<Schemas>
+		<#=importResult.SchemaNodes.GetBiml()#>
+	</Schemas>
+	
+	<Tables>
+		<#=importResult.TableNodes.GetBiml()#>
+	</Tables>
+</Biml>

@@ -1,0 +1,72 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Employee" SchemaName="etl_destination.HumanResources">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_Employee_Person_BusinessEntityID" TableName="etl_destination.Person.Person" Name="BusinessEntityID" />
+        <Column Name="NationalIDNumber" DataType="String" Length="15" />
+        <Column Name="LoginID" DataType="String" Length="256" />
+        <Column Name="OrganizationNode" DataType="Object" CustomType="hierarchyid" IsNullable="true" />
+        <Column Name="OrganizationLevel" DataType="Int16" Computed="([OrganizationNode].[GetLevel]())" IsNullable="true" />
+        <Column Name="JobTitle" DataType="String" Length="50" />
+        <Column Name="BirthDate" DataType="Date" />
+        <Column Name="MaritalStatus" DataType="StringFixedLength" Length="1" />
+        <Column Name="Gender" DataType="StringFixedLength" Length="1" />
+        <Column Name="HireDate" DataType="Date" />
+        <Column Name="SalariedFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="VacationHours" DataType="Int16" Default="((0))" />
+        <Column Name="SickLeaveHours" DataType="Int16" Default="((0))" />
+        <Column Name="CurrentFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DeltaHash" IsNullable="true" />
+        <Column Name="BusinessKeyHash" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Employee_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Employee_BusinessEntityID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Employee_OrganizationNode">
+            <Columns>
+                <Column ColumnName="OrganizationNode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Employee_OrganizationLevel_OrganizationNode">
+            <Columns>
+                <Column ColumnName="OrganizationLevel" />
+                <Column ColumnName="OrganizationNode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Employee_LoginID" Unique="true">
+            <Columns>
+                <Column ColumnName="LoginID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Employee_NationalIDNumber" Unique="true">
+            <Columns>
+                <Column ColumnName="NationalIDNumber" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Employee_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

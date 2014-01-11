@@ -1,0 +1,41 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SpecialOfferProduct" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID" TableName="etl_destination.Sales.SpecialOffer" Name="SpecialOfferID" />
+        <TableReference ForeignKeyNameOverride="FK_SpecialOfferProduct_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SpecialOfferProduct_SpecialOfferID_ProductID">
+            <Columns>
+                <Column ColumnName="SpecialOfferID" />
+                <Column ColumnName="ProductID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SpecialOfferProduct_SpecialOfferID_ProductID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SpecialOfferID" />
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_SpecialOfferProduct_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_SpecialOfferProduct_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

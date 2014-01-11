@@ -1,0 +1,45 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="WorkOrderRouting" SchemaName="etl_destination.Production">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_WorkOrderRouting_WorkOrder_WorkOrderID" TableName="etl_destination.Production.WorkOrder" Name="WorkOrderID" />
+        <Column Name="ProductID" />
+        <Column Name="OperationSequence" DataType="Int16" />
+        <TableReference ForeignKeyNameOverride="FK_WorkOrderRouting_Location_LocationID" TableName="etl_destination.Production.Location" Name="LocationID" DataType="Int16" />
+        <Column Name="ScheduledStartDate" DataType="DateTime" />
+        <Column Name="ScheduledEndDate" DataType="DateTime" />
+        <Column Name="ActualStartDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="ActualEndDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="ActualResourceHrs" DataType="Decimal" Precision="9" Scale="4" IsNullable="true" />
+        <Column Name="PlannedCost" DataType="Currency" />
+        <Column Name="ActualCost" DataType="Currency" IsNullable="true" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence">
+            <Columns>
+                <Column ColumnName="WorkOrderID" />
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="OperationSequence" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="WorkOrderID" />
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="OperationSequence" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_WorkOrderRouting_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

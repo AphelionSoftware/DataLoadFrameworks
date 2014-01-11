@@ -1,0 +1,68 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Document" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="DocumentNode" DataType="Object" CustomType="hierarchyid" />
+        <Column Name="DocumentLevel" DataType="Int16" Computed="([DocumentNode].[GetLevel]())" IsNullable="true" />
+        <Column Name="Title" DataType="String" Length="50" />
+        <Column Name="Owner" />
+        <Column Name="FolderFlag" DataType="Boolean" Default="((0))" />
+        <Column Name="FileName" DataType="String" Length="400" />
+        <Column Name="FileExtension" DataType="String" Length="8" />
+        <Column Name="Revision" DataType="StringFixedLength" Length="5" />
+        <Column Name="ChangeNumber" Default="((0))" />
+        <Column Name="Status" DataType="Byte" />
+        <Column Name="DocumentSummary" DataType="String" Length="-1" IsNullable="true" />
+        <Column Name="Document" DataType="Binary" Length="-1" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Document_DocumentNode">
+            <Columns>
+                <Column ColumnName="DocumentNode" />
+            </Columns>
+        </PrimaryKey>
+        <UniqueKey Name="UQ__Document__F73921F793071A63">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        </UniqueKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Document_DocumentNode" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="DocumentNode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="UQ__Document__F73921F793071A63" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Document_DocumentLevel_DocumentNode" Unique="true">
+            <Columns>
+                <Column ColumnName="DocumentLevel" />
+                <Column ColumnName="DocumentNode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Document_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Document_FileName_Revision">
+            <Columns>
+                <Column ColumnName="FileName" />
+                <Column ColumnName="Revision" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

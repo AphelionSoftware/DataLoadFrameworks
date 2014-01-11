@@ -1,0 +1,38 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="CurrencyRate" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="CurrencyRateID" IdentityIncrement="1" />
+        <Column Name="CurrencyRateDate" DataType="DateTime" />
+        <TableReference ForeignKeyNameOverride="FK_CurrencyRate_Currency_FromCurrencyCode" TableName="etl_destination.Sales.Currency" Name="FromCurrencyCode" DataType="StringFixedLength" Length="3" />
+        <TableReference ForeignKeyNameOverride="FK_CurrencyRate_Currency_ToCurrencyCode" TableName="etl_destination.Sales.Currency" Name="ToCurrencyCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="AverageRate" DataType="Currency" />
+        <Column Name="EndOfDayRate" DataType="Currency" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_CurrencyRate_CurrencyRateID">
+            <Columns>
+                <Column ColumnName="CurrencyRateID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_CurrencyRate_CurrencyRateID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="CurrencyRateID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_CurrencyRate_CurrencyRateDate_FromCurrencyCode_ToCurrencyCode" Unique="true">
+            <Columns>
+                <Column ColumnName="CurrencyRateDate" />
+                <Column ColumnName="FromCurrencyCode" />
+                <Column ColumnName="ToCurrencyCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

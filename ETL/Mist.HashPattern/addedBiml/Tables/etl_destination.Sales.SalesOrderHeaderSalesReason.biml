@@ -1,0 +1,28 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SalesOrderHeaderSalesReason" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID" TableName="etl_destination.Sales.SalesOrderHeader" Name="SalesOrderID" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID" TableName="etl_destination.Sales.SalesReason" Name="SalesReasonID" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID">
+            <Columns>
+                <Column ColumnName="SalesOrderID" />
+                <Column ColumnName="SalesReasonID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SalesOrderID" />
+                <Column ColumnName="SalesReasonID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

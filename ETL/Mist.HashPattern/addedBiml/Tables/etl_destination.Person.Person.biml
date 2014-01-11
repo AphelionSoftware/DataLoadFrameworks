@@ -1,0 +1,48 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Person" SchemaName="etl_destination.Person">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_Person_BusinessEntity_BusinessEntityID" TableName="etl_destination.Person.BusinessEntity" Name="BusinessEntityID" />
+        <Column Name="PersonType" DataType="StringFixedLength" Length="2" />
+        <Column Name="NameStyle" DataType="Boolean" Default="((0))" />
+        <Column Name="Title" DataType="String" Length="8" IsNullable="true" />
+        <Column Name="FirstName" DataType="String" Length="50" />
+        <Column Name="MiddleName" DataType="String" Length="50" IsNullable="true" />
+        <Column Name="LastName" DataType="String" Length="50" />
+        <Column Name="Suffix" DataType="String" Length="10" IsNullable="true" />
+        <Column Name="EmailPromotion" Default="((0))" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Person_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Person_BusinessEntityID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Person_LastName_FirstName_MiddleName">
+            <Columns>
+                <Column ColumnName="LastName" />
+                <Column ColumnName="FirstName" />
+                <Column ColumnName="MiddleName" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Person_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,34 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Location" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="LocationID" DataType="Int16" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="CostRate" DataType="Object" CustomType="smallmoney" Default="((0.00))" />
+        <Column Name="Availability" DataType="Decimal" Precision="8" Scale="2" Default="((0.00))" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Location_LocationID">
+            <Columns>
+                <Column ColumnName="LocationID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Location_LocationID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="LocationID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Location_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

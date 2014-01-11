@@ -1,0 +1,48 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SalesOrderDetail" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID" TableName="etl_destination.Sales.SalesOrderHeader" Name="SalesOrderID" />
+        <Column Name="SalesOrderDetailID" IdentityIncrement="1" />
+        <Column Name="CarrierTrackingNumber" DataType="String" Length="25" IsNullable="true" />
+        <Column Name="OrderQty" DataType="Int16" />
+        <MultipleColumnTableReference ForeignKeyNameOverride="FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" ForeignColumnName="Sales.SpecialOfferProduct.ProductID" MultipleColumnTableReferenceGroupName="FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" Name="ProductID" />
+        <MultipleColumnTableReference ForeignKeyNameOverride="FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" ForeignColumnName="Sales.SpecialOfferProduct.SpecialOfferID" MultipleColumnTableReferenceGroupName="FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" Name="SpecialOfferID" />
+        <Column Name="UnitPrice" DataType="Currency" />
+        <Column Name="UnitPriceDiscount" DataType="Currency" Default="((0.0))" />
+        <Column Name="LineTotal" DataType="Decimal" Precision="38" Scale="6" Computed="(isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID">
+            <Columns>
+                <Column ColumnName="SalesOrderID" />
+                <Column ColumnName="SalesOrderDetailID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SalesOrderID" />
+                <Column ColumnName="SalesOrderDetailID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_SalesOrderDetail_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_SalesOrderDetail_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

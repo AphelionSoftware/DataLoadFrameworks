@@ -1,0 +1,28 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductDocument" SchemaName="etl_destination.Production">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_ProductDocument_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <TableReference ForeignKeyNameOverride="FK_ProductDocument_Document_DocumentNode" TableName="etl_destination.Production.Document" Name="DocumentNode" DataType="Object" CustomType="hierarchyid" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductDocument_ProductID_DocumentNode">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="DocumentNode" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductDocument_ProductID_DocumentNode" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="DocumentNode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Currency" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="CurrencyCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Currency_CurrencyCode">
+            <Columns>
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Currency_CurrencyCode" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Currency_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,31 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductModelProductDescriptionCulture" SchemaName="etl_destination.Production">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID" TableName="etl_destination.Production.ProductModel" Name="ProductModelID" />
+        <TableReference ForeignKeyNameOverride="FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID" TableName="etl_destination.Production.ProductDescription" Name="ProductDescriptionID" />
+        <TableReference ForeignKeyNameOverride="FK_ProductModelProductDescriptionCulture_Culture_CultureID" TableName="etl_destination.Production.Culture" Name="CultureID" DataType="StringFixedLength" Length="6" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID">
+            <Columns>
+                <Column ColumnName="ProductModelID" />
+                <Column ColumnName="ProductDescriptionID" />
+                <Column ColumnName="CultureID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductModelID" />
+                <Column ColumnName="ProductDescriptionID" />
+                <Column ColumnName="CultureID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

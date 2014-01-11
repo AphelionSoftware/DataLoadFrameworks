@@ -1,0 +1,5 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Databases>
+        <Database Name="etl_source" ConnectionName="etl_source" />
+    </Databases>
+</Biml>

@@ -1,0 +1,5 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Connections>
+        <OleDbConnection Name="etl_destination" ConnectionString="Provider=SQLNCLI10.1;Data Source=(local);Integrated Security=SSPI;Initial Catalog=Adventureworks2012;Auto Translate=False" />
+    </Connections>
+</Biml>

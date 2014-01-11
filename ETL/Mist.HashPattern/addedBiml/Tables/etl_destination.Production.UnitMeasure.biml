@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="UnitMeasure" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="UnitMeasureCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_UnitMeasure_UnitMeasureCode">
+            <Columns>
+                <Column ColumnName="UnitMeasureCode" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_UnitMeasure_UnitMeasureCode" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="UnitMeasureCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_UnitMeasure_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

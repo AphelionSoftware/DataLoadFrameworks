@@ -1,0 +1,66 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Product" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="ProductID" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ProductNumber" DataType="String" Length="25" />
+        <Column Name="MakeFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="FinishedGoodsFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="Color" DataType="String" Length="15" IsNullable="true" />
+        <Column Name="SafetyStockLevel" DataType="Int16" />
+        <Column Name="ReorderPoint" DataType="Int16" />
+        <Column Name="StandardCost" DataType="Currency" />
+        <Column Name="ListPrice" DataType="Currency" />
+        <Column Name="Size" DataType="String" Length="5" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_Product_UnitMeasure_SizeUnitMeasureCode" TableName="etl_destination.Production.UnitMeasure" Name="SizeUnitMeasureCode" DataType="StringFixedLength" Length="3" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_Product_UnitMeasure_WeightUnitMeasureCode" TableName="etl_destination.Production.UnitMeasure" Name="WeightUnitMeasureCode" DataType="StringFixedLength" Length="3" IsNullable="true" />
+        <Column Name="Weight" DataType="Decimal" Precision="8" Scale="2" IsNullable="true" />
+        <Column Name="DaysToManufacture" />
+        <Column Name="ProductLine" DataType="StringFixedLength" Length="2" IsNullable="true" />
+        <Column Name="Class" DataType="StringFixedLength" Length="2" IsNullable="true" />
+        <Column Name="Style" DataType="StringFixedLength" Length="2" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_Product_ProductSubcategory_ProductSubcategoryID" TableName="etl_destination.Production.ProductSubcategory" Name="ProductSubcategoryID" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_Product_ProductModel_ProductModelID" TableName="etl_destination.Production.ProductModel" Name="ProductModelID" IsNullable="true" />
+        <Column Name="SellStartDate" DataType="DateTime" />
+        <Column Name="SellEndDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="DiscontinuedDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Product_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Product_ProductID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Product_ProductNumber" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductNumber" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Product_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Product_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

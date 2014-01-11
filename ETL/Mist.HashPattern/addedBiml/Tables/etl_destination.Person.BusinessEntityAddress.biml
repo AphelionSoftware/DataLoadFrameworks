@@ -1,0 +1,50 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="BusinessEntityAddress" SchemaName="etl_destination.Person">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" TableName="etl_destination.Person.BusinessEntity" Name="BusinessEntityID" />
+        <TableReference ForeignKeyNameOverride="FK_BusinessEntityAddress_Address_AddressID" TableName="etl_destination.Person.Address" Name="AddressID" />
+        <TableReference ForeignKeyNameOverride="FK_BusinessEntityAddress_AddressType_AddressTypeID" TableName="etl_destination.Person.AddressType" Name="AddressTypeID" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="AddressID" />
+                <Column ColumnName="AddressTypeID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="AddressID" />
+                <Column ColumnName="AddressTypeID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_BusinessEntityAddress_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_BusinessEntityAddress_AddressID">
+            <Columns>
+                <Column ColumnName="AddressID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_BusinessEntityAddress_AddressTypeID">
+            <Columns>
+                <Column ColumnName="AddressTypeID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

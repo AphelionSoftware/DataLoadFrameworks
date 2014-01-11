@@ -1,0 +1,35 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Department" SchemaName="etl_destination.HumanResources">
+    <Columns>
+        <Column Name="DepartmentID" DataType="Int16" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="GroupName" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DeltaHash" IsNullable="true" />
+        <Column Name="BusinessKeyHash" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Department_DepartmentID">
+            <Columns>
+                <Column ColumnName="DepartmentID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Department_DepartmentID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="DepartmentID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Department_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

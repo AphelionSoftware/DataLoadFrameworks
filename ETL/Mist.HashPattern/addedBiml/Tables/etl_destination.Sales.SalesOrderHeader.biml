@@ -1,0 +1,73 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SalesOrderHeader" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="SalesOrderID" IdentityIncrement="1" />
+        <Column Name="RevisionNumber" DataType="Byte" Default="((0))" />
+        <Column Name="OrderDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DueDate" DataType="DateTime" />
+        <Column Name="ShipDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="Status" DataType="Byte" Default="((1))" />
+        <Column Name="OnlineOrderFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="SalesOrderNumber" DataType="String" Length="25" Computed="(isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID]),N'*** ERROR ***'))" />
+        <Column Name="PurchaseOrderNumber" DataType="String" Length="25" IsNullable="true" />
+        <Column Name="AccountNumber" DataType="String" Length="15" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_Customer_CustomerID" TableName="etl_destination.Sales.Customer" Name="CustomerID" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_SalesPerson_SalesPersonID" TableName="etl_destination.Sales.SalesPerson" Name="SalesPersonID" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_SalesTerritory_TerritoryID" TableName="etl_destination.Sales.SalesTerritory" Name="TerritoryID" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_Address_BillToAddressID" TableName="etl_destination.Person.Address" Name="BillToAddressID" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_Address_ShipToAddressID" TableName="etl_destination.Person.Address" Name="ShipToAddressID" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_ShipMethod_ShipMethodID" TableName="etl_destination.Purchasing.ShipMethod" Name="ShipMethodID" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_CreditCard_CreditCardID" TableName="etl_destination.Sales.CreditCard" Name="CreditCardID" IsNullable="true" />
+        <Column Name="CreditCardApprovalCode" DataType="AnsiString" Length="15" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_SalesOrderHeader_CurrencyRate_CurrencyRateID" TableName="etl_destination.Sales.CurrencyRate" Name="CurrencyRateID" IsNullable="true" />
+        <Column Name="SubTotal" DataType="Currency" Default="((0.00))" />
+        <Column Name="TaxAmt" DataType="Currency" Default="((0.00))" />
+        <Column Name="Freight" DataType="Currency" Default="((0.00))" />
+        <Column Name="TotalDue" DataType="Currency" Computed="(isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))" />
+        <Column Name="Comment" DataType="String" Length="128" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SalesOrderHeader_SalesOrderID">
+            <Columns>
+                <Column ColumnName="SalesOrderID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SalesOrderHeader_SalesOrderID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SalesOrderID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_SalesOrderHeader_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_SalesOrderHeader_SalesOrderNumber" Unique="true">
+            <Columns>
+                <Column ColumnName="SalesOrderNumber" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_SalesOrderHeader_CustomerID">
+            <Columns>
+                <Column ColumnName="CustomerID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_SalesOrderHeader_SalesPersonID">
+            <Columns>
+                <Column ColumnName="SalesPersonID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

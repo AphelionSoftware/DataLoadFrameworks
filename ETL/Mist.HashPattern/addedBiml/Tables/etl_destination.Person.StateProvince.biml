@@ -1,0 +1,50 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="StateProvince" SchemaName="etl_destination.Person">
+    <Columns>
+        <Column Name="StateProvinceID" IdentityIncrement="1" />
+        <Column Name="StateProvinceCode" DataType="StringFixedLength" Length="3" />
+        <TableReference ForeignKeyNameOverride="FK_StateProvince_CountryRegion_CountryRegionCode" TableName="etl_destination.Person.CountryRegion" Name="CountryRegionCode" DataType="String" Length="3" />
+        <Column Name="IsOnlyStateProvinceFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <TableReference ForeignKeyNameOverride="FK_StateProvince_SalesTerritory_TerritoryID" TableName="etl_destination.Sales.SalesTerritory" Name="TerritoryID" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_StateProvince_StateProvinceID">
+            <Columns>
+                <Column ColumnName="StateProvinceID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_StateProvince_StateProvinceID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="StateProvinceID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_StateProvince_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_StateProvince_StateProvinceCode_CountryRegionCode" Unique="true">
+            <Columns>
+                <Column ColumnName="StateProvinceCode" />
+                <Column ColumnName="CountryRegionCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_StateProvince_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

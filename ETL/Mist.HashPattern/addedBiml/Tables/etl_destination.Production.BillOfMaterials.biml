@@ -1,0 +1,46 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="BillOfMaterials" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="BillOfMaterialsID" IdentityIncrement="1" />
+        <TableReference ForeignKeyNameOverride="FK_BillOfMaterials_Product_ProductAssemblyID" TableName="etl_destination.Production.Product" Name="ProductAssemblyID" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_BillOfMaterials_Product_ComponentID" TableName="etl_destination.Production.Product" Name="ComponentID" />
+        <Column Name="StartDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="EndDate" DataType="DateTime" IsNullable="true" />
+        <TableReference ForeignKeyNameOverride="FK_BillOfMaterials_UnitMeasure_UnitMeasureCode" TableName="etl_destination.Production.UnitMeasure" Name="UnitMeasureCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="BOMLevel" DataType="Int16" />
+        <Column Name="PerAssemblyQty" DataType="Decimal" Precision="8" Scale="2" Default="((1.00))" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_BillOfMaterials_BillOfMaterialsID" Clustered="false">
+            <Columns>
+                <Column ColumnName="BillOfMaterialsID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="AK_BillOfMaterials_ProductAssemblyID_ComponentID_StartDate" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductAssemblyID" />
+                <Column ColumnName="ComponentID" />
+                <Column ColumnName="StartDate" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="PK_BillOfMaterials_BillOfMaterialsID" Unique="true">
+            <Columns>
+                <Column ColumnName="BillOfMaterialsID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_BillOfMaterials_UnitMeasureCode">
+            <Columns>
+                <Column ColumnName="UnitMeasureCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,30 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="DatabaseLog" SchemaName="etl_destination.dbo">
+    <Columns>
+        <Column Name="DatabaseLogID" IdentityIncrement="1" />
+        <Column Name="PostTime" DataType="DateTime" />
+        <Column Name="DatabaseUser" DataType="String" Length="128" />
+        <Column Name="Event" DataType="String" Length="128" />
+        <Column Name="Schema" DataType="String" Length="128" IsNullable="true" />
+        <Column Name="Object" DataType="String" Length="128" IsNullable="true" />
+        <Column Name="TSQL" DataType="String" Length="-1" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_DatabaseLog_DatabaseLogID" Clustered="false">
+            <Columns>
+                <Column ColumnName="DatabaseLogID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_DatabaseLog_DatabaseLogID" Unique="true">
+            <Columns>
+                <Column ColumnName="DatabaseLogID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

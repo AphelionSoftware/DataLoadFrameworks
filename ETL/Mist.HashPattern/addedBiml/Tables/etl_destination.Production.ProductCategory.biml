@@ -1,0 +1,39 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductCategory" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="ProductCategoryID" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductCategory_ProductCategoryID">
+            <Columns>
+                <Column ColumnName="ProductCategoryID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductCategory_ProductCategoryID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductCategoryID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_ProductCategory_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_ProductCategory_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,43 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Shift" SchemaName="etl_destination.HumanResources">
+    <Columns>
+        <Column Name="ShiftID" DataType="Byte" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="StartTime" DataType="Time" Scale="7" />
+        <Column Name="EndTime" DataType="Time" Scale="7" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DeltaHash" IsNullable="true" />
+        <Column Name="BusinessKeyHash" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Shift_ShiftID">
+            <Columns>
+                <Column ColumnName="ShiftID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Shift_ShiftID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ShiftID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Shift_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Shift_StartTime_EndTime" Unique="true">
+            <Columns>
+                <Column ColumnName="StartTime" />
+                <Column ColumnName="EndTime" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

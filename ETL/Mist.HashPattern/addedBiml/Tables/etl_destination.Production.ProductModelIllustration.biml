@@ -1,0 +1,28 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductModelIllustration" SchemaName="etl_destination.Production">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_ProductModelIllustration_ProductModel_ProductModelID" TableName="etl_destination.Production.ProductModel" Name="ProductModelID" />
+        <TableReference ForeignKeyNameOverride="FK_ProductModelIllustration_Illustration_IllustrationID" TableName="etl_destination.Production.Illustration" Name="IllustrationID" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductModelIllustration_ProductModelID_IllustrationID">
+            <Columns>
+                <Column ColumnName="ProductModelID" />
+                <Column ColumnName="IllustrationID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductModelIllustration_ProductModelID_IllustrationID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductModelID" />
+                <Column ColumnName="IllustrationID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

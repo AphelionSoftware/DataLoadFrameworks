@@ -1,0 +1,36 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SalesPersonQuotaHistory" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID" TableName="etl_destination.Sales.SalesPerson" Name="BusinessEntityID" />
+        <Column Name="QuotaDate" DataType="DateTime" />
+        <Column Name="SalesQuota" DataType="Currency" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="QuotaDate" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="QuotaDate" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_SalesPersonQuotaHistory_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

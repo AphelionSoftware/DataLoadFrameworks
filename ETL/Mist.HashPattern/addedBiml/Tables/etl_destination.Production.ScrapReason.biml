@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ScrapReason" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="ScrapReasonID" DataType="Int16" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ScrapReason_ScrapReasonID">
+            <Columns>
+                <Column ColumnName="ScrapReasonID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ScrapReason_ScrapReasonID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ScrapReasonID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_ScrapReason_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

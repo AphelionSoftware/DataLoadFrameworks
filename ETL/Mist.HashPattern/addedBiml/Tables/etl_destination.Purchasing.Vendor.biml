@@ -1,0 +1,37 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Vendor" SchemaName="etl_destination.Purchasing">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_Vendor_BusinessEntity_BusinessEntityID" TableName="etl_destination.Person.BusinessEntity" Name="BusinessEntityID" />
+        <Column Name="AccountNumber" DataType="String" Length="15" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="CreditRating" DataType="Byte" />
+        <Column Name="PreferredVendorStatus" DataType="Boolean" Default="((1))" />
+        <Column Name="ActiveFlag" DataType="Boolean" Default="((1))" />
+        <Column Name="PurchasingWebServiceURL" DataType="String" Length="1024" IsNullable="true" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Vendor_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Vendor_BusinessEntityID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Vendor_AccountNumber" Unique="true">
+            <Columns>
+                <Column ColumnName="AccountNumber" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

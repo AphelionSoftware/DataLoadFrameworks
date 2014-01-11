@@ -1,0 +1,30 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductListPriceHistory" SchemaName="etl_destination.Production">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_ProductListPriceHistory_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <Column Name="StartDate" DataType="DateTime" />
+        <Column Name="EndDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="ListPrice" DataType="Currency" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductListPriceHistory_ProductID_StartDate">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="StartDate" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductListPriceHistory_ProductID_StartDate" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="StartDate" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

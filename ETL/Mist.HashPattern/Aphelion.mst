@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <IsPackageEditorCompactDisplayModeEnabled>False</IsPackageEditorCompactDisplayModeEnabled>
+    <IsTemplateAutoUpdatePreviewEnabled>False</IsTemplateAutoUpdatePreviewEnabled>
+    <IsTemplateCheckBimlSyntaxEnabled>True</IsTemplateCheckBimlSyntaxEnabled>
+    <IsTemplateAutoFormatXmlEnabled>True</IsTemplateAutoFormatXmlEnabled>
+    <AddedXmlFilesPath>addedBiml</AddedXmlFilesPath>
+    <CompilationOutputPath>output</CompilationOutputPath>
+    <DocumentationOutputPath>documentation</DocumentationOutputPath>
+    <DocumentationTemplatePath />
+    <IsWarnAsErrorEnabled>False</IsWarnAsErrorEnabled>
+    <IsCleanOutputFolderEnabled>False</IsCleanOutputFolderEnabled>
+    <IsCleanDocumentationFolderEnabled>False</IsCleanDocumentationFolderEnabled>
+    <SqlVersion>SqlServer2008R2</SqlVersion>
+    <SsasVersion>Ssas2008R2</SsasVersion>
+    <SsisVersion>Ssis2008R2</SsisVersion>
+    <UseProjectDeploymentModel>False</UseProjectDeploymentModel>
+    <ExtraCommandLineOptions />
+    <EmitDocumentationAnnotations>True</EmitDocumentationAnnotations>
+    <EmitCodeCommentAnnotations>False</EmitCodeCommentAnnotations>
+    <EmitTagAnnotations>False</EmitTagAnnotations>
+    <EmitEmittableAssets>True</EmitEmittableAssets>
+    <EmitIncludeAssets>True</EmitIncludeAssets>
+    <DefaultConnectionName />
+    <LoweringTemplateConfigurationPath />
+    <SelectedConfigurationFilePath />
+    <MistVersion>3.4.9573.0</MistVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <RootFolder Include=" ">
+      <RootFolderId>0</RootFolderId>
+    </RootFolder>
+  </ItemGroup>
+  <ItemGroup>
+    <Live Include="addedBiml\Connections\etl_destination.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Connections\etl_errors.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Connections\etl_source.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Connections\etl_staging.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Databases\etl_destination.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Databases\etl_errors.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Databases\etl_source.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Databases\etl_staging.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Packages\Department.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Packages\Employee.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Packages\EmployeeDepartmentHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Packages\EmployeePayHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Packages\JobCandidate.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Packages\Shift.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Schemas\etl_destination.dbo.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Schemas\etl_destination.Person.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Schemas\etl_destination.Production.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Schemas\etl_destination.Purchasing.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Schemas\etl_destination.Sales.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Schemas\HumanResources.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.dbo.AWBuildVersion.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.dbo.bigProduct.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.dbo.bigTransactionHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.dbo.DatabaseLog.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.dbo.ErrorLog.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.HumanResources.Department.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.HumanResources.Employee.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.HumanResources.EmployeeDepartmentHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.HumanResources.EmployeePayHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.HumanResources.JobCandidate.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.HumanResources.Shift.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.Address.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.AddressType.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.BusinessEntity.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.BusinessEntityAddress.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.BusinessEntityContact.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.ContactType.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.CountryRegion.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.EmailAddress.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.Password.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.Person.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.PersonPhone.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.PhoneNumberType.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Person.StateProvince.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.BillOfMaterials.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.Culture.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.Document.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.Illustration.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.Location.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.Product.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductCategory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductCostHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductDescription.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductDocument.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductInventory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductListPriceHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductModel.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductModelIllustration.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductModelProductDescriptionCulture.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductPhoto.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductProductPhoto.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductReview.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ProductSubcategory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.ScrapReason.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.TransactionHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.TransactionHistoryArchive.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.UnitMeasure.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.WorkOrder.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Production.WorkOrderRouting.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Purchasing.ProductVendor.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Purchasing.PurchaseOrderDetail.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Purchasing.PurchaseOrderHeader.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Purchasing.ShipMethod.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Purchasing.Vendor.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.CountryRegionCurrency.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.CreditCard.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.Currency.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.CurrencyRate.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.Customer.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.PersonCreditCard.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesOrderDetail.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesOrderHeader.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesOrderHeaderSalesReason.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesPerson.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesPersonQuotaHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesReason.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesTaxRate.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesTerritory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SalesTerritoryHistory.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.ShoppingCartItem.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SpecialOffer.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.SpecialOfferProduct.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <Live Include="addedBiml\Tables\etl_destination.Sales.Store.biml">
+      <RootFolderId>0</RootFolderId>
+    </Live>
+    <None Include="Aphelion.bimlproj">
+      <RootFolderId>0</RootFolderId>
+    </None>
+    <Reference Include="addedBiml\BimlScripts\CreatePackages.biml">
+      <RootFolderId>0</RootFolderId>
+    </Reference>
+    <Reference Include="addedBiml\BimlScripts\GetDestination.biml">
+      <RootFolderId>0</RootFolderId>
+    </Reference>
+  </ItemGroup>
+</Project>

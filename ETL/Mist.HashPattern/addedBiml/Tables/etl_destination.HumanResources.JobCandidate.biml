@@ -1,0 +1,34 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="JobCandidate" SchemaName="etl_destination.HumanResources">
+    <Columns>
+        <Column Name="JobCandidateID" IdentityIncrement="1" />
+        <TableReference ForeignKeyNameOverride="FK_JobCandidate_Employee_BusinessEntityID" TableName="etl_destination.HumanResources.Employee" Name="BusinessEntityID" IsNullable="true" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DeltaHash" IsNullable="true" />
+        <Column Name="BusinessKeyHash" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_JobCandidate_JobCandidateID">
+            <Columns>
+                <Column ColumnName="JobCandidateID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_JobCandidate_JobCandidateID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="JobCandidateID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_JobCandidate_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

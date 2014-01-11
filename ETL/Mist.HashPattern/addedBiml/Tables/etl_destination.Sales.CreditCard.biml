@@ -1,0 +1,35 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="CreditCard" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="CreditCardID" IdentityIncrement="1" />
+        <Column Name="CardType" DataType="String" Length="50" />
+        <Column Name="CardNumber" DataType="String" Length="25" />
+        <Column Name="ExpMonth" DataType="Byte" />
+        <Column Name="ExpYear" DataType="Int16" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_CreditCard_CreditCardID">
+            <Columns>
+                <Column ColumnName="CreditCardID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_CreditCard_CreditCardID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="CreditCardID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_CreditCard_CardNumber" Unique="true">
+            <Columns>
+                <Column ColumnName="CardNumber" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

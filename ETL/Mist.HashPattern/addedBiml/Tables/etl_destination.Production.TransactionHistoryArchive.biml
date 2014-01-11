@@ -1,0 +1,45 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="TransactionHistoryArchive" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="TransactionID" />
+        <Column Name="ProductID" />
+        <Column Name="ReferenceOrderID" />
+        <Column Name="ReferenceOrderLineID" Default="((0))" />
+        <Column Name="TransactionDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="TransactionType" DataType="StringFixedLength" Length="1" />
+        <Column Name="Quantity" />
+        <Column Name="ActualCost" DataType="Currency" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_TransactionHistoryArchive_TransactionID">
+            <Columns>
+                <Column ColumnName="TransactionID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_TransactionHistoryArchive_TransactionID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="TransactionID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_TransactionHistoryArchive_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_TransactionHistoryArchive_ReferenceOrderID_ReferenceOrderLineID">
+            <Columns>
+                <Column ColumnName="ReferenceOrderID" />
+                <Column ColumnName="ReferenceOrderLineID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

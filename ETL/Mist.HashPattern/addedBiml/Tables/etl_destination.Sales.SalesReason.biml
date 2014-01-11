@@ -1,0 +1,27 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SalesReason" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="SalesReasonID" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ReasonType" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SalesReason_SalesReasonID">
+            <Columns>
+                <Column ColumnName="SalesReasonID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SalesReason_SalesReasonID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SalesReasonID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,39 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="bigTransactionHistory" SchemaName="etl_destination.dbo">
+    <Columns>
+        <Column Name="TransactionID" />
+        <Column Name="ProductID" />
+        <Column Name="TransactionDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="Quantity" IsNullable="true" />
+        <Column Name="ActualCost" DataType="Currency" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="pk_bigTransactionHistory">
+            <Columns>
+                <Column ColumnName="TransactionID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="pk_bigTransactionHistory" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="TransactionID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_ProductId_TransactionDate">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="TransactionDate" />
+            </Columns>
+            <Includes>
+                <Include ColumnName="Quantity" />
+                <Include ColumnName="ActualCost" />
+            </Includes>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

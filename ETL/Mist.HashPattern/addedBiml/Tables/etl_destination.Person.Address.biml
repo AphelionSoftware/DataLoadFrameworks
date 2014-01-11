@@ -1,0 +1,54 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Address" SchemaName="etl_destination.Person">
+    <Columns>
+        <Column Name="AddressID" IdentityIncrement="1" />
+        <Column Name="AddressLine1" DataType="String" Length="60" />
+        <Column Name="AddressLine2" DataType="String" Length="60" IsNullable="true" />
+        <Column Name="City" DataType="String" Length="30" />
+        <TableReference ForeignKeyNameOverride="FK_Address_StateProvince_StateProvinceID" TableName="etl_destination.Person.StateProvince" Name="StateProvinceID" />
+        <Column Name="PostalCode" DataType="String" Length="15" />
+        <Column Name="SpatialLocation" DataType="Object" CustomType="geography" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Address_AddressID">
+            <Columns>
+                <Column ColumnName="AddressID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Address_AddressID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="AddressID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Address_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Address_AddressLine1_AddressLine2_City_StateProvinceID_PostalCode" Unique="true">
+            <Columns>
+                <Column ColumnName="AddressLine1" />
+                <Column ColumnName="AddressLine2" />
+                <Column ColumnName="City" />
+                <Column ColumnName="StateProvinceID" />
+                <Column ColumnName="PostalCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Address_StateProvinceID">
+            <Columns>
+                <Column ColumnName="StateProvinceID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,36 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ShoppingCartItem" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="ShoppingCartItemID" IdentityIncrement="1" />
+        <Column Name="ShoppingCartID" DataType="String" Length="50" />
+        <Column Name="Quantity" Default="((1))" />
+        <TableReference ForeignKeyNameOverride="FK_ShoppingCartItem_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <Column Name="DateCreated" DataType="DateTime" Default="(getdate())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ShoppingCartItem_ShoppingCartItemID">
+            <Columns>
+                <Column ColumnName="ShoppingCartItemID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ShoppingCartItem_ShoppingCartItemID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ShoppingCartItemID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_ShoppingCartItem_ShoppingCartID_ProductID">
+            <Columns>
+                <Column ColumnName="ShoppingCartID" />
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

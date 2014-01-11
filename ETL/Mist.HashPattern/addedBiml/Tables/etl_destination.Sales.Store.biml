@@ -1,0 +1,40 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Store" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_Store_BusinessEntity_BusinessEntityID" TableName="etl_destination.Person.BusinessEntity" Name="BusinessEntityID" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <TableReference ForeignKeyNameOverride="FK_Store_SalesPerson_SalesPersonID" TableName="etl_destination.Sales.SalesPerson" Name="SalesPersonID" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Store_BusinessEntityID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Store_BusinessEntityID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_Store_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_Store_SalesPersonID">
+            <Columns>
+                <Column ColumnName="SalesPersonID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

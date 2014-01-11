@@ -1,0 +1,28 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PersonCreditCard" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_PersonCreditCard_Person_BusinessEntityID" TableName="etl_destination.Person.Person" Name="BusinessEntityID" />
+        <TableReference ForeignKeyNameOverride="FK_PersonCreditCard_CreditCard_CreditCardID" TableName="etl_destination.Sales.CreditCard" Name="CreditCardID" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_PersonCreditCard_BusinessEntityID_CreditCardID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="CreditCardID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_PersonCreditCard_BusinessEntityID_CreditCardID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="CreditCardID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

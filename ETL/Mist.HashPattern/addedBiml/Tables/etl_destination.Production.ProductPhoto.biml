@@ -1,0 +1,29 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductPhoto" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="ProductPhotoID" IdentityIncrement="1" />
+        <Column Name="ThumbNailPhoto" DataType="Binary" Length="-1" IsNullable="true" />
+        <Column Name="ThumbnailPhotoFileName" DataType="String" Length="50" IsNullable="true" />
+        <Column Name="LargePhoto" DataType="Binary" Length="-1" IsNullable="true" />
+        <Column Name="LargePhotoFileName" DataType="String" Length="50" IsNullable="true" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductPhoto_ProductPhotoID">
+            <Columns>
+                <Column ColumnName="ProductPhotoID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductPhoto_ProductPhotoID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductPhotoID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

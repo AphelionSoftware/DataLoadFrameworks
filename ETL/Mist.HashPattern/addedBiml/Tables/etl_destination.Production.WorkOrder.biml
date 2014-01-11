@@ -1,0 +1,45 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="WorkOrder" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="WorkOrderID" IdentityIncrement="1" />
+        <TableReference ForeignKeyNameOverride="FK_WorkOrder_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <Column Name="OrderQty" />
+        <Column Name="StockedQty" Computed="(isnull([OrderQty]-[ScrappedQty],(0)))" />
+        <Column Name="ScrappedQty" DataType="Int16" />
+        <Column Name="StartDate" DataType="DateTime" />
+        <Column Name="EndDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="DueDate" DataType="DateTime" />
+        <TableReference ForeignKeyNameOverride="FK_WorkOrder_ScrapReason_ScrapReasonID" TableName="etl_destination.Production.ScrapReason" Name="ScrapReasonID" DataType="Int16" IsNullable="true" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_WorkOrder_WorkOrderID">
+            <Columns>
+                <Column ColumnName="WorkOrderID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_WorkOrder_WorkOrderID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="WorkOrderID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_WorkOrder_ScrapReasonID">
+            <Columns>
+                <Column ColumnName="ScrapReasonID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_WorkOrder_ProductID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

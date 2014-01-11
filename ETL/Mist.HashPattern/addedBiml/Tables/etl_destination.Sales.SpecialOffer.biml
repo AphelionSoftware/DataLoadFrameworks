@@ -1,0 +1,40 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="SpecialOffer" SchemaName="etl_destination.Sales">
+    <Columns>
+        <Column Name="SpecialOfferID" IdentityIncrement="1" />
+        <Column Name="Description" DataType="String" Length="255" />
+        <Column Name="DiscountPct" DataType="Object" CustomType="smallmoney" Default="((0.00))" />
+        <Column Name="Type" DataType="String" Length="50" />
+        <Column Name="Category" DataType="String" Length="50" />
+        <Column Name="StartDate" DataType="DateTime" />
+        <Column Name="EndDate" DataType="DateTime" />
+        <Column Name="MinQty" Default="((0))" />
+        <Column Name="MaxQty" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_SpecialOffer_SpecialOfferID">
+            <Columns>
+                <Column ColumnName="SpecialOfferID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_SpecialOffer_SpecialOfferID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="SpecialOfferID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_SpecialOffer_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,34 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="CountryRegionCurrency" SchemaName="etl_destination.Sales">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_CountryRegionCurrency_CountryRegion_CountryRegionCode" TableName="etl_destination.Person.CountryRegion" Name="CountryRegionCode" DataType="String" Length="3" />
+        <TableReference ForeignKeyNameOverride="FK_CountryRegionCurrency_Currency_CurrencyCode" TableName="etl_destination.Sales.Currency" Name="CurrencyCode" DataType="StringFixedLength" Length="3" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode">
+            <Columns>
+                <Column ColumnName="CountryRegionCode" />
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="CountryRegionCode" />
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_CountryRegionCurrency_CurrencyCode">
+            <Columns>
+                <Column ColumnName="CurrencyCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

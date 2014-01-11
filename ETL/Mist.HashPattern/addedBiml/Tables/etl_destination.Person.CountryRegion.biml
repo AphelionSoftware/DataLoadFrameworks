@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="CountryRegion" SchemaName="etl_destination.Person">
+    <Columns>
+        <Column Name="CountryRegionCode" DataType="String" Length="3" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_CountryRegion_CountryRegionCode">
+            <Columns>
+                <Column ColumnName="CountryRegionCode" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_CountryRegion_CountryRegionCode" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="CountryRegionCode" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_CountryRegion_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

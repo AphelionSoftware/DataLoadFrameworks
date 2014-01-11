@@ -1,0 +1,49 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="EmployeeDepartmentHistory" SchemaName="etl_destination.HumanResources">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_EmployeeDepartmentHistory_Employee_BusinessEntityID" TableName="etl_destination.HumanResources.Employee" Name="BusinessEntityID" />
+        <TableReference ForeignKeyNameOverride="FK_EmployeeDepartmentHistory_Department_DepartmentID" TableName="etl_destination.HumanResources.Department" Name="DepartmentID" DataType="Int16" />
+        <TableReference ForeignKeyNameOverride="FK_EmployeeDepartmentHistory_Shift_ShiftID" TableName="etl_destination.HumanResources.Shift" Name="ShiftID" DataType="Byte" />
+        <Column Name="StartDate" DataType="Date" />
+        <Column Name="EndDate" DataType="Date" IsNullable="true" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DeltaHash" IsNullable="true" />
+        <Column Name="BusinessKeyHash" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="StartDate" />
+                <Column ColumnName="DepartmentID" />
+                <Column ColumnName="ShiftID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="StartDate" />
+                <Column ColumnName="DepartmentID" />
+                <Column ColumnName="ShiftID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_EmployeeDepartmentHistory_DepartmentID">
+            <Columns>
+                <Column ColumnName="DepartmentID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_EmployeeDepartmentHistory_ShiftID">
+            <Columns>
+                <Column ColumnName="ShiftID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

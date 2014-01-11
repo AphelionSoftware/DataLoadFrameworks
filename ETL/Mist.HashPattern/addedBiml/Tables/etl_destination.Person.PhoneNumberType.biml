@@ -1,0 +1,26 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PhoneNumberType" SchemaName="etl_destination.Person">
+    <Columns>
+        <Column Name="PhoneNumberTypeID" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_PhoneNumberType_PhoneNumberTypeID">
+            <Columns>
+                <Column ColumnName="PhoneNumberTypeID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_PhoneNumberType_PhoneNumberTypeID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="PhoneNumberTypeID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

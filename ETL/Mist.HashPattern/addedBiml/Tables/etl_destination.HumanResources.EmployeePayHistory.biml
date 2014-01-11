@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="EmployeePayHistory" SchemaName="etl_destination.HumanResources">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_EmployeePayHistory_Employee_BusinessEntityID" TableName="etl_destination.HumanResources.Employee" Name="BusinessEntityID" />
+        <Column Name="RateChangeDate" DataType="DateTime" />
+        <Column Name="Rate" DataType="Currency" />
+        <Column Name="PayFrequency" DataType="Byte" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="DeltaHash" IsNullable="true" />
+        <Column Name="BusinessKeyHash" IsNullable="true" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_EmployeePayHistory_BusinessEntityID_RateChangeDate">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="RateChangeDate" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_EmployeePayHistory_BusinessEntityID_RateChangeDate" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="RateChangeDate" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

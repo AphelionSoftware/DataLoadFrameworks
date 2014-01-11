@@ -1,0 +1,36 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="EmailAddress" SchemaName="etl_destination.Person">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_EmailAddress_Person_BusinessEntityID" TableName="etl_destination.Person.Person" Name="BusinessEntityID" />
+        <Column Name="EmailAddressID" IdentityIncrement="1" />
+        <Column Name="EmailAddress" DataType="String" Length="50" IsNullable="true" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_EmailAddress_BusinessEntityID_EmailAddressID">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="EmailAddressID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_EmailAddress_BusinessEntityID_EmailAddressID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="BusinessEntityID" />
+                <Column ColumnName="EmailAddressID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_EmailAddress_EmailAddress">
+            <Columns>
+                <Column ColumnName="EmailAddress" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

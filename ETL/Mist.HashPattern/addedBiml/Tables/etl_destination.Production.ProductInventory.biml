@@ -1,0 +1,32 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ProductInventory" SchemaName="etl_destination.Production">
+    <Columns>
+        <TableReference ForeignKeyNameOverride="FK_ProductInventory_Product_ProductID" TableName="etl_destination.Production.Product" Name="ProductID" />
+        <TableReference ForeignKeyNameOverride="FK_ProductInventory_Location_LocationID" TableName="etl_destination.Production.Location" Name="LocationID" DataType="Int16" />
+        <Column Name="Shelf" DataType="String" Length="10" />
+        <Column Name="Bin" DataType="Byte" />
+        <Column Name="Quantity" DataType="Int16" Default="((0))" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ProductInventory_ProductID_LocationID">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="LocationID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ProductInventory_ProductID_LocationID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ProductID" />
+                <Column ColumnName="LocationID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

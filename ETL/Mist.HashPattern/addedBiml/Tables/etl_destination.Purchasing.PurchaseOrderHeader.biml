@@ -1,0 +1,48 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="PurchaseOrderHeader" SchemaName="etl_destination.Purchasing">
+    <Columns>
+        <Column Name="PurchaseOrderID" IdentityIncrement="1" />
+        <Column Name="RevisionNumber" DataType="Byte" Default="((0))" />
+        <Column Name="Status" DataType="Byte" Default="((1))" />
+        <TableReference ForeignKeyNameOverride="FK_PurchaseOrderHeader_Employee_EmployeeID" TableName="etl_destination.HumanResources.Employee" Name="EmployeeID" />
+        <TableReference ForeignKeyNameOverride="FK_PurchaseOrderHeader_Vendor_VendorID" TableName="etl_destination.Purchasing.Vendor" Name="VendorID" />
+        <TableReference ForeignKeyNameOverride="FK_PurchaseOrderHeader_ShipMethod_ShipMethodID" TableName="etl_destination.Purchasing.ShipMethod" Name="ShipMethodID" />
+        <Column Name="OrderDate" DataType="DateTime" Default="(getdate())" />
+        <Column Name="ShipDate" DataType="DateTime" IsNullable="true" />
+        <Column Name="SubTotal" DataType="Currency" Default="((0.00))" />
+        <Column Name="TaxAmt" DataType="Currency" Default="((0.00))" />
+        <Column Name="Freight" DataType="Currency" Default="((0.00))" />
+        <Column Name="TotalDue" DataType="Currency" Computed="(isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_PurchaseOrderHeader_PurchaseOrderID">
+            <Columns>
+                <Column ColumnName="PurchaseOrderID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_PurchaseOrderHeader_PurchaseOrderID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="PurchaseOrderID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_PurchaseOrderHeader_VendorID">
+            <Columns>
+                <Column ColumnName="VendorID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="IX_PurchaseOrderHeader_EmployeeID">
+            <Columns>
+                <Column ColumnName="EmployeeID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

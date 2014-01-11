@@ -1,0 +1,25 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="Illustration" SchemaName="etl_destination.Production">
+    <Columns>
+        <Column Name="IllustrationID" IdentityIncrement="1" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_Illustration_IllustrationID">
+            <Columns>
+                <Column ColumnName="IllustrationID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_Illustration_IllustrationID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="IllustrationID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>

@@ -1,0 +1,41 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Tables>
+        <Table Name="ShipMethod" SchemaName="etl_destination.Purchasing">
+    <Columns>
+        <Column Name="ShipMethodID" IdentityIncrement="1" />
+        <Column Name="Name" DataType="String" Length="50" />
+        <Column Name="ShipBase" DataType="Currency" Default="((0.00))" />
+        <Column Name="ShipRate" DataType="Currency" Default="((0.00))" />
+        <Column Name="rowguid" DataType="Guid" Default="(newid())" />
+        <Column Name="ModifiedDate" DataType="DateTime" Default="(getdate())" />
+    </Columns>
+    <Keys>
+        <PrimaryKey Name="PK_ShipMethod_ShipMethodID">
+            <Columns>
+                <Column ColumnName="ShipMethodID" />
+            </Columns>
+        </PrimaryKey>
+    </Keys>
+    <Indexes>
+        <Index Name="PK_ShipMethod_ShipMethodID" Clustered="true" Unique="true">
+            <Columns>
+                <Column ColumnName="ShipMethodID" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_ShipMethod_Name" Unique="true">
+            <Columns>
+                <Column ColumnName="Name" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+        <Index Name="AK_ShipMethod_rowguid" Unique="true">
+            <Columns>
+                <Column ColumnName="rowguid" />
+            </Columns>
+        	<FilterPredicate></FilterPredicate>
+        </Index>
+    </Indexes>
+</Table>
+    </Tables>
+</Biml>
