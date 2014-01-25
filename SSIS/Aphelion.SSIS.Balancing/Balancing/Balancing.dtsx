@@ -7,8 +7,8 @@
   DTS:CreationDate="11/24/2013 4:58:01 PM"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="46"
-  DTS:VersionGUID="{CD805ED5-6F3B-45E5-BE90-3300E5FB8888}"
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{FC93F474-565A-4AE4-8272-C424734461A4}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1033"
   DTS:ObjectName="Balancing"
@@ -24,7 +24,7 @@
       DTS:CreationName="OLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=LMW-D664271\MOPANI;Initial Catalog=SkiEDW_CTU;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LEO-VOSTRO3750;Initial Catalog=Aphelion.DB.Config;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -105,7 +105,7 @@
       DTS:DTSID="{8F3CA00B-8B29-48CD-95E9-82F72087C519}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="5">0.</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -142,7 +142,7 @@
       DTS:DTSID="{0274876E-1DB1-4869-8A87-B2F7EE707EB5}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="5">0.</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -189,7 +189,7 @@
       DTS:DTSID="{A49F8213-9135-43E1-8C0D-03827C0BC87A}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="5">0.</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -235,7 +235,7 @@
       DTS:DTSID="{CD3F9A05-A51D-4BAC-A8F2-9CE7F68CFB8C}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="5">0.</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -385,13 +385,13 @@
                       name="Expression"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      containsID="true">#{Package\DFT Extract Balancing Queries\OLE DB Queries.Outputs[OLE DB Source Output].Columns[DataSourceTypeName]} == "Database"</property>
+                      containsID="true">#{Package\DFT Extract Balancing Queries\OLE DB Queries.Outputs[OLE DB Source Output].Columns[DataSourceTypeName]} == "Source"</property>
                     <property
                       name="FriendlyExpression"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       containsID="true"
-                      expressionType="Notify">DataSourceTypeName == "Database"</property>
+                      expressionType="Notify">DataSourceTypeName == "Source"</property>
                     <property
                       name="EvaluationOrder"
                       dataType="System.Int32"
@@ -562,9 +562,7 @@ INNER JOIN
 	ON	ds.DataSourceTypeId = dst.DataSourceTypeId
 INNER JOIN
 	Balancing.Tests t
-	ON q.QueryId = t.QueryId
-WHERE
-	dst.DataSourceTypeName = 'Database'</property>
+	ON q.QueryId = t.QueryId</property>
                 <property
                   name="SqlCommandVariable"
                   dataType="System.String"
@@ -954,7 +952,7 @@ WHERE
     <DTS:Executable
       DTS:refId="Package\Fire Erroneous Records report subscription"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:ThreadHint="1"
+      DTS:ThreadHint="0"
       DTS:Disabled="True"
       DTS:LocaleID="-1"
       DTS:ObjectName="Fire Erroneous Records report subscription"
@@ -23071,7 +23069,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
     <DTS:Executable
       DTS:refId="Package\Run SQL Job for SSRS report subscription"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:ThreadHint="0"
+      DTS:ThreadHint="1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:Disabled="True"
       DTS:LocaleID="-1"
@@ -23111,7 +23109,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ObjectData>
               <FEEADO
                 EnumType="EnumerateRowsInFirstTable"
-                VarName="User::vRDStagingQueries" />
+                VarName="User::vRDCubeQueries" />
             </DTS:ObjectData>
           </DTS:ForEachEnumerator>
           <DTS:Variables />
@@ -23119,7 +23117,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through Cube Queries\EST Execute Cube Query"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="1"
+              DTS:ThreadHint="2"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Execute Cube Query"
@@ -23142,7 +23140,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through Cube Queries\EST Insert Cube Results"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="1"
+              DTS:ThreadHint="2"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Insert Cube Results"
@@ -23170,7 +23168,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
                     SQLTask:ParameterName="2"
                     SQLTask:DtsVariableName="User::vFLCCubeResults"
                     SQLTask:ParameterDirection="Input"
-                    SQLTask:DataType="3"
+                    SQLTask:DataType="5"
                     SQLTask:ParameterSize="-1" />
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
@@ -23190,20 +23188,20 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCFunctionalAreaId"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{77A6C7EE-CA7A-41DA-9E35-D539E91CE133}"
-              DTS:DTSID="{4a888229-c8af-450f-9aaf-ab8fe8dbc51f}"
+              DTS:ObjectName="{1C0A4E49-AA2B-4FD6-A3FD-BF071800D143}"
+              DTS:DTSID="{1C0A4E49-AA2B-4FD6-A3FD-BF071800D143}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCCubeTestId"
               DTS:ValueIndex="1"
-              DTS:ObjectName="{87BAE0B9-3C71-47A3-A39D-661D8F45F2A2}"
-              DTS:DTSID="{4113a8fb-72bb-4470-bf76-e06046d8b5ff}"
+              DTS:ObjectName="{664E4A74-895E-4638-898A-E500D9DFBAAB}"
+              DTS:DTSID="{664E4A74-895E-4638-898A-E500D9DFBAAB}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCCubeQuery"
               DTS:ValueIndex="3"
-              DTS:ObjectName="{4A4657C2-A227-450A-A77C-26B9ED56B32F}"
-              DTS:DTSID="{ba78fcb0-fef6-43fa-8f6e-4fe11609c1d4}"
+              DTS:ObjectName="{5A19CFAA-D895-4EB7-ABDA-403ECD280800}"
+              DTS:DTSID="{5A19CFAA-D895-4EB7-ABDA-403ECD280800}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23222,7 +23220,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ObjectData>
               <FEEADO
                 EnumType="EnumerateRowsInFirstTable"
-                VarName="" />
+                VarName="User::vRDDatabaseQueries" />
             </DTS:ObjectData>
           </DTS:ForEachEnumerator>
           <DTS:Variables />
@@ -23230,7 +23228,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through Database Queries\EST Execute Database Query"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="2"
+              DTS:ThreadHint="1"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Execute Database Query"
@@ -23253,7 +23251,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through Database Queries\EST Insert Query Results"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="2"
+              DTS:ThreadHint="1"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Insert Query Results"
@@ -23281,7 +23279,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
                     SQLTask:ParameterName="2"
                     SQLTask:DtsVariableName="User::vFLCDatabaseResults"
                     SQLTask:ParameterDirection="Input"
-                    SQLTask:DataType="3"
+                    SQLTask:DataType="5"
                     SQLTask:ParameterSize="-1" />
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
@@ -23301,20 +23299,20 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCFunctionalAreaId"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{58E31932-AADB-4F4C-B1AD-49D71216CB28}"
-              DTS:DTSID="{58E31932-AADB-4F4C-B1AD-49D71216CB28}"
+              DTS:ObjectName="{CED0D3B1-C762-4C31-9E78-903D564AF8FE}"
+              DTS:DTSID="{CED0D3B1-C762-4C31-9E78-903D564AF8FE}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCDatabaseTestId"
               DTS:ValueIndex="1"
-              DTS:ObjectName="{6FEB13CD-04B0-4C38-88CE-302A9A502117}"
-              DTS:DTSID="{6FEB13CD-04B0-4C38-88CE-302A9A502117}"
+              DTS:ObjectName="{C207A98B-01CB-4AE0-87D1-E45BC7C58A82}"
+              DTS:DTSID="{C207A98B-01CB-4AE0-87D1-E45BC7C58A82}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCDatabaseQuery"
               DTS:ValueIndex="3"
-              DTS:ObjectName="{3B8DCD3D-747D-4E8A-9D30-ABFFB851CC1C}"
-              DTS:DTSID="{3B8DCD3D-747D-4E8A-9D30-ABFFB851CC1C}"
+              DTS:ObjectName="{A9C3A6E4-833C-4DAD-A253-8800D12A63B5}"
+              DTS:DTSID="{A9C3A6E4-833C-4DAD-A253-8800D12A63B5}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23333,7 +23331,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ObjectData>
               <FEEADO
                 EnumType="EnumerateRowsInFirstTable"
-                VarName="User::vRDStagingQueries" />
+                VarName="User::vRDEDWQueries" />
             </DTS:ObjectData>
           </DTS:ForEachEnumerator>
           <DTS:Variables />
@@ -23392,7 +23390,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
                     SQLTask:ParameterName="2"
                     SQLTask:DtsVariableName="User::vFLCEDWResults"
                     SQLTask:ParameterDirection="Input"
-                    SQLTask:DataType="3"
+                    SQLTask:DataType="5"
                     SQLTask:ParameterSize="-1" />
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
@@ -23412,20 +23410,20 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCFunctionalAreaId"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{45D6D2BD-1FD9-4351-BF92-0F55E013A76B}"
-              DTS:DTSID="{0f39b5c5-6bec-4336-9fe3-fecb0905f73d}"
+              DTS:ObjectName="{5F2D905A-657A-41DD-9F2A-8204CD966D6E}"
+              DTS:DTSID="{5F2D905A-657A-41DD-9F2A-8204CD966D6E}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCEDWTestId"
               DTS:ValueIndex="1"
-              DTS:ObjectName="{53010FFD-E78C-4090-A8B3-8D0BC75D142A}"
-              DTS:DTSID="{e6bd0f2c-5f86-4816-a5c7-94d6a1871e46}"
+              DTS:ObjectName="{14B8D88B-CCFD-4615-872D-D75AAE30DF92}"
+              DTS:DTSID="{14B8D88B-CCFD-4615-872D-D75AAE30DF92}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCEDWQuery"
               DTS:ValueIndex="3"
-              DTS:ObjectName="{3C622D66-4754-414C-86D0-CAB342C94676}"
-              DTS:DTSID="{ac53176a-e818-4b27-b396-91a8a624cd57}"
+              DTS:ObjectName="{B5F18242-BBB2-434E-8A6C-1709879383C0}"
+              DTS:DTSID="{B5F18242-BBB2-434E-8A6C-1709879383C0}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23503,7 +23501,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
                     SQLTask:ParameterName="2"
                     SQLTask:DtsVariableName="User::vFLCStagingResults"
                     SQLTask:ParameterDirection="Input"
-                    SQLTask:DataType="3"
+                    SQLTask:DataType="5"
                     SQLTask:ParameterSize="-1" />
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
@@ -23523,20 +23521,20 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCFunctionalAreaId"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{5FB63802-346C-4BD7-BFC4-8F37AB53AEFB}"
-              DTS:DTSID="{e0f23b7b-a1ad-452a-9fc8-610faf0c4f1e}"
+              DTS:ObjectName="{E4115E03-053E-49ED-8AE5-FDF1178511D2}"
+              DTS:DTSID="{E4115E03-053E-49ED-8AE5-FDF1178511D2}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCStagingTestId"
               DTS:ValueIndex="1"
-              DTS:ObjectName="{442FC72D-2090-4145-BAE7-1DFBFD0642AE}"
-              DTS:DTSID="{de202359-f568-4567-9870-f2b5e057b5dc}"
+              DTS:ObjectName="{3EC756D7-C10D-4ABF-8643-E846237E1ACB}"
+              DTS:DTSID="{3EC756D7-C10D-4ABF-8643-E846237E1ACB}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCStagingQuery"
               DTS:ValueIndex="3"
-              DTS:ObjectName="{75D513CA-B3E3-4ED4-B385-67BA1AFCF73C}"
-              DTS:DTSID="{2340fbea-69d2-42f6-b17b-d2ab6d0259b5}"
+              DTS:ObjectName="{4B49BA1C-AC05-4850-A29A-7AF38AB6885F}"
+              DTS:DTSID="{4B49BA1C-AC05-4850-A29A-7AF38AB6885F}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23651,7 +23649,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="238,138"
-          Size="238,181"
+          Size="260,181"
           Id="Package\SC Run all Queries in Parallel\FLC Iterate through Cube Queries"
           TopLeft="275.626984126984,19.547619047619" />
         <NodeLayout
@@ -23688,7 +23686,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="242,138"
-          Size="242,181"
+          Size="280,181"
           Id="Package\SC Run all Queries in Parallel\FLC Iterate through Database Queries"
           TopLeft="24,19" />
         <NodeLayout
@@ -23768,8 +23766,8 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="535,410"
-          Size="535,453"
+          PanelSize="541,457"
+          Size="541,500"
           Id="Package\SC Run all Queries in Parallel"
           TopLeft="118.027777777778,93.3888888888889" />
         <EdgeLayout
@@ -23951,18 +23949,6 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="156,42"
-          Id="Package\DFT Extract Balancing Queries\OLE DB Queries"
-          TopLeft="329,116" />
-        <NodeLayout
-          Size="182,42"
-          Id="Package\DFT Extract Balancing Queries\RD Database Queries"
-          TopLeft="20,301" />
-        <NodeLayout
-          Size="181,42"
-          Id="Package\DFT Extract Balancing Queries\RD Staing Queries"
-          TopLeft="225.666666666667,301" />
-        <NodeLayout
           Size="181,42"
           Id="Package\DFT Extract Balancing Queries\RD EDW Queries"
           TopLeft="430.333333333333,301" />
@@ -23970,6 +23956,18 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           Size="181,42"
           Id="Package\DFT Extract Balancing Queries\RD Cube Queries"
           TopLeft="635,301" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFT Extract Balancing Queries\OLE DB Queries"
+          TopLeft="329,116" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DFT Extract Balancing Queries\RD Staing Queries"
+          TopLeft="225.666666666667,301" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\DFT Extract Balancing Queries\RD Database Queries"
+          TopLeft="20,301" />
         <NodeLayout
           Size="157,42"
           Id="Package\DFT Extract Balancing Queries\Conditional Split"
@@ -23994,78 +23992,6 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT Extract Balancing Queries.Paths[Database]"
-          TopLeft="368.8,247">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-257.8,54"
-              Start="0,0"
-              End="-257.8,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.2528940338379" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.2528940338379"
-                    Point2="0,16.2528940338379"
-                    Point3="-4,16.2528940338379" />
-                  <mssgle:LineSegment
-                    End="-253.8,16.2528940338379" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-253.8,16.2528940338379"
-                    Point2="-257.8,16.2528940338379"
-                    Point3="-257.8,20.2528940338379" />
-                  <mssgle:LineSegment
-                    End="-257.8,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-149.96134765625,21.2528940338379,42.1226953125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT Extract Balancing Queries.Paths[Staging]"
-          TopLeft="398.6,247">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-82.4333333333334,54"
-              Start="0,0"
-              End="-82.4333333333334,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.1688951442646" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.1688951442646"
-                    Point2="0,24.1688951442646"
-                    Point3="-4,24.1688951442646" />
-                  <mssgle:LineSegment
-                    End="-78.4333333333334,24.1688951442646" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-78.4333333333334,24.1688951442646"
-                    Point2="-82.4333333333334,24.1688951442646"
-                    Point3="-82.4333333333334,28.1688951442646" />
-                  <mssgle:LineSegment
-                    End="-82.4333333333334,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-58.2403190104167,29.1688951442646,34.0473046875,11.4677734375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -24105,6 +24031,42 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\DFT Extract Balancing Queries.Paths[Database]"
+          TopLeft="368.8,247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-257.8,54"
+              Start="0,0"
+              End="-257.8,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.2528940338379" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.2528940338379"
+                    Point2="0,16.2528940338379"
+                    Point3="-4,16.2528940338379" />
+                  <mssgle:LineSegment
+                    End="-253.8,16.2528940338379" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-253.8,16.2528940338379"
+                    Point2="-257.8,16.2528940338379"
+                    Point3="-257.8,20.2528940338379" />
+                  <mssgle:LineSegment
+                    End="-257.8,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-149.96134765625,21.2528940338379,42.1226953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\DFT Extract Balancing Queries.Paths[Cube]"
           TopLeft="458.2,247">
           <EdgeLayout.Curve>
@@ -24137,6 +24099,42 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="121.7511328125,21.2528940338379,23.797734375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Extract Balancing Queries.Paths[Staging]"
+          TopLeft="398.6,247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.4333333333334,54"
+              Start="0,0"
+              End="-82.4333333333334,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.1688951442646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.1688951442646"
+                    Point2="0,24.1688951442646"
+                    Point3="-4,24.1688951442646" />
+                  <mssgle:LineSegment
+                    End="-78.4333333333334,24.1688951442646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.4333333333334,24.1688951442646"
+                    Point2="-82.4333333333334,24.1688951442646"
+                    Point3="-82.4333333333334,28.1688951442646" />
+                  <mssgle:LineSegment
+                    End="-82.4333333333334,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-58.2403190104167,29.1688951442646,34.0473046875,11.4677734375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
