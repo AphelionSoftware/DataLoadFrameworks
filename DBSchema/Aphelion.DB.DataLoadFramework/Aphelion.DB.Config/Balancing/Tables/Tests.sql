@@ -5,7 +5,8 @@
     [ExpectedResult]     VARCHAR (MAX) NULL,
     [ExpectedResultText] VARCHAR (MAX) NULL,
     
-    PRIMARY KEY CLUSTERED ([TestID] ASC),
-    CONSTRAINT [FK_FunctionalAreaID] FOREIGN KEY ([FunctionalAreaID]) REFERENCES [Balancing].FunctionalAreas ([FunctionalAreaID])
+    CONSTRAINT [PK_TestID] PRIMARY KEY CLUSTERED ([TestID] ASC),
+    CONSTRAINT [FK_FunctionalAreaID] FOREIGN KEY ([FunctionalAreaID]) REFERENCES [Balancing].FunctionalAreas ([FunctionalAreaID]), 
+    CONSTRAINT [Test_Names_Must_Be_Unique] UNIQUE (TestName)
 );
 
