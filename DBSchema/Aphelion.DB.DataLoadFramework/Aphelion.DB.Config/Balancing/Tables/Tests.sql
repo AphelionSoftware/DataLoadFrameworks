@@ -1,9 +1,11 @@
 ﻿CREATE TABLE [Balancing].[Tests] (
-    [TestId]             INT           IDENTITY (1, 1) NOT NULL,
-    [QueryId]            INT           NULL,
+    [TestID]             INT           IDENTITY (1, 1) NOT NULL,
+    [TestName] VARCHAR(300) NULL, 
+	[FunctionalAreaID]            INT           NOT NULL,
     [ExpectedResult]     VARCHAR (MAX) NULL,
     [ExpectedResultText] VARCHAR (MAX) NULL,
-    PRIMARY KEY CLUSTERED ([TestId] ASC),
-    CONSTRAINT [FK_QueryId] FOREIGN KEY ([QueryId]) REFERENCES [Balancing].[Queries] ([QueryId])
+    
+    PRIMARY KEY CLUSTERED ([TestID] ASC),
+    CONSTRAINT [FK_FunctionalAreaID] FOREIGN KEY ([FunctionalAreaID]) REFERENCES [Balancing].FunctionalAreas ([FunctionalAreaID])
 );
 

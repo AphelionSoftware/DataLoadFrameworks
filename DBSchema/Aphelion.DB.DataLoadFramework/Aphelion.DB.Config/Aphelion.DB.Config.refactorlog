@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1fdb526a-44fb-43be-a729-ed72f823b083" ChangeDateTime="01/27/2014 12:57:59">
+    <Property Name="ElementName" Value="[Balancing].[Tests].[QueryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Tests]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FunctionalAreaID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d0f29c63-4c39-4e8c-9be4-bad534f7a979" ChangeDateTime="01/27/2014 13:03:21">
+    <Property Name="ElementName" Value="[Balancing].[Tests].[TestId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Tests]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TestID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="18874278-2d5f-4442-8867-7c6f225bda2a" ChangeDateTime="01/27/2014 13:03:43">
+    <Property Name="ElementName" Value="[Balancing].[Queries].[QueryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Queries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="QueryID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8f50ae4f-24a1-4a1b-a153-14a63006393d" ChangeDateTime="01/27/2014 13:04:41">
+    <Property Name="ElementName" Value="[Balancing].[FunctionalAreas].[FunctionalAreaId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[FunctionalAreas]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FunctionalAreaID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="154dd682-4455-40a2-a001-e4e2c4e7240e" ChangeDateTime="01/27/2014 13:04:48">
+    <Property Name="ElementName" Value="[Balancing].[DataSources].[DataSourceId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[DataSources]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataSourceID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ffd56c3c-ba32-4ac5-b1b4-bc91d7979af5" ChangeDateTime="01/27/2014 13:04:54">
+    <Property Name="ElementName" Value="[Balancing].[DataSourceTypes].[DataSourceTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[DataSourceTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataSourceTypeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c6c4d6c9-59e0-4d7a-9115-55d7ec023e77" ChangeDateTime="01/27/2014 13:05:05">
+    <Property Name="ElementName" Value="[Balancing].[Reports].[ReportId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Reports]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ReportID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1577f200-e9bc-4013-8ed8-ec1d623ccc6f" ChangeDateTime="01/27/2014 13:05:10">
+    <Property Name="ElementName" Value="[Balancing].[Reports].[FunctionalAreaId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Reports]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FunctionalAreaID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="03e42cf4-4692-4902-95b9-1f3d0360d3cf" ChangeDateTime="01/27/2014 13:05:14">
+    <Property Name="ElementName" Value="[Balancing].[Reports].[TestId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Reports]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TestID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aea27137-0276-47c5-866b-956a6e51342a" ChangeDateTime="01/27/2014 13:05:29">
+    <Property Name="ElementName" Value="[dbo].[QueryTestMap].[QueryTestMapId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[QueryTestMap]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="QueryTestMapID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="baf73773-cc10-4c67-b3e2-e9dc0fb61c71" ChangeDateTime="01/27/2014 13:05:46">
+    <Property Name="ElementName" Value="[Balancing].[DataSources].[DataSourceTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[DataSources]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataSourceTypeID" />
+  </Operation>
+</Operations>
