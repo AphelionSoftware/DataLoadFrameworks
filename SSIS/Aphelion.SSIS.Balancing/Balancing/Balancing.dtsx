@@ -7,8 +7,8 @@
   DTS:CreationDate="11/24/2013 4:58:01 PM"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{C2E417B1-714F-41C5-84C9-1841197211C8}"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{74140AD1-7555-4257-8C0D-02D18BEA6BFE}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1033"
   DTS:ObjectName="Balancing"
@@ -7922,126 +7922,7 @@ INNER JOIN	Balancing.Tests t ON
   </wsdl:service>
 </wsdl:definitions>]]></ProjectItem>
           <ProjectItem
-            Name="My Project\Resources.resx"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-</root>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelDrillthroughReport.datasource"
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Policy.datasource"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <!--
     This file is automatically generated by Visual Studio .Net. It is 
@@ -8049,8 +7930,8 @@ INNER JOIN	Balancing.Tests t ON
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="ModelDrillthroughReport" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelDrillthroughReport, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="Policy" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Policy, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>]]></ProjectItem>
           <ProjectItem
             Name="Service References\SSRS2012WebService\Reference.svcmap"
@@ -8097,208 +7978,17 @@ INNER JOIN	Balancing.Tests t ON
    <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CacheRefreshPlanState, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>]]></ProjectItem>
           <ProjectItem
-            Name="Service References\SSRS2012WebService\configuration91.svcinfo"
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Role.datasource"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="hRrQ71Xt40iALKI+jrREBd3en1E=">
-  <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="ReportingService2010Soap">
-      <properties>
-        <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ReportingService2010Soap</serializedValue>
-        </property>
-        <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/openTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/receiveTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/sendTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/allowCookies" isComplexType="false" isExplicitlyDefined="true" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/bypassProxyOnLocal" isComplexType="false" isExplicitlyDefined="true" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/hostNameComparisonMode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HostNameComparisonMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>StrongWildcard</serializedValue>
-        </property>
-        <property path="/maxBufferPoolSize" isComplexType="false" isExplicitlyDefined="true" clrType="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/maxBufferSize" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>65536</serializedValue>
-        </property>
-        <property path="/maxReceivedMessageSize" isComplexType="false" isExplicitlyDefined="true" clrType="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/proxyAddress" isComplexType="false" isExplicitlyDefined="false" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/readerQuotas" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.XmlDictionaryReaderQuotasElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.XmlDictionaryReaderQuotasElement</serializedValue>
-        </property>
-        <property path="/readerQuotas/maxDepth" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>0</serializedValue>
-        </property>
-        <property path="/readerQuotas/maxStringContentLength" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>0</serializedValue>
-        </property>
-        <property path="/readerQuotas/maxArrayLength" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>0</serializedValue>
-        </property>
-        <property path="/readerQuotas/maxBytesPerRead" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>0</serializedValue>
-        </property>
-        <property path="/readerQuotas/maxNameTableCharCount" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>0</serializedValue>
-        </property>
-        <property path="/textEncoding" isComplexType="false" isExplicitlyDefined="false" clrType="System.Text.Encoding, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.Text.UTF8Encoding</serializedValue>
-        </property>
-        <property path="/transferMode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.TransferMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Buffered</serializedValue>
-        </property>
-        <property path="/useDefaultWebProxy" isComplexType="false" isExplicitlyDefined="true" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/messageEncoding" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.WSMessageEncoding, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Text</serializedValue>
-        </property>
-        <property path="/security" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.BasicHttpSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.BasicHttpSecurityElement</serializedValue>
-        </property>
-        <property path="/security/mode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.BasicHttpSecurityMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>None</serializedValue>
-        </property>
-        <property path="/security/transport" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.HttpTransportSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.HttpTransportSecurityElement</serializedValue>
-        </property>
-        <property path="/security/transport/clientCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HttpClientCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>None</serializedValue>
-        </property>
-        <property path="/security/transport/proxyCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HttpProxyCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>None</serializedValue>
-        </property>
-        <property path="/security/transport/extendedProtectionPolicy" isComplexType="true" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement</serializedValue>
-        </property>
-        <property path="/security/transport/extendedProtectionPolicy/policyEnforcement" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.PolicyEnforcement, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Never</serializedValue>
-        </property>
-        <property path="/security/transport/extendedProtectionPolicy/protectionScenario" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.ProtectionScenario, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TransportSelected</serializedValue>
-        </property>
-        <property path="/security/transport/extendedProtectionPolicy/customServiceNames" isComplexType="true" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>(Collection)</serializedValue>
-        </property>
-        <property path="/security/transport/realm" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/security/message" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.BasicHttpMessageSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.BasicHttpMessageSecurityElement</serializedValue>
-        </property>
-        <property path="/security/message/clientCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.BasicHttpMessageCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>UserName</serializedValue>
-        </property>
-        <property path="/security/message/algorithmSuite" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.Security.SecurityAlgorithmSuite, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Default</serializedValue>
-        </property>
-      </properties>
-    </bindingConfiguration>
-  </bindingConfigurations>
-  <endpoints>
-    <endpoint name="ReportingService2010Soap" contract="SSRS2012WebService.ReportingService2010Soap" bindingType="basicHttpBinding" address="http://genan01/ReportServer/ReportService2010.asmx" bindingConfiguration="ReportingService2010Soap">
-      <properties>
-        <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://genan01:80/ReportServer/ReportService2010.asmx</serializedValue>
-        </property>
-        <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/binding" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>basicHttpBinding</serializedValue>
-        </property>
-        <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ReportingService2010Soap</serializedValue>
-        </property>
-        <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SSRS2012WebService.ReportingService2010Soap</serializedValue>
-        </property>
-        <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
-        </property>
-        <property path="/headers/headers" isComplexType="false" isExplicitlyDefined="true" clrType="System.ServiceModel.Channels.AddressHeaderCollection, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>&lt;Header /&gt;</serializedValue>
-        </property>
-        <property path="/identity" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.IdentityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.IdentityElement</serializedValue>
-        </property>
-        <property path="/identity/userPrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.UserPrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.UserPrincipalNameElement</serializedValue>
-        </property>
-        <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/identity/servicePrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.ServicePrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.ServicePrincipalNameElement</serializedValue>
-        </property>
-        <property path="/identity/servicePrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/identity/dns" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.DnsElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.DnsElement</serializedValue>
-        </property>
-        <property path="/identity/dns/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/identity/rsa" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.RsaElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.RsaElement</serializedValue>
-        </property>
-        <property path="/identity/rsa/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/identity/certificate" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.CertificateElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.CertificateElement</serializedValue>
-        </property>
-        <property path="/identity/certificate/encodedValue" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/identity/certificateReference" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.CertificateReferenceElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>System.ServiceModel.Configuration.CertificateReferenceElement</serializedValue>
-        </property>
-        <property path="/identity/certificateReference/storeName" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Cryptography.X509Certificates.StoreName, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>My</serializedValue>
-        </property>
-        <property path="/identity/certificateReference/storeLocation" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Cryptography.X509Certificates.StoreLocation, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>LocalMachine</serializedValue>
-        </property>
-        <property path="/identity/certificateReference/x509FindType" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Cryptography.X509Certificates.X509FindType, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>FindBySubjectDistinguishedName</serializedValue>
-        </property>
-        <property path="/identity/certificateReference/findValue" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/identity/certificateReference/isChainIncluded" isComplexType="false" isExplicitlyDefined="false" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>False</serializedValue>
-        </property>
-        <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ReportingService2010Soap</serializedValue>
-        </property>
-        <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-        <property path="/endpointConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
-        </property>
-      </properties>
-    </endpoint>
-  </endpoints>
-</SavedWcfConfigurationInformation>]]></ProjectItem>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="Role" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Role, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
           <ProjectItem
             Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Warning.datasource"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -8346,6 +8036,18 @@ INNER JOIN	Balancing.Tests t ON
 -->
 <GenericObjectDataSource DisplayName="CacheRefreshPlan" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
    <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CacheRefreshPlan, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourcePrompt.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="DataSourcePrompt" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourcePrompt, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>]]></ProjectItem>
           <ProjectItem
             Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSource.datasource"
@@ -8421,439 +8123,6 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("1.0.0.0")> 
 <Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CatalogItem.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="CatalogItem" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CatalogItem, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="ST_eb4bc330a7f242ad8165d26c50131f6b.vbproj"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{B3F91FFA-3890-401D-BD4F-137F9BDD9D21}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>My Project</AppDesignerFolder><RootNamespace>ST_28b6a86909d84864a1ed81a8c9bcd067</RootNamespace><AssemblyName>ST_eb4bc330a7f242ad8165d26c50131f6b</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineDebug>true</DefineDebug><DefineTrace>true</DefineTrace><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineDebug>false</DefineDebug><DefineTrace>true</DefineTrace><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Runtime.Serialization" /><Reference Include="System.ServiceModel" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><Import Include="Microsoft.VisualBasic" /><Import Include="System" /><Import Include="System.Collections" /><Import Include="System.Data" /><Import Include="System.Diagnostics" /><Import Include="System.Windows.Forms" /></ItemGroup><ItemGroup><AppDesigner Include="My Project\" /><Compile Include="My Project\AssemblyInfo.vb"><SubType>Code</SubType></Compile><Compile Include="Service References\SSRS2012WebService\Reference.vb"><AutoGen>True</AutoGen><DesignTime>True</DesignTime><DependentUpon>Reference.svcmap</DependentUpon></Compile><EmbeddedResource Include="My Project\Resources.resx"><Generator>VbMyResourcesResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.vb</LastGenOutput><CustomToolNamespace>My.Resources</CustomToolNamespace></EmbeddedResource><Compile Include="My Project\Resources.Designer.vb"><AutoGen>True</AutoGen><DesignTime>True</DesignTime><DependentUpon>Resources.resx</DependentUpon><SubType>Code</SubType></Compile><None Include="app.config" /><None Include="My Project\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.vb</LastGenOutput></None><Compile Include="My Project\Settings.Designer.vb"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon><SubType>Code</SubType></Compile><Compile Include="ScriptMain.vb"><SubType>Code</SubType></Compile><None Include="Service References\SSRS2012WebService\reportservice2010.wsdl" /><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ActiveState.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CacheRefreshPlan.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CacheRefreshPlanState.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CatalogItem.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataRetrievalPlan.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSetDefinition.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSource.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourceDefinition.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourcePrompt.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Event.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExpirationDefinition.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Extension.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionParameter.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionSettings.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemHistorySnapshot.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemParameter.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemReferenceData.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Job.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelCatalogItem.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelDrillthroughReport.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelItem.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValue.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValueOrFieldReference.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Policy.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Property.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Role.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Schedule.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ScheduleDefinitionOrReference.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ServerInfoHeader.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Subscription.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Task.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Warning.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None></ItemGroup><ItemGroup><WCFMetadata Include="Service References\" /></ItemGroup><ItemGroup><WCFMetadataStorage Include="Service References\SSRS2012WebService\" /></ItemGroup><ItemGroup><None Include="Service References\SSRS2012WebService\configuration91.svcinfo" /></ItemGroup><ItemGroup><None Include="Service References\SSRS2012WebService\configuration.svcinfo" /></ItemGroup><ItemGroup><None Include="Service References\SSRS2012WebService\Reference.svcmap"><Generator>WCF Proxy Generator</Generator><LastGenOutput>Reference.vb</LastGenOutput></None></ItemGroup><!-- Include the build rules for a VB project.--><Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="devenv.exe" DebugInfoCommandLine="/vstaHostDebugUri:&quot;vstadebugc411af14-923d-4136-9bd2-e0cf89cb69f4/5c9d1eb6-4fbb-41f8-9ef4-85f9fc73e335&quot;" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionSettings.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ExtensionSettings" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionSettings, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemParameter.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ItemParameter" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemParameter, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\configuration.svcinfo"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
-  <behaviors />
-  <bindings>
-    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;ReportingService2010Soap&quot; /&gt;" bindingType="basicHttpBinding" name="ReportingService2010Soap" />
-  </bindings>
-  <endpoints>
-    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://genan01:80/ReportServer/ReportService2010.asmx&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;ReportingService2010Soap&quot; contract=&quot;SSRS2012WebService.ReportingService2010Soap&quot; name=&quot;ReportingService2010Soap&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://genan01:80/ReportServer/ReportService2010.asmx&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;ReportingService2010Soap&quot; contract=&quot;SSRS2012WebService.ReportingService2010Soap&quot; name=&quot;ReportingService2010Soap&quot; /&gt;" contractName="SSRS2012WebService.ReportingService2010Soap" name="ReportingService2010Soap" />
-  </endpoints>
-</configurationSnapshot>]]></ProjectItem>
-          <ProjectItem
-            Name="ScriptMain.vb"
-            Encoding="UTF8"><![CDATA[#Region "Help:  Introduction to the script task"
-'The Script Task allows you to perform virtually any operation that can be accomplished in
-'a .Net application within the context of an Integration Services control flow. 
-
-'Expand the other regions which have "Help" prefixes for examples of specific ways to use
-'Integration Services features within this script task.
-#End Region
-
-
-#Region "Imports"
-Imports System
-Imports System.Data
-Imports System.Math
-Imports Microsoft.SqlServer.Dts.Runtime
-#End Region
-
-'ScriptMain is the entry point class of the script.  Do not change the name, attributes,
-'or parent of this class.
-<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute()> _
-<System.CLSCompliantAttribute(False)> _
-Partial Public Class ScriptMain
-    Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
-
-#Region "Help:  Using Integration Services variables and parameters in a script"
-    'To use a variable in this script, first ensure that the variable has been added to 
-    'either the list contained in the ReadOnlyVariables property or the list contained in 
-    'the ReadWriteVariables property of this script task, according to whether or not your
-    'code needs to write to the variable.  To add the variable, save this script, close this instance of
-    'Visual Studio, and update the ReadOnlyVariables and 
-    'ReadWriteVariables properties in the Script Transformation Editor window.
-    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
-
-    'Example of reading from a variable:
-    ' startTime = Dts.Variables("System::StartTime").Value
-
-    'Example of writing to a variable:
-    ' Dts.Variables("User::myStringVariable").Value = "new value"
-
-    'Example of reading from a package parameter:
-    ' batchId = Dts.Variables("$Package::batchId").Value
-
-    'Example of reading from a project parameter:
-    ' batchId = Dts.Variables("$Project::batchId").Value
-
-    'Example of reading from a sensitive project parameter:
-    ' batchId = Dts.Variables("$Project::batchId").GetSensitiveValue()
-#End Region
-
-#Region "Help:  Firing Integration Services events from a script"
-    'This script task can fire events for logging purposes.
-
-    'Example of firing an error event:
-    ' Dts.Events.FireError(18, "Process Values", "Bad value", "", 0)
-
-    'Example of firing an information event:
-    ' Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, fireAgain)
-
-    'Example of firing a warning event:
-    ' Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0)
-#End Region
-
-#Region "Help:  Using Integration Services connection managers in a script"
-    'Some types of connection managers can be used in this script task.  See the topic 
-    '"Working with Connection Managers Programatically" for details.
-
-    'Example of using an ADO.Net connection manager:
-    ' Dim rawConnection As Object = Dts.Connections("Sales DB").AcquireConnection(Dts.Transaction)
-    ' Dim myADONETConnection As SqlConnection = CType(rawConnection, SqlConnection)
-    ' <Use the connection in some code here, then release the connection>
-    ' Dts.Connections("Sales DB").ReleaseConnection(rawConnection)
-
-    'Example of using a File connection manager
-    ' Dim rawConnection As Object = Dts.Connections("Prices.zip").AcquireConnection(Dts.Transaction)
-    ' Dim filePath As String = CType(rawConnection, String)
-    ' <Use the connection in some code here, then release the connection>
-    ' Dts.Connections("Prices.zip").ReleaseConnection(rawConnection)
-#End Region
-
-    'This method is called when this script task executes in the control flow.
-    'Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-    'To open Help, press F1.
-    Public Sub Main()
-
-        Dim MyRs As New SSRS2012WebService.r
-        MyRs.Credentials = System.Net.CredentialCache.DefaultCredentials
-
-        Dim MySubs As rs.Subscription() = _
-         MyRs.ListSubscriptions("Ski Balancing Erroneous Records Report", Nothing)
-
-        Dim MySub As rs.Subscription = MySubs(0)
-        MyRs.FireEvent(MySub.EventType, MySub.SubscriptionID)
-
-        Dts.TaskResult = ScriptResults.Success
-
-    End Sub
-
-#Region "ScriptResults declaration"
-    'This enum provides a convenient shorthand within the scope of this class for setting the
-    'result of the script.
-
-    'This code was generated automatically.
-    Enum ScriptResults
-        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
-        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-    End Enum
-
-#End Region
-
-End Class]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Subscription.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="Subscription" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Subscription, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourceDefinition.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="DataSourceDefinition" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourceDefinition, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemReferenceData.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ItemReferenceData" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemReferenceData, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValueOrFieldReference.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ParameterValueOrFieldReference" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValueOrFieldReference, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSetDefinition.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="DataSetDefinition" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSetDefinition, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ActiveState.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ActiveState" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ActiveState, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ServerInfoHeader.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ServerInfoHeader" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ServerInfoHeader, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Job.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="Job" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Job, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataRetrievalPlan.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="DataRetrievalPlan" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataRetrievalPlan, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemHistorySnapshot.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="ItemHistorySnapshot" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemHistorySnapshot, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Resources.Designer.vb"
-            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
-' <autogenerated>
-'     This code was generated by a tool.
-'
-'     Changes to this file may cause incorrect behavior and will be lost if
-'     the code is regenerated.
-' </autogenerated>
-'------------------------------------------------------------------------------
-
-Option Strict Off
-Option Explicit On
-
-
-Namespace My.Resources
-    
-    '''<summary>
-    '''   A strongly-typed resource class, for looking up localized strings, etc.
-    '''</summary>
-    'This class was auto-generated by the Strongly Typed Resource Builder
-    'class via a tool like ResGen or Visual Studio.NET.
-    'To add or remove a member, edit your .ResX file then rerun ResGen
-    'with the /str option, or rebuild your VS project.
-    Class MyResources
-        
-        Private Shared _resMgr As System.Resources.ResourceManager
-        
-        Private Shared _resCulture As System.Globalization.CultureInfo
-        
-        Friend Sub New()
-            MyBase.New
-        End Sub
-        
-        '''<summary>
-        '''   Returns the cached ResourceManager instance used by this class.
-        '''</summary>
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
-            Get
-                If (_resMgr Is Nothing) Then
-                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
-                    _resMgr = temp
-                End If
-                Return _resMgr
-            End Get
-        End Property
-        
-        '''<summary>
-        '''   Overrides the current thread's CurrentUICulture property for all
-        '''   resource lookups using this strongly typed resource class.
-        '''</summary>
-        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Public Shared Property Culture() As System.Globalization.CultureInfo
-            Get
-                Return _resCulture
-            End Get
-            Set
-                _resCulture = value
-            End Set
-        End Property
-    End Class
-End Namespace]]></ProjectItem>
-          <ProjectItem
-            Name="My Project\Settings.Designer.vb"
-            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
-' <autogenerated>
-'     This code was generated by a tool.
-'
-'     Changes to this file may cause incorrect behavior and will be lost if
-'     the code is regenerated.
-' </autogenerated>
-'------------------------------------------------------------------------------
-
-Option Strict Off
-Option Explicit On
-
-
-
-Partial Friend NotInheritable Class MySettings
-    Inherits System.Configuration.ApplicationSettingsBase
-
-    Private Shared m_Value As MySettings
-
-    Private Shared m_SyncObject As Object = New Object
-
-    <System.Diagnostics.DebuggerNonUserCode()> _
-    Public Shared ReadOnly Property Value() As MySettings
-        Get
-            If (MySettings.m_Value Is Nothing) Then
-                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
-                If (MySettings.m_Value Is Nothing) Then
-                    Try
-                        MySettings.m_Value = New MySettings
-                    Finally
-                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
-                    End Try
-                End If
-            End If
-            Return MySettings.m_Value
-        End Get
-    End Property
-End Class]]></ProjectItem>
-          <ProjectItem
-            Name="app.config"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-    <system.diagnostics>
-        <sources>
-            <!-- This section defines the logging configuration for My.Application.Log -->
-            <source name="DefaultSource" switchName="DefaultSwitch">
-                <listeners>
-                    <add name="FileLog"/>
-                    <!-- Uncomment the below section to write to the Application Event Log -->
-                    <!--<add name="EventLog"/>-->
-                </listeners>
-            </source>
-        </sources>
-        <switches>
-            <add name="DefaultSwitch" value="Information" />
-        </switches>
-        <sharedListeners>
-            <add name="FileLog"
-                 type="Microsoft.VisualBasic.Logging.FileLogTraceListener, Microsoft.VisualBasic, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                 initializeData="FileLogWriter"/>
-            <!-- Uncomment the below section and replace APPLICATION_NAME with the name of your application to write to the Application Event Log -->
-            <!--<add name="EventLog" type="System.Diagnostics.EventLogTraceListener" initializeData="APPLICATION_NAME"/> -->
-        </sharedListeners>
-    </system.diagnostics>
-    <system.serviceModel>
-        <bindings>
-            <basicHttpBinding>
-                <binding name="ReportingService2010Soap" />
-            </basicHttpBinding>
-        </bindings>
-        <client>
-            <endpoint address="http://genan01:80/ReportServer/ReportService2010.asmx"
-                binding="basicHttpBinding" bindingConfiguration="ReportingService2010Soap"
-                contract="SSRS2012WebService.ReportingService2010Soap" name="ReportingService2010Soap" />
-        </client>
-    </system.serviceModel>
-</configuration>]]></ProjectItem>
           <ProjectItem
             Name="Service References\SSRS2012WebService\Reference.vb"
             Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
@@ -22622,6 +21891,531 @@ Namespace SSRS2012WebService
     End Class
 End Namespace]]></ProjectItem>
           <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CatalogItem.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="CatalogItem" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CatalogItem, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemReferenceData.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ItemReferenceData" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemReferenceData, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="ST_eb4bc330a7f242ad8165d26c50131f6b.vbproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{B3F91FFA-3890-401D-BD4F-137F9BDD9D21}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>My Project</AppDesignerFolder><RootNamespace>ST_28b6a86909d84864a1ed81a8c9bcd067</RootNamespace><AssemblyName>ST_eb4bc330a7f242ad8165d26c50131f6b</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineDebug>true</DefineDebug><DefineTrace>true</DefineTrace><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineDebug>false</DefineDebug><DefineTrace>true</DefineTrace><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Runtime.Serialization" /><Reference Include="System.ServiceModel" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><Import Include="Microsoft.VisualBasic" /><Import Include="System" /><Import Include="System.Collections" /><Import Include="System.Data" /><Import Include="System.Diagnostics" /><Import Include="System.Windows.Forms" /></ItemGroup><ItemGroup><AppDesigner Include="My Project\" /><Compile Include="My Project\AssemblyInfo.vb"><SubType>Code</SubType></Compile><Compile Include="Service References\SSRS2012WebService\Reference.vb"><AutoGen>True</AutoGen><DesignTime>True</DesignTime><DependentUpon>Reference.svcmap</DependentUpon></Compile><EmbeddedResource Include="My Project\Resources.resx"><Generator>VbMyResourcesResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.vb</LastGenOutput><CustomToolNamespace>My.Resources</CustomToolNamespace></EmbeddedResource><Compile Include="My Project\Resources.Designer.vb"><AutoGen>True</AutoGen><DesignTime>True</DesignTime><DependentUpon>Resources.resx</DependentUpon><SubType>Code</SubType></Compile><None Include="app.config" /><None Include="My Project\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.vb</LastGenOutput></None><Compile Include="My Project\Settings.Designer.vb"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon><SubType>Code</SubType></Compile><Compile Include="ScriptMain.vb"><SubType>Code</SubType></Compile><None Include="Service References\SSRS2012WebService\reportservice2010.wsdl" /><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ActiveState.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CacheRefreshPlan.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CacheRefreshPlanState.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.CatalogItem.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataRetrievalPlan.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSetDefinition.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSource.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourceDefinition.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourcePrompt.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Event.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExpirationDefinition.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Extension.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionParameter.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionSettings.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemHistorySnapshot.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemParameter.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemReferenceData.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Job.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelCatalogItem.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelDrillthroughReport.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelItem.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValue.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValueOrFieldReference.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Policy.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Property.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Role.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Schedule.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ScheduleDefinitionOrReference.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ServerInfoHeader.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Subscription.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Task.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None><None Include="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Warning.datasource"><DependentUpon>Reference.svcmap</DependentUpon></None></ItemGroup><ItemGroup><WCFMetadata Include="Service References\" /></ItemGroup><ItemGroup><WCFMetadataStorage Include="Service References\SSRS2012WebService\" /></ItemGroup><ItemGroup><None Include="Service References\SSRS2012WebService\configuration91.svcinfo" /></ItemGroup><ItemGroup><None Include="Service References\SSRS2012WebService\configuration.svcinfo" /></ItemGroup><ItemGroup><None Include="Service References\SSRS2012WebService\Reference.svcmap"><Generator>WCF Proxy Generator</Generator><LastGenOutput>Reference.vb</LastGenOutput></None></ItemGroup><!-- Include the build rules for a VB project.--><Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="devenv.exe" DebugInfoCommandLine="/vstaHostDebugUri:&quot;vstadebugc411af14-923d-4136-9bd2-e0cf89cb69f4/5c9d1eb6-4fbb-41f8-9ef4-85f9fc73e335&quot;" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionSettings.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ExtensionSettings" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ExtensionSettings, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemParameter.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ItemParameter" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemParameter, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\configuration.svcinfo"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;ReportingService2010Soap&quot; /&gt;" bindingType="basicHttpBinding" name="ReportingService2010Soap" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://genan01:80/ReportServer/ReportService2010.asmx&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;ReportingService2010Soap&quot; contract=&quot;SSRS2012WebService.ReportingService2010Soap&quot; name=&quot;ReportingService2010Soap&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://genan01:80/ReportServer/ReportService2010.asmx&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;ReportingService2010Soap&quot; contract=&quot;SSRS2012WebService.ReportingService2010Soap&quot; name=&quot;ReportingService2010Soap&quot; /&gt;" contractName="SSRS2012WebService.ReportingService2010Soap" name="ReportingService2010Soap" />
+  </endpoints>
+</configurationSnapshot>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Subscription.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="Subscription" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Subscription, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourceDefinition.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="DataSourceDefinition" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourceDefinition, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\configuration91.svcinfo"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="hRrQ71Xt40iALKI+jrREBd3en1E=">
+  <bindingConfigurations>
+    <bindingConfiguration bindingType="basicHttpBinding" name="ReportingService2010Soap">
+      <properties>
+        <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>ReportingService2010Soap</serializedValue>
+        </property>
+        <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/openTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/receiveTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/sendTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/allowCookies" isComplexType="false" isExplicitlyDefined="true" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/bypassProxyOnLocal" isComplexType="false" isExplicitlyDefined="true" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/hostNameComparisonMode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HostNameComparisonMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>StrongWildcard</serializedValue>
+        </property>
+        <property path="/maxBufferPoolSize" isComplexType="false" isExplicitlyDefined="true" clrType="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/maxBufferSize" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>65536</serializedValue>
+        </property>
+        <property path="/maxReceivedMessageSize" isComplexType="false" isExplicitlyDefined="true" clrType="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/proxyAddress" isComplexType="false" isExplicitlyDefined="false" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/readerQuotas" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.XmlDictionaryReaderQuotasElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.XmlDictionaryReaderQuotasElement</serializedValue>
+        </property>
+        <property path="/readerQuotas/maxDepth" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>0</serializedValue>
+        </property>
+        <property path="/readerQuotas/maxStringContentLength" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>0</serializedValue>
+        </property>
+        <property path="/readerQuotas/maxArrayLength" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>0</serializedValue>
+        </property>
+        <property path="/readerQuotas/maxBytesPerRead" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>0</serializedValue>
+        </property>
+        <property path="/readerQuotas/maxNameTableCharCount" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>0</serializedValue>
+        </property>
+        <property path="/textEncoding" isComplexType="false" isExplicitlyDefined="false" clrType="System.Text.Encoding, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.Text.UTF8Encoding</serializedValue>
+        </property>
+        <property path="/transferMode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.TransferMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>Buffered</serializedValue>
+        </property>
+        <property path="/useDefaultWebProxy" isComplexType="false" isExplicitlyDefined="true" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/messageEncoding" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.WSMessageEncoding, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>Text</serializedValue>
+        </property>
+        <property path="/security" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.BasicHttpSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.BasicHttpSecurityElement</serializedValue>
+        </property>
+        <property path="/security/mode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.BasicHttpSecurityMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>None</serializedValue>
+        </property>
+        <property path="/security/transport" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.HttpTransportSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.HttpTransportSecurityElement</serializedValue>
+        </property>
+        <property path="/security/transport/clientCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HttpClientCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>None</serializedValue>
+        </property>
+        <property path="/security/transport/proxyCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HttpProxyCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>None</serializedValue>
+        </property>
+        <property path="/security/transport/extendedProtectionPolicy" isComplexType="true" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.Security.Authentication.ExtendedProtection.Configuration.ExtendedProtectionPolicyElement</serializedValue>
+        </property>
+        <property path="/security/transport/extendedProtectionPolicy/policyEnforcement" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.PolicyEnforcement, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>Never</serializedValue>
+        </property>
+        <property path="/security/transport/extendedProtectionPolicy/protectionScenario" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.ProtectionScenario, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>TransportSelected</serializedValue>
+        </property>
+        <property path="/security/transport/extendedProtectionPolicy/customServiceNames" isComplexType="true" isExplicitlyDefined="false" clrType="System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>(Collection)</serializedValue>
+        </property>
+        <property path="/security/transport/realm" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/security/message" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.BasicHttpMessageSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.BasicHttpMessageSecurityElement</serializedValue>
+        </property>
+        <property path="/security/message/clientCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.BasicHttpMessageCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>UserName</serializedValue>
+        </property>
+        <property path="/security/message/algorithmSuite" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.Security.SecurityAlgorithmSuite, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>Default</serializedValue>
+        </property>
+      </properties>
+    </bindingConfiguration>
+  </bindingConfigurations>
+  <endpoints>
+    <endpoint name="ReportingService2010Soap" contract="SSRS2012WebService.ReportingService2010Soap" bindingType="basicHttpBinding" address="http://genan01/ReportServer/ReportService2010.asmx" bindingConfiguration="ReportingService2010Soap">
+      <properties>
+        <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>http://genan01:80/ReportServer/ReportService2010.asmx</serializedValue>
+        </property>
+        <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/binding" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>basicHttpBinding</serializedValue>
+        </property>
+        <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>ReportingService2010Soap</serializedValue>
+        </property>
+        <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>SSRS2012WebService.ReportingService2010Soap</serializedValue>
+        </property>
+        <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
+        </property>
+        <property path="/headers/headers" isComplexType="false" isExplicitlyDefined="true" clrType="System.ServiceModel.Channels.AddressHeaderCollection, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>&lt;Header /&gt;</serializedValue>
+        </property>
+        <property path="/identity" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.IdentityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.IdentityElement</serializedValue>
+        </property>
+        <property path="/identity/userPrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.UserPrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.UserPrincipalNameElement</serializedValue>
+        </property>
+        <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/identity/servicePrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.ServicePrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.ServicePrincipalNameElement</serializedValue>
+        </property>
+        <property path="/identity/servicePrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/identity/dns" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.DnsElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.DnsElement</serializedValue>
+        </property>
+        <property path="/identity/dns/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/identity/rsa" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.RsaElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.RsaElement</serializedValue>
+        </property>
+        <property path="/identity/rsa/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/identity/certificate" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.CertificateElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.CertificateElement</serializedValue>
+        </property>
+        <property path="/identity/certificate/encodedValue" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/identity/certificateReference" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.CertificateReferenceElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>System.ServiceModel.Configuration.CertificateReferenceElement</serializedValue>
+        </property>
+        <property path="/identity/certificateReference/storeName" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Cryptography.X509Certificates.StoreName, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>My</serializedValue>
+        </property>
+        <property path="/identity/certificateReference/storeLocation" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Cryptography.X509Certificates.StoreLocation, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>LocalMachine</serializedValue>
+        </property>
+        <property path="/identity/certificateReference/x509FindType" isComplexType="false" isExplicitlyDefined="false" clrType="System.Security.Cryptography.X509Certificates.X509FindType, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>FindBySubjectDistinguishedName</serializedValue>
+        </property>
+        <property path="/identity/certificateReference/findValue" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/identity/certificateReference/isChainIncluded" isComplexType="false" isExplicitlyDefined="false" clrType="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>False</serializedValue>
+        </property>
+        <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>ReportingService2010Soap</serializedValue>
+        </property>
+        <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+        <property path="/endpointConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
+        </property>
+      </properties>
+    </endpoint>
+  </endpoints>
+</SavedWcfConfigurationInformation>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSetDefinition.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="DataSetDefinition" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSetDefinition, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ActiveState.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ActiveState" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ActiveState, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ServerInfoHeader.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ServerInfoHeader" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ServerInfoHeader, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Job.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="Job" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Job, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataRetrievalPlan.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="DataRetrievalPlan" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataRetrievalPlan, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemHistorySnapshot.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ItemHistorySnapshot" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ItemHistorySnapshot, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="app.config"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.diagnostics>
+        <sources>
+            <!-- This section defines the logging configuration for My.Application.Log -->
+            <source name="DefaultSource" switchName="DefaultSwitch">
+                <listeners>
+                    <add name="FileLog"/>
+                    <!-- Uncomment the below section to write to the Application Event Log -->
+                    <!--<add name="EventLog"/>-->
+                </listeners>
+            </source>
+        </sources>
+        <switches>
+            <add name="DefaultSwitch" value="Information" />
+        </switches>
+        <sharedListeners>
+            <add name="FileLog"
+                 type="Microsoft.VisualBasic.Logging.FileLogTraceListener, Microsoft.VisualBasic, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                 initializeData="FileLogWriter"/>
+            <!-- Uncomment the below section and replace APPLICATION_NAME with the name of your application to write to the Application Event Log -->
+            <!--<add name="EventLog" type="System.Diagnostics.EventLogTraceListener" initializeData="APPLICATION_NAME"/> -->
+        </sharedListeners>
+    </system.diagnostics>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="ReportingService2010Soap" />
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://genan01:80/ReportServer/ReportService2010.asmx"
+                binding="basicHttpBinding" bindingConfiguration="ReportingService2010Soap"
+                contract="SSRS2012WebService.ReportingService2010Soap" name="ReportingService2010Soap" />
+        </client>
+    </system.serviceModel>
+</configuration>]]></ProjectItem>
+          <ProjectItem
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValueOrFieldReference.datasource"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file is automatically generated by Visual Studio .Net. It is 
+    used to store generic object data source configuration information.  
+    Renaming the file extension or editing the content of this file may   
+    cause the file to be unrecognizable by the program.
+-->
+<GenericObjectDataSource DisplayName="ParameterValueOrFieldReference" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ParameterValueOrFieldReference, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+</GenericObjectDataSource>]]></ProjectItem>
+          <ProjectItem
             Name="Project"
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
@@ -22681,31 +22475,237 @@ End Namespace]]></ProjectItem>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Role.datasource"
+            Name="My Project\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="Role" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Role, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
           <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Policy.datasource"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<!--
-    This file is automatically generated by Visual Studio .Net. It is 
-    used to store generic object data source configuration information.  
-    Renaming the file extension or editing the content of this file may   
-    cause the file to be unrecognizable by the program.
--->
-<GenericObjectDataSource DisplayName="Policy" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Policy, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-</GenericObjectDataSource>]]></ProjectItem>
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[#Region "Help:  Introduction to the script task"
+'The Script Task allows you to perform virtually any operation that can be accomplished in
+'a .Net application within the context of an Integration Services control flow. 
+
+'Expand the other regions which have "Help" prefixes for examples of specific ways to use
+'Integration Services features within this script task.
+#End Region
+
+
+#Region "Imports"
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+#End Region
+
+'ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+'or parent of this class.
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute()> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+    Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+#Region "Help:  Using Integration Services variables and parameters in a script"
+    'To use a variable in this script, first ensure that the variable has been added to 
+    'either the list contained in the ReadOnlyVariables property or the list contained in 
+    'the ReadWriteVariables property of this script task, according to whether or not your
+    'code needs to write to the variable.  To add the variable, save this script, close this instance of
+    'Visual Studio, and update the ReadOnlyVariables and 
+    'ReadWriteVariables properties in the Script Transformation Editor window.
+    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
+
+    'Example of reading from a variable:
+    ' startTime = Dts.Variables("System::StartTime").Value
+
+    'Example of writing to a variable:
+    ' Dts.Variables("User::myStringVariable").Value = "new value"
+
+    'Example of reading from a package parameter:
+    ' batchId = Dts.Variables("$Package::batchId").Value
+
+    'Example of reading from a project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").Value
+
+    'Example of reading from a sensitive project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").GetSensitiveValue()
+#End Region
+
+#Region "Help:  Firing Integration Services events from a script"
+    'This script task can fire events for logging purposes.
+
+    'Example of firing an error event:
+    ' Dts.Events.FireError(18, "Process Values", "Bad value", "", 0)
+
+    'Example of firing an information event:
+    ' Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, fireAgain)
+
+    'Example of firing a warning event:
+    ' Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0)
+#End Region
+
+#Region "Help:  Using Integration Services connection managers in a script"
+    'Some types of connection managers can be used in this script task.  See the topic 
+    '"Working with Connection Managers Programatically" for details.
+
+    'Example of using an ADO.Net connection manager:
+    ' Dim rawConnection As Object = Dts.Connections("Sales DB").AcquireConnection(Dts.Transaction)
+    ' Dim myADONETConnection As SqlConnection = CType(rawConnection, SqlConnection)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Sales DB").ReleaseConnection(rawConnection)
+
+    'Example of using a File connection manager
+    ' Dim rawConnection As Object = Dts.Connections("Prices.zip").AcquireConnection(Dts.Transaction)
+    ' Dim filePath As String = CType(rawConnection, String)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Prices.zip").ReleaseConnection(rawConnection)
+#End Region
+
+    'This method is called when this script task executes in the control flow.
+    'Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+    'To open Help, press F1.
+    Public Sub Main()
+
+        Dim MyRs As New SSRS2012WebService.r
+        MyRs.Credentials = System.Net.CredentialCache.DefaultCredentials
+
+        Dim MySubs As rs.Subscription() = _
+         MyRs.ListSubscriptions("Ski Balancing Erroneous Records Report", Nothing)
+
+        Dim MySub As rs.Subscription = MySubs(0)
+        MyRs.FireEvent(MySub.EventType, MySub.SubscriptionID)
+
+        Dts.TaskResult = ScriptResults.Success
+
+    End Sub
+
+#Region "ScriptResults declaration"
+    'This enum provides a convenient shorthand within the scope of this class for setting the
+    'result of the script.
+
+    'This code was generated automatically.
+    Enum ScriptResults
+        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+    End Enum
+
+#End Region
+
+End Class]]></ProjectItem>
           <ProjectItem
-            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourcePrompt.datasource"
+            Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelDrillthroughReport.datasource"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <!--
     This file is automatically generated by Visual Studio .Net. It is 
@@ -22713,8 +22713,8 @@ End Namespace]]></ProjectItem>
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="DataSourcePrompt" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.DataSourcePrompt, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="ModelDrillthroughReport" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.ModelDrillthroughReport, Service References.SSRS2012WebService.Reference.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>]]></ProjectItem>
           <ProjectItem
             Name="Service References\SSRS2012WebService\ST_28b6a86909d84864a1ed81a8c9bcd067.SSRS2012WebService.Schedule.datasource"
@@ -23125,7 +23125,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through Cube Queries\EST Execute Cube Query"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="3"
+              DTS:ThreadHint="1"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Execute Cube Query"
@@ -23148,7 +23148,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through Cube Queries\EST Insert Cube Results"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="3"
+              DTS:ThreadHint="1"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Insert Cube Results"
@@ -23194,22 +23194,34 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:VariableName="User::vFLCCubeQuery"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{1C0A4E49-AA2B-4FD6-A3FD-BF071800D143}"
-              DTS:DTSID="{1C0A4E49-AA2B-4FD6-A3FD-BF071800D143}"
+              DTS:ObjectName="{D2F83E29-1636-4236-A3D3-B465C276C505}"
+              DTS:DTSID="{D2F83E29-1636-4236-A3D3-B465C276C505}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCDataSourceType"
+              DTS:ValueIndex="1"
+              DTS:ObjectName="{8E5F09F1-8A0D-4760-84ED-C7BBBD0C5958}"
+              DTS:DTSID="{8E5F09F1-8A0D-4760-84ED-C7BBBD0C5958}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCCubeQueryId"
+              DTS:ValueIndex="2"
+              DTS:ObjectName="{E23102F9-E690-4FA4-A3C2-2FB3E3105E25}"
+              DTS:DTSID="{E23102F9-E690-4FA4-A3C2-2FB3E3105E25}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCCubeTestId"
-              DTS:ValueIndex="1"
-              DTS:ObjectName="{664E4A74-895E-4638-898A-E500D9DFBAAB}"
-              DTS:DTSID="{664E4A74-895E-4638-898A-E500D9DFBAAB}"
+              DTS:ValueIndex="3"
+              DTS:ObjectName="{D37B7A3B-4144-45CE-A1CE-48B14831DFB3}"
+              DTS:DTSID="{D37B7A3B-4144-45CE-A1CE-48B14831DFB3}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCCubeQuery"
-              DTS:ValueIndex="3"
-              DTS:ObjectName="{5A19CFAA-D895-4EB7-ABDA-403ECD280800}"
-              DTS:DTSID="{5A19CFAA-D895-4EB7-ABDA-403ECD280800}"
+              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:ValueIndex="4"
+              DTS:ObjectName="{5806EF56-1627-4553-BD7E-BC44BDD84E85}"
+              DTS:DTSID="{5806EF56-1627-4553-BD7E-BC44BDD84E85}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23305,22 +23317,34 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:VariableName="User::vFLCDatabaseQuery"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{CED0D3B1-C762-4C31-9E78-903D564AF8FE}"
-              DTS:DTSID="{CED0D3B1-C762-4C31-9E78-903D564AF8FE}"
+              DTS:ObjectName="{8DB58DC4-2256-4364-9F38-398BF1552DD4}"
+              DTS:DTSID="{8DB58DC4-2256-4364-9F38-398BF1552DD4}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCDataSourceType"
+              DTS:ValueIndex="1"
+              DTS:ObjectName="{8933FE64-A863-46CA-9984-A22E8A786BBA}"
+              DTS:DTSID="{8933FE64-A863-46CA-9984-A22E8A786BBA}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCDatabaseQueryId"
+              DTS:ValueIndex="2"
+              DTS:ObjectName="{6090D41A-A829-410D-BED8-006230ACAAD8}"
+              DTS:DTSID="{6090D41A-A829-410D-BED8-006230ACAAD8}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCDatabaseTestId"
-              DTS:ValueIndex="1"
-              DTS:ObjectName="{C207A98B-01CB-4AE0-87D1-E45BC7C58A82}"
-              DTS:DTSID="{C207A98B-01CB-4AE0-87D1-E45BC7C58A82}"
+              DTS:ValueIndex="3"
+              DTS:ObjectName="{E95C253B-1CFE-4897-A406-DD73505962C7}"
+              DTS:DTSID="{E95C253B-1CFE-4897-A406-DD73505962C7}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCDatabaseQuery"
-              DTS:ValueIndex="3"
-              DTS:ObjectName="{A9C3A6E4-833C-4DAD-A253-8800D12A63B5}"
-              DTS:DTSID="{A9C3A6E4-833C-4DAD-A253-8800D12A63B5}"
+              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:ValueIndex="4"
+              DTS:ObjectName="{079E57FF-C584-42E1-8F46-B2379029C472}"
+              DTS:DTSID="{079E57FF-C584-42E1-8F46-B2379029C472}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23347,7 +23371,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through EDW Queries\EST Execute EDW Query"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="1"
+              DTS:ThreadHint="3"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Execute EDW Query"
@@ -23370,7 +23394,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
             <DTS:Executable
               DTS:refId="Package\SC Run all Queries in Parallel\FLC Iterate through EDW Queries\EST Insert EDW Results"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-              DTS:ThreadHint="1"
+              DTS:ThreadHint="3"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
               DTS:LocaleID="-1"
               DTS:ObjectName="EST Insert EDW Results"
@@ -23416,22 +23440,34 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:VariableName="User::vFLCEDWQuery"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{5F2D905A-657A-41DD-9F2A-8204CD966D6E}"
-              DTS:DTSID="{5F2D905A-657A-41DD-9F2A-8204CD966D6E}"
+              DTS:ObjectName="{A442E715-4BA4-48CA-9AF2-06F761E33D1E}"
+              DTS:DTSID="{A442E715-4BA4-48CA-9AF2-06F761E33D1E}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCDataSourceType"
+              DTS:ValueIndex="1"
+              DTS:ObjectName="{13BFFE54-CE33-4681-A40E-BA2C5BE8B62A}"
+              DTS:DTSID="{13BFFE54-CE33-4681-A40E-BA2C5BE8B62A}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCEDWQueryId"
+              DTS:ValueIndex="2"
+              DTS:ObjectName="{98FF4923-144B-48F6-84D8-92D6C90B78A7}"
+              DTS:DTSID="{98FF4923-144B-48F6-84D8-92D6C90B78A7}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCEDWTestId"
-              DTS:ValueIndex="1"
-              DTS:ObjectName="{14B8D88B-CCFD-4615-872D-D75AAE30DF92}"
-              DTS:DTSID="{14B8D88B-CCFD-4615-872D-D75AAE30DF92}"
+              DTS:ValueIndex="3"
+              DTS:ObjectName="{8DDE5F71-08B8-4553-AF33-430CE8515828}"
+              DTS:DTSID="{8DDE5F71-08B8-4553-AF33-430CE8515828}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCEDWQuery"
-              DTS:ValueIndex="3"
-              DTS:ObjectName="{B5F18242-BBB2-434E-8A6C-1709879383C0}"
-              DTS:DTSID="{B5F18242-BBB2-434E-8A6C-1709879383C0}"
+              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:ValueIndex="4"
+              DTS:ObjectName="{1B705C31-5BD8-49BD-8784-1269CEDBB2C1}"
+              DTS:DTSID="{1B705C31-5BD8-49BD-8784-1269CEDBB2C1}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23527,22 +23563,34 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:VariableName="User::vFLCStagingQuery"
               DTS:ValueIndex="0"
-              DTS:ObjectName="{E4115E03-053E-49ED-8AE5-FDF1178511D2}"
-              DTS:DTSID="{E4115E03-053E-49ED-8AE5-FDF1178511D2}"
+              DTS:ObjectName="{051889DC-F28B-40E7-BD56-4A5439036CCC}"
+              DTS:DTSID="{051889DC-F28B-40E7-BD56-4A5439036CCC}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCDataSourceType"
+              DTS:ValueIndex="1"
+              DTS:ObjectName="{327979D8-0086-4CA5-9F21-70F40BA46216}"
+              DTS:DTSID="{327979D8-0086-4CA5-9F21-70F40BA46216}"
+              DTS:CreationName="" />
+            <DTS:ForEachVariableMapping
+              DTS:VariableName="User::vFLCStagingQueryId"
+              DTS:ValueIndex="2"
+              DTS:ObjectName="{C9B5548A-CA5D-477E-8667-D6DF79EE6175}"
+              DTS:DTSID="{C9B5548A-CA5D-477E-8667-D6DF79EE6175}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
               DTS:VariableName="User::vFLCStagingTestId"
-              DTS:ValueIndex="1"
-              DTS:ObjectName="{3EC756D7-C10D-4ABF-8643-E846237E1ACB}"
-              DTS:DTSID="{3EC756D7-C10D-4ABF-8643-E846237E1ACB}"
+              DTS:ValueIndex="3"
+              DTS:ObjectName="{AFFDD39D-F563-40A5-87C1-EF181489C8FA}"
+              DTS:DTSID="{AFFDD39D-F563-40A5-87C1-EF181489C8FA}"
               DTS:CreationName="" />
             <DTS:ForEachVariableMapping
-              DTS:VariableName="User::vFLCStagingQuery"
-              DTS:ValueIndex="3"
-              DTS:ObjectName="{4B49BA1C-AC05-4850-A29A-7AF38AB6885F}"
-              DTS:DTSID="{4B49BA1C-AC05-4850-A29A-7AF38AB6885F}"
+              DTS:VariableName="User::vFLCFunctionalAreaId"
+              DTS:ValueIndex="4"
+              DTS:ObjectName="{89E99FC9-00E9-4DBB-868E-BBAF75BB82D3}"
+              DTS:DTSID="{89E99FC9-00E9-4DBB-868E-BBAF75BB82D3}"
               DTS:CreationName="" />
           </DTS:ForEachVariableMappings>
         </DTS:Executable>
@@ -23598,7 +23646,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         <NodeLayout
           Size="224,42"
           Id="Package\DFT Extract Balancing Queries"
-          TopLeft="411.25,30.0555555555555" />
+          TopLeft="408.25,11.0555555555555" />
         <NodeLayout
           Size="198,42"
           Id="Package\Fire Erroneous Records report subscription"
@@ -23644,10 +23692,10 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="260,138"
-          Size="260,181"
+          PanelSize="324,138"
+          Size="324,181"
           Id="Package\SC Run all Queries in Parallel\FLC Iterate through Cube Queries"
-          TopLeft="275.626984126984,19.547619047619" />
+          TopLeft="463.626984126984,19.547619047619" />
         <NodeLayout
           Size="218,42"
           Id="Package\SC Run all Queries in Parallel\FLC Iterate through Database Queries\EST Execute Database Query"
@@ -23681,8 +23729,8 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="280,138"
-          Size="280,181"
+          PanelSize="375,138"
+          Size="375,181"
           Id="Package\SC Run all Queries in Parallel\FLC Iterate through Database Queries"
           TopLeft="24,19" />
         <NodeLayout
@@ -23721,7 +23769,7 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           PanelSize="244,146"
           Size="244,189"
           Id="Package\SC Run all Queries in Parallel\FLC Iterate through EDW Queries"
-          TopLeft="272,212.547619047619" />
+          TopLeft="462,220.547619047619" />
         <NodeLayout
           Size="210,42"
           Id="Package\SC Run all Queries in Parallel\FLC Staging Queries\EST Execute Staging Query"
@@ -23755,37 +23803,31 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="241,146"
-          Size="241,189"
+          PanelSize="376,146"
+          Size="376,189"
           Id="Package\SC Run all Queries in Parallel\FLC Staging Queries"
           TopLeft="20.9603174603178,209.547619047619" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="541,457"
-          Size="541,500"
+          PanelSize="793,465"
+          Size="793,508"
           Id="Package\SC Run all Queries in Parallel"
           TopLeft="118.027777777778,93.3888888888889" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="411.25,51.0555555555555">
+          TopLeft="517.388888888889,53.0555555555555">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-22.722222222222,42.3333333333334"
+              EndConnector="0,40.3333333333334"
               Start="0,0"
-              End="-22.722222222222,34.8333333333334">
+              End="0,32.8333333333334">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-18.722222222222,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-18.722222222222,0"
-                    Point2="-22.722222222222,0"
-                    Point3="-22.722222222222,4" />
-                  <mssgle:LineSegment
-                    End="-22.722222222222,34.8333333333334" />
+                    End="0,32.8333333333334" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -23796,30 +23838,24 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="253.777777777778,546.388888888889">
+          TopLeft="118.027777777778,347.388888888889">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-120.043650793651,32.4444444444443"
+              EndConnector="15.7063492063486,231.444444444444"
               Start="0,0"
-              End="-120.043650793651,24.9444444444443">
+              End="15.7063492063486,223.944444444444">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,6.92209134118616" />
+                    End="11.7063492063486,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,6.92209134118616"
-                    Point2="0,10.9220913411862"
-                    Point3="-4,10.9220913411862" />
+                    Point1="11.7063492063486,0"
+                    Point2="15.7063492063486,0"
+                    Point3="15.7063492063486,4" />
                   <mssgle:LineSegment
-                    End="-116.043650793651,10.9220913411862" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-116.043650793651,10.9220913411862"
-                    Point2="-120.043650793651,10.9220913411862"
-                    Point3="-120.043650793651,14.9220913411862" />
-                  <mssgle:LineSegment
-                    End="-120.043650793651,24.9444444444443" />
+                    End="15.7063492063486,223.944444444444" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -23830,30 +23866,30 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="385.527777777778,546.388888888889">
+          TopLeft="383.694444444445,601.388888888889">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-20.833333333333,27.8888888888886"
+              EndConnector="-18.9999999999997,-27.1111111111119"
               Start="0,0"
-              End="-20.833333333333,20.3888888888886">
+              End="-18.9999999999997,-19.6111111111119">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.94444444444434" />
+                    End="0,-6.87719887015161" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.94444444444434"
-                    Point2="0,13.9444444444443"
-                    Point3="-4,13.9444444444443" />
+                    Point1="0,-6.87719887015161"
+                    Point2="0,-10.8771988701516"
+                    Point3="-4,-10.8771988701516" />
                   <mssgle:LineSegment
-                    End="-16.833333333333,13.9444444444443" />
+                    End="-14.9999999999997,-10.8771988701516" />
                   <mssgle:CubicBezierSegment
-                    Point1="-16.833333333333,13.9444444444443"
-                    Point2="-20.833333333333,13.9444444444443"
-                    Point3="-20.833333333333,17.9444444444443" />
+                    Point1="-14.9999999999997,-10.8771988701516"
+                    Point2="-18.9999999999997,-10.8771988701516"
+                    Point3="-18.9999999999997,-14.8771988701516" />
                   <mssgle:LineSegment
-                    End="-20.833333333333,20.3888888888886" />
+                    End="-18.9999999999997,-19.6111111111119" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -23864,30 +23900,30 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="517.277777777778,546.388888888889">
+          TopLeft="645.361111111111,601.388888888889">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="116.345238095238,25.8888888888887"
+              EndConnector="-11.7380952380953,-29.1111111111109"
               Start="0,0"
-              End="116.345238095238,18.3888888888887">
+              End="-11.7380952380953,-21.6111111111109">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,4.71523041950809" />
+                    End="0,-7.67961518024433" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,4.71523041950809"
-                    Point2="0,8.71523041950809"
-                    Point3="4,8.71523041950809" />
+                    Point1="0,-7.67961518024433"
+                    Point2="0,-11.6796151802443"
+                    Point3="-4,-11.6796151802443" />
                   <mssgle:LineSegment
-                    End="112.345238095238,8.71523041950809" />
+                    End="-7.7380952380953,-11.6796151802443" />
                   <mssgle:CubicBezierSegment
-                    Point1="112.345238095238,8.71523041950809"
-                    Point2="116.345238095238,8.71523041950809"
-                    Point3="116.345238095238,12.7152304195081" />
+                    Point1="-7.7380952380953,-11.6796151802443"
+                    Point2="-11.7380952380953,-11.6796151802443"
+                    Point3="-11.7380952380953,-15.6796151802443" />
                   <mssgle:LineSegment
-                    End="116.345238095238,18.3888888888887" />
+                    End="-11.7380952380953,-21.6111111111109" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -23905,29 +23941,65 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="181,42"
-          Id="Package\DFT Extract Balancing Queries\RD EDW Queries"
-          TopLeft="430.333333333333,301" />
-        <NodeLayout
-          Size="158,42"
-          Id="Package\DFT Extract Balancing Queries\RD Cube Queries"
-          TopLeft="635,301" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\DFT Extract Balancing Queries\OLE DB Queries"
-          TopLeft="329,116" />
+          Size="182,42"
+          Id="Package\DFT Extract Balancing Queries\RD Database Queries"
+          TopLeft="20,301" />
         <NodeLayout
           Size="181,42"
           Id="Package\DFT Extract Balancing Queries\RD Staing Queries"
           TopLeft="225.666666666667,301" />
         <NodeLayout
-          Size="182,42"
-          Id="Package\DFT Extract Balancing Queries\RD Database Queries"
-          TopLeft="20,301" />
+          Size="156,42"
+          Id="Package\DFT Extract Balancing Queries\OLE DB Queries"
+          TopLeft="329,116" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\DFT Extract Balancing Queries\RD Cube Queries"
+          TopLeft="635,301" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DFT Extract Balancing Queries\RD EDW Queries"
+          TopLeft="430.333333333333,301" />
         <NodeLayout
           Size="157,42"
           Id="Package\DFT Extract Balancing Queries\Conditional Split"
           TopLeft="335,205" />
+        <EdgeLayout
+          Id="Package\DFT Extract Balancing Queries.Paths[Staging]"
+          TopLeft="398.6,247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.4333333333334,54"
+              Start="0,0"
+              End="-82.4333333333334,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.1688951442646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.1688951442646"
+                    Point2="0,24.1688951442646"
+                    Point3="-4,24.1688951442646" />
+                  <mssgle:LineSegment
+                    End="-78.4333333333334,24.1688951442646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.4333333333334,24.1688951442646"
+                    Point2="-82.4333333333334,24.1688951442646"
+                    Point3="-82.4333333333334,28.1688951442646" />
+                  <mssgle:LineSegment
+                    End="-82.4333333333334,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-58.2403190104167,29.1688951442646,34.0473046875,11.4677734375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT Extract Balancing Queries.Paths[OLE DB Source Output]"
           TopLeft="410.25,158">
@@ -24055,42 +24127,6 @@ inner join [CamargueSkiEDW].[Balancing].[Queries] as z on (x.Balancing_Query_ID 
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="116.0011328125,21.2528940338379,23.797734375,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT Extract Balancing Queries.Paths[Staging]"
-          TopLeft="398.6,247">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-82.4333333333334,54"
-              Start="0,0"
-              End="-82.4333333333334,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.1688951442646" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.1688951442646"
-                    Point2="0,24.1688951442646"
-                    Point3="-4,24.1688951442646" />
-                  <mssgle:LineSegment
-                    End="-78.4333333333334,24.1688951442646" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-78.4333333333334,24.1688951442646"
-                    Point2="-82.4333333333334,24.1688951442646"
-                    Point3="-82.4333333333334,28.1688951442646" />
-                  <mssgle:LineSegment
-                    End="-82.4333333333334,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-58.2403190104167,29.1688951442646,34.0473046875,11.4677734375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

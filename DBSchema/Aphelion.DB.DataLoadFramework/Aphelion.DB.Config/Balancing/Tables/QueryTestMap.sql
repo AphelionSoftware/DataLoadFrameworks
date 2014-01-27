@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[QueryTestMap]
+﻿CREATE TABLE [Balancing].[QueryTestMap]
 (
-	[QueryTestMapID] INT NOT NULL PRIMARY KEY, 
+	[QueryTestMapID] INT IDENTITY (1,1) NOT NULL PRIMARY KEY, 
     [TestID] INT NULL, 
     [QueryID] INT NULL, 
     CONSTRAINT [FK_QueryTestMap_Tests] FOREIGN KEY (TestID) REFERENCES Balancing.Tests(TestID), 
