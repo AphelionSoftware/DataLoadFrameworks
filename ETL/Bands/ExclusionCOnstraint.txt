@@ -1,0 +1,1 @@
+@EXCL_ExclusionTypeCode == "EVT"  ||@EXCL_ExclusionTypeCode == "MAX"  || @EXCL_ExclusionTypeCode == "MIN"  || @EXCL_ExclusionTypeCode == "COUNT"  || @EXCL_ExclusionTypeCode == "AVG"

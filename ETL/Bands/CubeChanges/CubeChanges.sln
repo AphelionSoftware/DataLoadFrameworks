@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{6870E480-7721-4708-BFB8-9AE898AA21B3}") = "CubeChanges", "CubeChanges\CubeChanges.smproj", "{4047A737-A23E-4E9A-B2EF-714F9B8CCD6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|x86 = Development|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4047A737-A23E-4E9A-B2EF-714F9B8CCD6C}.Development|x86.ActiveCfg = Development|x86
+		{4047A737-A23E-4E9A-B2EF-714F9B8CCD6C}.Development|x86.Build.0 = Development|x86
+		{4047A737-A23E-4E9A-B2EF-714F9B8CCD6C}.Development|x86.Deploy.0 = Development|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
