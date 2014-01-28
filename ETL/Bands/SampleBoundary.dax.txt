@@ -1,0 +1,15 @@
+EVALUATE (
+	SUMMARIZE(		
+		FILTER( 
+			ADDCOLUMNS( 	ActivityDetails		
+			, "KeyField" , ActivityDetails[ActivityDetailKey]
+			, "ValueField" ,ActivityDetails[MaxSpeed] 
+			)		
+		,		
+		ActivityDetails[MaxSpeed] > 100 
+		)
+	, [KeyField]
+	, [ValueField]
+	)
+
+)

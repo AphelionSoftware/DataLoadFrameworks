@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>Aphelion.DB.Scheduler</RootNamespace>
     <AssemblyName>Aphelion.DB.Scheduler</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,22 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Schedule.sql" />
+    <Build Include="dbo\Tables\ScheduleDetail.sql" />
+    <Build Include="dbo\Stored Procedures\AddSchedule.sql" />
+    <None Include="dbo\Stored Procedures\CheckSchedule.sql" />
+    <None Include="dbo\Stored Procedures\ForceSchedule.sql" />
+    <Build Include="dbo\User Defined Types\TableListType.sql" />
+    <Build Include="dbo\Tables\Application.sql" />
+    <Build Include="dbo\User Defined Types\PackageLoadStepType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Aphelion.DB.Scheduler.publish.xml" />
   </ItemGroup>
 </Project>

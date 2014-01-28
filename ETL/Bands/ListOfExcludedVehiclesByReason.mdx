@@ -1,0 +1,33 @@
+EVALUATE ( 
+ SUMMARIZE(      
+ FILTER(    
+ ADDCOLUMNS(       ActivityDetailsExclusion      
+	, "KeyField" , ActivityDetailsExclusion[VehicleKey]    
+	, "ValueField" , ActivityDetailsExclusion[FirstExclusionReasonID] 
+	, "Reason", CALCULATE(
+		FirstNonBlank(ExclusionReasons[ExclusionReasonName],1=1)
+		,FILTER( ExclusionReasons,
+			ExclusionReasons[ExclusionReasonKey] = ActivityDetailsExclusion[FirstExclusionReasonID]
+		)
+		)
+	,"ReasonID",  ActivityDetailsExclusion[FirstExclusionReasonID]
+	, "VehicleKey" , ActivityDetailsExclusion[VehicleKey]    
+	,"Number", CALCULATE(  
+		COUNT  (ActivityDetailsExclusion[FirstExclusionReasonID])    
+		,  FILTER(  ALL(ActivityDetailsExclusion)      
+			, ActivityDetailsExclusion[ActivityExclusionDateKey] = EARLIER( ActivityDetailsExclusion[ActivityExclusionDateKey] )    
+			&& ActivityDetailsExclusion[VehicleKey] = EARLIER( ActivityDetailsExclusion[VehicleKey] )    )      ) 
+	
+  )     
+ ,     CALCULATE(  
+	COUNT  (ActivityDetailsExclusion[FirstExclusionReasonID])    
+	,  FILTER(  ALL(ActivityDetailsExclusion)      
+		, ActivityDetailsExclusion[ActivityExclusionDateKey] = EARLIER( ActivityDetailsExclusion[ActivityExclusionDateKey] )    
+		&& ActivityDetailsExclusion[VehicleKey] = EARLIER( ActivityDetailsExclusion[VehicleKey] )    )      ) 
+		>         
+		/*Limiting number*/100*/*Make this a parameter*/           
+		)     
+		, [KeyField]  , [ValueField], [VehicleKey], [Number], [Reason], [ReasonID]  )  )
+
+
+		ORDER BY [Number] DESC

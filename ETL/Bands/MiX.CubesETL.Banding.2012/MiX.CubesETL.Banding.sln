@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "MiX.CubesETL.Banding", "MiX.CubesETL.Banding\MiX.CubesETL.Banding.dtproj", "{960F5BB3-894D-4F65-98E6-8F8ED6ACC9B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{960F5BB3-894D-4F65-98E6-8F8ED6ACC9B1}.Development|Default.ActiveCfg = Development
+		{960F5BB3-894D-4F65-98E6-8F8ED6ACC9B1}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

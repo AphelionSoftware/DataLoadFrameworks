@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MiX.CubesETL.Banding">
+</Property><Property Name="Solution File" Value="D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\MiX.CubesETL.Banding.sln">
+</Property><Property Name="User Options File" Value="D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\MiX.CubesETL.Banding.suo">
+</Property><Property Name="Date" Value="15 April 2013">
+</Property><Property Name="Time" Value="16:47 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="MiX.CubesETL.Banding.sln" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding.sln">
+</Event><Event ErrorLevel="0" Project="" Source="MiX.CubesETL.Banding.suo" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding.suo">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="MiX CubesETL Banding.database" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding\MiX CubesETL Banding.database">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="Template.dtsx" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding\Template.dtsx">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="PackageAbstraction.dtsx" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding\PackageAbstraction.dtsx">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="Exclusions_Controller.dtsx" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding\Exclusions_Controller.dtsx">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="CubeToDB.dtsx" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding\CubeToDB.dtsx">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="MiX.CubesETL.Banding.dtproj" Description="File successfully backed up as D:\Dropbox\Clients\MixTelematics\Development\Bands\MiX.CubesETL.Banding.2012\Backup\MiX.CubesETL.Banding\MiX.CubesETL.Banding.dtproj">
+</Event><Event ErrorLevel="3" Project="MiX.CubesETL.Banding" Source="MiX.CubesETL.Banding.dtproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MiX.CubesETL.Banding" Source="MiX.CubesETL.Banding.dtproj" Description="Project converted successfully.">
+</Event><Event ErrorLevel="0" Project="" Source="MiX.CubesETL.Banding.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="MiX.CubesETL.Banding.sln" Description="Converted">
+</Event></UpgradeLog>

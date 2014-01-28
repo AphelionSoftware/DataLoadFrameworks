@@ -7,14 +7,14 @@
     <Name>Aphelion.DB.LoadQueue</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{481e868e-5ce2-40ae-8242-0e3197ac93b9}</ProjectGuid>
+    <ProjectGuid>{9226046e-0594-4e1b-baa4-fa88840eb0dc}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
     <RootNamespace>Aphelion.DB.LoadQueue</RootNamespace>
     <AssemblyName>Aphelion.DB.LoadQueue</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,41 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Application.sql" />
+    <Build Include="dbo\Tables\Status.sql" />
+    <Build Include="dbo\Tables\Table.sql" />
+    <Build Include="dbo\Tables\StepType.sql" />
+    <Build Include="dbo\Tables\PackageLoadStep.sql" />
+    <Build Include="dbo\Tables\PackageLoad.sql" />
+    <Build Include="dbo\Tables\DWLoaderStepDetails.sql" />
+    <None Include="dbo\Stored Procedures\CreateJob.sql" />
+    <None Include="dbo\Stored Procedures\EnqueueRequest.sql" />
+    <None Include="dbo\Stored Procedures\GetRequestParameters.sql" />
+    <None Include="dbo\Stored Procedures\ListApplications.sql" />
+    <None Include="dbo\Stored Procedures\ListJobs.sql" />
+    <None Include="dbo\Stored Procedures\ListTableDefinitions.sql" />
+    <None Include="dbo\Stored Procedures\PollProcessingQueue.sql" />
+    <None Include="dbo\Stored Procedures\ProcessBatch.sql" />
+    <None Include="dbo\Stored Procedures\QueryJobStatus.sql" />
+    <None Include="dbo\Stored Procedures\UpdateStatus.sql" />
+    <Build Include="dbo\Tables\Package.sql" />
+    <Build Include="dbo\Tables\QueueDetail.sql" />
+    <Build Include="dbo\Tables\Queue.sql" />
+    <Build Include="dbo\Tables\QueueLoadType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Aphelion.DB.LoadQueue.publish.xml" />
   </ItemGroup>
 </Project>
