@@ -58,4 +58,18 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Servers.sql" />
+    <Build Include="Databases.sql" />
+    <Build Include="Schemas.sql" />
+    <Build Include="Tables.sql" />
+    <Build Include="Columns.sql" />
+    <Build Include="CheckConstraints.sql" />
+    <Build Include="ForeignKeys.sql" />
+    <Build Include="ForeignKeyColumns.sql" />
+    <Build Include="IdentityColumns.sql" />
+    <Build Include="Indexes.sql" />
+    <Build Include="IndexColumns.sql" />
+    <Build Include="KeyConstraints.sql" />
+  </ItemGroup>
 </Project>
