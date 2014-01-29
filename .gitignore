@@ -67,3 +67,5 @@ packages/
 #Test files
 *.testsettings
 BusMatrixToDBSchema/SQLScript_1.sql
+SSIS/Aphelion.SSIS.Balancing.zip
+SSIS/Aphelion.SSIS.Balancing_20140128.zip
