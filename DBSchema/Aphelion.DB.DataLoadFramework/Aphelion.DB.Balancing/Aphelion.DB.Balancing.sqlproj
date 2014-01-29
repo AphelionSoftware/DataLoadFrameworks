@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Recovery>SIMPLE</Recovery>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -74,7 +75,6 @@
     <Build Include="Balancing\Tables\Tests.sql" />
     <Build Include="Security\Balancing.sql" />
     <Build Include="ETL\Sequence.sql" />
-    <Build Include="Balancing\Tables\QueryTestMap.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Aphelion.DB.Config.refactorlog" />
