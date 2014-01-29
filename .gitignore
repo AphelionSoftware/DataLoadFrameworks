@@ -67,3 +67,6 @@ packages/
 #Test files
 *.testsettings
 BusMatrixToDBSchema/SQLScript_1.sql
+
+#Dropbox
+.dropbox
