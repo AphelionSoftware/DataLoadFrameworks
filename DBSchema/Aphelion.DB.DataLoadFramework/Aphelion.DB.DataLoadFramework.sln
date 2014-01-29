@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aphelion.DB.LoadQueue", "Aphelion.DB.LoadQueue\Aphelion.DB.LoadQueue.sqlproj", "{481E868E-5CE2-40AE-8242-0E3197AC93B9}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aphelion.DB.LoadQueue", "Aphelion.DB.LoadQueue\Aphelion.DB.LoadQueue.sqlproj", "{9226046E-0594-4E1B-BAA4-FA88840EB0DC}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aphelion.DB.Scheduler", "Aphelion.DB.Scheduler\Aphelion.DB.Scheduler.sqlproj", "{96EB22C3-1E5B-481A-A01E-7F3A7F578B5B}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aphelion.DB.Config", "Aphelion.DB.Config\Aphelion.DB.Config.sqlproj", "{D9C93B98-BF98-4CAF-80ED-9D57898FD345}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aphelion.DB.Balancing", "Aphelion.DB.Config\Aphelion.DB.Balancing.sqlproj", "{D9C93B98-BF98-4CAF-80ED-9D57898FD345}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,12 +15,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{481E868E-5CE2-40AE-8242-0E3197AC93B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{481E868E-5CE2-40AE-8242-0E3197AC93B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{481E868E-5CE2-40AE-8242-0E3197AC93B9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{481E868E-5CE2-40AE-8242-0E3197AC93B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{481E868E-5CE2-40AE-8242-0E3197AC93B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{481E868E-5CE2-40AE-8242-0E3197AC93B9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9226046E-0594-4E1B-BAA4-FA88840EB0DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9226046E-0594-4E1B-BAA4-FA88840EB0DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9226046E-0594-4E1B-BAA4-FA88840EB0DC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9226046E-0594-4E1B-BAA4-FA88840EB0DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9226046E-0594-4E1B-BAA4-FA88840EB0DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9226046E-0594-4E1B-BAA4-FA88840EB0DC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{96EB22C3-1E5B-481A-A01E-7F3A7F578B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96EB22C3-1E5B-481A-A01E-7F3A7F578B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96EB22C3-1E5B-481A-A01E-7F3A7F578B5B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

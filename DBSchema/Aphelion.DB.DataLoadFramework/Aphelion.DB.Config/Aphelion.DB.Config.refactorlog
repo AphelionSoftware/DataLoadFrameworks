@@ -77,4 +77,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DataSourceTypeID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="81059634-8d8d-4355-a94b-557126561604" ChangeDateTime="01/29/2014 08:33:47">
+    <Property Name="ElementName" Value="[Balancing].[Queries].[DataSourceId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Balancing].[Queries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DataSourceID" />
+  </Operation>
 </Operations>
