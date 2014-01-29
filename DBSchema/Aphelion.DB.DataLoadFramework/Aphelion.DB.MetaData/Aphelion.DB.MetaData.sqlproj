@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Aphelion.DB.Balancing</Name>
+    <Name>Aphelion.DB.MetaData</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{d9c93b98-bf98-4caf-80ed-9d57898fd345}</ProjectGuid>
+    <ProjectGuid>{89249ea8-8770-4cd0-8453-e8b375b8bfe3}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Aphelion.DB.Config</RootNamespace>
-    <AssemblyName>Aphelion.DB.Config</AssemblyName>
+    <RootNamespace>Aphelion.DB.MetaData</RootNamespace>
+    <AssemblyName>Aphelion.DB.MetaData</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -57,26 +57,5 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Balancing" />
-    <Folder Include="Balancing\Tables" />
-    <Folder Include="ETL" />
-    <Folder Include="ETL\Tables" />
-    <Folder Include="Security" />
-    <Folder Include="Scripts" />
-    <Folder Include="Scripts\Post-Deployment" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="Balancing\Tables\DataSources.sql" />
-    <Build Include="Balancing\Tables\DataSourceTypes.sql" />
-    <Build Include="Balancing\Tables\FunctionalAreas.sql" />
-    <Build Include="Balancing\Tables\Queries.sql" />
-    <Build Include="Balancing\Tables\Reports.sql" />
-    <Build Include="Balancing\Tables\Tests.sql" />
-    <Build Include="Security\Balancing.sql" />
-    <Build Include="ETL\Sequence.sql" />
-    <Build Include="Balancing\Tables\QueryTestMap.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="Aphelion.DB.Config.refactorlog" />
   </ItemGroup>
 </Project>
