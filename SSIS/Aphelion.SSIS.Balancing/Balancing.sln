@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Balancing", "Balancing\Balancing.dtproj", "{412C54B8-89FD-4BD0-9A3B-60116AFD9C31}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SSIS_Balancing", "Balancing\SSIS_Balancing.dtproj", "{412C54B8-89FD-4BD0-9A3B-60116AFD9C31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
