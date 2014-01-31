@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Source] (
+    [Id]    INT   IDENTITY (1, 1) NOT NULL,
+    [Value] MONEY NULL,
+    CONSTRAINT [PK__Source__3214EC074F196B0F] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
