@@ -20,20 +20,27 @@
     */           
 -- =============================================
 CREATE PROCEDURE [dbo].[AddSchedule]
-      @strApplicationName		VARCHAR(255)
-	, @intQueueLoadTypeID		INT = NULL
-    , @tblTableList             [dbo].[TableListType] READONLY
+      @intApplicationID			INT
+	, @intQueueLoadTypeID		INT = NULL --from LoadQueue database
+    , @tblTableList             [dbo].[TableListType] READONLY --from LoadQueue database
+	, @intPackageLoadID			INT --from LoadQueue database
     , @strName                  VARCHAR(100)
     , @strDescription           VARCHAR(1000) = NULL
     , @strCreatedBy             VARCHAR(100)
-    , @strFrequency             VARCHAR(50) --D,W,M -> Daily, Weekly, Monthly
-    , @timTime                  TIME
+    , @intFrequencyTypeID       INT -- Daily, Weekly, Monthly
+	, @intFrequencyInterval		INT -- every x days/weeks/months
+    , @timStartTime             TIME
+	, @timEndTime             TIME
     , @dtStartDate              DATETIME = NULL -- default to GETDATE()
     , @dtEndDate                DATETIME = NULL
     , @strDayOfWeek             VARCHAR(50) = NULL
     , @intDayOfMonth            INT = NULL
-    , @intDailyFrequency        INT = NULL
-    , @strDailyFrequencyType    VARCHAR(50) = NULL -- Minutes, Hours, Seconds
+	, @intDailyFrequencyTypeID  INT = NULL -- Minutes, Hours, Seconds
+    , @intDailyFrequencyValue   INT = NULL
+	, @bitRunBalancing			BIT = 0
+	, @bitRunSchemaCompare		BIT = 0
+	, @bitRunFKChecks			BIT = 0
+    
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -59,7 +66,7 @@ BEGIN
             RAISERROR( 'Table list is empty', 11, 1)
 
         --check application exists
-        IF NOT EXISTS (SELECT 1 FROM [dbo].[Application] WHERE ApplicationName = @strApplicationName)
+        IF NOT EXISTS (SELECT 1 FROM [dbo].[Application] WHERE ApplicationID = @intApplicationID)
             RAISERROR( 'Application does not exist', 11, 1)
 
         --check table list contains valid tables
@@ -77,35 +84,37 @@ BEGIN
 
         --insert expected schedule entry
         INSERT INTO [dbo].Schedule
-        SELECT A.ApplicationID    --ApplicationID
+        SELECT @intApplicationID
+             , @strName
+             , @strDescription
 			 , @intQueueLoadTypeID
+			 , @intPackageLoadID
              , CASE WHEN @intTableListCount = 1
                     THEN 0
                     ELSE 1 END --IsBatch
-             , @strName
-             , @strDescription
-             , @strFrequency
-             , @timTime
+             , @intFrequencyTypeID
+			 , @intFrequencyInterval
+             , @timStartTime
+			 , @timEndTime
              , @dtStartDate
              , @dtEndDate
              , @strDayOfWeek
              , @intDayOfMonth
-             , @intDailyFrequency
-             , @strDailyFrequencyType
+			 , @bitRunBalancing
+			 , @bitRunSchemaCompare
+			 , @bitRunFKChecks
              , NULL --LastRunDate
 			 , 1 --Active
 			 , NULL
 			 , @strCreatedBy
 			 , NULL
 			 , NULL
-        FROM [dbo].[Application]    A
-        WHERE A.ApplicationName = @strApplicationName
 
         SET @intScheduleID = SCOPE_IDENTITY()
 
         --insert expected schedule detail entry
 		--add logic to check if table list or package load step list
-        INSERT INTO [dbo].ScheduleDetail ( ScheduleID
+        INSERT INTO [dbo].ScheduleCubeDetail ( ScheduleID
 										 , TableID
 										 , StartPartitionValue
 										 , EndPartitionValue

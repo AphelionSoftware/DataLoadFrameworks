@@ -86,7 +86,7 @@
     <None Include="dbo\Stored Procedures\QueryJobStatus.sql" />
     <None Include="dbo\Stored Procedures\UpdateStatus.sql" />
     <Build Include="dbo\Tables\Package.sql" />
-    <Build Include="dbo\Tables\QueueDetail.sql" />
+    <Build Include="dbo\Tables\QueueCubeDetail.sql" />
     <Build Include="dbo\Tables\Queue.sql" />
     <Build Include="dbo\Tables\QueueLoadType.sql" />
   </ItemGroup>

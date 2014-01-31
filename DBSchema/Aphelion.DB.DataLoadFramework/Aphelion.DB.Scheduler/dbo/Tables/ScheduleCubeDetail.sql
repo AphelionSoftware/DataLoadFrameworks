@@ -1,8 +1,7 @@
 ﻿/****************************************************************************************  
     COMMENTS:  
     ---------  
-    Synopsis     : All cube tables and source database table detail
-				   Specific for cube tables
+    Synopsis     : Schedule cube details - tables required for processing
     Author       : Geoffrey Smith Aphelion Software
     Date         : 28 Jan 2014
     Version      : 1.0
@@ -20,18 +19,17 @@
 
 **********************************************************************************************/
 
-CREATE TABLE [dbo].[Table] (
-    [TableID]              INT           IDENTITY (1, 1) NOT NULL,
-    [ApplicationID]   INT           NOT NULL,
-    [TableName]     VARCHAR (255) NOT NULL,
-    [CubeTableName]   VARCHAR (255) NOT NULL,
-    [IsPartitioned]   BIT           CONSTRAINT [DF_TableDefinition_IsPartitioned] DEFAULT ((0)) NOT NULL,
-    [PartitionColumn] VARCHAR (50)  NULL,
+CREATE TABLE [dbo].[ScheduleCubeDetail] (
+    [ScheduleCubeDetailID]		INT IDENTITY (1, 1) NOT NULL,
+    [ScheduleID]  INT            NOT NULL,
+    [TableID]             BIGINT NOT NULL, --From LoadQueue database
+    [StartPartitionValue] VARCHAR (1000) NULL,
+    [EndPartitionValue]   VARCHAR (1000) NULL,
 	[sys_CreatedOn]   DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_CreatedBy]   NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
     [sys_ModifiedOn]  DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_ModifiedBy]  NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
-    CONSTRAINT [PK_Table] PRIMARY KEY CLUSTERED ([TableID] ASC),
-    CONSTRAINT [FK_Table_Application] FOREIGN KEY ([ApplicationID]) REFERENCES [dbo].[Application] ([ApplicationID])
+    CONSTRAINT [FK_ScheduleCubeDetail_Schedule] FOREIGN KEY ([ScheduleID]) REFERENCES [dbo].[Schedule] ([ScheduleID]), 
+    CONSTRAINT [PK_ScheduleCubeDetail] PRIMARY KEY ([ScheduleCubeDetailID])
 );
 

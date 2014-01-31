@@ -63,18 +63,24 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Schedule.sql" />
-    <Build Include="dbo\Tables\ScheduleDetail.sql" />
+    <Build Include="dbo\Tables\ScheduleCubeDetail.sql" />
     <Build Include="dbo\Stored Procedures\AddSchedule.sql" />
     <None Include="dbo\Stored Procedures\CheckSchedule.sql" />
     <None Include="dbo\Stored Procedures\ForceSchedule.sql" />
     <Build Include="dbo\User Defined Types\TableListType.sql" />
     <Build Include="dbo\Tables\Application.sql" />
     <Build Include="dbo\User Defined Types\PackageLoadStepType.sql" />
+    <Build Include="dbo\Tables\FrequencyType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Aphelion.DB.Scheduler.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

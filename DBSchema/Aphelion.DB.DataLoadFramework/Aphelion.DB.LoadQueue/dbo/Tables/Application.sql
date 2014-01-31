@@ -28,6 +28,7 @@ CREATE TABLE [dbo].[Application] (
     [CubeServer] VARCHAR(255) NULL, 
     [CubeName] VARCHAR(255) NULL, 
 	[LogServer] VARCHAR(255) NULL,
+	[TargetMachine] NVARCHAR(500) NULL,
     [AdminEmail] VARCHAR(255) NULL, 
 	[sys_CreatedOn]   DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_CreatedBy]   NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
