@@ -2,6 +2,10 @@
     COMMENTS:  
     ---------  
     Synopsis     : Types of statuses - queued, busy, complete, failed
+				   -1 - Busy
+				   0 - Queued
+				   1 - Complete
+				   2 - Failed
     Author       : Geoffrey Smith Aphelion Software
     Date         : 28 Jan 2014
     Version      : 1.0

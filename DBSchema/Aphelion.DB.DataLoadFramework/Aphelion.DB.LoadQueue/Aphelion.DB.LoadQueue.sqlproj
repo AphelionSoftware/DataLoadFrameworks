@@ -70,7 +70,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Application.sql" />
     <Build Include="dbo\Tables\Status.sql" />
-    <Build Include="dbo\Tables\Table.sql" />
+    <Build Include="dbo\Tables\CubeTable.sql" />
     <Build Include="dbo\Tables\StepType.sql" />
     <Build Include="dbo\Tables\PackageLoadStep.sql" />
     <Build Include="dbo\Tables\PackageLoad.sql" />
@@ -81,14 +81,16 @@
     <None Include="dbo\Stored Procedures\ListApplications.sql" />
     <None Include="dbo\Stored Procedures\ListJobs.sql" />
     <None Include="dbo\Stored Procedures\ListTableDefinitions.sql" />
-    <None Include="dbo\Stored Procedures\PollProcessingQueue.sql" />
+    <Build Include="dbo\Stored Procedures\PollQueue.sql" />
     <None Include="dbo\Stored Procedures\ProcessBatch.sql" />
     <None Include="dbo\Stored Procedures\QueryJobStatus.sql" />
-    <None Include="dbo\Stored Procedures\UpdateStatus.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateQueueStatus.sql" />
     <Build Include="dbo\Tables\Package.sql" />
     <Build Include="dbo\Tables\QueueCubeDetail.sql" />
     <Build Include="dbo\Tables\Queue.sql" />
     <Build Include="dbo\Tables\QueueLoadType.sql" />
+    <Build Include="dbo\Stored Procedures\GetPackageLoadStep.sql" />
+    <Build Include="dbo\Stored Procedures\GetPackageLoadStepOrder.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />

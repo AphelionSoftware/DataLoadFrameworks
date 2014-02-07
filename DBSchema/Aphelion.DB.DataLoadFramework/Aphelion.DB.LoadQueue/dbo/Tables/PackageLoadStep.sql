@@ -2,7 +2,7 @@
     COMMENTS:  
     ---------  
     Synopsis     : Packages in a load as well as their step order
-				   Steps with same PackageLoadStepOrder can run in parallel
+				   Steps with same StepOrder can run in parallel
     Author       : Geoffrey Smith Aphelion Software
     Date         : 28 Jan 2014
     Version      : 1.0
