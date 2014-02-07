@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="100_PackageIterator"
   DTS:PackageType="5"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{6F07F40D-7EC9-4DAC-A3E5-F6723B0E6E6A}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{F3D6A4E4-43F2-45A7-B15F-D39014C99739}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:PackageParameters>
@@ -124,6 +124,15 @@
       DTS:ObjectName="intMaxParallel">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D7BA7DF-F495-4F6A-A1DD-FF0BBECE6962}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intNoOfPackages">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -254,7 +263,7 @@
           DTS:CreationName=""
           DTS:DTSID="{DDBC784B-2D53-418C-92D9-5AEC8ABD4714}"
           DTS:EvalOp="3"
-          DTS:Expression="@[User::intMaxParallel] &lt;= 1"
+          DTS:Expression="@[User::intNoOfPackages] == 1"
           DTS:From="Package\FELC_PackageLoadStepOrder\SCR_StartLoop"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -264,7 +273,7 @@
           DTS:CreationName=""
           DTS:DTSID="{BF337CCB-7872-47E9-AE32-6F419FA58A9B}"
           DTS:EvalOp="3"
-          DTS:Expression="@[User::intMaxParallel] &gt; 1"
+          DTS:Expression="@[User::intNoOfPackages] &gt; 1"
           DTS:From="Package\FELC_PackageLoadStepOrder\SCR_StartLoop"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -273,22 +282,28 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{20CA276C-83C4-4067-9123-9E2CE11DA34B}"
-          DTS:ObjectName="{20CA276C-83C4-4067-9123-9E2CE11DA34B}"
+          DTS:DTSID="{005F2673-098E-426F-9491-EB5BEA97F4E8}"
+          DTS:ObjectName="{005F2673-098E-426F-9491-EB5BEA97F4E8}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::intMaxParallel" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{46097A27-E31B-442A-999C-A6D0B95C7A50}"
-          DTS:ObjectName="{46097A27-E31B-442A-999C-A6D0B95C7A50}"
+          DTS:DTSID="{F7DAC49D-DBB9-4D6A-B563-8E26D5C29A21}"
+          DTS:ObjectName="{F7DAC49D-DBB9-4D6A-B563-8E26D5C29A21}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::intPackageLoadID" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{2D98A759-4CBE-4A46-9D0A-069B0DA0659E}"
-          DTS:ObjectName="{2D98A759-4CBE-4A46-9D0A-069B0DA0659E}"
+          DTS:DTSID="{025B8D25-5C9E-4EE9-ADD3-386735CFCAB4}"
+          DTS:ObjectName="{025B8D25-5C9E-4EE9-ADD3-386735CFCAB4}"
           DTS:ValueIndex="2"
           DTS:VariableName="User::intStepOrder" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{291CA007-BD63-44A9-B521-9B3F886838CE}"
+          DTS:ObjectName="{291CA007-BD63-44A9-B521-9B3F886838CE}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::intNoOfPackages" />
       </DTS:ForEachVariableMappings>
     </DTS:Executable>
     <DTS:Executable
@@ -369,40 +384,19 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="196,42"
           Id="Package\FELC_PackageLoadStepOrder\EPT_110_SequenceLoad"
           TopLeft="47,129" />
         <NodeLayout
-          Size="151,42"
-          Id="Package\FELC_PackageLoadStepOrder\SCR_StartLoop"
-          TopLeft="196,34" />
-        <AnnotationLayout
-          Text="Dummy task"
-          ParentId="Package\FELC_PackageLoadStepOrder"
-          FontInfo="{assembly:Null}"
-          Size="92,39"
-          Id="1d85f669-1bba-4aa2-b515-243a453a90b5"
-          TopLeft="366,37" />
-        <AnnotationLayout
-          Text="MaxParallel &lt;= 1"
-          ParentId="Package\FELC_PackageLoadStepOrder"
-          FontInfo="{assembly:Null}"
-          Size="114,39"
-          Id="c3f727d1-1c63-432a-a7c8-95db1749c073"
-          TopLeft="28,80" />
-        <AnnotationLayout
-          Text="MaxParallel &gt; 1"
-          ParentId="Package\FELC_PackageLoadStepOrder"
-          FontInfo="{assembly:Null}"
-          Size="106,39"
-          Id="c4aaf9ff-279b-4f42-b1dd-ea6187a4ee0e"
-          TopLeft="423,80" />
-        <NodeLayout
           Size="185,42"
           Id="Package\FELC_PackageLoadStepOrder\EPT_120_ParallelLoad"
           TopLeft="324,129" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\FELC_PackageLoadStepOrder\SCR_StartLoop"
+          TopLeft="196,34" />
         <EdgeLayout
           Id="Package\FELC_PackageLoadStepOrder.PrecedenceConstraints[Constraint]"
           TopLeft="247.666666666667,76">
@@ -475,6 +469,27 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task"
+          ParentId="Package\FELC_PackageLoadStepOrder"
+          FontInfo="{assembly:Null}"
+          Size="92,39"
+          Id="1d85f669-1bba-4aa2-b515-243a453a90b5"
+          TopLeft="366,37" />
+        <AnnotationLayout
+          Text="NoOfPackages &lt;= 1"
+          ParentId="Package\FELC_PackageLoadStepOrder"
+          FontInfo="{assembly:Null}"
+          Size="129,39"
+          Id="c3f727d1-1c63-432a-a7c8-95db1749c073"
+          TopLeft="28,80" />
+        <AnnotationLayout
+          Text="NoOfPackages &gt; 1"
+          ParentId="Package\FELC_PackageLoadStepOrder"
+          FontInfo="{assembly:Null}"
+          Size="121,39"
+          Id="c4aaf9ff-279b-4f42-b1dd-ea6187a4ee0e"
+          TopLeft="423,80" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
