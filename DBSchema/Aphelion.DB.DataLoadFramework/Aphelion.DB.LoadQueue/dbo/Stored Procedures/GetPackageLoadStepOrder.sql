@@ -31,6 +31,7 @@ BEGIN
 	SELECT PL.PackageLoadID
 		 , ISNULL(PL.MaxParallel,0) AS MaxParallel
 		 , PLS.StepOrder
+		 , COUNT(PLS.PackageLoadStepID) AS NoOfPackages
 	FROM [Queue]			AS Q
 	JOIN PackageLoad		AS PL
 		ON Q.PackageLoadID = PL.PackageLoadID

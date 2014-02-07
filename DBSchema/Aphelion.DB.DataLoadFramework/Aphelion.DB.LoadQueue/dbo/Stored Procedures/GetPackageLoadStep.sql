@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetPackageLoadStep]
 	   @intQueueID		INT
 	 , @intStepOrder	INT
-	 , @intStream		INT
+	 , @intStream		INT = NULL
 AS
 
 /****************************************************************************************  

@@ -46,6 +46,7 @@ BEGIN
 			 , @bitRunBalancing = Q.RunBalancing
 			 , @bitRunSchemaCompare = Q.RunSchemaCompare
 			 , @bitRunFKChecks = Q.RunFKChecks
+			 , @intPackageLoadID = Q.PackageLoadID
 		FROM [Queue]			AS Q
 		JOIN QueueLoadType		AS QLT
 			ON Q.QueueLoadTypeID = QLT.QueueLoadTypeID
