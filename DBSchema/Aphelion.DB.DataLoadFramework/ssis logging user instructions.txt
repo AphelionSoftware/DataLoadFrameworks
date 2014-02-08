@@ -1,0 +1,23 @@
+logging CTU to Azure, and several things are of note:
+ 
+You need to create a new user with access just to that DB.
+CREATE LOGIN on master first
+CREATE USER on DB next
+Then add the roles
+sp_addrolemember [db_ddladmin], ctuetl
+sp_addrolemember [db_datawriter], ctuetl
+ 
+When setting up logging in SSIS, you need to manually put the DB name in as this user only has rights to the user db
+ 
+And finally you do need to add the SSIS machine to the IP list using the AddIP app.
+ 
+ 
+Don't ever use the admin user for any of our Azure DBs in SSIS!
+ 
+You also need to CREATE USER CTUETL (or whatever) on the master specifically. This new user can see lists of DB, but cant select in them. SSIS fails if this right is not given
+
+Also grant user execute permission on sp_ssis_addlogentry
+ 
+
+Finally, for reporting from the catalog: http://ssisreportingpack.codeplex.com/
+ 
