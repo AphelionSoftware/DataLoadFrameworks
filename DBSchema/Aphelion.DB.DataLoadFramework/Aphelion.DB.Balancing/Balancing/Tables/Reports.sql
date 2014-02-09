@@ -1,16 +1,15 @@
 ﻿CREATE TABLE [Balancing].[Results] (
-    [RunID]            INT        NOT NULL,
-    [ResultID]         INT        IDENTITY (1, 1) NOT NULL,
-    [FunctionalAreaID] INT        NOT NULL,
-    [TestID]           INT        NOT NULL,
-    [QueryID]          INT        NOT NULL,
-    [TestResult]       FLOAT (53) NULL,
-    [TestDateTime]     DATETIME   DEFAULT (getdate()) NULL,
+    [RunID]        INT        NOT NULL,
+    [ResultID]     INT        IDENTITY (1, 1) NOT NULL,
+    [QueryID]      INT        NOT NULL,
+    [TestResult]   FLOAT (53) NULL,
+    [TestDateTime] DATETIME   CONSTRAINT [DF__Results__TestDat__1DE57479] DEFAULT (getdate()) NOT NULL,
     CONSTRAINT [PK_ResultID] PRIMARY KEY CLUSTERED ([ResultID] ASC),
-    CONSTRAINT [FK_Results_FunctionalAreaID] FOREIGN KEY ([FunctionalAreaID]) REFERENCES [Balancing].[FunctionalAreas] ([FunctionalAreaID]),
     CONSTRAINT [FK_Results_QueryID] FOREIGN KEY ([QueryID]) REFERENCES [Balancing].[Queries] ([QueryID]),
-    CONSTRAINT [FK_Results_TestID] FOREIGN KEY ([TestID]) REFERENCES [Balancing].[Tests] ([TestID])
+    CONSTRAINT [FK_Results_Run] FOREIGN KEY ([RunID]) REFERENCES [Balancing].[Run] ([RunID])
 );
+
+
 
 
 
