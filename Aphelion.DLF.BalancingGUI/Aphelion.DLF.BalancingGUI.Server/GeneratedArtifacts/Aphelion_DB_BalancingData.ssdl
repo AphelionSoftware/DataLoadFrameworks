@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Aphelion_DB_BalancingDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Aphelion_DB_BalancingDataStore">
+    <EntitySet Name="DataSources" EntityType="Aphelion_DB_BalancingDataStore.DataSource" store:Type="Tables" Schema="Balancing" Table="DataSources" />
+    <EntitySet Name="DataSourceTypes" EntityType="Aphelion_DB_BalancingDataStore.DataSourceType" store:Type="Tables" Schema="Balancing" Table="DataSourceTypes" />
+    <EntitySet Name="FunctionalAreas" EntityType="Aphelion_DB_BalancingDataStore.FunctionalArea" store:Type="Tables" Schema="Balancing" Table="FunctionalAreas" />
+    <EntitySet Name="Queries" EntityType="Aphelion_DB_BalancingDataStore.Query" store:Type="Tables" Schema="Balancing" Table="Queries" />
+    <EntitySet Name="Results" EntityType="Aphelion_DB_BalancingDataStore.Result" store:Type="Tables" Schema="Balancing" Table="Results" />
+    <EntitySet Name="Runs" EntityType="Aphelion_DB_BalancingDataStore.Run" store:Type="Tables" Schema="Balancing" Table="Run" />
+    <EntitySet Name="Tests" EntityType="Aphelion_DB_BalancingDataStore.Test" store:Type="Tables" Schema="Balancing" Table="Tests" />
+    <AssociationSet Name="FK_Queries_DataSourceId" Association="Aphelion_DB_BalancingDataStore.FK_Queries_DataSourceId">
+      <End Role="DataSources" EntitySet="DataSources" />
+      <End Role="Queries" EntitySet="Queries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceTypeId" Association="Aphelion_DB_BalancingDataStore.FK_DataSourceTypeId">
+      <End Role="DataSourceTypes" EntitySet="DataSourceTypes" />
+      <End Role="DataSources" EntitySet="DataSources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FunctionalAreaID" Association="Aphelion_DB_BalancingDataStore.FK_FunctionalAreaID">
+      <End Role="FunctionalAreas" EntitySet="FunctionalAreas" />
+      <End Role="Tests" EntitySet="Tests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_QueryID" Association="Aphelion_DB_BalancingDataStore.FK_Results_QueryID">
+      <End Role="Queries" EntitySet="Queries" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Run" Association="Aphelion_DB_BalancingDataStore.FK_Results_Run">
+      <End Role="Run" EntitySet="Runs" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queries_TestId" Association="Aphelion_DB_BalancingDataStore.FK_Queries_TestId">
+      <End Role="Tests" EntitySet="Tests" />
+      <End Role="Queries" EntitySet="Queries" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DataSource">
+    <Key>
+      <PropertyRef Name="DataSourceID" />
+    </Key>
+    <Property Name="DataSourceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DataSourceName" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="ConnectionString" Type="varchar" MaxLength="500" />
+    <Property Name="DataSourceTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataSourceType">
+    <Key>
+      <PropertyRef Name="DataSourceTypeID" />
+    </Key>
+    <Property Name="DataSourceTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DataSourceTypeName" Type="varchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="FunctionalArea">
+    <Key>
+      <PropertyRef Name="FunctionalAreaID" />
+    </Key>
+    <Property Name="FunctionalAreaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FunctionalAreaName" Type="varchar" Nullable="false" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Query">
+    <Key>
+      <PropertyRef Name="QueryID" />
+    </Key>
+    <Property Name="QueryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="QueryName" Type="varchar" MaxLength="300" />
+    <Property Name="QueryText" Type="varchar(max)" />
+    <Property Name="DataSourceID" Type="int" Nullable="false" />
+    <Property Name="TestID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ResultID" />
+    </Key>
+    <Property Name="ResultID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TestResult" Type="float" />
+    <Property Name="TestDateTime" Type="datetime" Nullable="false" />
+    <Property Name="QueryID" Type="int" Nullable="false" />
+    <Property Name="RunID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Run">
+    <Key>
+      <PropertyRef Name="RunID" />
+    </Key>
+    <Property Name="RunID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RunName" Type="varchar" MaxLength="300" />
+    <Property Name="RunTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="TestID" />
+    </Key>
+    <Property Name="TestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TestName" Type="varchar" MaxLength="300" />
+    <Property Name="ExpectedResult" Type="float" />
+    <Property Name="ExpectedResultText" Type="varchar(max)" />
+    <Property Name="FunctionalAreaID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Queries_DataSourceId">
+    <End Role="DataSources" Type="Aphelion_DB_BalancingDataStore.DataSource" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="Queries" Type="Aphelion_DB_BalancingDataStore.Query" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSources">
+        <PropertyRef Name="DataSourceID" />
+      </Principal>
+      <Dependent Role="Queries">
+        <PropertyRef Name="DataSourceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceTypeId">
+    <End Role="DataSourceTypes" Type="Aphelion_DB_BalancingDataStore.DataSourceType" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="DataSources" Type="Aphelion_DB_BalancingDataStore.DataSource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSourceTypes">
+        <PropertyRef Name="DataSourceTypeID" />
+      </Principal>
+      <Dependent Role="DataSources">
+        <PropertyRef Name="DataSourceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FunctionalAreaID">
+    <End Role="FunctionalAreas" Type="Aphelion_DB_BalancingDataStore.FunctionalArea" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="Tests" Type="Aphelion_DB_BalancingDataStore.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FunctionalAreas">
+        <PropertyRef Name="FunctionalAreaID" />
+      </Principal>
+      <Dependent Role="Tests">
+        <PropertyRef Name="FunctionalAreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_QueryID">
+    <End Role="Queries" Type="Aphelion_DB_BalancingDataStore.Query" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="Results" Type="Aphelion_DB_BalancingDataStore.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Queries">
+        <PropertyRef Name="QueryID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="QueryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Run">
+    <End Role="Run" Type="Aphelion_DB_BalancingDataStore.Run" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="Results" Type="Aphelion_DB_BalancingDataStore.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Run">
+        <PropertyRef Name="RunID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="RunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queries_TestId">
+    <End Role="Tests" Type="Aphelion_DB_BalancingDataStore.Test" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="Queries" Type="Aphelion_DB_BalancingDataStore.Query" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tests">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="Queries">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

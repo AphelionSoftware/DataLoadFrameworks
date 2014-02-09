@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="FunctionalArea">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="FunctionalAreaID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="FunctionalAreaName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="300" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Tests"
+        Association="FK_FunctionalAreaID"
+        FromEnd="FunctionalAreas"
+        ToEnd="Tests" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_FunctionalAreaID">
+    <AssociationEnd
+      Name="FunctionalAreas"
+      Multiplicity="One"
+      EntityType="FunctionalArea">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Tests"
+      Multiplicity="Many"
+      EntityType="Test" />
+  </Association>
+  <EntityContainer
+    Name="Aphelion_DB_BalancingData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="FunctionalAreas"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="FunctionalArea" />
+    <AssociationSet
+      Name="FK_FunctionalAreaID"
+      Association="FK_FunctionalAreaID">
+      <AssociationSetEnd
+        Name="FunctionalAreas"
+        EntitySet="FunctionalAreas" />
+      <AssociationSetEnd
+        Name="Tests"
+        EntitySet="Tests" />
+    </AssociationSet>
+    <QueryOperation
+      Name="FunctionalAreas_Single"
+      ReturnType="FunctionalArea">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="FunctionalAreaID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="FunctionalAreaID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="FunctionalAreas" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="FunctionalAreaID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'FunctionalAreaID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="FunctionalAreas_SingleOrDefault"
+      ReturnType="FunctionalArea">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="FunctionalAreaID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="FunctionalAreaID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="FunctionalAreas" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="FunctionalAreaID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'FunctionalAreaID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="Aphelion_DB_BalancingDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="FunctionalAreas">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="Balancing"
+          Table="FunctionalAreas" />
+        <SsdlProperty
+          Name="FunctionalAreaID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="FunctionalArea/Properties[FunctionalAreaID]" />
+        <SsdlProperty
+          MaxLength="300"
+          Name="FunctionalAreaName"
+          Nullable="False"
+          Type="varchar"
+          Property="FunctionalArea/Properties[FunctionalAreaName]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_FunctionalAreaID">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_FunctionalAreaID" />
+        <SsdlAssociationSetEnd
+          End="Aphelion_DB_BalancingData/Members[FK_FunctionalAreaID]/Members[FunctionalAreas]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="FunctionalAreaID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="Aphelion_DB_BalancingData/Members[FK_FunctionalAreaID]/Members[Tests]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="FunctionalAreaID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\DataSources.lsml" Checksum="242CA159D0FF00B8BCB019E5E5ABCC94E9EE00C294E30D29F33BA68ABF302D42" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\DataSourceTypes.lsml" Checksum="3868F766ECEDC08451C764F31757EB27A45CB2B6A044AB2C1A91DA4CB8073770" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\FunctionalAreas.lsml" Checksum="7D477FF13FF74838F6596D8BB94B89DA551A228AD8C6BD67DE853AB3B05D0D81" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\Queries.lsml" Checksum="288E7814F83C3A070BA948EAE08BB55CF2386D8D92D46C6B3AEF47272C5E5A0C" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\Results.lsml" Checksum="D0B5BF047FA85A1ABBA8D99359467D5A77CC1385C70A4B4FB169CF770CF87643" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\Runs.lsml" Checksum="EF01004666D1FD10C6CDFF12F2ED4F434B5B95FA09185C755DE5F58AD0FAD4F9" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\DataSources\Aphelion_DB_BalancingData\Tests.lsml" Checksum="FE913D1B2B36D7A072FC8D1842019AD26F7CED187C9EE9278520B62E3B2D4D6E" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\Properties\DataSources\Aphelion_DB_BalancingData.lsml" Checksum="81C29219C9697404EB0B723732605BD0254C6E0CAB64F7F359802115507D7C1C" />
+    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.Server\Properties\Service.lsml" Checksum="98179C51770E51DA91A4AEFC3CA55D60515FAE28FC1472A2EECB925E83943B52" />
+  </Documents>
+</ModelDocumentManifest>

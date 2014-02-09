@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="DataSource">
+    <Key>
+      <PropertyRef Name="DataSourceID" />
+    </Key>
+    <Property Name="DataSourceID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataSourceName" Type="Edm.String" Nullable="false" MaxLength="250" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ConnectionString" Type="Edm.String" MaxLength="500" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="DataSourceTypeID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="DataSourceType" Relationship="LightSwitchApplication.FK_DataSourceTypeId" ToRole="DataSourceTypes" FromRole="DataSources" />
+    <NavigationProperty Name="Queries" Relationship="LightSwitchApplication.FK_Queries_DataSourceId" ToRole="Queries" FromRole="DataSources" />
+  </EntityType>
+  <EntityType Name="DataSourceType">
+    <Key>
+      <PropertyRef Name="DataSourceTypeID" />
+    </Key>
+    <Property Name="DataSourceTypeID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataSourceTypeName" Type="Edm.String" Nullable="false" MaxLength="250" Unicode="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="DataSources" Relationship="LightSwitchApplication.FK_DataSourceTypeId" ToRole="DataSources" FromRole="DataSourceTypes" />
+  </EntityType>
+  <EntityType Name="FunctionalArea">
+    <Key>
+      <PropertyRef Name="FunctionalAreaID" />
+    </Key>
+    <Property Name="FunctionalAreaID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FunctionalAreaName" Type="Edm.String" Nullable="false" MaxLength="300" Unicode="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Tests" Relationship="LightSwitchApplication.FK_FunctionalAreaID" ToRole="Tests" FromRole="FunctionalAreas" />
+  </EntityType>
+  <EntityType Name="Query">
+    <Key>
+      <PropertyRef Name="QueryID" />
+    </Key>
+    <Property Name="QueryID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QueryName" Type="Edm.String" MaxLength="300" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="QueryText" Type="Edm.String" MaxLength="Max" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="DataSourceID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="TestID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="DataSource" Relationship="LightSwitchApplication.FK_Queries_DataSourceId" ToRole="DataSources" FromRole="Queries" />
+    <NavigationProperty Name="Test" Relationship="LightSwitchApplication.FK_Queries_TestId" ToRole="Tests" FromRole="Queries" />
+    <NavigationProperty Name="Results" Relationship="LightSwitchApplication.FK_Results_QueryID" ToRole="Results" FromRole="Queries" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ResultID" />
+    </Key>
+    <Property Name="ResultID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestResult" Type="Edm.Double" />
+    <Property Name="TestDateTime" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="QueryID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="RunID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Query" Relationship="LightSwitchApplication.FK_Results_QueryID" ToRole="Queries" FromRole="Results" />
+    <NavigationProperty Name="Run" Relationship="LightSwitchApplication.FK_Results_Run" ToRole="Run" FromRole="Results" />
+  </EntityType>
+  <EntityType Name="Run">
+    <Key>
+      <PropertyRef Name="RunID" />
+    </Key>
+    <Property Name="RunID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RunName" Type="Edm.String" MaxLength="300" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="RunTime" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Results" Relationship="LightSwitchApplication.FK_Results_Run" ToRole="Results" FromRole="Run" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="TestID" />
+    </Key>
+    <Property Name="TestID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestName" Type="Edm.String" MaxLength="300" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ExpectedResult" Type="Edm.Double" />
+    <Property Name="ExpectedResultText" Type="Edm.String" MaxLength="Max" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="FunctionalAreaID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="FunctionalArea" Relationship="LightSwitchApplication.FK_FunctionalAreaID" ToRole="FunctionalAreas" FromRole="Tests" />
+    <NavigationProperty Name="Queries" Relationship="LightSwitchApplication.FK_Queries_TestId" ToRole="Queries" FromRole="Tests" />
+  </EntityType>
+  <Association Name="FK_Queries_DataSourceId">
+    <End Role="DataSources" Type="LightSwitchApplication.DataSource" Multiplicity="1" />
+    <End Role="Queries" Type="LightSwitchApplication.Query" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSources">
+        <PropertyRef Name="DataSourceID" />
+      </Principal>
+      <Dependent Role="Queries">
+        <PropertyRef Name="DataSourceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceTypeId">
+    <End Role="DataSourceTypes" Type="LightSwitchApplication.DataSourceType" Multiplicity="1" />
+    <End Role="DataSources" Type="LightSwitchApplication.DataSource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSourceTypes">
+        <PropertyRef Name="DataSourceTypeID" />
+      </Principal>
+      <Dependent Role="DataSources">
+        <PropertyRef Name="DataSourceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FunctionalAreaID">
+    <End Role="FunctionalAreas" Type="LightSwitchApplication.FunctionalArea" Multiplicity="1" />
+    <End Role="Tests" Type="LightSwitchApplication.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FunctionalAreas">
+        <PropertyRef Name="FunctionalAreaID" />
+      </Principal>
+      <Dependent Role="Tests">
+        <PropertyRef Name="FunctionalAreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_QueryID">
+    <End Role="Queries" Type="LightSwitchApplication.Query" Multiplicity="1" />
+    <End Role="Results" Type="LightSwitchApplication.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Queries">
+        <PropertyRef Name="QueryID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="QueryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Run">
+    <End Role="Run" Type="LightSwitchApplication.Run" Multiplicity="1" />
+    <End Role="Results" Type="LightSwitchApplication.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Run">
+        <PropertyRef Name="RunID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="RunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queries_TestId">
+    <End Role="Tests" Type="LightSwitchApplication.Test" Multiplicity="1" />
+    <End Role="Queries" Type="LightSwitchApplication.Query" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tests">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="Queries">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Aphelion_DB_BalancingData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="DataSources" EntityType="LightSwitchApplication.DataSource" />
+    <EntitySet Name="DataSourceTypes" EntityType="LightSwitchApplication.DataSourceType" />
+    <EntitySet Name="FunctionalAreas" EntityType="LightSwitchApplication.FunctionalArea" />
+    <EntitySet Name="Queries" EntityType="LightSwitchApplication.Query" />
+    <EntitySet Name="Results" EntityType="LightSwitchApplication.Result" />
+    <EntitySet Name="Runs" EntityType="LightSwitchApplication.Run" />
+    <EntitySet Name="Tests" EntityType="LightSwitchApplication.Test" />
+    <AssociationSet Name="FK_Queries_DataSourceId" Association="LightSwitchApplication.FK_Queries_DataSourceId">
+      <End Role="DataSources" EntitySet="DataSources" />
+      <End Role="Queries" EntitySet="Queries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceTypeId" Association="LightSwitchApplication.FK_DataSourceTypeId">
+      <End Role="DataSourceTypes" EntitySet="DataSourceTypes" />
+      <End Role="DataSources" EntitySet="DataSources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FunctionalAreaID" Association="LightSwitchApplication.FK_FunctionalAreaID">
+      <End Role="FunctionalAreas" EntitySet="FunctionalAreas" />
+      <End Role="Tests" EntitySet="Tests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_QueryID" Association="LightSwitchApplication.FK_Results_QueryID">
+      <End Role="Queries" EntitySet="Queries" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Run" Association="LightSwitchApplication.FK_Results_Run">
+      <End Role="Run" EntitySet="Runs" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queries_TestId" Association="LightSwitchApplication.FK_Queries_TestId">
+      <End Role="Tests" EntitySet="Tests" />
+      <End Role="Queries" EntitySet="Queries" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping CdmEntityContainer="Aphelion_DB_BalancingData" StorageEntityContainer="Aphelion_DB_BalancingDataStore">
+    <EntitySetMapping Name="DataSources">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.DataSource)">
+        <MappingFragment StoreEntitySet="DataSources">
+          <ScalarProperty Name="DataSourceID" ColumnName="DataSourceID" />
+          <ScalarProperty Name="DataSourceName" ColumnName="DataSourceName" />
+          <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+          <ScalarProperty Name="DataSourceTypeID" ColumnName="DataSourceTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSourceTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.DataSourceType)">
+        <MappingFragment StoreEntitySet="DataSourceTypes">
+          <ScalarProperty Name="DataSourceTypeID" ColumnName="DataSourceTypeID" />
+          <ScalarProperty Name="DataSourceTypeName" ColumnName="DataSourceTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FunctionalAreas">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.FunctionalArea)">
+        <MappingFragment StoreEntitySet="FunctionalAreas">
+          <ScalarProperty Name="FunctionalAreaID" ColumnName="FunctionalAreaID" />
+          <ScalarProperty Name="FunctionalAreaName" ColumnName="FunctionalAreaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Queries">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Query)">
+        <MappingFragment StoreEntitySet="Queries">
+          <ScalarProperty Name="QueryID" ColumnName="QueryID" />
+          <ScalarProperty Name="QueryName" ColumnName="QueryName" />
+          <ScalarProperty Name="QueryText" ColumnName="QueryText" />
+          <ScalarProperty Name="DataSourceID" ColumnName="DataSourceID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Result)">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="TestResult" ColumnName="TestResult" />
+          <ScalarProperty Name="TestDateTime" ColumnName="TestDateTime" />
+          <ScalarProperty Name="QueryID" ColumnName="QueryID" />
+          <ScalarProperty Name="RunID" ColumnName="RunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Runs">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Run)">
+        <MappingFragment StoreEntitySet="Runs">
+          <ScalarProperty Name="RunID" ColumnName="RunID" />
+          <ScalarProperty Name="RunName" ColumnName="RunName" />
+          <ScalarProperty Name="RunTime" ColumnName="RunTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Test)">
+        <MappingFragment StoreEntitySet="Tests">
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="TestName" ColumnName="TestName" />
+          <ScalarProperty Name="ExpectedResult" ColumnName="ExpectedResult" />
+          <ScalarProperty Name="ExpectedResultText" ColumnName="ExpectedResultText" />
+          <ScalarProperty Name="FunctionalAreaID" ColumnName="FunctionalAreaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

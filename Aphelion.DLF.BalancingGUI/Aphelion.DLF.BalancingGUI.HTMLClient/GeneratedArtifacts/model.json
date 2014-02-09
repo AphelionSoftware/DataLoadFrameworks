@@ -1,0 +1,4622 @@
+﻿
+{
+  "modules":
+  [
+    {
+      "id": ":!module",
+      "name": "Microsoft.LightSwitch.MobileWeb",
+      "targetPlatform": "MobileWeb",
+      "globalItems":
+      [
+        {
+          "id": ":RootControl",
+          "name": "RootControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "properties":
+          [
+            {
+              "id": ":RootControl/Properties[BrowseOnly]",
+              "name": "BrowseOnly",
+              "attachedPropertyAvailability": "Default",
+              "isAttachable": true,
+              "isInheritable": true,
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": false
+              }
+            },
+            {
+              "id": ":RootControl/Properties[AttachedLabelPosition]",
+              "name": "AttachedLabelPosition",
+              "attachedPropertyAvailability": "Default",
+              "isAttachable": true,
+              "isInheritable": true,
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Top"
+              }
+            },
+            {
+              "id": ":RootControl/Properties[HorizontalAlignment]",
+              "name": "HorizontalAlignment",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Left"
+              }
+            },
+            {
+              "id": ":RootControl/Properties[WidthSizingMode]",
+              "name": "WidthSizingMode",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "StretchToContainer"
+              }
+            },
+            {
+              "id": ":RootControl/Properties[HeightSizingMode]",
+              "name": "HeightSizingMode",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "id": ":RootControl/Properties[Width]",
+              "name": "Width",
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": -1
+              }
+            },
+            {
+              "id": ":RootControl/Properties[Height]",
+              "name": "Height",
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": -1
+              }
+            },
+            {
+              "id": ":RootControl/Properties[MinWidth]",
+              "name": "MinWidth",
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": 0
+              }
+            },
+            {
+              "id": ":RootControl/Properties[MaxWidth]",
+              "name": "MaxWidth",
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": -1
+              }
+            },
+            {
+              "id": ":RootControl/Properties[MinHeight]",
+              "name": "MinHeight",
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": 0
+              }
+            },
+            {
+              "id": ":RootControl/Properties[MaxHeight]",
+              "name": "MaxHeight",
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": -1
+              }
+            },
+            {
+              "id": ":RootControl/Properties[FontStyle]",
+              "name": "FontStyle",
+              "attachedPropertyAvailability": "Default",
+              "isAttachable": true,
+              "isInheritable": true,
+              "isReadOnly": true,
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Normal"
+              }
+            },
+            {
+              "id": ":RootControl/Properties[TextAlignment]",
+              "name": "TextAlignment",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Left"
+              }
+            },
+            {
+              "id": ":RootControl/Properties[Tap]",
+              "name": "Tap",
+              "isAction": true
+            }
+          ]
+        },
+        {
+          "id": ":RootValueControl",
+          "name": "RootValueControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" },
+          "properties":
+          [
+            {
+              "id": ":RootValueControl/Properties[PlaceholderText]",
+              "name": "PlaceholderText",
+              "attachedPropertyAvailability": "Default",
+              "isAttachable": true,
+              "isInheritable": true,
+              "propertyType": { "__id": ":String" }
+            }
+          ]
+        },
+        {
+          "id": ":RootReadOnlyValueControl",
+          "name": "RootReadOnlyValueControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" },
+          "propertyOverrides":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MinWidth]" },
+              "defaultValueSource":
+              {
+                "value": 30
+              }
+            }
+          ]
+        },
+        {
+          "id": ":NoControl",
+          "name": "NoControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":FlipSwitchControl",
+          "name": "FlipSwitchControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" },
+          "properties":
+          [
+            {
+              "id": ":FlipSwitchControl/Properties[Options]",
+              "name": "Options",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "YesNoOption"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":DateTimePicker",
+          "name": "DateTimePicker",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" },
+          "properties":
+          [
+            {
+              "id": ":DateTimePicker/Properties[MinimumYear]",
+              "name": "MinimumYear",
+              "propertyType": { "__id": ":Int32" },
+              "defaultValueSource":
+              {
+                "value": 1930
+              }
+            },
+            {
+              "id": ":DateTimePicker/Properties[MaximumYear]",
+              "name": "MaximumYear",
+              "propertyType": { "__id": ":Int32" },
+              "defaultValueSource":
+              {
+                "value": 2030
+              }
+            },
+            {
+              "id": ":DateTimePicker/Properties[Clock]",
+              "name": "Clock",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "TwelveHour"
+              }
+            },
+            {
+              "id": ":DateTimePicker/Properties[MinuteIncrement]",
+              "name": "MinuteIncrement",
+              "propertyType": { "__id": ":Int32" },
+              "defaultValueSource":
+              {
+                "value": 5
+              }
+            },
+            {
+              "id": ":DateTimePicker/Properties[DatePickerEnabled]",
+              "name": "DatePickerEnabled",
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": true
+              }
+            },
+            {
+              "id": ":DateTimePicker/Properties[TimePickerEnabled]",
+              "name": "TimePickerEnabled",
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": true
+              }
+            }
+          ]
+        },
+        {
+          "id": ":DatePicker",
+          "name": "DatePicker",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" },
+          "properties":
+          [
+            {
+              "id": ":DatePicker/Properties[MinimumYear]",
+              "name": "MinimumYear",
+              "propertyType": { "__id": ":Int32" },
+              "defaultValueSource":
+              {
+                "value": 1930
+              }
+            },
+            {
+              "id": ":DatePicker/Properties[MaximumYear]",
+              "name": "MaximumYear",
+              "propertyType": { "__id": ":Int32" },
+              "defaultValueSource":
+              {
+                "value": 2030
+              }
+            }
+          ]
+        },
+        {
+          "id": ":TextBox",
+          "name": "TextBox",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":EmailAddressEditor",
+          "name": "EmailAddressEditor",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":PercentEditor",
+          "name": "PercentEditor",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":MoneyEditor",
+          "name": "MoneyEditor",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":PhoneNumberEditor",
+          "name": "PhoneNumberEditor",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":WebAddressEditor",
+          "name": "WebAddressEditor",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":EmailAddressViewer",
+          "name": "EmailAddressViewer",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":PercentViewer",
+          "name": "PercentViewer",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":MoneyViewer",
+          "name": "MoneyViewer",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":PhoneNumberViewer",
+          "name": "PhoneNumberViewer",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":WebAddressViewer",
+          "name": "WebAddressViewer",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":Image",
+          "name": "Image",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" },
+          "properties":
+          [
+            {
+              "id": ":Image/Properties[Scale]",
+              "name": "Scale",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Fill"
+              }
+            }
+          ],
+          "propertyOverrides":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FixedSize"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FixedSize"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[Width]" },
+              "defaultValueSource":
+              {
+                "value": 60
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[Height]" },
+              "defaultValueSource":
+              {
+                "value": 60
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MinWidth]" },
+              "defaultValueSource":
+              {
+                "value": 12
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MinHeight]" },
+              "defaultValueSource":
+              {
+                "value": 12
+              }
+            }
+          ]
+        },
+        {
+          "id": ":TextArea",
+          "name": "TextArea",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" },
+          "propertyOverrides":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FixedSize"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[Height]" },
+              "defaultValueSource":
+              {
+                "value": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": ":Paragraph",
+          "name": "Paragraph",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":Text",
+          "name": "Text",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootReadOnlyValueControl" }
+        },
+        {
+          "id": ":ValueDropdown",
+          "name": "ValueDropdown",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isPicker": true,
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootValueControl" }
+        },
+        {
+          "id": ":RootDetailsControl",
+          "name": "RootDetailsControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" }
+        },
+        {
+          "id": ":Summary",
+          "name": "Summary",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isViewer": true,
+          "supportedContentItemKind": "Details",
+          "baseControl": { "__id": ":RootDetailsControl" },
+          "propertyOverrides":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":DetailsModalPicker",
+          "name": "DetailsModalPicker",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "isPicker": true,
+          "supportedContentItemKind": "Details",
+          "baseControl": { "__id": ":RootDetailsControl" },
+          "childItemPropertySources":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+              "source":
+              {
+                "value": true
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[AttachedLabelPosition]" },
+              "source":
+              {
+                "value": "None"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MinWidth]" },
+              "source":
+              {
+                "value": 0
+              }
+            },
+            {
+              "property": { "__id": ":RootGroup/Properties[CompactMargins]" },
+              "source":
+              {
+                "value": true
+              }
+            }
+          ]
+        },
+        {
+          "id": ":RootCollectionControl",
+          "name": "RootCollectionControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" },
+          "properties":
+          [
+            {
+              "id": ":RootCollectionControl/Properties[ItemTap]",
+              "name": "ItemTap",
+              "isAction": true
+            },
+            {
+              "id": ":RootCollectionControl/Properties[ShowHeader]",
+              "name": "ShowHeader",
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": false
+              }
+            }
+          ]
+        },
+        {
+          "id": ":List",
+          "name": "List",
+          "attachedLabelSupport": "DisplayedByControl",
+          "isViewer": true,
+          "supportedContentItemKind": "Collection",
+          "baseControl": { "__id": ":RootCollectionControl" },
+          "childItemPropertySources":
+          [
+            {
+              "property": { "__id": ":RootGroup/Properties[CompactMargins]" },
+              "source":
+              {
+                "value": true
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+              "source":
+              {
+                "value": true
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[AttachedLabelPosition]" },
+              "source":
+              {
+                "value": "None"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "source":
+              {
+                "value": "FitToContent"
+              }
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": ":List/Properties[ShowArrows]",
+              "name": "ShowArrows",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Auto"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":Table",
+          "name": "Table",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Collection",
+          "baseControl": { "__id": ":RootCollectionControl" },
+          "childView": { "__id": ":TableRowLayout" },
+          "childItemPropertySources":
+          [
+            {
+              "property": { "__id": ":RootGroup/Properties[CompactMargins]" },
+              "source":
+              {
+                "value": false
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+              "source":
+              {
+                "value": true
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[AttachedLabelPosition]" },
+              "source":
+              {
+                "value": "None"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "source":
+              {
+                "value": "FitToContent"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":TileList",
+          "name": "TileList",
+          "attachedLabelSupport": "DisplayedByControl",
+          "isViewer": true,
+          "supportedContentItemKind": "Collection",
+          "baseControl": { "__id": ":RootCollectionControl" },
+          "childItemPropertySources":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+              "source":
+              {
+                "value": true
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[AttachedLabelPosition]" },
+              "source":
+              {
+                "value": "None"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "source":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "source":
+              {
+                "value": "FixedSize"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[Width]" },
+              "source":
+              {
+                "value": 235
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[Height]" },
+              "source":
+              {
+                "value": 150
+              }
+            },
+            {
+              "property": { "__id": ":RootGroup/Properties[CompactMargins]" },
+              "source":
+              {
+                "value": true
+              }
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": ":TileList/Properties[IsDynamicTile]",
+              "name": "IsDynamicTile",
+              "attachedPropertyAvailability": "ImmediateChildren",
+              "isAttachable": true,
+              "isInheritable": true,
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": true
+              }
+            }
+          ]
+        },
+        {
+          "id": ":Screen",
+          "name": "Screen",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Screen",
+          "baseControl": { "__id": ":RootControl" },
+          "properties":
+          [
+            {
+              "id": ":Screen/Properties[ShowAsDialog]",
+              "name": "ShowAsDialog",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": false
+              }
+            },
+            {
+              "id": ":Screen/Properties[HideTabTitles]",
+              "name": "HideTabTitles",
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": false
+              }
+            },
+            {
+              "id": ":Screen/Properties[ScreenType]",
+              "name": "ScreenType",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Browse"
+              }
+            },
+            {
+              "id": ":Screen/Properties[ShowSaveButton]",
+              "name": "ShowSaveButton",
+              "propertyType": { "__id": ":String" }
+            }
+          ]
+        },
+        {
+          "id": ":Pages",
+          "name": "Pages",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":RootControl" }
+        },
+        {
+          "id": ":TabPages",
+          "name": "TabPages",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":Pages" }
+        },
+        {
+          "id": ":DialogPages",
+          "name": "DialogPages",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":Pages" },
+          "childItemPropertySources":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "source":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "source":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MinWidth]" },
+              "source":
+              {
+                "value": 200
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+              "source":
+              {
+                "value": 400
+              }
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": ":DialogPages/Properties[DialogType]",
+              "name": "DialogType",
+              "attachedPropertyAvailability": "ImmediateChildren",
+              "isAttachable": true,
+              "propertyType": { "__id": ":String" }
+            }
+          ]
+        },
+        {
+          "id": ":RootGroup",
+          "name": "RootGroup",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" },
+          "properties":
+          [
+            {
+              "id": ":RootGroup/Properties[CompactMargins]",
+              "name": "CompactMargins",
+              "attachedPropertyAvailability": "Default",
+              "isAttachable": true,
+              "isInheritable": true,
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": false
+              }
+            }
+          ]
+        },
+        {
+          "id": ":RowsLayout",
+          "name": "RowsLayout",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":RootGroup" },
+          "properties":
+          [
+            {
+              "id": ":RowsLayout/Properties[WeightedRowHeight]",
+              "name": "WeightedRowHeight",
+              "attachedPropertyAvailability": "ImmediateChildren",
+              "isAttachable": true,
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": ":ColumnsLayout",
+          "name": "ColumnsLayout",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":RootGroup" },
+          "properties":
+          [
+            {
+              "id": ":ColumnsLayout/Properties[WeightedColumnWidth]",
+              "name": "WeightedColumnWidth",
+              "attachedPropertyAvailability": "ImmediateChildren",
+              "isAttachable": true,
+              "propertyType": { "__id": ":Double" },
+              "defaultValueSource":
+              {
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": ":TableRowLayout",
+          "name": "TableRowLayout",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":ColumnsLayout" },
+          "childItemPropertySources":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "source":
+              {
+                "value": "StretchToContainer"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":RootCommand",
+          "name": "RootCommand",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" },
+          "properties":
+          [
+            {
+              "id": ":RootCommand/Properties[HiddenIfDisabled]",
+              "name": "HiddenIfDisabled",
+              "propertyType": { "__id": ":Boolean" },
+              "defaultValueSource":
+              {
+                "value": false
+              }
+            },
+            {
+              "id": ":RootCommand/Properties[Icon]",
+              "name": "Icon",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "msls-star"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":Button",
+          "name": "Button",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Command",
+          "baseControl": { "__id": ":RootCommand" },
+          "defaultAction": { "__id": ":RootControl/Properties[Tap]" },
+          "propertyOverrides":
+          [
+            {
+              "isReadOnly": true,
+              "property": { "__id": ":RootControl/Properties[AttachedLabelPosition]" },
+              "defaultValueSource":
+              {
+                "value": "None"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "property": { "__id": ":RootControl/Properties[MinWidth]" },
+              "defaultValueSource":
+              {
+                "value": 90
+              }
+            }
+          ]
+        },
+        {
+          "id": ":CommandBarButton",
+          "name": "CommandBarButton",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Command",
+          "baseControl": { "__id": ":RootCommand" },
+          "defaultAction": { "__id": ":RootControl/Properties[Tap]" },
+          "propertyOverrides":
+          [
+            {
+              "property": { "__id": ":RootCommand/Properties[HiddenIfDisabled]" },
+              "defaultValueSource":
+              {
+                "value": true
+              }
+            },
+            {
+              "isReadOnly": true,
+              "property": { "__id": ":RootControl/Properties[AttachedLabelPosition]" },
+              "defaultValueSource":
+              {
+                "value": "None"
+              }
+            },
+            {
+              "isReadOnly": true,
+              "property": { "__id": ":RootControl/Properties[HeightSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            },
+            {
+              "isReadOnly": true,
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":RootCustomControl",
+          "name": "RootCustomControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Unset",
+          "baseControl": { "__id": ":RootControl" },
+          "properties":
+          [
+            {
+              "id": ":RootCustomControl/Properties[DisabledRendering]",
+              "name": "DisabledRendering",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Automatic"
+              }
+            },
+            {
+              "id": ":RootCustomControl/Properties[ReadOnlyRendering]",
+              "name": "ReadOnlyRendering",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Automatic"
+              }
+            },
+            {
+              "id": ":RootCustomControl/Properties[ValidationRendering]",
+              "name": "ValidationRendering",
+              "propertyType": { "__id": ":String" },
+              "defaultValueSource":
+              {
+                "value": "Automatic"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":ValueCustomControl",
+          "name": "ValueCustomControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "Value",
+          "baseControl": { "__id": ":RootCustomControl" },
+          "propertyOverrides":
+          [
+            {
+              "property": { "__id": ":RootControl/Properties[WidthSizingMode]" },
+              "defaultValueSource":
+              {
+                "value": "FitToContent"
+              }
+            }
+          ]
+        },
+        {
+          "id": ":GroupCustomControl",
+          "name": "GroupCustomControl",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Group",
+          "baseControl": { "__id": ":RootCustomControl" }
+        },
+        {
+          "id": ":CollectionCustomControl",
+          "name": "CollectionCustomControl",
+          "attachedLabelSupport": "DisplayedByControl",
+          "supportedContentItemKind": "Collection",
+          "baseControl": { "__id": ":RootCustomControl" }
+        },
+        {
+          "id": ":ScreenCustomControl",
+          "name": "ScreenCustomControl",
+          "attachedLabelSupport": "DisplayedByContainer",
+          "supportedContentItemKind": "ScreenContent",
+          "baseControl": { "__id": ":RootCustomControl" }
+        },
+        {
+          "id": ":HTMLShell",
+          "name": "HTMLShell"
+        },
+        {
+          "id": ":HTMLTheme",
+          "name": "HTMLTheme"
+        }
+      ]
+    },
+    {
+      "id": ":!module",
+      "name": "Microsoft.LightSwitch",
+      "globalItems":
+      [
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Binary",
+          "name": "Binary",
+          "jSType": "String",
+          "properties":
+          [
+            {
+              "id": ":Binary/Properties[Size]",
+              "name": "Size",
+              "propertyType": { "__id": ":Int32" }
+            }
+          ]
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Boolean",
+          "name": "Boolean",
+          "jSType": "Boolean"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Byte",
+          "name": "Byte",
+          "jSType": "Number"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":DateTime",
+          "name": "DateTime",
+          "jSType": "Date",
+          "methods":
+          [
+            {
+              "id": ":DateTime/Methods[AddDays]",
+              "name": "AddDays",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddDays]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[AddHours]",
+              "name": "AddHours",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddHours]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[AddMilliSeconds]",
+              "name": "AddMilliSeconds",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddMilliSeconds]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[AddMinutes]",
+              "name": "AddMinutes",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddMinutes]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[AddMonths]",
+              "name": "AddMonths",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddMonths]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[AddSeconds]",
+              "name": "AddSeconds",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddSeconds]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[AddYears]",
+              "name": "AddYears",
+              "returnType": { "__id": ":DateTime" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[AddYears]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":DateTime/Methods[CompareTo]",
+              "name": "CompareTo",
+              "returnType": { "__id": ":Int32" },
+              "parameters":
+              [
+                {
+                  "id": ":DateTime/Methods[CompareTo]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":DateTime" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": ":DateTime/Properties[Date]",
+              "name": "Date",
+              "propertyType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":DateTime/Properties[Day]",
+              "name": "Day",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[DayOfYear]",
+              "name": "DayOfYear",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[Hour]",
+              "name": "Hour",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[Millisecond]",
+              "name": "Millisecond",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[Minute]",
+              "name": "Minute",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[Month]",
+              "name": "Month",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[Second]",
+              "name": "Second",
+              "propertyType": { "__id": ":Int32" }
+            },
+            {
+              "id": ":DateTime/Properties[Year]",
+              "name": "Year",
+              "propertyType": { "__id": ":Int32" }
+            }
+          ]
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Decimal",
+          "name": "Decimal",
+          "jSType": "String"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Double",
+          "name": "Double",
+          "jSType": "Number"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Guid",
+          "name": "Guid",
+          "jSType": "String"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Int16",
+          "name": "Int16",
+          "jSType": "Number"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Int32",
+          "name": "Int32",
+          "jSType": "Number"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Int64",
+          "name": "Int64",
+          "jSType": "String"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":RowVersion",
+          "name": "RowVersion",
+          "jSType": "Array"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":SByte",
+          "name": "SByte",
+          "jSType": "Number"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":Single",
+          "name": "Single",
+          "jSType": "Number"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":String",
+          "name": "String",
+          "jSType": "String",
+          "methods":
+          [
+            {
+              "id": ":String/Methods[IndexOf]",
+              "name": "IndexOf",
+              "returnType": { "__id": ":Int32" },
+              "parameters":
+              [
+                {
+                  "id": ":String/Methods[IndexOf]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": ":String/Methods[LastIndexOf]",
+              "name": "LastIndexOf",
+              "returnType": { "__id": ":Int32" },
+              "parameters":
+              [
+                {
+                  "id": ":String/Methods[LastIndexOf]/Parameters[Value]",
+                  "name": "Value",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": ":String/Methods[Substring]",
+              "name": "Substring",
+              "returnType": { "__id": ":String" },
+              "parameters":
+              [
+                {
+                  "id": ":String/Methods[Substring]/Parameters[StartIndex]",
+                  "name": "StartIndex",
+                  "parameterType": { "__id": ":Int32" }
+                },
+                {
+                  "id": ":String/Methods[Substring]/Parameters[Length]",
+                  "name": "Length",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            },
+            {
+              "id": ":String/Methods[Concat]",
+              "name": "Concat",
+              "returnType": { "__id": ":String" },
+              "parameters":
+              [
+                {
+                  "id": ":String/Methods[Concat]/Parameters[Values]",
+                  "name": "Values",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": ":String/Methods[Remove]",
+              "name": "Remove",
+              "returnType": { "__id": ":String" },
+              "parameters":
+              [
+                {
+                  "id": ":String/Methods[Remove]/Parameters[StartIndex]",
+                  "name": "StartIndex",
+                  "parameterType": { "__id": ":Int32" }
+                },
+                {
+                  "id": ":String/Methods[Remove]/Parameters[Count]",
+                  "name": "Count",
+                  "parameterType": { "__id": ":Int32" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": ":String/Properties[Length]",
+              "name": "Length",
+              "propertyType": { "__id": ":Int32" }
+            }
+          ]
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":TimeSpan",
+          "name": "TimeSpan",
+          "jSType": "Object"
+        },
+        {
+          "__isPrimitiveType": 1,
+          "id": ":DateTimeOffset",
+          "name": "DateTimeOffset",
+          "jSType": "Date"
+        },
+        {
+          "id": ":Binary*",
+          "name": "Binary*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Binary" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Binary?",
+          "name": "Binary?",
+          "underlyingType": { "__id": ":Binary" }
+        },
+        {
+          "id": ":Binary?*",
+          "name": "Binary?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Binary?" }
+        },
+        {
+          "id": ":Boolean*",
+          "name": "Boolean*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Boolean" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Boolean?",
+          "name": "Boolean?",
+          "underlyingType": { "__id": ":Boolean" }
+        },
+        {
+          "id": ":Boolean?*",
+          "name": "Boolean?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Boolean?" }
+        },
+        {
+          "id": ":Byte*",
+          "name": "Byte*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Byte" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Byte?",
+          "name": "Byte?",
+          "underlyingType": { "__id": ":Byte" }
+        },
+        {
+          "id": ":Byte?*",
+          "name": "Byte?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Byte?" }
+        },
+        {
+          "id": ":DateTime*",
+          "name": "DateTime*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":DateTime" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":DateTime?",
+          "name": "DateTime?",
+          "underlyingType": { "__id": ":DateTime" }
+        },
+        {
+          "id": ":DateTime?*",
+          "name": "DateTime?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":DateTime?" }
+        },
+        {
+          "id": ":Decimal*",
+          "name": "Decimal*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Decimal" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Decimal?",
+          "name": "Decimal?",
+          "underlyingType": { "__id": ":Decimal" }
+        },
+        {
+          "id": ":Decimal?*",
+          "name": "Decimal?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Decimal?" }
+        },
+        {
+          "id": ":Double*",
+          "name": "Double*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Double" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Double?",
+          "name": "Double?",
+          "underlyingType": { "__id": ":Double" }
+        },
+        {
+          "id": ":Double?*",
+          "name": "Double?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Double?" }
+        },
+        {
+          "id": ":Guid*",
+          "name": "Guid*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Guid" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Guid?",
+          "name": "Guid?",
+          "underlyingType": { "__id": ":Guid" }
+        },
+        {
+          "id": ":Guid?*",
+          "name": "Guid?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Guid?" }
+        },
+        {
+          "id": ":Int16*",
+          "name": "Int16*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Int16" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Int16?",
+          "name": "Int16?",
+          "underlyingType": { "__id": ":Int16" }
+        },
+        {
+          "id": ":Int16?*",
+          "name": "Int16?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Int16?" }
+        },
+        {
+          "id": ":Int32*",
+          "name": "Int32*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Int32" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Int32?",
+          "name": "Int32?",
+          "underlyingType": { "__id": ":Int32" }
+        },
+        {
+          "id": ":Int32?*",
+          "name": "Int32?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Int32?" }
+        },
+        {
+          "id": ":Int64*",
+          "name": "Int64*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Int64" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Int64?",
+          "name": "Int64?",
+          "underlyingType": { "__id": ":Int64" }
+        },
+        {
+          "id": ":Int64?*",
+          "name": "Int64?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Int64?" }
+        },
+        {
+          "id": ":RowVersion*",
+          "name": "RowVersion*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":RowVersion" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":RowVersion?",
+          "name": "RowVersion?",
+          "underlyingType": { "__id": ":RowVersion" }
+        },
+        {
+          "id": ":RowVersion?*",
+          "name": "RowVersion?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":RowVersion?" }
+        },
+        {
+          "id": ":SByte*",
+          "name": "SByte*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":SByte" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":SByte?",
+          "name": "SByte?",
+          "underlyingType": { "__id": ":SByte" }
+        },
+        {
+          "id": ":SByte?*",
+          "name": "SByte?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":SByte?" }
+        },
+        {
+          "id": ":Single*",
+          "name": "Single*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Single" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Single?",
+          "name": "Single?",
+          "underlyingType": { "__id": ":Single" }
+        },
+        {
+          "id": ":Single?*",
+          "name": "Single?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Single?" }
+        },
+        {
+          "id": ":String*",
+          "name": "String*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":String" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":String?",
+          "name": "String?",
+          "underlyingType": { "__id": ":String" }
+        },
+        {
+          "id": ":String?*",
+          "name": "String?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":String?" }
+        },
+        {
+          "id": ":TimeSpan*",
+          "name": "TimeSpan*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":TimeSpan" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":TimeSpan?",
+          "name": "TimeSpan?",
+          "underlyingType": { "__id": ":TimeSpan" }
+        },
+        {
+          "id": ":TimeSpan?*",
+          "name": "TimeSpan?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":TimeSpan?" }
+        },
+        {
+          "id": ":DateTimeOffset*",
+          "name": "DateTimeOffset*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":DateTimeOffset" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":DateTimeOffset?",
+          "name": "DateTimeOffset?",
+          "underlyingType": { "__id": ":DateTimeOffset" }
+        },
+        {
+          "id": ":DateTimeOffset?*",
+          "name": "DateTimeOffset?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":DateTimeOffset?" }
+        },
+        {
+          "id": ":Date*",
+          "name": "Date*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Date" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Date?",
+          "name": "Date?",
+          "underlyingType": { "__id": ":Date" }
+        },
+        {
+          "id": ":Date?*",
+          "name": "Date?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Date?" }
+        },
+        {
+          "id": ":Person*",
+          "name": "Person*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Person" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": ":Person?",
+          "name": "Person?",
+          "underlyingType": { "__id": ":Person" }
+        },
+        {
+          "id": ":Person?*",
+          "name": "Person?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": ":Person?" }
+        },
+        {
+          "id": ":RelativeDates",
+          "name": "RelativeDates",
+          "globalValues":
+          [
+            {
+              "id": ":RelativeDates/GlobalValues[Now]",
+              "name": "Now",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[Today]",
+              "name": "Today",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[EndOfDay]",
+              "name": "EndOfDay",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[StartOfWeek]",
+              "name": "StartOfWeek",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[EndOfWeek]",
+              "name": "EndOfWeek",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[StartOfMonth]",
+              "name": "StartOfMonth",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[EndOfMonth]",
+              "name": "EndOfMonth",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[StartOfQuarter]",
+              "name": "StartOfQuarter",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[EndOfQuarter]",
+              "name": "EndOfQuarter",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[StartOfYear]",
+              "name": "StartOfYear",
+              "returnType": { "__id": ":DateTime" }
+            },
+            {
+              "id": ":RelativeDates/GlobalValues[EndOfYear]",
+              "name": "EndOfYear",
+              "returnType": { "__id": ":DateTime" }
+            }
+          ]
+        },
+        {
+          "id": ":RelativeDateTimeOffsetDates",
+          "name": "RelativeDateTimeOffsetDates",
+          "globalValues":
+          [
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[Now]",
+              "name": "Now",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[Today]",
+              "name": "Today",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[EndOfDay]",
+              "name": "EndOfDay",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[StartOfWeek]",
+              "name": "StartOfWeek",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[EndOfWeek]",
+              "name": "EndOfWeek",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[StartOfMonth]",
+              "name": "StartOfMonth",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[EndOfMonth]",
+              "name": "EndOfMonth",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[StartOfQuarter]",
+              "name": "StartOfQuarter",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[EndOfQuarter]",
+              "name": "EndOfQuarter",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[StartOfYear]",
+              "name": "StartOfYear",
+              "returnType": { "__id": ":DateTimeOffset" }
+            },
+            {
+              "id": ":RelativeDateTimeOffsetDates/GlobalValues[EndOfYear]",
+              "name": "EndOfYear",
+              "returnType": { "__id": ":DateTimeOffset" }
+            }
+          ]
+        },
+        {
+          "id": ":WellKnownPeople",
+          "name": "WellKnownPeople",
+          "globalValues":
+          [
+            {
+              "id": ":WellKnownPeople/GlobalValues[CurrentUser]",
+              "name": "CurrentUser",
+              "returnType": { "__id": ":Person" }
+            },
+            {
+              "id": ":WellKnownPeople/GlobalValues[AnonymousUser]",
+              "name": "AnonymousUser",
+              "returnType": { "__id": ":Person" }
+            }
+          ]
+        },
+        {
+          "__isSemanticType": 1,
+          "id": ":Date",
+          "name": "Date",
+          "underlyingType": { "__id": ":DateTime" }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": ":Person",
+          "name": "Person",
+          "underlyingType": { "__id": ":String" }
+        }
+      ]
+    },
+    {
+      "id": "Microsoft.LightSwitch.Extensions:!module",
+      "name": "Microsoft.LightSwitch.Extensions",
+      "globalItems":
+      [
+        {
+          "id": "Microsoft.LightSwitch.Extensions:EmailAddress*",
+          "name": "EmailAddress*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:EmailAddress" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:EmailAddress?",
+          "name": "EmailAddress?",
+          "underlyingType": { "__id": "Microsoft.LightSwitch.Extensions:EmailAddress" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:EmailAddress?*",
+          "name": "EmailAddress?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:EmailAddress?" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:Image*",
+          "name": "Image*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:Image" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:Image?",
+          "name": "Image?",
+          "underlyingType": { "__id": "Microsoft.LightSwitch.Extensions:Image" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:Image?*",
+          "name": "Image?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:Image?" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:Money*",
+          "name": "Money*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:Money" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:Money?",
+          "name": "Money?",
+          "underlyingType": { "__id": "Microsoft.LightSwitch.Extensions:Money" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:Money?*",
+          "name": "Money?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:Money?" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:PhoneNumber*",
+          "name": "PhoneNumber*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:PhoneNumber" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:PhoneNumber?",
+          "name": "PhoneNumber?",
+          "underlyingType": { "__id": "Microsoft.LightSwitch.Extensions:PhoneNumber" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:PhoneNumber?*",
+          "name": "PhoneNumber?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:PhoneNumber?" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:Percent*",
+          "name": "Percent*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:Percent" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:Percent?",
+          "name": "Percent?",
+          "underlyingType": { "__id": "Microsoft.LightSwitch.Extensions:Percent" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:Percent?*",
+          "name": "Percent?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:Percent?" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:WebAddress*",
+          "name": "WebAddress*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:WebAddress" }
+        },
+        {
+          "__isNullableType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:WebAddress?",
+          "name": "WebAddress?",
+          "underlyingType": { "__id": "Microsoft.LightSwitch.Extensions:WebAddress" }
+        },
+        {
+          "id": "Microsoft.LightSwitch.Extensions:WebAddress?*",
+          "name": "WebAddress?*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Microsoft.LightSwitch.Extensions:WebAddress?" }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:EmailAddress",
+          "name": "EmailAddress",
+          "underlyingType": { "__id": ":String" },
+          "Microsoft.LightSwitch.Extensions:@EmailAddressValidation": { "domainRequired": true }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:Image",
+          "name": "Image",
+          "underlyingType": { "__id": ":Binary" }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:Money",
+          "name": "Money",
+          "underlyingType": { "__id": ":Decimal" }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:PhoneNumber",
+          "name": "PhoneNumber",
+          "underlyingType": { "__id": ":String" },
+          "Microsoft.LightSwitch.Extensions:@PhoneNumberValidation": { "formats": "C (AAA) NNN-NNNN;C (AAA) NNNNNNN;CAAANNNNNNN;(AAA) NNN-NNNN;(AAA) NNNNNNN;AAANNNNNNN;NNN-NNNN;NNNNNNN" }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:Percent",
+          "name": "Percent",
+          "underlyingType": { "__id": ":Decimal" },
+          "Microsoft.LightSwitch.Extensions:@FormatParameter": { "decimalDigits": 2 },
+          ":@DecimalConstraint":
+          {
+            "scale": 9
+          }
+        },
+        {
+          "__isSemanticType": 1,
+          "id": "Microsoft.LightSwitch.Extensions:WebAddress",
+          "name": "WebAddress",
+          "underlyingType": { "__id": ":String" },
+          "Microsoft.LightSwitch.Extensions:@WebAddressValidation": { }
+        }
+      ]
+    },
+    {
+      "homeScreen": { "__id": "BrowseFunctionalAreas" },
+      "id": "!module",
+      "name": "LightSwitchApplication.Aphelion.DLF.BalancingGUI.HTMLClient",
+      "logo": "/Content/Images/logo.png",
+      "targetPlatform": "MobileWeb",
+      "version": "1.0.0.0",
+      "shell": { "__id": ":HTMLShell" },
+      "theme": { "__id": ":HTMLTheme" },
+      ":@ModuleNamespace": { "namespace": "LightSwitchApplication" },
+      ":@Partial": { "isPrimary": true },
+      ":@HomeScreen": { "value": { "__id": "BrowseFunctionalAreas" } },
+      "globalItems":
+      [
+        {
+          "id": "DataWorkspace",
+          "name": "DataWorkspace",
+          "members":
+          [
+            {
+              "id": "DataWorkspace/Members[Aphelion_DB_BalancingData]",
+              "name": "Aphelion_DB_BalancingData",
+              "entityContainer": { "__id": "Aphelion_DB_BalancingData" }
+            }
+          ]
+        },
+        {
+          "id": "LightSwitchServiceApplicationGroup",
+          "name": "LightSwitchServiceApplicationGroup"
+        },
+        {
+          "id": "Test*",
+          "name": "Test*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Test" }
+        },
+        {
+          "id": "CollectionView$Test",
+          "name": "CollectionView$Test",
+          "kind": "CollectionView",
+          "elementType": { "__id": "Test" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$Test/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "Test" }
+            },
+            {
+              "id": "CollectionView$Test/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "Test" }
+            },
+            {
+              "id": "CollectionView$Test/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$Test/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$Test/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$Test/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$Test/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$Test/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "Test" }
+            }
+          ]
+        },
+        {
+          "id": "Run*",
+          "name": "Run*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Run" }
+        },
+        {
+          "id": "CollectionView$Run",
+          "name": "CollectionView$Run",
+          "kind": "CollectionView",
+          "elementType": { "__id": "Run" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$Run/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "Run" }
+            },
+            {
+              "id": "CollectionView$Run/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "Run" }
+            },
+            {
+              "id": "CollectionView$Run/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$Run/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$Run/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$Run/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$Run/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$Run/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "Run" }
+            }
+          ]
+        },
+        {
+          "id": "Result*",
+          "name": "Result*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Result" }
+        },
+        {
+          "id": "CollectionView$Result",
+          "name": "CollectionView$Result",
+          "kind": "CollectionView",
+          "elementType": { "__id": "Result" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$Result/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "Result" }
+            },
+            {
+              "id": "CollectionView$Result/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "Result" }
+            },
+            {
+              "id": "CollectionView$Result/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$Result/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$Result/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$Result/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$Result/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$Result/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "Result" }
+            }
+          ]
+        },
+        {
+          "id": "Query*",
+          "name": "Query*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "Query" }
+        },
+        {
+          "id": "CollectionView$Query",
+          "name": "CollectionView$Query",
+          "kind": "CollectionView",
+          "elementType": { "__id": "Query" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$Query/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "Query" }
+            },
+            {
+              "id": "CollectionView$Query/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "Query" }
+            },
+            {
+              "id": "CollectionView$Query/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$Query/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$Query/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$Query/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$Query/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$Query/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "Query" }
+            }
+          ]
+        },
+        {
+          "id": "FunctionalArea*",
+          "name": "FunctionalArea*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "FunctionalArea" }
+        },
+        {
+          "id": "CollectionView$FunctionalArea",
+          "name": "CollectionView$FunctionalArea",
+          "kind": "CollectionView",
+          "elementType": { "__id": "FunctionalArea" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$FunctionalArea/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "FunctionalArea" }
+            },
+            {
+              "id": "CollectionView$FunctionalArea/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "FunctionalArea" }
+            },
+            {
+              "id": "CollectionView$FunctionalArea/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$FunctionalArea/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$FunctionalArea/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$FunctionalArea/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$FunctionalArea/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$FunctionalArea/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "FunctionalArea" }
+            }
+          ]
+        },
+        {
+          "id": "DataSourceType*",
+          "name": "DataSourceType*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "DataSourceType" }
+        },
+        {
+          "id": "CollectionView$DataSourceType",
+          "name": "CollectionView$DataSourceType",
+          "kind": "CollectionView",
+          "elementType": { "__id": "DataSourceType" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$DataSourceType/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "DataSourceType" }
+            },
+            {
+              "id": "CollectionView$DataSourceType/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "DataSourceType" }
+            },
+            {
+              "id": "CollectionView$DataSourceType/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$DataSourceType/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$DataSourceType/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$DataSourceType/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$DataSourceType/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$DataSourceType/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "DataSourceType" }
+            }
+          ]
+        },
+        {
+          "id": "DataSource*",
+          "name": "DataSource*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "DataSource" }
+        },
+        {
+          "id": "CollectionView$DataSource",
+          "name": "CollectionView$DataSource",
+          "kind": "CollectionView",
+          "elementType": { "__id": "DataSource" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$DataSource/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "DataSource" }
+            },
+            {
+              "id": "CollectionView$DataSource/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "DataSource" }
+            },
+            {
+              "id": "CollectionView$DataSource/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$DataSource/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$DataSource/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$DataSource/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$DataSource/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$DataSource/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "DataSource" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "DataSource/Properties[DataSourceName]" } },
+          "id": "DataSource",
+          "name": "DataSource",
+          "methods":
+          [
+            {
+              "id": "DataSource/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "DataSource/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "DataSource/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "DataSource/Properties[DataSourceID]",
+              "name": "DataSourceID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "DataSource/Properties[DataSourceName]",
+              "name": "DataSourceName",
+              "propertyType": { "__id": ":String" },
+              ":@Required": { },
+              ":@MaxLength":
+              {
+                "value": 250
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "DataSource/Properties[ConnectionString]",
+              "name": "ConnectionString",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+                "value": 500
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "DataSource/Properties[DataSourceType]",
+              "name": "DataSourceType",
+              "association": { "__id": "FK_DataSourceTypeId" },
+              "elementType": { "__id": "DataSourceType" },
+              "fromEnd": { "__id": "FK_DataSourceTypeId/Ends[DataSources]" },
+              "propertyType": { "__id": "DataSourceType" },
+              "toEnd": { "__id": "FK_DataSourceTypeId/Ends[DataSourceTypes]" }
+            },
+            {
+              "id": "DataSource/Properties[Queries]",
+              "name": "Queries",
+              "association": { "__id": "FK_Queries_DataSourceId" },
+              "elementType": { "__id": "Query" },
+              "fromEnd": { "__id": "FK_Queries_DataSourceId/Ends[DataSources]" },
+              "propertyType": { "__id": "Query*" },
+              "toEnd": { "__id": "FK_Queries_DataSourceId/Ends[Queries]" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "DataSourceType/Properties[DataSourceTypeName]" } },
+          "id": "DataSourceType",
+          "name": "DataSourceType",
+          "methods":
+          [
+            {
+              "id": "DataSourceType/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "DataSourceType/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "DataSourceType/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "DataSourceType/Properties[DataSourceTypeID]",
+              "name": "DataSourceTypeID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "DataSourceType/Properties[DataSourceTypeName]",
+              "name": "DataSourceTypeName",
+              "propertyType": { "__id": ":String" },
+              ":@Required": { },
+              ":@MaxLength":
+              {
+                "value": 250
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "DataSourceType/Properties[DataSources]",
+              "name": "DataSources",
+              "association": { "__id": "FK_DataSourceTypeId" },
+              "elementType": { "__id": "DataSource" },
+              "fromEnd": { "__id": "FK_DataSourceTypeId/Ends[DataSourceTypes]" },
+              "propertyType": { "__id": "DataSource*" },
+              "toEnd": { "__id": "FK_DataSourceTypeId/Ends[DataSources]" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "FunctionalArea/Properties[FunctionalAreaName]" } },
+          "id": "FunctionalArea",
+          "name": "FunctionalArea",
+          "methods":
+          [
+            {
+              "id": "FunctionalArea/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "FunctionalArea/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "FunctionalArea/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "FunctionalArea/Properties[FunctionalAreaID]",
+              "name": "FunctionalAreaID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "FunctionalArea/Properties[FunctionalAreaName]",
+              "name": "FunctionalAreaName",
+              "propertyType": { "__id": ":String" },
+              ":@Required": { },
+              ":@MaxLength":
+              {
+                "value": 300
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "FunctionalArea/Properties[Tests]",
+              "name": "Tests",
+              "association": { "__id": "FK_FunctionalAreaID" },
+              "elementType": { "__id": "Test" },
+              "fromEnd": { "__id": "FK_FunctionalAreaID/Ends[FunctionalAreas]" },
+              "propertyType": { "__id": "Test*" },
+              "toEnd": { "__id": "FK_FunctionalAreaID/Ends[Tests]" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "Query/Properties[QueryName]" } },
+          "id": "Query",
+          "name": "Query",
+          "methods":
+          [
+            {
+              "id": "Query/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "Query/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "Query/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "Query/Properties[QueryID]",
+              "name": "QueryID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Query/Properties[QueryName]",
+              "name": "QueryName",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+                "value": 300
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "Query/Properties[QueryText]",
+              "name": "QueryText",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "Query/Properties[DataSource]",
+              "name": "DataSource",
+              "association": { "__id": "FK_Queries_DataSourceId" },
+              "elementType": { "__id": "DataSource" },
+              "fromEnd": { "__id": "FK_Queries_DataSourceId/Ends[Queries]" },
+              "propertyType": { "__id": "DataSource" },
+              "toEnd": { "__id": "FK_Queries_DataSourceId/Ends[DataSources]" }
+            },
+            {
+              "id": "Query/Properties[Test]",
+              "name": "Test",
+              "association": { "__id": "FK_Queries_TestId" },
+              "elementType": { "__id": "Test" },
+              "fromEnd": { "__id": "FK_Queries_TestId/Ends[Queries]" },
+              "propertyType": { "__id": "Test" },
+              "toEnd": { "__id": "FK_Queries_TestId/Ends[Tests]" }
+            },
+            {
+              "id": "Query/Properties[Results]",
+              "name": "Results",
+              "association": { "__id": "FK_Results_QueryID" },
+              "elementType": { "__id": "Result" },
+              "fromEnd": { "__id": "FK_Results_QueryID/Ends[Queries]" },
+              "propertyType": { "__id": "Result*" },
+              "toEnd": { "__id": "FK_Results_QueryID/Ends[Results]" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "Result/Properties[ResultID]" } },
+          "id": "Result",
+          "name": "Result",
+          "methods":
+          [
+            {
+              "id": "Result/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "Result/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "Result/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "Result/Properties[ResultID]",
+              "name": "ResultID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Result/Properties[TestResult]",
+              "name": "TestResult",
+              "propertyType": { "__id": ":Double?" },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Result/Properties[TestDateTime]",
+              "name": "TestDateTime",
+              "propertyType": { "__id": ":DateTime" },
+              ":@Required": { },
+              ":@DateTimeConstraint":
+              {
+                "kind": "Unspecified",
+                "precision": 3,
+                "preserveSeconds": true
+              },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Result/Properties[Query]",
+              "name": "Query",
+              "association": { "__id": "FK_Results_QueryID" },
+              "elementType": { "__id": "Query" },
+              "fromEnd": { "__id": "FK_Results_QueryID/Ends[Results]" },
+              "propertyType": { "__id": "Query" },
+              "toEnd": { "__id": "FK_Results_QueryID/Ends[Queries]" }
+            },
+            {
+              "id": "Result/Properties[Run]",
+              "name": "Run",
+              "association": { "__id": "FK_Results_Run" },
+              "elementType": { "__id": "Run" },
+              "fromEnd": { "__id": "FK_Results_Run/Ends[Results]" },
+              "propertyType": { "__id": "Run" },
+              "toEnd": { "__id": "FK_Results_Run/Ends[Run]" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "Run/Properties[RunName]" } },
+          "id": "Run",
+          "name": "Run",
+          "methods":
+          [
+            {
+              "id": "Run/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "Run/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "Run/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "Run/Properties[RunID]",
+              "name": "RunID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Run/Properties[RunName]",
+              "name": "RunName",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+                "value": 300
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "Run/Properties[RunTime]",
+              "name": "RunTime",
+              "propertyType": { "__id": ":DateTime" },
+              ":@Required": { },
+              ":@DateTimeConstraint":
+              {
+                "kind": "Unspecified",
+                "precision": 3,
+                "preserveSeconds": true
+              },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Run/Properties[Results]",
+              "name": "Results",
+              "association": { "__id": "FK_Results_Run" },
+              "elementType": { "__id": "Result" },
+              "fromEnd": { "__id": "FK_Results_Run/Ends[Run]" },
+              "propertyType": { "__id": "Result*" },
+              "toEnd": { "__id": "FK_Results_Run/Ends[Results]" }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "Test/Properties[TestName]" } },
+          "id": "Test",
+          "name": "Test",
+          "methods":
+          [
+            {
+              "id": "Test/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "Test/Methods[edit]",
+              "name": "edit"
+            },
+            {
+              "id": "Test/Methods[view]",
+              "name": "view"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "Test/Properties[TestID]",
+              "name": "TestID",
+              "isReadOnly": true,
+              "propertyType": { "__id": ":Int32" },
+              ":@Hidden": { },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Test/Properties[TestName]",
+              "name": "TestName",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+                "value": 300
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "Test/Properties[ExpectedResult]",
+              "name": "ExpectedResult",
+              "propertyType": { "__id": ":Double?" },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "Test/Properties[ExpectedResultText]",
+              "name": "ExpectedResultText",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+              },
+              ":@AnsiConstraint": { }
+            },
+            {
+              "id": "Test/Properties[FunctionalArea]",
+              "name": "FunctionalArea",
+              "association": { "__id": "FK_FunctionalAreaID" },
+              "elementType": { "__id": "FunctionalArea" },
+              "fromEnd": { "__id": "FK_FunctionalAreaID/Ends[Tests]" },
+              "propertyType": { "__id": "FunctionalArea" },
+              "toEnd": { "__id": "FK_FunctionalAreaID/Ends[FunctionalAreas]" }
+            },
+            {
+              "id": "Test/Properties[Queries]",
+              "name": "Queries",
+              "association": { "__id": "FK_Queries_TestId" },
+              "elementType": { "__id": "Query" },
+              "fromEnd": { "__id": "FK_Queries_TestId/Ends[Tests]" },
+              "propertyType": { "__id": "Query*" },
+              "toEnd": { "__id": "FK_Queries_TestId/Ends[Queries]" }
+            }
+          ]
+        },
+        {
+          "id": "FK_DataSourceTypeId",
+          "name": "FK_DataSourceTypeId",
+          "ends":
+          [
+            {
+              "id": "FK_DataSourceTypeId/Ends[DataSourceTypes]",
+              "name": "DataSourceTypes",
+              "multiplicity": "One",
+              "entityType": { "__id": "DataSourceType" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "FK_DataSourceTypeId/Ends[DataSources]",
+              "name": "DataSources",
+              "multiplicity": "Many",
+              "entityType": { "__id": "DataSource" }
+            }
+          ]
+        },
+        {
+          "id": "FK_FunctionalAreaID",
+          "name": "FK_FunctionalAreaID",
+          "ends":
+          [
+            {
+              "id": "FK_FunctionalAreaID/Ends[FunctionalAreas]",
+              "name": "FunctionalAreas",
+              "multiplicity": "One",
+              "entityType": { "__id": "FunctionalArea" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "FK_FunctionalAreaID/Ends[Tests]",
+              "name": "Tests",
+              "multiplicity": "Many",
+              "entityType": { "__id": "Test" }
+            }
+          ]
+        },
+        {
+          "id": "FK_Queries_DataSourceId",
+          "name": "FK_Queries_DataSourceId",
+          "ends":
+          [
+            {
+              "id": "FK_Queries_DataSourceId/Ends[DataSources]",
+              "name": "DataSources",
+              "multiplicity": "One",
+              "entityType": { "__id": "DataSource" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "FK_Queries_DataSourceId/Ends[Queries]",
+              "name": "Queries",
+              "multiplicity": "Many",
+              "entityType": { "__id": "Query" }
+            }
+          ]
+        },
+        {
+          "id": "FK_Queries_TestId",
+          "name": "FK_Queries_TestId",
+          "ends":
+          [
+            {
+              "id": "FK_Queries_TestId/Ends[Tests]",
+              "name": "Tests",
+              "multiplicity": "One",
+              "entityType": { "__id": "Test" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "FK_Queries_TestId/Ends[Queries]",
+              "name": "Queries",
+              "multiplicity": "Many",
+              "entityType": { "__id": "Query" }
+            }
+          ]
+        },
+        {
+          "id": "FK_Results_QueryID",
+          "name": "FK_Results_QueryID",
+          "ends":
+          [
+            {
+              "id": "FK_Results_QueryID/Ends[Queries]",
+              "name": "Queries",
+              "multiplicity": "One",
+              "entityType": { "__id": "Query" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "FK_Results_QueryID/Ends[Results]",
+              "name": "Results",
+              "multiplicity": "Many",
+              "entityType": { "__id": "Result" }
+            }
+          ]
+        },
+        {
+          "id": "FK_Results_Run",
+          "name": "FK_Results_Run",
+          "ends":
+          [
+            {
+              "id": "FK_Results_Run/Ends[Run]",
+              "name": "Run",
+              "multiplicity": "One",
+              "entityType": { "__id": "Run" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "FK_Results_Run/Ends[Results]",
+              "name": "Results",
+              "multiplicity": "Many",
+              "entityType": { "__id": "Result" }
+            }
+          ]
+        },
+        {
+          "id": "Aphelion_DB_BalancingData",
+          "name": "Aphelion_DB_BalancingData",
+          ":@Partial": { "isPrimary": true },
+          "associationSets":
+          [
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FK_Queries_DataSourceId]",
+              "name": "FK_Queries_DataSourceId",
+              "association": { "__id": "FK_Queries_DataSourceId" },
+              "ends":
+              [
+                {
+                  "properties": [ "DataSourceID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Queries_DataSourceId]/Members[DataSources]",
+                  "name": "DataSources",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[DataSources]" }
+                },
+                {
+                  "properties": [ "DataSourceID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Queries_DataSourceId]/Members[Queries]",
+                  "name": "Queries",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Queries]" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FK_DataSourceTypeId]",
+              "name": "FK_DataSourceTypeId",
+              "association": { "__id": "FK_DataSourceTypeId" },
+              "ends":
+              [
+                {
+                  "properties": [ "DataSourceTypeID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_DataSourceTypeId]/Members[DataSourceTypes]",
+                  "name": "DataSourceTypes",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[DataSourceTypes]" }
+                },
+                {
+                  "properties": [ "DataSourceTypeID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_DataSourceTypeId]/Members[DataSources]",
+                  "name": "DataSources",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[DataSources]" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FK_FunctionalAreaID]",
+              "name": "FK_FunctionalAreaID",
+              "association": { "__id": "FK_FunctionalAreaID" },
+              "ends":
+              [
+                {
+                  "properties": [ "FunctionalAreaID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_FunctionalAreaID]/Members[FunctionalAreas]",
+                  "name": "FunctionalAreas",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]" }
+                },
+                {
+                  "properties": [ "FunctionalAreaID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_FunctionalAreaID]/Members[Tests]",
+                  "name": "Tests",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Tests]" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FK_Results_QueryID]",
+              "name": "FK_Results_QueryID",
+              "association": { "__id": "FK_Results_QueryID" },
+              "ends":
+              [
+                {
+                  "properties": [ "QueryID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Results_QueryID]/Members[Queries]",
+                  "name": "Queries",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Queries]" }
+                },
+                {
+                  "properties": [ "QueryID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Results_QueryID]/Members[Results]",
+                  "name": "Results",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Results]" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FK_Results_Run]",
+              "name": "FK_Results_Run",
+              "association": { "__id": "FK_Results_Run" },
+              "ends":
+              [
+                {
+                  "properties": [ "RunID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Results_Run]/Members[Run]",
+                  "name": "Run",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Runs]" }
+                },
+                {
+                  "properties": [ "RunID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Results_Run]/Members[Results]",
+                  "name": "Results",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Results]" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FK_Queries_TestId]",
+              "name": "FK_Queries_TestId",
+              "association": { "__id": "FK_Queries_TestId" },
+              "ends":
+              [
+                {
+                  "properties": [ "TestID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Queries_TestId]/Members[Tests]",
+                  "name": "Tests",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Tests]" }
+                },
+                {
+                  "properties": [ "TestID" ],
+                  "id": "Aphelion_DB_BalancingData/Members[FK_Queries_TestId]/Members[Queries]",
+                  "name": "Queries",
+                  "entitySet": { "__id": "Aphelion_DB_BalancingData/Members[Queries]" }
+                }
+              ]
+            }
+          ],
+          "entitySets":
+          [
+            {
+              "id": "Aphelion_DB_BalancingData/Members[DataSources]",
+              "name": "DataSources",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "DataSource" },
+              "entityType": { "__id": "DataSource" }
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[DataSourceTypes]",
+              "name": "DataSourceTypes",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "DataSourceType" },
+              "entityType": { "__id": "DataSourceType" }
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]",
+              "name": "FunctionalAreas",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "FunctionalArea" },
+              "entityType": { "__id": "FunctionalArea" }
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Queries]",
+              "name": "Queries",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "Query" },
+              "entityType": { "__id": "Query" }
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Results]",
+              "name": "Results",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "Result" },
+              "entityType": { "__id": "Result" }
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Runs]",
+              "name": "Runs",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "Run" },
+              "entityType": { "__id": "Run" }
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Tests]",
+              "name": "Tests",
+              "canDelete": true,
+              "canInsert": true,
+              "canUpdate": true,
+              "elementType": { "__id": "Test" },
+              "entityType": { "__id": "Test" }
+            }
+          ],
+          "queryOperations":
+          [
+            {
+              "id": "Aphelion_DB_BalancingData/Members[DataSources_Single]",
+              "name": "DataSources_Single",
+              "elementType": { "__id": "DataSource" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[DataSources_Single]" },
+              "returnType": { "__id": "DataSource" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[DataSources]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[DataSources_Single]/Parameters[DataSourceID]",
+                  "name": "DataSourceID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[DataSources_SingleOrDefault]",
+              "name": "DataSources_SingleOrDefault",
+              "elementType": { "__id": "DataSource" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[DataSources_SingleOrDefault]" },
+              "returnType": { "__id": "DataSource" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[DataSources]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[DataSources_SingleOrDefault]/Parameters[DataSourceID]",
+                  "name": "DataSourceID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[DataSourceTypes_Single]",
+              "name": "DataSourceTypes_Single",
+              "elementType": { "__id": "DataSourceType" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[DataSourceTypes_Single]" },
+              "returnType": { "__id": "DataSourceType" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[DataSourceTypes]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[DataSourceTypes_Single]/Parameters[DataSourceTypeID]",
+                  "name": "DataSourceTypeID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[DataSourceTypes_SingleOrDefault]",
+              "name": "DataSourceTypes_SingleOrDefault",
+              "elementType": { "__id": "DataSourceType" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[DataSourceTypes_SingleOrDefault]" },
+              "returnType": { "__id": "DataSourceType" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[DataSourceTypes]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[DataSourceTypes_SingleOrDefault]/Parameters[DataSourceTypeID]",
+                  "name": "DataSourceTypeID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FunctionalAreas_Single]",
+              "name": "FunctionalAreas_Single",
+              "elementType": { "__id": "FunctionalArea" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas_Single]" },
+              "returnType": { "__id": "FunctionalArea" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[FunctionalAreas_Single]/Parameters[FunctionalAreaID]",
+                  "name": "FunctionalAreaID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[FunctionalAreas_SingleOrDefault]",
+              "name": "FunctionalAreas_SingleOrDefault",
+              "elementType": { "__id": "FunctionalArea" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas_SingleOrDefault]" },
+              "returnType": { "__id": "FunctionalArea" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[FunctionalAreas_SingleOrDefault]/Parameters[FunctionalAreaID]",
+                  "name": "FunctionalAreaID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Queries_Single]",
+              "name": "Queries_Single",
+              "elementType": { "__id": "Query" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Queries_Single]" },
+              "returnType": { "__id": "Query" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Queries]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Queries_Single]/Parameters[QueryID]",
+                  "name": "QueryID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Queries_SingleOrDefault]",
+              "name": "Queries_SingleOrDefault",
+              "elementType": { "__id": "Query" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Queries_SingleOrDefault]" },
+              "returnType": { "__id": "Query" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Queries]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Queries_SingleOrDefault]/Parameters[QueryID]",
+                  "name": "QueryID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Results_Single]",
+              "name": "Results_Single",
+              "elementType": { "__id": "Result" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Results_Single]" },
+              "returnType": { "__id": "Result" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Results]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Results_Single]/Parameters[ResultID]",
+                  "name": "ResultID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Results_SingleOrDefault]",
+              "name": "Results_SingleOrDefault",
+              "elementType": { "__id": "Result" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Results_SingleOrDefault]" },
+              "returnType": { "__id": "Result" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Results]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Results_SingleOrDefault]/Parameters[ResultID]",
+                  "name": "ResultID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Runs_Single]",
+              "name": "Runs_Single",
+              "elementType": { "__id": "Run" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Runs_Single]" },
+              "returnType": { "__id": "Run" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Runs]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Runs_Single]/Parameters[RunID]",
+                  "name": "RunID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Runs_SingleOrDefault]",
+              "name": "Runs_SingleOrDefault",
+              "elementType": { "__id": "Run" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Runs_SingleOrDefault]" },
+              "returnType": { "__id": "Run" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Runs]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Runs_SingleOrDefault]/Parameters[RunID]",
+                  "name": "RunID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Tests_Single]",
+              "name": "Tests_Single",
+              "elementType": { "__id": "Test" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Tests_Single]" },
+              "returnType": { "__id": "Test" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Tests]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Tests_Single]/Parameters[TestID]",
+                  "name": "TestID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "Aphelion_DB_BalancingData/Members[Tests_SingleOrDefault]",
+              "name": "Tests_SingleOrDefault",
+              "elementType": { "__id": "Test" },
+              "query": { "__id": "Aphelion_DB_BalancingData/Members[Tests_SingleOrDefault]" },
+              "returnType": { "__id": "Test" },
+              "source":
+              {
+                "member": { "__id": "Aphelion_DB_BalancingData/Members[Tests]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "Aphelion_DB_BalancingData/Members[Tests_SingleOrDefault]/Parameters[TestID]",
+                  "name": "TestID",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Browse Functional Areas",
+          "id": "BrowseFunctionalAreas",
+          "name": "BrowseFunctionalAreas",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Functional Area List",
+                    "name": "FunctionalAreaList",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "Functional Areas",
+                        "name": "FunctionalArea",
+                        "kind": "Collection",
+                        "view": { "__id": ":List" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "Functional Area",
+                            "name": "RowTemplate",
+                            "kind": "Details",
+                            "view": { "__id": ":Summary" },
+                            "dataSource":
+                            {
+                              "links":
+                              [
+                              ]
+                            }
+                          }
+                        ],
+                        "propertySources":
+                        [
+                          {
+                            "property": { "__id": ":RootCollectionControl/Properties[ItemTap]" },
+                            "source":
+                            {
+                              "target": { "__id": "!module/Methods[showAddEditFunctionalArea]" },
+                              ":@AssociatedCollection": { "collection": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]" } },
+                              ":@CreateNewEntity":
+                              {
+                                "targetParameter": { "__id": "!module/Methods[showAddEditFunctionalArea]/Parameters[FunctionalArea]" }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "propertySources":
+                [
+                  {
+                    "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "BrowseFunctionalAreas/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "BrowseFunctionalAreas/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "BrowseFunctionalAreas/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "BrowseFunctionalAreas/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "BrowseFunctionalAreas/Properties[FunctionalAreas]",
+              "name": "FunctionalAreas",
+              "pageSize": 45,
+              "elementType": { "__id": "FunctionalArea" },
+              "propertyType": { "__id": "CollectionView$FunctionalArea" },
+              "query":
+              {
+                "id": "BrowseFunctionalAreas/Properties[FunctionalAreas]/Query",
+                "name": "FunctionalAreasQuery",
+                "elementType": { "__id": "FunctionalArea" },
+                "returnType": { "__id": "FunctionalArea*" },
+                "source":
+                {
+                  "member": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]" }
+                }
+              },
+              "source":
+              {
+                "target": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]/Query" }
+              }
+            }
+          ]
+        },
+        {
+          "displayName": "Add Edit Functional Area",
+          "id": "AddEditFunctionalArea",
+          "name": "AddEditFunctionalArea",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Details",
+                    "name": "Details",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "columns",
+                        "name": "columns",
+                        "kind": "Details",
+                        "view": { "__id": ":ColumnsLayout" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditFunctionalArea/Properties[FunctionalArea]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "left",
+                            "name": "left",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Functional Area Name",
+                                "name": "FunctionalAreaName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "FunctionalArea/Properties[FunctionalAreaName]" }
+                                }
+                              }
+                            ],
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          },
+                          {
+                            "displayName": "right",
+                            "name": "right",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "displayName": "Tests",
+                    "name": "Tests",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "Tests",
+                        "name": "Tests1",
+                        "kind": "Collection",
+                        "view": { "__id": ":Table" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditFunctionalArea/Properties[Tests]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "Test",
+                            "name": "RowTemplate",
+                            "kind": "Details",
+                            "view": { "__id": ":TableRowLayout" },
+                            "dataSource":
+                            {
+                              "links":
+                              [
+                              ]
+                            },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Edit Test",
+                                "name": "EditTest",
+                                "kind": "Command",
+                                "view": { "__id": ":Button" },
+                                "propertySources":
+                                [
+                                  {
+                                    "property": { "__id": ":RootControl/Properties[Tap]" },
+                                    "source":
+                                    {
+                                      "target": { "__id": "!module/Methods[showAddEditTest]" },
+                                      ":@AssociatedCollection": { "collection": { "__id": "AddEditFunctionalArea/Properties[Tests]" } },
+                                      "arguments":
+                                      [
+                                        {
+                                          "parameter": { "__id": "!module/Methods[showAddEditTest]/Parameters[Test]" },
+                                          "value":
+                                          {
+                                            "links":
+                                            [
+                                              {
+                                                "member": { "__id": "AddEditFunctionalArea/Properties[Tests]" }
+                                              },
+                                              {
+                                                "member": { "__id": "CollectionView$Test/Properties[selectedItem]" }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Test Name",
+                                "name": "TestName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[TestName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Expected Result",
+                                "name": "ExpectedResult",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[ExpectedResult]" }
+                                }
+                              },
+                              {
+                                "displayName": "Expected Result Text",
+                                "name": "ExpectedResultText",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[ExpectedResultText]" }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "commandItems":
+                    [
+                      {
+                        "displayName": "Add Test",
+                        "name": "AddTest",
+                        "kind": "Command",
+                        "view": { "__id": ":CommandBarButton" },
+                        "propertySources":
+                        [
+                          {
+                            "property": { "__id": ":RootControl/Properties[Tap]" },
+                            "source":
+                            {
+                              "target": { "__id": "!module/Methods[showAddEditTest]" },
+                              ":@AssociatedCollection": { "collection": { "__id": "AddEditFunctionalArea/Properties[Tests]" } },
+                              ":@CreateNewEntity":
+                              {
+                                "targetParameter": { "__id": "!module/Methods[showAddEditTest]/Parameters[Test]" }
+                              }
+                            }
+                          },
+                          {
+                            "property": { "__id": ":RootCommand/Properties[Icon]" },
+                            "value": "msls-add"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "AddEditFunctionalArea/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "AddEditFunctionalArea/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "AddEditFunctionalArea/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "AddEditFunctionalArea/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "AddEditFunctionalArea/Properties[FunctionalArea]",
+              "name": "FunctionalArea",
+              "elementType": { "__id": "FunctionalArea" },
+              "propertyType": { "__id": "FunctionalArea" },
+              ":@IsParameter": { }
+            },
+            {
+              "id": "AddEditFunctionalArea/Properties[Tests]",
+              "name": "Tests",
+              "pageSize": 15,
+              "elementType": { "__id": "Test" },
+              "propertyType": { "__id": "CollectionView$Test" },
+              "query":
+              {
+                "id": "AddEditFunctionalArea/Properties[Tests]/Query",
+                "name": "TestsQuery",
+                "elementType": { "__id": "Test" },
+                "returnType": { "__id": "Test*" },
+                "source":
+                {
+                  "links":
+                  [
+                    {
+                      "member": { "__id": "AddEditFunctionalArea/Properties[FunctionalArea]" }
+                    },
+                    {
+                      "member": { "__id": "FunctionalArea/Properties[Tests]" }
+                    }
+                  ]
+                }
+              },
+              "source":
+              {
+                "target": { "__id": "AddEditFunctionalArea/Properties[Tests]/Query" }
+              }
+            }
+          ]
+        },
+        {
+          "displayName": "Add Edit Test",
+          "id": "AddEditTest",
+          "name": "AddEditTest",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Details",
+                    "name": "Details",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "columns",
+                        "name": "columns",
+                        "kind": "Details",
+                        "view": { "__id": ":ColumnsLayout" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditTest/Properties[Test]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "left",
+                            "name": "left",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Functional Area",
+                                "name": "FunctionalArea",
+                                "kind": "Details",
+                                "view": { "__id": ":DetailsModalPicker" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[FunctionalArea]" }
+                                },
+                                "childContentItems":
+                                [
+                                  {
+                                    "displayName": "Functional Area",
+                                    "name": "RowTemplate",
+                                    "kind": "Details",
+                                    "view": { "__id": ":Summary" },
+                                    "dataSource":
+                                    {
+                                      "links":
+                                      [
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Test Name",
+                                "name": "TestName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[TestName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Expected Result",
+                                "name": "ExpectedResult",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[ExpectedResult]" }
+                                }
+                              },
+                              {
+                                "displayName": "Expected Result Text",
+                                "name": "ExpectedResultText",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Test/Properties[ExpectedResultText]" }
+                                }
+                              }
+                            ],
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "displayName": "Queries",
+                    "name": "Queries",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "Queries",
+                        "name": "Queries1",
+                        "kind": "Collection",
+                        "view": { "__id": ":Table" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditTest/Properties[Queries]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "Query",
+                            "name": "RowTemplate1",
+                            "kind": "Details",
+                            "view": { "__id": ":TableRowLayout" },
+                            "dataSource":
+                            {
+                              "links":
+                              [
+                              ]
+                            },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Edit Test",
+                                "name": "EditTest",
+                                "kind": "Command",
+                                "view": { "__id": ":Button" },
+                                "propertySources":
+                                [
+                                  {
+                                    "property": { "__id": ":RootControl/Properties[Tap]" },
+                                    "source":
+                                    {
+                                      "target": { "__id": "!module/Methods[showAddEditTest]" },
+                                      "arguments":
+                                      [
+                                        {
+                                          "parameter": { "__id": "!module/Methods[showAddEditTest]/Parameters[Test]" },
+                                          "value":
+                                          {
+                                            "links":
+                                            [
+                                              {
+                                                "member": { "__id": "AddEditTest/Properties[Test]" }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Data Source",
+                                "name": "DataSource",
+                                "kind": "Details",
+                                "view": { "__id": ":DetailsModalPicker" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[DataSource]" }
+                                },
+                                "childContentItems":
+                                [
+                                  {
+                                    "displayName": "Data Source",
+                                    "name": "DataSourceTemplate",
+                                    "kind": "Details",
+                                    "view": { "__id": ":Summary" },
+                                    "dataSource":
+                                    {
+                                      "links":
+                                      [
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Query Name",
+                                "name": "QueryName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[QueryName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Query Text",
+                                "name": "QueryText",
+                                "kind": "Value",
+                                "view": { "__id": ":TextArea" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[QueryText]" }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "commandItems":
+                    [
+                      {
+                        "displayName": "Add Query",
+                        "name": "AddQuery",
+                        "kind": "Command",
+                        "view": { "__id": ":CommandBarButton" },
+                        "propertySources":
+                        [
+                          {
+                            "property": { "__id": ":RootControl/Properties[Tap]" },
+                            "source":
+                            {
+                              "target": { "__id": "!module/Methods[showAddEditQuery]" },
+                              ":@AssociatedCollection": { "collection": { "__id": "AddEditTest/Properties[Queries]" } },
+                              ":@CreateNewEntity":
+                              {
+                                "targetParameter": { "__id": "!module/Methods[showAddEditQuery]/Parameters[Query]" }
+                              }
+                            }
+                          },
+                          {
+                            "property": { "__id": ":RootCommand/Properties[Icon]" },
+                            "value": "msls-add"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "AddEditTest/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "AddEditTest/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "AddEditTest/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "AddEditTest/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "AddEditTest/Properties[Test]",
+              "name": "Test",
+              "elementType": { "__id": "Test" },
+              "propertyType": { "__id": "Test" },
+              ":@IsParameter": { }
+            },
+            {
+              "id": "AddEditTest/Properties[Queries]",
+              "name": "Queries",
+              "pageSize": 15,
+              "elementType": { "__id": "Query" },
+              "propertyType": { "__id": "CollectionView$Query" },
+              "query":
+              {
+                "id": "AddEditTest/Properties[Queries]/Query",
+                "name": "QueriesQuery",
+                "elementType": { "__id": "Query" },
+                "returnType": { "__id": "Query*" },
+                "source":
+                {
+                  "links":
+                  [
+                    {
+                      "member": { "__id": "AddEditTest/Properties[Test]" }
+                    },
+                    {
+                      "member": { "__id": "Test/Properties[Queries]" }
+                    }
+                  ]
+                }
+              },
+              "source":
+              {
+                "target": { "__id": "AddEditTest/Properties[Queries]/Query" }
+              }
+            }
+          ]
+        },
+        {
+          "displayName": "Add Edit Query",
+          "id": "AddEditQuery",
+          "name": "AddEditQuery",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Details",
+                    "name": "Details",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "columns",
+                        "name": "columns",
+                        "kind": "Details",
+                        "view": { "__id": ":ColumnsLayout" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditQuery/Properties[Query]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "left",
+                            "name": "left",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Test",
+                                "name": "Test",
+                                "kind": "Details",
+                                "view": { "__id": ":DetailsModalPicker" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[Test]" }
+                                },
+                                "childContentItems":
+                                [
+                                  {
+                                    "displayName": "Test",
+                                    "name": "RowTemplate1",
+                                    "kind": "Details",
+                                    "view": { "__id": ":Summary" },
+                                    "dataSource":
+                                    {
+                                      "links":
+                                      [
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Data Source",
+                                "name": "DataSource",
+                                "kind": "Details",
+                                "view": { "__id": ":DetailsModalPicker" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[DataSource]" }
+                                },
+                                "childContentItems":
+                                [
+                                  {
+                                    "displayName": "Data Source",
+                                    "name": "RowTemplate",
+                                    "kind": "Details",
+                                    "view": { "__id": ":Summary" },
+                                    "dataSource":
+                                    {
+                                      "links":
+                                      [
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Query Name",
+                                "name": "QueryName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[QueryName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Query Text",
+                                "name": "QueryText",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[QueryText]" }
+                                }
+                              }
+                            ],
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "AddEditQuery/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "AddEditQuery/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "AddEditQuery/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "AddEditQuery/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "AddEditQuery/Properties[Query]",
+              "name": "Query",
+              "elementType": { "__id": "Query" },
+              "propertyType": { "__id": "Query" },
+              ":@IsParameter": { }
+            }
+          ]
+        }
+      ],
+      "methods":
+      [
+        {
+          "id": "!module/Methods[showBrowseFunctionalAreas]",
+          "name": "showBrowseFunctionalAreas",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "BrowseFunctionalAreas" } }
+        },
+        {
+          "id": "!module/Methods[showAddEditFunctionalArea]",
+          "name": "showAddEditFunctionalArea",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditFunctionalArea" } },
+          "parameters":
+          [
+            {
+              "id": "!module/Methods[showAddEditFunctionalArea]/Parameters[FunctionalArea]",
+              "name": "FunctionalArea",
+              "parameterType": { "__id": "FunctionalArea" }
+            }
+          ]
+        },
+        {
+          "id": "!module/Methods[showAddEditTest]",
+          "name": "showAddEditTest",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditTest" } },
+          "parameters":
+          [
+            {
+              "id": "!module/Methods[showAddEditTest]/Parameters[Test]",
+              "name": "Test",
+              "parameterType": { "__id": "Test" }
+            }
+          ]
+        },
+        {
+          "id": "!module/Methods[showAddEditQuery]",
+          "name": "showAddEditQuery",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditQuery" } },
+          "parameters":
+          [
+            {
+              "id": "!module/Methods[showAddEditQuery]/Parameters[Query]",
+              "name": "Query",
+              "parameterType": { "__id": "Query" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

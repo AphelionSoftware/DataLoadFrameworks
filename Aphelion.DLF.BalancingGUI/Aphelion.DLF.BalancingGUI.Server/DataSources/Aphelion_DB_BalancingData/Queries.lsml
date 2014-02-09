@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Query">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="QueryID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="QueryName"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="300" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="QueryText"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="DataSource"
+        Association="FK_Queries_DataSourceId"
+        FromEnd="Queries"
+        ToEnd="DataSources" />
+      <NavigationProperty
+        Name="Test"
+        Association="FK_Queries_TestId"
+        FromEnd="Queries"
+        ToEnd="Tests" />
+      <NavigationProperty
+        Name="Results"
+        Association="FK_Results_QueryID"
+        FromEnd="Queries"
+        ToEnd="Results" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Results_QueryID">
+    <AssociationEnd
+      Name="Queries"
+      Multiplicity="One"
+      EntityType="Query">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Results"
+      Multiplicity="Many"
+      EntityType="Result" />
+  </Association>
+  <EntityContainer
+    Name="Aphelion_DB_BalancingData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Queries"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Query" />
+    <AssociationSet
+      Name="FK_Results_QueryID"
+      Association="FK_Results_QueryID">
+      <AssociationSetEnd
+        Name="Queries"
+        EntitySet="Queries" />
+      <AssociationSetEnd
+        Name="Results"
+        EntitySet="Results" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Queries_Single"
+      ReturnType="Query">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="QueryID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="QueryID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Queries" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="QueryID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'QueryID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Queries_SingleOrDefault"
+      ReturnType="Query">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="QueryID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="QueryID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Queries" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="QueryID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'QueryID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="Aphelion_DB_BalancingDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Queries">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="Balancing"
+          Table="Queries" />
+        <SsdlProperty
+          Name="QueryID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Query/Properties[QueryID]" />
+        <SsdlProperty
+          MaxLength="300"
+          Name="QueryName"
+          Nullable="True"
+          Type="varchar"
+          Property="Query/Properties[QueryName]" />
+        <SsdlProperty
+          Name="QueryText"
+          Nullable="True"
+          Type="varchar(max)"
+          Property="Query/Properties[QueryText]" />
+        <SsdlForeignKeyProperty
+          Name="DataSourceID"
+          Nullable="False"
+          Type="int"
+          PropertyName="DataSourceID" />
+        <SsdlForeignKeyProperty
+          Name="TestID"
+          Nullable="False"
+          Type="int"
+          PropertyName="TestID" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Results_QueryID">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Results_QueryID" />
+        <SsdlAssociationSetEnd
+          End="Aphelion_DB_BalancingData/Members[FK_Results_QueryID]/Members[Queries]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="QueryID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="Aphelion_DB_BalancingData/Members[FK_Results_QueryID]/Members[Results]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="QueryID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

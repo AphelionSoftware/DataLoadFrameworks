@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Test">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="TestID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="TestName"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="300" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ExpectedResult"
+        PropertyType=":Double?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ExpectedResultText"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="FunctionalArea"
+        Association="FK_FunctionalAreaID"
+        FromEnd="Tests"
+        ToEnd="FunctionalAreas" />
+      <NavigationProperty
+        Name="Queries"
+        Association="FK_Queries_TestId"
+        FromEnd="Tests"
+        ToEnd="Queries" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Queries_TestId">
+    <AssociationEnd
+      Name="Tests"
+      Multiplicity="One"
+      EntityType="Test">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Queries"
+      Multiplicity="Many"
+      EntityType="Query" />
+  </Association>
+  <EntityContainer
+    Name="Aphelion_DB_BalancingData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Tests"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Test" />
+    <AssociationSet
+      Name="FK_Queries_TestId"
+      Association="FK_Queries_TestId">
+      <AssociationSetEnd
+        Name="Tests"
+        EntitySet="Tests" />
+      <AssociationSetEnd
+        Name="Queries"
+        EntitySet="Queries" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Tests_Single"
+      ReturnType="Test">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="TestID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="TestID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Tests" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="TestID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'TestID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Tests_SingleOrDefault"
+      ReturnType="Test">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="TestID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="TestID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Tests" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="TestID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'TestID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="Aphelion_DB_BalancingDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Tests">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="Balancing"
+          Table="Tests" />
+        <SsdlProperty
+          Name="TestID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Test/Properties[TestID]" />
+        <SsdlProperty
+          MaxLength="300"
+          Name="TestName"
+          Nullable="True"
+          Type="varchar"
+          Property="Test/Properties[TestName]" />
+        <SsdlProperty
+          Name="ExpectedResult"
+          Nullable="True"
+          Type="float"
+          Property="Test/Properties[ExpectedResult]" />
+        <SsdlProperty
+          Name="ExpectedResultText"
+          Nullable="True"
+          Type="varchar(max)"
+          Property="Test/Properties[ExpectedResultText]" />
+        <SsdlForeignKeyProperty
+          Name="FunctionalAreaID"
+          Nullable="False"
+          Type="int"
+          PropertyName="FunctionalAreaID" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Queries_TestId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Queries_TestId" />
+        <SsdlAssociationSetEnd
+          End="Aphelion_DB_BalancingData/Members[FK_Queries_TestId]/Members[Tests]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="Aphelion_DB_BalancingData/Members[FK_Queries_TestId]/Members[Queries]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>
