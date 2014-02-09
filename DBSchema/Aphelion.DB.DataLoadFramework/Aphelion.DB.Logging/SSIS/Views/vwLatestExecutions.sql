@@ -7,23 +7,25 @@ SELECT
 	,StartLog.ExecutionID
 	, StartLog.StartTime
 	, EndLog.EndTime
-	 , DATEDIFF(s, StartLog.StartTime, EndLog.EndTime) RunTimeSeconds
-		 ,  DATEDIFF(s, StartLog.StartTime, EndLog.EndTime) / 60 RunTimeMinutes
+	, DATEDIFF(s, StartLog.StartTime, EndLog.EndTime) RunTimeSeconds
+	, DATEDIFF(s, StartLog.StartTime, EndLog.EndTime) / 60 RunTimeMinutes
 	, StartLog.[Source] StartSource
 , EndLog.[Source] EndSource
 FROM dbo.sysssislog StartLog
 INNER JOIN 
-	(SELECT MAX(ExecutionID) LatestExecutionID,
+	(SELECT TOP 1 ExecutionID AS LatestExecutionID,
 	Computer
 	FROM dbo.sysssislog
 	WHERE  [Event] = 'PackageStart'
-	GROUP BY Computer) Latest
-
+	GROUP BY Computer
+		   , ExecutionID
+		   , endtime
+	ORDER BY endtime DESC
+	) Latest
 	ON StartLog.ExecutionID = Latest.LatestExecutionID
 LEFT JOIN dbo.sysssislog EndLog
 	ON StartLog.ExecutionID = EndLog.ExecutionID
 	AND  EndLog.[Event] = 'PackageEnd'
-
 WHERE StartLog.[Event] ='PackageStart'
 
 
