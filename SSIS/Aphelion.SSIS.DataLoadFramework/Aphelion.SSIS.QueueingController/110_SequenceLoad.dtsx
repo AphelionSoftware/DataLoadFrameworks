@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="110_SequenceLoad"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{74BF50FC-2907-4EFE-A5DF-6A83A8FE00E1}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{7E677EA1-EA8F-42D7-B9A3-3AF57063AC4B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -61,6 +61,15 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{C62B9DAA-2F66-4563-9A87-CBD951852FA9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="bitContinueOnFailure">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{3DA94114-B8A2-4829-84DA-B851DF38BFE3}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -86,10 +95,13 @@
       DTS:Description="Execute Package Task"
       DTS:DTSID="{584B97DE-F913-491B-9D34-C188C8D8FFAA}"
       DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
       DTS:ObjectName="EPT_ProjectReference"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FailPackageOnFailure">!@[User::bitContinueOnFailure]</DTS:PropertyExpression>
       <DTS:PropertyExpression
         DTS:Name="PackageName">@[User::strPackageName]</DTS:PropertyExpression>
       <DTS:ObjectData>
@@ -121,6 +133,9 @@
           <SQLTask:ResultBinding
             SQLTask:ResultName="1"
             SQLTask:DtsVariableName="User::strPackageFullName" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::bitContinueOnFailure" />
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="$Package::intQueueID"
@@ -158,29 +173,15 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="259,42"
-          Id="Package\SQL_GetPackageLoadStep_Sequential"
-          TopLeft="213,84" />
-        <AnnotationLayout
-          Text="Get full package name on server"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="189,60"
-          Id="5df78b9a-b705-40b0-94e4-f0fc06e2db6c"
-          TopLeft="490,80" />
-        <AnnotationLayout
-          Text="Currently must reference a package that is internal to the project&#xD;&#xA;We can use execute process task and dtexec to run external packages"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="372,60"
-          Id="b531acbc-fdf7-486f-aafa-d50388936a8a"
-          TopLeft="469,150" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="185,42"
           Id="Package\EPT_ProjectReference"
           TopLeft="253,160" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\SQL_GetPackageLoadStep_Sequential"
+          TopLeft="213,84" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="344,126">
@@ -203,6 +204,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="Get full package name on server"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="189,39"
+          Id="5df78b9a-b705-40b0-94e4-f0fc06e2db6c"
+          TopLeft="490,80" />
+        <AnnotationLayout
+          Text="Currently must reference a package that is internal to the project&#xA;We can use execute process task and dtexec to run external packages"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="372,53"
+          Id="b531acbc-fdf7-486f-aafa-d50388936a8a"
+          TopLeft="469,150" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
