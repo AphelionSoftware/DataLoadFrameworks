@@ -2,31 +2,31 @@
 as
 /* This has a lower cost than the correspondingly simpler looking query in comments, due to use of filtered indexes on records with PackageStart and PackageEnd*/
 SELECT 
-	StartLog.Computer
-	, StartLog.Operator
-	,StartLog.ExecutionID
-	, StartLog.StartTime
-	, EndLog.EndTime
-	, DATEDIFF(s, StartLog.StartTime, EndLog.EndTime) RunTimeSeconds
-	, DATEDIFF(s, StartLog.StartTime, EndLog.EndTime) / 60 RunTimeMinutes
-	, StartLog.[Source] StartSource
-, EndLog.[Source] EndSource
+	StartLog.computer
+	, StartLog.operator
+	,StartLog.executionid
+	, StartLog.starttime
+	, EndLog.endtime
+	, DATEDIFF(s, StartLog.starttime, EndLog.endtime) RunTimeSeconds
+	, DATEDIFF(s, StartLog.starttime, EndLog.endtime) / 60 RunTimeMinutes
+	, StartLog.[source] StartSource
+, EndLog.[source] EndSource
 FROM dbo.sysssislog StartLog
 INNER JOIN 
-	(SELECT TOP 1 ExecutionID AS LatestExecutionID,
-	Computer
+	(SELECT TOP 1 executionid AS LatestExecutionID,
+	computer
 	FROM dbo.sysssislog
 	WHERE  [Event] = 'PackageStart'
-	GROUP BY Computer
-		   , ExecutionID
+	GROUP BY computer
+		   , executionid
 		   , endtime
 	ORDER BY endtime DESC
 	) Latest
-	ON StartLog.ExecutionID = Latest.LatestExecutionID
+	ON StartLog.executionid = Latest.LatestExecutionID
 LEFT JOIN dbo.sysssislog EndLog
-	ON StartLog.ExecutionID = EndLog.ExecutionID
-	AND  EndLog.[Event] = 'PackageEnd'
-WHERE StartLog.[Event] ='PackageStart'
+	ON StartLog.executionid = EndLog.executionid
+	AND  EndLog.[event] = 'PackageEnd'
+WHERE StartLog.[event] ='PackageStart'
 
 
 

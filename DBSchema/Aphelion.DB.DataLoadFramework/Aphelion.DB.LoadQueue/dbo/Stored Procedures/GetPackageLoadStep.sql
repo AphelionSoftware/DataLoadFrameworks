@@ -37,6 +37,7 @@ BEGIN
 	BEGIN
 		SELECT P.PackageName
 			 , P.PackageFullName
+			 , PLS.ContinueOnFailure
 		FROM [Queue]			AS Q
 		JOIN PackageLoad		AS PL
 			ON Q.PackageLoadID = PL.PackageLoadID
@@ -57,9 +58,11 @@ BEGIN
 
 		SELECT SRC.PackageName
 			 , SRC.PackageFullName
+			 , SRC.ContinueOnFailure
 		FROM (SELECT (ROW_NUMBER() OVER(ORDER BY PLS.PackageLoadStepID) % @intMaxParallel) AS Stream
 				   , P.PackageName
 				   , P.PackageFullName
+				   , PLS.ContinueOnFailure
 			  FROM [Queue]			AS Q
 			  JOIN PackageLoad		AS PL
 				  ON Q.PackageLoadID = PL.PackageLoadID
