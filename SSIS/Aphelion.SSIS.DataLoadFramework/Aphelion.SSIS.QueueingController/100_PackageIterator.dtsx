@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="100_PackageIterator"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{F3D6A4E4-43F2-45A7-B15F-D39014C99739}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{31CE112E-A4FD-4335-A342-64ED94E0B77F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:PackageParameters>
@@ -172,6 +172,52 @@
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EPT_130_ProcessCube"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{104240FA-F016-4131-B878-BA071E48EB3D}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_130_ProcessCube"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>130_ProcessCube.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>intQueueID</ParameterName>
+            <BindedVariableOrParameterName>$Package::intQueueID</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>strCubeName</ParameterName>
+            <BindedVariableOrParameterName>$Package::strCubeName</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>strCubeServer</ParameterName>
+            <BindedVariableOrParameterName>$Package::strCubeServer</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_140_DWLoader"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{BBA9190F-5BCB-4288-A9AD-13C40A299790}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_140_DWLoader"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>140_DWLoader.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\FELC_PackageLoadStepOrder"
       DTS:CreationName="STOCK:FOREACHLOOP"
@@ -372,6 +418,26 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\FELC_PackageLoadStepOrder" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{B23297DC-04BD-4D30-80DB-13550F1593FD}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Package::strQueueLoadTypeName] == &quot;cube process&quot;"
+      DTS:From="Package\SCR_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\EPT_130_ProcessCube" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{550E81E3-199B-4CA5-A03C-294712B5403A}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Package::strQueueLoadTypeName] == &quot;dwloader&quot;"
+      DTS:From="Package\SCR_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EPT_140_DWLoader" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -384,7 +450,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="196,42"
           Id="Package\FELC_PackageLoadStepOrder\EPT_110_SequenceLoad"
@@ -496,54 +562,54 @@
           PanelSize="556,226"
           Size="556,269"
           Id="Package\FELC_PackageLoadStepOrder"
-          TopLeft="124,248" />
+          TopLeft="38,250" />
         <NodeLayout
           Size="128,42"
           Id="Package\SCR_Start"
-          TopLeft="451,76" />
+          TopLeft="528,70" />
         <NodeLayout
           Size="231,42"
           Id="Package\SQL_GetPackageLoadStepOrder"
-          TopLeft="290,166" />
+          TopLeft="204,168" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="515,118">
+          TopLeft="562,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-109.5,48"
+              EndConnector="-242.5,56"
               Start="0,0"
-              End="-109.5,40.5">
+              End="-242.5,48.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20" />
+                    End="0,15.4285714285714" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20"
-                    Point2="0,24"
-                    Point3="-4,24" />
+                    Point1="0,15.4285714285714"
+                    Point2="0,19.4285714285714"
+                    Point3="-4,19.4285714285714" />
                   <mssgle:LineSegment
-                    End="-105.5,24" />
+                    End="-238.5,19.4285714285714" />
                   <mssgle:CubicBezierSegment
-                    Point1="-105.5,24"
-                    Point2="-109.5,24"
-                    Point3="-109.5,28" />
+                    Point1="-238.5,19.4285714285714"
+                    Point2="-242.5,19.4285714285714"
+                    Point3="-242.5,23.4285714285714" />
                   <mssgle:LineSegment
-                    End="-109.5,40.5" />
+                    End="-242.5,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-62.75,29,16,16"
+              BoundingBox="-129.25,24.4285714285714,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="403.75,208">
+          TopLeft="317.75,210">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -569,14 +635,108 @@
           FontInfo="{assembly:Null}"
           Size="92,39"
           Id="8a8b0670-69f3-46d1-8484-7bcf57a9499b"
-          TopLeft="589,68" />
+          TopLeft="666,62" />
         <AnnotationLayout
           Text="QueueLoadTypeName = package"
           ParentId="Package"
           FontInfo="{assembly:Null}"
           Size="193,39"
           Id="9715f947-99d5-40f8-bd21-38cc428eadb6"
-          TopLeft="257,108" />
+          TopLeft="122,126" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\EPT_130_ProcessCube"
+          TopLeft="751,163" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="592,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="253,51"
+              Start="0,0"
+              End="253,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="4,25.5" />
+                  <mssgle:LineSegment
+                    End="249,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="249,25.5"
+                    Point2="253,25.5"
+                    Point3="253,29.5" />
+                  <mssgle:LineSegment
+                    End="253,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="118.5,30.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="QueueLoadTypeName = cube process"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="216,39"
+          Id="76540230-a347-4734-b721-7cae99cdd7e1"
+          TopLeft="852,124" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\EPT_140_DWLoader"
+          TopLeft="768,293" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="622,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="234.5,181"
+              Start="0,0"
+              End="234.5,173.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.795918367347" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.795918367347"
+                    Point2="0,130.795918367347"
+                    Point3="4,130.795918367347" />
+                  <mssgle:LineSegment
+                    End="230.5,130.795918367347" />
+                  <mssgle:CubicBezierSegment
+                    Point1="230.5,130.795918367347"
+                    Point2="234.5,130.795918367347"
+                    Point3="234.5,134.795918367347" />
+                  <mssgle:LineSegment
+                    End="234.5,173.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="109.25,135.795918367347,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="QueueLoadTypeName = dwloader"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="197,39"
+          Id="5e3fa583-5dd0-4870-8693-d664861e211d"
+          TopLeft="862,253" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
