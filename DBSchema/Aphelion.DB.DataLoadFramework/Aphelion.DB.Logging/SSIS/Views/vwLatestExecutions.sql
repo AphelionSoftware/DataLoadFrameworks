@@ -16,7 +16,7 @@ INNER JOIN
 	(SELECT TOP 1 executionid AS LatestExecutionID,
 	computer
 	FROM dbo.sysssislog
-	WHERE  [Event] = 'PackageStart'
+	WHERE  [event] = 'PackageStart'
 	GROUP BY computer
 		   , executionid
 		   , endtime

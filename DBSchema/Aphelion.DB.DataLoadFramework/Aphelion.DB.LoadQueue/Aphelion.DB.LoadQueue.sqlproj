@@ -91,6 +91,7 @@
     <Build Include="dbo\Tables\QueueLoadType.sql" />
     <Build Include="dbo\Stored Procedures\GetPackageLoadStep.sql" />
     <Build Include="dbo\Stored Procedures\GetPackageLoadStepOrder.sql" />
+    <Build Include="dbo\Stored Procedures\GetCubeTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
