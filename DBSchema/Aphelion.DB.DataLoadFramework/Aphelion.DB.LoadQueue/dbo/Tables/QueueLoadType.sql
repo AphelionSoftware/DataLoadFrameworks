@@ -2,6 +2,10 @@
     COMMENTS:  
     ---------  
     Synopsis     : Types of queue entries - data load, cube processing etc.
+				   information_schema
+				   package
+				   cube process
+				   balancing test
     Author       : Geoffrey Smith Aphelion Software
     Date         : 28 Jan 2014
     Version      : 1.0

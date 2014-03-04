@@ -25,7 +25,7 @@ CREATE TABLE [dbo].[QueueCubeDetail]
 	[QueueCubeDetailID] INT NOT NULL PRIMARY KEY IDENTITY, 
     [QueueID] INT NOT NULL ,
     [StatusID] INT NOT NULL, 
-	[TableID] INT NULL, 
+	[CubeTableID] INT NULL, 
     [StartPartitionValue] INT NULL, 
     [EndPartitionValue] INT NULL, 
 	[StartTime]           DATETIME NULL,
@@ -36,5 +36,5 @@ CREATE TABLE [dbo].[QueueCubeDetail]
     [sys_ModifiedBy]  NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
     CONSTRAINT [FK_QueueCubeDetail_Queue] FOREIGN KEY ([QueueID]) REFERENCES [dbo].[Queue] ([QueueID]),
 	CONSTRAINT [FK_QueueCubeDetail_Status] FOREIGN KEY ([StatusID]) REFERENCES [dbo].[Status] ([StatusID]),
-	CONSTRAINT [FK_QueueCubeDetail_Table] FOREIGN KEY ([TableID]) REFERENCES [dbo].[Table] ([TableID])
+	CONSTRAINT [FK_QueueCubeDetail_CubeTable] FOREIGN KEY ([CubeTableID]) REFERENCES [dbo].[CubeTable] ([CubeTableID])
 )

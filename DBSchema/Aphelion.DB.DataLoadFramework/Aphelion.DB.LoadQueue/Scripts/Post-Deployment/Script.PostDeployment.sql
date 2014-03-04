@@ -70,6 +70,10 @@ BEGIN
 	SELECT 4
 		 , 'balancing test'
 		 , 'balancing tests'
+	UNION
+	SELECT 5
+		 , 'dwloader'
+		 , 'DWLoader for PDW'
 	SET IDENTITY_INSERT [dbo].[QueueLoadType] OFF
 END
 

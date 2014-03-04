@@ -2,7 +2,7 @@
     COMMENTS:  
     ---------  
     Synopsis     : Packages in a load as well as their step order
-				   Steps with same PackageLoadStepOrder can run in parallel
+				   Steps with same StepOrder can run in parallel
     Author       : Geoffrey Smith Aphelion Software
     Date         : 28 Jan 2014
     Version      : 1.0
@@ -28,6 +28,7 @@ CREATE TABLE [dbo].[PackageLoadStep] (
     [PackageLoadStepName] VARCHAR (255)  NOT NULL,
     [PackageLoadStepCode] VARCHAR (255)  NOT NULL,
 	[StepOrder]			INT NOT NULL,
+	[ContinueOnFailure]	BIT DEFAULT (0) NOT NULL,
     [Active]            INT DEFAULT (1) NOT NULL,
     [sys_CreatedOn]   DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_CreatedBy]   NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
