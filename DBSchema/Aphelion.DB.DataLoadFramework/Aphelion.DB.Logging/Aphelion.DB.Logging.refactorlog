@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="fcdd7c1b-a8b4-4592-b206-b729b2461de5" ChangeDateTime="03/05/2014 17:18:38">
+    <Property Name="ElementName" Value="[dbo].[sysssislog].[IX_sysssislog_Column]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[dbo].[sysssislog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[[IX_ExecutionsByEnd]]]" />
+  </Operation>
+</Operations>

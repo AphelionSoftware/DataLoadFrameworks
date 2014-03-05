@@ -16,3 +16,30 @@ PRIMARY KEY CLUSTERED
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 )
+
+
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ExecutionsByEnd] ON [dbo].[sysssislog]
+(
+	[executionid] ASC,
+	[computer] ASC
+)
+INCLUDE ( 	[operator],
+	[endtime],
+	[source]) 
+WHERE ([Event]='PackageEnd')
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ExecutionsByStart] ON [dbo].[sysssislog]
+(
+	[executionid] ASC,
+	[computer] ASC
+)
+INCLUDE ( 	[operator],
+	[starttime],
+	[source]) 
+WHERE ([Event]='PackageStart')
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)

@@ -79,4 +79,7 @@
   <ItemGroup>
     <None Include="Aphelion.DB.Logging.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Aphelion.DB.Logging.refactorlog" />
+  </ItemGroup>
 </Project>
