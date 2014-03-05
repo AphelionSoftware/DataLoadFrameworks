@@ -1,9 +1,8 @@
-﻿--check schedules with SSIS
-
+﻿
 -- =============================================
 -- Author:		Geoffrey Smith
 -- Create date: 19 December 2013
--- Description:	Check  schedule for jobs that must be created and create job entries
+-- Description:	Check schedule for jobs that must be created
 -- Example:
     /*
         EXEC [dbo].CheckSchedule
@@ -22,18 +21,10 @@ BEGIN
     DECLARE @dtDateTime     DATETIME = GETDATE()
     DECLARE @dDate          DATE = @dtDateTime
           , @strDayOfWeek   VARCHAR(50) = DATENAME(WEEKDAY,@dtDateTime)
-          , @strDayOfMonth  INT = DATEPART(DAY,@dtDateTime)
+          , @intDayOfMonth  INT = DATEPART(DAY,@dtDateTime)
           , @timTime        TIME = @dtDateTime
     
-    DECLARE @tblPendingSchedule TABLE
-        ( ScheduleID    INT
-        )
-
-	DECLARE @tblJobID TABLE
-		( JobID	INT
-		)
-
-    BEGIN TRY
+	BEGIN TRY
         --deactivate expired schedules
         UPDATE [dbo].Schedule
         SET Active = 0
@@ -41,91 +32,80 @@ BEGIN
           AND EndDate <= @dtDateTime
           AND Active = 1
 
-        --get  schedules for today's pending jobs up to current time
-        INSERT INTO @tblPendingSchedule
+        --get schedules for today's pending jobs up to current time
         SELECT DISTINCT 
 			   S.ScheduleID
-        FROM [dbo].Schedule	S
-		LEFT JOIN (SELECT DISTINCT
-						  J.ScheduleID
-						, PQ.StatusID
-				   FROM [dbo].Job	J
-				   JOIN [dbo].ProcessQueue PQ
-					   ON J.ID = PQ.JobID
-				   WHERE PQ.StatusID NOT IN (1,2)
-				  ) SJ --all jobs where status complete or failed
-			ON ES.ID = SJ.ScheduleID
-        WHERE ISNULL(SJ.StatusID,1) != 0	--check for existing queued scheduled job
-		  AND ISNULL(SJ.StatusID,1) != -1	--check for existing in process scheduled job
-		  AND ES.Active = 1
-          AND ES.[Time] <= @timTime
-          AND ((ES.Frequency = 'M'
-                AND ES.[DayOfMonth] = @strDayOfMonth
-                AND CONVERT(DATE,ISNULL(ES.LastRunDate,'1 Jan 1900')) < @dDate --if LastRunDate today then schedule has already run
+			 , CASE WHEN SCD.ScheduleCubeDetailID IS NULL
+					THEN CAST(0 AS BIT)
+					ELSE CAST(1 AS BIT) END AS IsCubeSchedule
+        FROM Schedule	S
+		JOIN FrequencyType FT
+			ON S.FrequencyTypeID = FT.FrequencyTypeID
+		LEFT JOIN ScheduleCubeDetail SCD
+			ON S.ScheduleID = SCD.ScheduleID
+		WHERE S.Active = 1
+          AND S.StartTime <= @timTime --schedule start time must be less than current time
+		  AND S.EndTime >= @timTime --schedule end time must be greater than current time
+          AND ((FT.FrequencyTypeName = 'Monthly'
+                AND S.[DayOfMonth] = @intDayOfMonth
+                AND CONVERT(DATE,ISNULL(S.LastRunDate,'1 Jan 1900')) < @dDate --if LastRunDate today then schedule has already run
                )
-               OR (ES.Frequency = 'W'
-                   AND ES.[DayOfWeek] = @strDayOfWeek
-                   AND CONVERT(DATE,ISNULL(ES.LastRunDate,'1 Jan 1900')) < @dDate
+               OR (FT.FrequencyTypeName = 'Weekly'
+                   AND S.[DayOfWeek] = @strDayOfWeek
+                   AND CONVERT(DATE,ISNULL(S.LastRunDate,'1 Jan 1900')) < @dDate --if LastRunDate today then schedule has already run
                   )
-               OR (ES.Frequency = 'D'
-                   AND ES.DailyFrequencyType IS NULL
-                   AND CONVERT(DATE,ISNULL(ES.LastRunDate,'1 Jan 1900')) < @dDate
+               OR (FT.FrequencyTypeName = 'Daily'
+                   AND CONVERT(DATE,ISNULL(S.LastRunDate,'1 Jan 1900')) < @dDate --if LastRunDate today then schedule has already run
                   )
-               OR (ES.Frequency = 'D'
-                   AND ES.DailyFrequencyType = 'M' --minutes
-                   AND DATEDIFF(MI,ISNULL(ES.LastRunDate,'1 Jan 1900'),@dtDateTime) >= DailyFrequency
+               OR (FT.FrequencyTypeName = 'Minutes'
+                   AND DATEDIFF(MI,ISNULL(S.LastRunDate,'1 Jan 1900'),@dtDateTime) >= S.FrequencyInterval
                   )
-               OR (ES.Frequency = 'D'
-                   AND ES.DailyFrequencyType = 'H' --hours
-                   AND DATEDIFF(HH,ISNULL(ES.LastRunDate,'1 Jan 1900'),@dtDateTime) >= DailyFrequency
-                  )
-               OR (ES.Frequency = 'D'
-                   AND ES.DailyFrequencyType = 'S' --seconds
-                   AND DATEDIFF(SS,ISNULL(ES.LastRunDate,'1 Jan 1900'),@dtDateTime) >= DailyFrequency
+               OR (FT.FrequencyTypeName = 'Hourly'
+                   AND DATEDIFF(HH,ISNULL(S.LastRunDate,'1 Jan 1900'),@dtDateTime) >= S.FrequencyInterval
                   )
               )
                    
-        --insert jobs for pending schedules
-        INSERT INTO [dbo].Job
-		OUTPUT INSERTED.ID
-        INTO @tblJobID 
-        SELECT NULL --ExternalID
-             , PES.ScheduleID
-             , ES.ApplicationInstanceID
-             , ES.IsBatch
-             , 1 --IsBatchComplete
-             , GETDATE()
-             , ES.CreatedBy
-        FROM @tblPendingSchedule    PES
-        JOIN [dbo].Schedule               ES
-            ON PES.ScheduleID = ES.ID
+  --      --insert jobs for pending schedules
+  --      INSERT INTO [dbo].Job
+		--OUTPUT INSERTED.ID
+  --      INTO @tblJobID 
+  --      SELECT NULL --ExternalID
+  --           , PES.ScheduleID
+  --           , ES.ApplicationInstanceID
+  --           , ES.IsBatch
+  --           , 1 --IsBatchComplete
+  --           , GETDATE()
+  --           , ES.CreatedBy
+  --      FROM @tblPendingSchedule    PES
+  --      JOIN [dbo].Schedule               ES
+  --          ON PES.ScheduleID = ES.ID
         
-        --insert process queue entries for pending jobs
-        INSERT INTO [dbo].ProcessQueue
-        SELECT J.ID --JobID
-             , ESD.TableID
-             , 0    --StatusID
-             , ESD.StartPartitionValue
-             , ESD.EndPartitionValue
-             , GETDATE() --EnqueuedTime
-             , NULL --StarTime
-             , NULL --EndTime
-        FROM [dbo].Job    J
-		JOIN @tblJobID	JI
-			ON J.ID = JI.JobID
-        JOIN [dbo].Schedule ES
-            ON J.ScheduleID = ES.ID
-        JOIN [dbo].ScheduleDetail ESD
-            ON ES.ID = ESD.ScheduleID
-        JOIN @tblPendingSchedule PES
-            ON J.ScheduleID = PES.ScheduleID
+  --      --insert process queue entries for pending jobs
+  --      INSERT INTO [dbo].ProcessQueue
+  --      SELECT J.ID --JobID
+  --           , ESD.TableID
+  --           , 0    --StatusID
+  --           , ESD.StartPartitionValue
+  --           , ESD.EndPartitionValue
+  --           , GETDATE() --EnqueuedTime
+  --           , NULL --StarTime
+  --           , NULL --EndTime
+  --      FROM [dbo].Job    J
+		--JOIN @tblJobID	JI
+		--	ON J.ID = JI.JobID
+  --      JOIN [dbo].Schedule ES
+  --          ON J.ScheduleID = ES.ID
+  --      JOIN [dbo].ScheduleDetail ESD
+  --          ON ES.ID = ESD.ScheduleID
+  --      JOIN @tblPendingSchedule PES
+  --          ON J.ScheduleID = PES.ScheduleID
 
-		--update LastRunDate for  schedules
-		UPDATE [dbo].Schedule
-		SET LastRunDate = GETDATE()
-		FROM @tblPendingSchedule PES
-		JOIN [dbo].Schedule	ES
-			ON ES.ID = PES.ScheduleID
+		----update LastRunDate for  schedules
+		--UPDATE [dbo].Schedule
+		--SET LastRunDate = GETDATE()
+		--FROM @tblPendingSchedule PES
+		--JOIN [dbo].Schedule	ES
+		--	ON ES.ID = PES.ScheduleID
 
     END TRY
     BEGIN CATCH

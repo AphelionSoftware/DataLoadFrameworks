@@ -115,10 +115,10 @@ BEGIN
         --insert expected schedule detail entry
 		--add logic to check if table list or package load step list
         INSERT INTO [dbo].ScheduleCubeDetail ( ScheduleID
-										 , TableID
-										 , StartPartitionValue
-										 , EndPartitionValue
-										 )
+											 , CubeTableID
+											 , StartPartitionValue
+											 , EndPartitionValue
+											 )
         SELECT @intScheduleID
              , TL.ID
              , TL.StartPartitionValue

@@ -22,7 +22,7 @@
 CREATE TABLE [dbo].[ScheduleCubeDetail] (
     [ScheduleCubeDetailID]		INT IDENTITY (1, 1) NOT NULL,
     [ScheduleID]  INT            NOT NULL,
-    [TableID]             BIGINT NOT NULL, --From LoadQueue database
+    [CubeTableID]             BIGINT NOT NULL, --From LoadQueue database
     [StartPartitionValue] VARCHAR (1000) NULL,
     [EndPartitionValue]   VARCHAR (1000) NULL,
 	[sys_CreatedOn]   DATETIME       DEFAULT (getdate()) NOT NULL,
