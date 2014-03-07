@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="100_PackageIterator"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{1899DFD8-A2B4-4888-BD34-3F08828466C7}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{E2B2855A-6438-44C1-A887-4BAA8C15EB58}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:PackageParameters>
@@ -281,6 +281,22 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>120_ParallelLoad.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>intMaxParallel</ParameterName>
+                <BindedVariableOrParameterName>User::intMaxParallel</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>intQueueID</ParameterName>
+                <BindedVariableOrParameterName>$Package::intQueueID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>intStepOrder</ParameterName>
+                <BindedVariableOrParameterName>User::intStepOrder</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>strDatabaseServer</ParameterName>
+                <BindedVariableOrParameterName>$Package::strDatabaseServer</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
