@@ -75,6 +75,7 @@
     <Build Include="SSIS\Views\vwLatestExecutions.sql" />
     <Build Include="SSIS\Views\vwPackageSummaryLatestExecution.sql" />
     <Build Include="dbo\Stored Procedures\sp_ssis_addlogentry.sql" />
+    <Build Include="SSIS\Views\vwLatestPackagesRunTimes.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Aphelion.DB.Logging.publish.xml" />
