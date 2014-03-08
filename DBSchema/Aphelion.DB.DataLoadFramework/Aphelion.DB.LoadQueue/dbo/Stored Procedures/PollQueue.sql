@@ -133,4 +133,23 @@ BEGIN
 				 , NULL		AS RunFKChecks
 		END
 	END
+	ELSE
+	BEGIN
+		SELECT 0		AS ApplicationID
+		 	 , NULL		AS ApplicationName
+			 , NULL		AS CubeName
+			 , NULL		AS CubeServer
+			 , NULL		AS DatabaseName
+			 , NULL		AS DatabaseServer
+			 , NULL		AS LogServer
+			 , NULL		AS LogDatabaseName
+			 , NULL		AS LogUserName
+			 , NULL		AS LogPassword
+			 , NULL		AS TargetMachine
+			 , NULL		AS QueueID
+			 , NULL		AS QueueLoadTypeName
+			 , NULL		AS RunBalancing
+			 , NULL		AS RunSchemaCompare
+			 , NULL		AS RunFKChecks
+	END
 END
