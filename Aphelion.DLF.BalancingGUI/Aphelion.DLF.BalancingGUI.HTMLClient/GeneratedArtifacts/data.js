@@ -358,6 +358,46 @@ window.myapp = msls.application;
                         lightSwitchApplication.rootUri + "/Aphelion_DB_BalancingData.svc" + "/Tests(" + "TestID=" + $toODataString(TestID, "Int32?") + ")"
                     );
                 }
+            },
+            {
+                name: "DataSourcesSorted", value: function () {
+                    return new $DataServiceQuery({ _entitySet: this.DataSources },
+                        lightSwitchApplication.rootUri + "/Aphelion_DB_BalancingData.svc" + "/DataSourcesSorted()",
+                        {
+                        });
+                }
+            },
+            {
+                name: "DataSourceTypesSorted", value: function () {
+                    return new $DataServiceQuery({ _entitySet: this.DataSourceTypes },
+                        lightSwitchApplication.rootUri + "/Aphelion_DB_BalancingData.svc" + "/DataSourceTypesSorted()",
+                        {
+                        });
+                }
+            },
+            {
+                name: "FunctionalAreasSorted", value: function () {
+                    return new $DataServiceQuery({ _entitySet: this.FunctionalAreas },
+                        lightSwitchApplication.rootUri + "/Aphelion_DB_BalancingData.svc" + "/FunctionalAreasSorted()",
+                        {
+                        });
+                }
+            },
+            {
+                name: "QueriesSorted", value: function () {
+                    return new $DataServiceQuery({ _entitySet: this.Queries },
+                        lightSwitchApplication.rootUri + "/Aphelion_DB_BalancingData.svc" + "/QueriesSorted()",
+                        {
+                        });
+                }
+            },
+            {
+                name: "TestsSorted", value: function () {
+                    return new $DataServiceQuery({ _entitySet: this.Tests },
+                        lightSwitchApplication.rootUri + "/Aphelion_DB_BalancingData.svc" + "/TestsSorted()",
+                        {
+                        });
+                }
             }
         ]),
 

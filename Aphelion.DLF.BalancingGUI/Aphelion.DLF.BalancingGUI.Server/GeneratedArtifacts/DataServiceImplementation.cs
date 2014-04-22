@@ -37,6 +37,53 @@ namespace LightSwitchApplication.Implementation
         }
     
     #region Queries
+        public global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.DataSource> DataSourcesSorted()
+        {
+            global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.DataSource> query;
+            query = global::System.Linq.Queryable.OrderBy(
+                this.GetQuery<global::LightSwitchApplication.Implementation.DataSource>("DataSources"),
+                (d) => d.DataSourceName);
+            return query;
+        }
+    
+        public global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.DataSourceType> DataSourceTypesSorted()
+        {
+            global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.DataSourceType> query;
+            query = global::System.Linq.Queryable.OrderBy(
+                this.GetQuery<global::LightSwitchApplication.Implementation.DataSourceType>("DataSourceTypes"),
+                (d) => d.DataSourceTypeName);
+            return query;
+        }
+    
+        public global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.FunctionalArea> FunctionalAreasSorted()
+        {
+            global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.FunctionalArea> query;
+            query = global::System.Linq.Queryable.OrderBy(
+                this.GetQuery<global::LightSwitchApplication.Implementation.FunctionalArea>("FunctionalAreas"),
+                (f) => f.FunctionalAreaName);
+            return query;
+        }
+    
+        public global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.Query> QueriesSorted()
+        {
+            global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.Query> query;
+            query = global::System.Linq.Queryable.OrderBy(
+                this.GetQuery<global::LightSwitchApplication.Implementation.Query>("Queries"),
+                (q) => q.QueryName);
+            return query;
+        }
+    
+        public global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.Test> TestsSorted()
+        {
+            global::System.Linq.IQueryable<global::LightSwitchApplication.Implementation.Test> query;
+            query = global::System.Linq.Queryable.ThenBy(
+                global::System.Linq.Queryable.OrderBy(
+                    this.GetQuery<global::LightSwitchApplication.Implementation.Test>("Tests"),
+                    (t) => t.FunctionalArea.FunctionalAreaName),
+                (t) => t.TestName);
+            return query;
+        }
+    
     #endregion
 
     #region Protected Methods

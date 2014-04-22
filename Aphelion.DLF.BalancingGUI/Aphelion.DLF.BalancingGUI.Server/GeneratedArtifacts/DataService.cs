@@ -324,6 +324,81 @@ namespace LightSwitchApplication
         partial void SaveChanges_ExecuteFailed(global::System.Exception exception);
     
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void DataSourcesSorted_CanExecute(ref bool result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void DataSourcesSorted_Executing();
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void DataSourcesSorted_PreprocessQuery(ref global::System.Linq.IQueryable<global::LightSwitchApplication.DataSource> query);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void DataSourcesSorted_Executed(global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.DataSource> result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void DataSourcesSorted_ExecuteFailed(global::System.Exception exception);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void DataSourceTypesSorted_CanExecute(ref bool result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void DataSourceTypesSorted_Executing();
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void DataSourceTypesSorted_PreprocessQuery(ref global::System.Linq.IQueryable<global::LightSwitchApplication.DataSourceType> query);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void DataSourceTypesSorted_Executed(global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.DataSourceType> result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void DataSourceTypesSorted_ExecuteFailed(global::System.Exception exception);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void FunctionalAreasSorted_CanExecute(ref bool result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void FunctionalAreasSorted_Executing();
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void FunctionalAreasSorted_PreprocessQuery(ref global::System.Linq.IQueryable<global::LightSwitchApplication.FunctionalArea> query);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void FunctionalAreasSorted_Executed(global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.FunctionalArea> result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void FunctionalAreasSorted_ExecuteFailed(global::System.Exception exception);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void QueriesSorted_CanExecute(ref bool result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void QueriesSorted_Executing();
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void QueriesSorted_PreprocessQuery(ref global::System.Linq.IQueryable<global::LightSwitchApplication.Query> query);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void QueriesSorted_Executed(global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.Query> result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void QueriesSorted_ExecuteFailed(global::System.Exception exception);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void TestsSorted_CanExecute(ref bool result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void TestsSorted_Executing();
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void TestsSorted_PreprocessQuery(ref global::System.Linq.IQueryable<global::LightSwitchApplication.Test> query);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void TestsSorted_Executed(global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.Test> result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        partial void TestsSorted_ExecuteFailed(global::System.Exception exception);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         partial void Query_Executing(global::Microsoft.LightSwitch.QueryExecutingDescriptor queryDescriptor);
     
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -895,6 +970,171 @@ namespace LightSwitchApplication
             private static void __SaveChanges_Failed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args, global::System.Exception ex)
             {
                 d.SaveChanges_ExecuteFailed(ex);
+            }
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.DataSource>
+                __DataSourcesSortedEntry = new global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.DataSource>(
+                    "DataSourcesSorted",
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourcesSorted_CanExecute,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourcesSorted_Executing,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourcesSorted_Executed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourcesSorted_Failed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourcesSorted_PreprocessQuery);
+            private static bool __DataSourcesSorted_CanExecute(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, bool r)
+            {
+                d.DataSourcesSorted_CanExecute(ref r);
+                return r;
+            }
+            private static void __DataSourcesSorted_Executing(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.DataSourcesSorted_Executing();
+            }
+            private static void __DataSourcesSorted_Executed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.DataSourcesSorted_Executed((global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.DataSource>)args[0]);
+            }
+            private static void __DataSourcesSorted_Failed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args, global::System.Exception ex)
+            {
+                d.DataSourcesSorted_ExecuteFailed(ex);
+            }
+            private static global::System.Linq.IQueryable __DataSourcesSorted_PreprocessQuery(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                global::System.Linq.IQueryable<global::LightSwitchApplication.DataSource> query = (global::System.Linq.IQueryable<global::LightSwitchApplication.DataSource>)args[0];
+                d.DataSourcesSorted_PreprocessQuery(ref query);
+                return query;
+            }
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.DataSourceType>
+                __DataSourceTypesSortedEntry = new global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.DataSourceType>(
+                    "DataSourceTypesSorted",
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourceTypesSorted_CanExecute,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourceTypesSorted_Executing,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourceTypesSorted_Executed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourceTypesSorted_Failed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__DataSourceTypesSorted_PreprocessQuery);
+            private static bool __DataSourceTypesSorted_CanExecute(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, bool r)
+            {
+                d.DataSourceTypesSorted_CanExecute(ref r);
+                return r;
+            }
+            private static void __DataSourceTypesSorted_Executing(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.DataSourceTypesSorted_Executing();
+            }
+            private static void __DataSourceTypesSorted_Executed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.DataSourceTypesSorted_Executed((global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.DataSourceType>)args[0]);
+            }
+            private static void __DataSourceTypesSorted_Failed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args, global::System.Exception ex)
+            {
+                d.DataSourceTypesSorted_ExecuteFailed(ex);
+            }
+            private static global::System.Linq.IQueryable __DataSourceTypesSorted_PreprocessQuery(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                global::System.Linq.IQueryable<global::LightSwitchApplication.DataSourceType> query = (global::System.Linq.IQueryable<global::LightSwitchApplication.DataSourceType>)args[0];
+                d.DataSourceTypesSorted_PreprocessQuery(ref query);
+                return query;
+            }
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.FunctionalArea>
+                __FunctionalAreasSortedEntry = new global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.FunctionalArea>(
+                    "FunctionalAreasSorted",
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__FunctionalAreasSorted_CanExecute,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__FunctionalAreasSorted_Executing,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__FunctionalAreasSorted_Executed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__FunctionalAreasSorted_Failed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__FunctionalAreasSorted_PreprocessQuery);
+            private static bool __FunctionalAreasSorted_CanExecute(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, bool r)
+            {
+                d.FunctionalAreasSorted_CanExecute(ref r);
+                return r;
+            }
+            private static void __FunctionalAreasSorted_Executing(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.FunctionalAreasSorted_Executing();
+            }
+            private static void __FunctionalAreasSorted_Executed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.FunctionalAreasSorted_Executed((global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.FunctionalArea>)args[0]);
+            }
+            private static void __FunctionalAreasSorted_Failed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args, global::System.Exception ex)
+            {
+                d.FunctionalAreasSorted_ExecuteFailed(ex);
+            }
+            private static global::System.Linq.IQueryable __FunctionalAreasSorted_PreprocessQuery(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                global::System.Linq.IQueryable<global::LightSwitchApplication.FunctionalArea> query = (global::System.Linq.IQueryable<global::LightSwitchApplication.FunctionalArea>)args[0];
+                d.FunctionalAreasSorted_PreprocessQuery(ref query);
+                return query;
+            }
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.Query>
+                __QueriesSortedEntry = new global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.Query>(
+                    "QueriesSorted",
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__QueriesSorted_CanExecute,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__QueriesSorted_Executing,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__QueriesSorted_Executed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__QueriesSorted_Failed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__QueriesSorted_PreprocessQuery);
+            private static bool __QueriesSorted_CanExecute(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, bool r)
+            {
+                d.QueriesSorted_CanExecute(ref r);
+                return r;
+            }
+            private static void __QueriesSorted_Executing(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.QueriesSorted_Executing();
+            }
+            private static void __QueriesSorted_Executed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.QueriesSorted_Executed((global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.Query>)args[0]);
+            }
+            private static void __QueriesSorted_Failed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args, global::System.Exception ex)
+            {
+                d.QueriesSorted_ExecuteFailed(ex);
+            }
+            private static global::System.Linq.IQueryable __QueriesSorted_PreprocessQuery(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                global::System.Linq.IQueryable<global::LightSwitchApplication.Query> query = (global::System.Linq.IQueryable<global::LightSwitchApplication.Query>)args[0];
+                d.QueriesSorted_PreprocessQuery(ref query);
+                return query;
+            }
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.Test>
+                __TestsSortedEntry = new global::Microsoft.LightSwitch.Details.Framework.Server.QueryOperationEntry<global::LightSwitchApplication.Aphelion_DB_BalancingDataService, global::LightSwitchApplication.Test>(
+                    "TestsSorted",
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__TestsSorted_CanExecute,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__TestsSorted_Executing,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__TestsSorted_Executed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__TestsSorted_Failed,
+                    global::LightSwitchApplication.Aphelion_DB_BalancingDataService.DetailsClass.__TestsSorted_PreprocessQuery);
+            private static bool __TestsSorted_CanExecute(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, bool r)
+            {
+                d.TestsSorted_CanExecute(ref r);
+                return r;
+            }
+            private static void __TestsSorted_Executing(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.TestsSorted_Executing();
+            }
+            private static void __TestsSorted_Executed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                d.TestsSorted_Executed((global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.Test>)args[0]);
+            }
+            private static void __TestsSorted_Failed(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args, global::System.Exception ex)
+            {
+                d.TestsSorted_ExecuteFailed(ex);
+            }
+            private static global::System.Linq.IQueryable __TestsSorted_PreprocessQuery(global::LightSwitchApplication.Aphelion_DB_BalancingDataService d, object[] args)
+            {
+                global::System.Linq.IQueryable<global::LightSwitchApplication.Test> query = (global::System.Linq.IQueryable<global::LightSwitchApplication.Test>)args[0];
+                d.TestsSorted_PreprocessQuery(ref query);
+                return query;
             }
     
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]

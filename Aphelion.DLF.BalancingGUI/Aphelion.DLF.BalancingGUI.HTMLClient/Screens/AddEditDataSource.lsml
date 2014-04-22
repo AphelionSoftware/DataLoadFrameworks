@@ -100,6 +100,14 @@
                 Name="DataSourceType"
                 Kind="Details"
                 DataType="DataSourceType">
+                <ContentItem.ChoicesSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AddEditDataSource/Properties[DataSourceTypesSorted]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.ChoicesSource>
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
@@ -182,6 +190,32 @@
           <IsParameter />
         </ScreenProperty.Attributes>
       </ScreenProperty>
+      <ScreenCollectionProperty
+        Name="DataSourceTypesSorted"
+        PageSize="45"
+        PropertyType="CollectionView$DataSourceType">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="DataSourceTypesSortedQuery"
+            ReturnType="DataSourceType*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <MemberExpression
+                  Member="Aphelion_DB_BalancingData/Members[DataSourceTypesSorted]" />
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="AddEditDataSource/Properties[DataSourceTypesSorted]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
     </Screen.Properties>
   </Screen>
   <Application.Methods>

@@ -391,6 +391,46 @@ namespace LightSwitchApplication
             return this.Details.Methods.Tests_SingleOrDefault.CreateInvocation(TestID).Execute();
         }
         
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        public global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.DataSource> DataSourcesSorted()
+        {
+            return this.Details.Methods.DataSourcesSorted.CreateInvocation().Execute();
+        }
+        
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        public global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.DataSourceType> DataSourceTypesSorted()
+        {
+            return this.Details.Methods.DataSourceTypesSorted.CreateInvocation().Execute();
+        }
+        
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        public global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.FunctionalArea> FunctionalAreasSorted()
+        {
+            return this.Details.Methods.FunctionalAreasSorted.CreateInvocation().Execute();
+        }
+        
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        public global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.Query> QueriesSorted()
+        {
+            return this.Details.Methods.QueriesSorted.CreateInvocation().Execute();
+        }
+        
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        public global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.Test> TestsSorted()
+        {
+            return this.Details.Methods.TestsSorted.CreateInvocation().Execute();
+        }
+        
         #endregion
     
         #region Details Class
@@ -548,6 +588,46 @@ namespace LightSwitchApplication
                     get
                     {
                         return base.GetItem(global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties.Tests_SingleOrDefault) as global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSource> DataSourcesSorted
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties.DataSourcesSorted) as global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSource>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSourceType> DataSourceTypesSorted
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties.DataSourceTypesSorted) as global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSourceType>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.FunctionalArea> FunctionalAreasSorted
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties.FunctionalAreasSorted) as global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.FunctionalArea>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Query> QueriesSorted
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties.QueriesSorted) as global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Query>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test> TestsSorted
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties.TestsSorted) as global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>;
                     }
                 }
                 
@@ -768,6 +848,56 @@ namespace LightSwitchApplication
                     c(d, ref d._Tests_SingleOrDefault, sf);
                 }
     
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSource>.Entry
+                    DataSourcesSorted = new global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSource>.Entry(
+                        "DataSourcesSorted",
+                        global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties._DataSourcesSorted_Stub);
+                private static void _DataSourcesSorted_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSource>.Data> c, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._DataSourcesSorted, sf);
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSourceType>.Entry
+                    DataSourceTypesSorted = new global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSourceType>.Entry(
+                        "DataSourceTypesSorted",
+                        global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties._DataSourceTypesSorted_Stub);
+                private static void _DataSourceTypesSorted_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSourceType>.Data> c, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._DataSourceTypesSorted, sf);
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.FunctionalArea>.Entry
+                    FunctionalAreasSorted = new global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.FunctionalArea>.Entry(
+                        "FunctionalAreasSorted",
+                        global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties._FunctionalAreasSorted_Stub);
+                private static void _FunctionalAreasSorted_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.FunctionalArea>.Data> c, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._FunctionalAreasSorted, sf);
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Query>.Entry
+                    QueriesSorted = new global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Query>.Entry(
+                        "QueriesSorted",
+                        global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties._QueriesSorted_Stub);
+                private static void _QueriesSorted_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Query>.Data> c, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._QueriesSorted, sf);
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>.Entry
+                    TestsSorted = new global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>.Entry(
+                        "TestsSorted",
+                        global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass.MethodSetProperties._TestsSorted_Stub);
+                private static void _TestsSorted_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>.Data> c, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._TestsSorted, sf);
+                }
+    
             }
     
             [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -910,6 +1040,21 @@ namespace LightSwitchApplication
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
             private global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>.Data _Tests_SingleOrDefault;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSource>.Data _DataSourcesSorted;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.DataSourceType>.Data _DataSourceTypesSorted;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.FunctionalArea>.Data _FunctionalAreasSorted;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Query>.Data _QueriesSorted;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateQueryMethod<global::LightSwitchApplication.Aphelion_DB_BalancingData, global::LightSwitchApplication.Aphelion_DB_BalancingData.DetailsClass, global::LightSwitchApplication.Test>.Data _TestsSorted;
             
         }
     

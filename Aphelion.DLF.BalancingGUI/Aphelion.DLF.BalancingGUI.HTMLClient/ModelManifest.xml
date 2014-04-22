@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Documents>
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Properties\Client.lsml" Checksum="E9A748E694AE126DA3AC7434DD0F8BD47591D49551610FFC17F10FF8A01330E6" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Properties\Proxies.lsml" Checksum="0CD4DC2F0D4F42D9A8C8C6A3ABE7AE720EBDC6535841F10FA53C8A0A5A3948BB" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditFunctionalArea.lsml" Checksum="57464ECD8E44584C62E5BD205F3A8519FE9217B39E27C5F66E5BBAC4C9FB6E18" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditQuery.lsml" Checksum="BBB709475F3367024B15B37290DC9A1279D37504A8BD8227DCD6178B1ECC864C" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditTest.lsml" Checksum="35FD7D310AB656E72B1F57002CB9510DA4C8B6161FEF5DC74284DA2E57CB77A6" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\BrowseFunctionalAreas.lsml" Checksum="7CB3F13A659232670645610F8D5ABBBDC4BCDBDEF270B1E8DC88B8EA0BAC2D8C" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\BrowseDataSourceTypes.lsml" Checksum="361C1A730BE0A3EBDCD443154AC289EE9855614793CEEF6B4F31A4881CC7DF71" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditDataSourceType.lsml" Checksum="9D1EE19FBDB41769343E99880D1D276B920731B168C7FA4B1536B81475F5C5C2" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\BrowseDataSources.lsml" Checksum="52801A9B3BFAA35864301665419F77E285C574BAF0E2FE0C0D7A86E7CB36CE6B" />
-    <Document FullPath="C:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditDataSource.lsml" Checksum="212DCA32F2B74D4E187E93C545479CBDAC608ADE26ED87980475A3F8A2C8CB00" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Properties\Client.lsml" Checksum="E9A748E694AE126DA3AC7434DD0F8BD47591D49551610FFC17F10FF8A01330E6" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Properties\Proxies.lsml" Checksum="0CD4DC2F0D4F42D9A8C8C6A3ABE7AE720EBDC6535841F10FA53C8A0A5A3948BB" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditDataSource.lsml" Checksum="55344ABB1C0198BB398AA36BB611F07253B340F3858941A848AEDB057C090CCC" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditDataSourceType.lsml" Checksum="9D1EE19FBDB41769343E99880D1D276B920731B168C7FA4B1536B81475F5C5C2" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditFunctionalArea.lsml" Checksum="57464ECD8E44584C62E5BD205F3A8519FE9217B39E27C5F66E5BBAC4C9FB6E18" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditQuery.lsml" Checksum="3931257C0290E4175F109945F7A5D80E1BCE2A60027212D9D8B76FD6CF69225C" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\AddEditTest.lsml" Checksum="35FD7D310AB656E72B1F57002CB9510DA4C8B6161FEF5DC74284DA2E57CB77A6" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\BrowseDataSources.lsml" Checksum="01DAFDF46C3C166C4D191D8BE3D6245BF91B8DA946083CD690766B99EB0E310A" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\BrowseDataSourceTypes.lsml" Checksum="EECBF89394993E86D07E3CF6DD01D4620DB5B10E30EDB0E4625C42358E9DEE46" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\Aphelion.DLF.BalancingGUI\Aphelion.DLF.BalancingGUI.HTMLClient\Screens\BrowseFunctionalAreas.lsml" Checksum="736F751D31552598D906A647B4FC51DE6BF8B5E2210F2B5A2AE3096422E8EDB3" />
   </Documents>
 </ModelDocumentManifest>

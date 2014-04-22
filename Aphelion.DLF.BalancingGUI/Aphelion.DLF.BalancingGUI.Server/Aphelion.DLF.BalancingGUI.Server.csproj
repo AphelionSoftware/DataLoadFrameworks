@@ -208,6 +208,21 @@
     <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\Runs.lsml" />
     <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\Tests.lsml" />
     <LightSwitchModel Include="Properties\DataSources\Aphelion_DB_BalancingData.lsml" />
+    <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\DataSourcesSorted.lsml">
+      <DependentUpon>DataSources.lsml</DependentUpon>
+    </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\DataSourceTypesSorted.lsml">
+      <DependentUpon>DataSourceTypes.lsml</DependentUpon>
+    </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\FunctionalAreasSorted.lsml">
+      <DependentUpon>FunctionalAreas.lsml</DependentUpon>
+    </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\QueriesSorted.lsml">
+      <DependentUpon>Queries.lsml</DependentUpon>
+    </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\Aphelion_DB_BalancingData\TestsSorted.lsml">
+      <DependentUpon>Tests.lsml</DependentUpon>
+    </LightSwitchModel>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

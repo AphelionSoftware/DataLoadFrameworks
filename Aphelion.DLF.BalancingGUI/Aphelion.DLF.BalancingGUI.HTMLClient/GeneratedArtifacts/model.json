@@ -3581,9 +3581,9 @@
           ]
         },
         {
-          "displayName": "Browse Functional Areas",
-          "id": "BrowseFunctionalAreas",
-          "name": "BrowseFunctionalAreas",
+          "displayName": "Add Edit Data Source",
+          "id": "AddEditDataSource",
+          "name": "AddEditDataSource",
           "launchMode": "Single",
           ":@SaveChangesTo":
           {
@@ -3605,60 +3605,91 @@
                 "childContentItems":
                 [
                   {
-                    "displayName": "Functional Area List",
-                    "name": "FunctionalAreaList",
+                    "displayName": "Details",
+                    "name": "Details",
                     "kind": "Tab",
                     "view": { "__id": ":RowsLayout" },
                     "childContentItems":
                     [
                       {
-                        "displayName": "Functional Areas",
-                        "name": "FunctionalArea",
-                        "kind": "Collection",
-                        "view": { "__id": ":List" },
+                        "displayName": "columns",
+                        "name": "columns",
+                        "kind": "Details",
+                        "view": { "__id": ":ColumnsLayout" },
                         "dataSource":
                         {
-                          "member": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]" }
+                          "member": { "__id": "AddEditDataSource/Properties[DataSource]" }
                         },
                         "childContentItems":
                         [
                           {
-                            "displayName": "Functional Area",
-                            "name": "RowTemplate",
+                            "displayName": "left",
+                            "name": "left",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Data Source Name",
+                                "name": "DataSourceName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "DataSource/Properties[DataSourceName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Connection String",
+                                "name": "ConnectionString",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "DataSource/Properties[ConnectionString]" }
+                                }
+                              }
+                            ],
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          },
+                          {
+                            "displayName": "Data Source Type",
+                            "name": "DataSourceType",
                             "kind": "Details",
-                            "view": { "__id": ":Summary" },
+                            "view": { "__id": ":DetailsModalPicker" },
                             "dataSource":
                             {
-                              "links":
-                              [
-                              ]
-                            }
-                          }
-                        ],
-                        "propertySources":
-                        [
-                          {
-                            "property": { "__id": ":RootCollectionControl/Properties[ItemTap]" },
-                            "source":
-                            {
-                              "target": { "__id": "!module/Methods[showAddEditFunctionalArea]" },
-                              ":@AssociatedCollection": { "collection": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]" } },
-                              ":@CreateNewEntity":
+                              "member": { "__id": "DataSource/Properties[DataSourceType]" }
+                            },
+                            "childContentItems":
+                            [
                               {
-                                "targetParameter": { "__id": "!module/Methods[showAddEditFunctionalArea]/Parameters[FunctionalArea]" }
+                                "displayName": "Data Source Type",
+                                "name": "RowTemplate",
+                                "kind": "Details",
+                                "view": { "__id": ":Summary" },
+                                "dataSource":
+                                {
+                                  "links":
+                                  [
+                                  ]
+                                }
                               }
-                            }
+                            ]
                           }
                         ]
                       }
                     ]
-                  }
-                ],
-                "propertySources":
-                [
-                  {
-                    "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
-                    "value": true
                   }
                 ]
               },
@@ -3668,29 +3699,40 @@
                 "kind": "Group",
                 "view": { "__id": ":DialogPages" }
               }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              },
+              {
+                "property": { "__id": ":Screen/Properties[ShowAsDialog]" },
+                "value": true
+              }
             ]
           },
           "methods":
           [
             {
-              "id": "BrowseFunctionalAreas/Methods[showTab]",
+              "id": "AddEditDataSource/Methods[showTab]",
               "name": "showTab",
               "parameters":
               [
                 {
-                  "id": "BrowseFunctionalAreas/Methods[showTab]/Parameters[tabName]",
+                  "id": "AddEditDataSource/Methods[showTab]/Parameters[tabName]",
                   "name": "tabName",
                   "parameterType": { "__id": ":String" }
                 }
               ]
             },
             {
-              "id": "BrowseFunctionalAreas/Methods[showDialog]",
+              "id": "AddEditDataSource/Methods[showDialog]",
               "name": "showDialog",
               "parameters":
               [
                 {
-                  "id": "BrowseFunctionalAreas/Methods[showDialog]/Parameters[dialogName]",
+                  "id": "AddEditDataSource/Methods[showDialog]/Parameters[dialogName]",
                   "name": "dialogName",
                   "parameterType": { "__id": ":String" }
                 }
@@ -3700,26 +3742,163 @@
           "properties":
           [
             {
-              "id": "BrowseFunctionalAreas/Properties[FunctionalAreas]",
-              "name": "FunctionalAreas",
-              "pageSize": 45,
-              "elementType": { "__id": "FunctionalArea" },
-              "propertyType": { "__id": "CollectionView$FunctionalArea" },
-              "query":
+              "id": "AddEditDataSource/Properties[DataSource]",
+              "name": "DataSource",
+              "elementType": { "__id": "DataSource" },
+              "propertyType": { "__id": "DataSource" },
+              ":@IsParameter": { }
+            }
+          ]
+        },
+        {
+          "displayName": "Add Edit Data Source Type",
+          "id": "AddEditDataSourceType",
+          "name": "AddEditDataSourceType",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
               {
-                "id": "BrowseFunctionalAreas/Properties[FunctionalAreas]/Query",
-                "name": "FunctionalAreasQuery",
-                "elementType": { "__id": "FunctionalArea" },
-                "returnType": { "__id": "FunctionalArea*" },
-                "source":
-                {
-                  "member": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]" }
-                }
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Details",
+                    "name": "Details",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "columns",
+                        "name": "columns",
+                        "kind": "Details",
+                        "view": { "__id": ":ColumnsLayout" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditDataSourceType/Properties[DataSourceType]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "left",
+                            "name": "left",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Data Source Type Name",
+                                "name": "DataSourceTypeName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "DataSourceType/Properties[DataSourceTypeName]" }
+                                }
+                              }
+                            ],
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          },
+                          {
+                            "displayName": "right",
+                            "name": "right",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               },
-              "source":
               {
-                "target": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]/Query" }
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
               }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              },
+              {
+                "property": { "__id": ":Screen/Properties[ShowAsDialog]" },
+                "value": true
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "AddEditDataSourceType/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "AddEditDataSourceType/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "AddEditDataSourceType/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "AddEditDataSourceType/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "AddEditDataSourceType/Properties[DataSourceType]",
+              "name": "DataSourceType",
+              "elementType": { "__id": "DataSourceType" },
+              "propertyType": { "__id": "DataSourceType" },
+              ":@IsParameter": { }
             }
           ]
         },
@@ -4028,6 +4207,197 @@
               {
                 "target": { "__id": "AddEditFunctionalArea/Properties[Tests]/Query" }
               }
+            }
+          ]
+        },
+        {
+          "displayName": "Add Edit Query",
+          "id": "AddEditQuery",
+          "name": "AddEditQuery",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Details",
+                    "name": "Details",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "columns",
+                        "name": "columns",
+                        "kind": "Details",
+                        "view": { "__id": ":ColumnsLayout" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "AddEditQuery/Properties[Query]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "left",
+                            "name": "left",
+                            "kind": "Group",
+                            "view": { "__id": ":RowsLayout" },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Test",
+                                "name": "Test",
+                                "kind": "Details",
+                                "view": { "__id": ":DetailsModalPicker" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[Test]" }
+                                },
+                                "childContentItems":
+                                [
+                                  {
+                                    "displayName": "Test",
+                                    "name": "RowTemplate1",
+                                    "kind": "Details",
+                                    "view": { "__id": ":Summary" },
+                                    "dataSource":
+                                    {
+                                      "links":
+                                      [
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Data Source",
+                                "name": "DataSource",
+                                "kind": "Details",
+                                "view": { "__id": ":DetailsModalPicker" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[DataSource]" }
+                                },
+                                "childContentItems":
+                                [
+                                  {
+                                    "displayName": "Data Source",
+                                    "name": "RowTemplate",
+                                    "kind": "Details",
+                                    "view": { "__id": ":Summary" },
+                                    "dataSource":
+                                    {
+                                      "links":
+                                      [
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "displayName": "Query Name",
+                                "name": "QueryName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[QueryName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Query Text",
+                                "name": "QueryText",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "Query/Properties[QueryText]" }
+                                }
+                              }
+                            ],
+                            "propertySources":
+                            [
+                              {
+                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
+                                "value": 200
+                              },
+                              {
+                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
+                                "value": 400
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "AddEditQuery/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "AddEditQuery/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "AddEditQuery/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "AddEditQuery/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "AddEditQuery/Properties[Query]",
+              "name": "Query",
+              "elementType": { "__id": "Query" },
+              "propertyType": { "__id": "Query" },
+              ":@IsParameter": { }
             }
           ]
         },
@@ -4379,9 +4749,9 @@
           ]
         },
         {
-          "displayName": "Add Edit Query",
-          "id": "AddEditQuery",
-          "name": "AddEditQuery",
+          "displayName": "Browse Data Sources",
+          "id": "BrowseDataSources",
+          "name": "BrowseDataSources",
           "launchMode": "Single",
           ":@SaveChangesTo":
           {
@@ -4403,44 +4773,70 @@
                 "childContentItems":
                 [
                   {
-                    "displayName": "Details",
-                    "name": "Details",
+                    "displayName": "Data Source List",
+                    "name": "DataSourceList",
                     "kind": "Tab",
                     "view": { "__id": ":RowsLayout" },
                     "childContentItems":
                     [
                       {
-                        "displayName": "columns",
-                        "name": "columns",
-                        "kind": "Details",
-                        "view": { "__id": ":ColumnsLayout" },
+                        "displayName": "Data Sources",
+                        "name": "DataSource",
+                        "kind": "Collection",
+                        "view": { "__id": ":Table" },
                         "dataSource":
                         {
-                          "member": { "__id": "AddEditQuery/Properties[Query]" }
+                          "member": { "__id": "BrowseDataSources/Properties[DataSources]" }
                         },
                         "childContentItems":
                         [
                           {
-                            "displayName": "left",
-                            "name": "left",
-                            "kind": "Group",
-                            "view": { "__id": ":RowsLayout" },
+                            "displayName": "Data Source",
+                            "name": "RowTemplate",
+                            "kind": "Details",
+                            "view": { "__id": ":TableRowLayout" },
+                            "dataSource":
+                            {
+                              "links":
+                              [
+                              ]
+                            },
                             "childContentItems":
                             [
                               {
-                                "displayName": "Test",
-                                "name": "Test",
+                                "displayName": "Data Source Name",
+                                "name": "DataSourceName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "DataSource/Properties[DataSourceName]" }
+                                }
+                              },
+                              {
+                                "displayName": "Connection String",
+                                "name": "ConnectionString",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "DataSource/Properties[ConnectionString]" }
+                                }
+                              },
+                              {
+                                "displayName": "Data Source Type",
+                                "name": "DataSourceType",
                                 "kind": "Details",
                                 "view": { "__id": ":DetailsModalPicker" },
                                 "dataSource":
                                 {
-                                  "member": { "__id": "Query/Properties[Test]" }
+                                  "member": { "__id": "DataSource/Properties[DataSourceType]" }
                                 },
                                 "childContentItems":
                                 [
                                   {
-                                    "displayName": "Test",
-                                    "name": "RowTemplate1",
+                                    "displayName": "Data Source Type",
+                                    "name": "DataSourceTypeTemplate",
                                     "kind": "Details",
                                     "view": { "__id": ":Summary" },
                                     "dataSource":
@@ -4451,68 +4847,47 @@
                                     }
                                   }
                                 ]
-                              },
-                              {
-                                "displayName": "Data Source",
-                                "name": "DataSource",
-                                "kind": "Details",
-                                "view": { "__id": ":DetailsModalPicker" },
-                                "dataSource":
-                                {
-                                  "member": { "__id": "Query/Properties[DataSource]" }
-                                },
-                                "childContentItems":
-                                [
-                                  {
-                                    "displayName": "Data Source",
-                                    "name": "RowTemplate",
-                                    "kind": "Details",
-                                    "view": { "__id": ":Summary" },
-                                    "dataSource":
-                                    {
-                                      "links":
-                                      [
-                                      ]
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "displayName": "Query Name",
-                                "name": "QueryName",
-                                "kind": "Value",
-                                "view": { "__id": ":TextBox" },
-                                "dataSource":
-                                {
-                                  "member": { "__id": "Query/Properties[QueryName]" }
-                                }
-                              },
-                              {
-                                "displayName": "Query Text",
-                                "name": "QueryText",
-                                "kind": "Value",
-                                "view": { "__id": ":TextBox" },
-                                "dataSource":
-                                {
-                                  "member": { "__id": "Query/Properties[QueryText]" }
-                                }
-                              }
-                            ],
-                            "propertySources":
-                            [
-                              {
-                                "property": { "__id": ":RootControl/Properties[MinWidth]" },
-                                "value": 200
-                              },
-                              {
-                                "property": { "__id": ":RootControl/Properties[MaxWidth]" },
-                                "value": 400
                               }
                             ]
                           }
                         ]
                       }
+                    ],
+                    "commandItems":
+                    [
+                      {
+                        "displayName": "Add Data Source",
+                        "name": "AddDataSource",
+                        "kind": "Command",
+                        "view": { "__id": ":CommandBarButton" },
+                        "propertySources":
+                        [
+                          {
+                            "property": { "__id": ":RootControl/Properties[Tap]" },
+                            "source":
+                            {
+                              "target": { "__id": "!module/Methods[showAddEditDataSource]" },
+                              ":@AssociatedCollection": { "collection": { "__id": "BrowseDataSources/Properties[DataSources]" } },
+                              ":@CreateNewEntity":
+                              {
+                                "targetParameter": { "__id": "!module/Methods[showAddEditDataSource]/Parameters[DataSource]" }
+                              }
+                            }
+                          },
+                          {
+                            "property": { "__id": ":RootCommand/Properties[Icon]" },
+                            "value": "msls-add"
+                          }
+                        ]
+                      }
                     ]
+                  }
+                ],
+                "propertySources":
+                [
+                  {
+                    "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+                    "value": true
                   }
                 ]
               },
@@ -4534,24 +4909,24 @@
           "methods":
           [
             {
-              "id": "AddEditQuery/Methods[showTab]",
+              "id": "BrowseDataSources/Methods[showTab]",
               "name": "showTab",
               "parameters":
               [
                 {
-                  "id": "AddEditQuery/Methods[showTab]/Parameters[tabName]",
+                  "id": "BrowseDataSources/Methods[showTab]/Parameters[tabName]",
                   "name": "tabName",
                   "parameterType": { "__id": ":String" }
                 }
               ]
             },
             {
-              "id": "AddEditQuery/Methods[showDialog]",
+              "id": "BrowseDataSources/Methods[showDialog]",
               "name": "showDialog",
               "parameters":
               [
                 {
-                  "id": "AddEditQuery/Methods[showDialog]/Parameters[dialogName]",
+                  "id": "BrowseDataSources/Methods[showDialog]/Parameters[dialogName]",
                   "name": "dialogName",
                   "parameterType": { "__id": ":String" }
                 }
@@ -4561,11 +4936,345 @@
           "properties":
           [
             {
-              "id": "AddEditQuery/Properties[Query]",
-              "name": "Query",
-              "elementType": { "__id": "Query" },
-              "propertyType": { "__id": "Query" },
-              ":@IsParameter": { }
+              "id": "BrowseDataSources/Properties[DataSources]",
+              "name": "DataSources",
+              "pageSize": 45,
+              "elementType": { "__id": "DataSource" },
+              "propertyType": { "__id": "CollectionView$DataSource" },
+              "query":
+              {
+                "id": "BrowseDataSources/Properties[DataSources]/Query",
+                "name": "DataSourcesQuery",
+                "elementType": { "__id": "DataSource" },
+                "returnType": { "__id": "DataSource*" },
+                "source":
+                {
+                  "member": { "__id": "Aphelion_DB_BalancingData/Members[DataSources]" }
+                }
+              },
+              "source":
+              {
+                "target": { "__id": "BrowseDataSources/Properties[DataSources]/Query" }
+              }
+            }
+          ]
+        },
+        {
+          "displayName": "Browse Data Source Types",
+          "id": "BrowseDataSourceTypes",
+          "name": "BrowseDataSourceTypes",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Data Source Type List",
+                    "name": "DataSourceTypeList",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "Data Source Types",
+                        "name": "DataSourceType",
+                        "kind": "Collection",
+                        "view": { "__id": ":Table" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "BrowseDataSourceTypes/Properties[DataSourceTypes]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "Data Source Type",
+                            "name": "RowTemplate",
+                            "kind": "Details",
+                            "view": { "__id": ":TableRowLayout" },
+                            "dataSource":
+                            {
+                              "links":
+                              [
+                              ]
+                            },
+                            "childContentItems":
+                            [
+                              {
+                                "displayName": "Data Source Type Name",
+                                "name": "DataSourceTypeName",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "DataSourceType/Properties[DataSourceTypeName]" }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "commandItems":
+                    [
+                      {
+                        "displayName": "Add Data Source Type",
+                        "name": "AddDataSourceType",
+                        "kind": "Command",
+                        "view": { "__id": ":CommandBarButton" },
+                        "propertySources":
+                        [
+                          {
+                            "property": { "__id": ":RootControl/Properties[Tap]" },
+                            "source":
+                            {
+                              "target": { "__id": "!module/Methods[showAddEditDataSourceType]" },
+                              ":@AssociatedCollection": { "collection": { "__id": "BrowseDataSourceTypes/Properties[DataSourceTypes]" } },
+                              ":@CreateNewEntity":
+                              {
+                                "targetParameter": { "__id": "!module/Methods[showAddEditDataSourceType]/Parameters[DataSourceType]" }
+                              }
+                            }
+                          },
+                          {
+                            "property": { "__id": ":RootCommand/Properties[Icon]" },
+                            "value": "msls-add"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "propertySources":
+                [
+                  {
+                    "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ],
+            "propertySources":
+            [
+              {
+                "property": { "__id": ":Screen/Properties[ScreenType]" },
+                "value": "Edit"
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "BrowseDataSourceTypes/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "BrowseDataSourceTypes/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "BrowseDataSourceTypes/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "BrowseDataSourceTypes/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "BrowseDataSourceTypes/Properties[DataSourceTypes]",
+              "name": "DataSourceTypes",
+              "pageSize": 45,
+              "elementType": { "__id": "DataSourceType" },
+              "propertyType": { "__id": "CollectionView$DataSourceType" },
+              "query":
+              {
+                "id": "BrowseDataSourceTypes/Properties[DataSourceTypes]/Query",
+                "name": "DataSourceTypesQuery",
+                "elementType": { "__id": "DataSourceType" },
+                "returnType": { "__id": "DataSourceType*" },
+                "source":
+                {
+                  "member": { "__id": "Aphelion_DB_BalancingData/Members[DataSourceTypes]" }
+                }
+              },
+              "source":
+              {
+                "target": { "__id": "BrowseDataSourceTypes/Properties[DataSourceTypes]/Query" }
+              }
+            }
+          ]
+        },
+        {
+          "displayName": "Browse Functional Areas",
+          "id": "BrowseFunctionalAreas",
+          "name": "BrowseFunctionalAreas",
+          "launchMode": "Single",
+          ":@SaveChangesTo":
+          {
+            "property": { "__id": "DataWorkspace/Members[Aphelion_DB_BalancingData]" }
+          },
+          "rootContentItem":
+          {
+            "displayName": "Root Content Item",
+            "name": "RootContentItem",
+            "kind": "Screen",
+            "view": { "__id": ":Screen" },
+            "childContentItems":
+            [
+              {
+                "displayName": "Tabs",
+                "name": "Tabs",
+                "kind": "Group",
+                "view": { "__id": ":TabPages" },
+                "childContentItems":
+                [
+                  {
+                    "displayName": "Functional Area List",
+                    "name": "FunctionalAreaList",
+                    "kind": "Tab",
+                    "view": { "__id": ":RowsLayout" },
+                    "childContentItems":
+                    [
+                      {
+                        "displayName": "Functional Areas",
+                        "name": "FunctionalArea",
+                        "kind": "Collection",
+                        "view": { "__id": ":List" },
+                        "dataSource":
+                        {
+                          "member": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]" }
+                        },
+                        "childContentItems":
+                        [
+                          {
+                            "displayName": "Functional Area",
+                            "name": "RowTemplate",
+                            "kind": "Details",
+                            "view": { "__id": ":Summary" },
+                            "dataSource":
+                            {
+                              "links":
+                              [
+                              ]
+                            }
+                          }
+                        ],
+                        "propertySources":
+                        [
+                          {
+                            "property": { "__id": ":RootCollectionControl/Properties[ItemTap]" },
+                            "source":
+                            {
+                              "target": { "__id": "!module/Methods[showAddEditFunctionalArea]" },
+                              ":@AssociatedCollection": { "collection": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]" } },
+                              ":@CreateNewEntity":
+                              {
+                                "targetParameter": { "__id": "!module/Methods[showAddEditFunctionalArea]/Parameters[FunctionalArea]" }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "propertySources":
+                [
+                  {
+                    "property": { "__id": ":RootControl/Properties[BrowseOnly]" },
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "displayName": "Popups",
+                "name": "Popups",
+                "kind": "Group",
+                "view": { "__id": ":DialogPages" }
+              }
+            ]
+          },
+          "methods":
+          [
+            {
+              "id": "BrowseFunctionalAreas/Methods[showTab]",
+              "name": "showTab",
+              "parameters":
+              [
+                {
+                  "id": "BrowseFunctionalAreas/Methods[showTab]/Parameters[tabName]",
+                  "name": "tabName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            },
+            {
+              "id": "BrowseFunctionalAreas/Methods[showDialog]",
+              "name": "showDialog",
+              "parameters":
+              [
+                {
+                  "id": "BrowseFunctionalAreas/Methods[showDialog]/Parameters[dialogName]",
+                  "name": "dialogName",
+                  "parameterType": { "__id": ":String" }
+                }
+              ]
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "BrowseFunctionalAreas/Properties[FunctionalAreas]",
+              "name": "FunctionalAreas",
+              "pageSize": 45,
+              "elementType": { "__id": "FunctionalArea" },
+              "propertyType": { "__id": "CollectionView$FunctionalArea" },
+              "query":
+              {
+                "id": "BrowseFunctionalAreas/Properties[FunctionalAreas]/Query",
+                "name": "FunctionalAreasQuery",
+                "elementType": { "__id": "FunctionalArea" },
+                "returnType": { "__id": "FunctionalArea*" },
+                "source":
+                {
+                  "member": { "__id": "Aphelion_DB_BalancingData/Members[FunctionalAreas]" }
+                }
+              },
+              "source":
+              {
+                "target": { "__id": "BrowseFunctionalAreas/Properties[FunctionalAreas]/Query" }
+              }
             }
           ]
         }
@@ -4573,9 +5282,30 @@
       "methods":
       [
         {
-          "id": "!module/Methods[showBrowseFunctionalAreas]",
-          "name": "showBrowseFunctionalAreas",
-          ":@ShowScreenMethod": { "targetScreen": { "__id": "BrowseFunctionalAreas" } }
+          "id": "!module/Methods[showAddEditDataSource]",
+          "name": "showAddEditDataSource",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditDataSource" } },
+          "parameters":
+          [
+            {
+              "id": "!module/Methods[showAddEditDataSource]/Parameters[DataSource]",
+              "name": "DataSource",
+              "parameterType": { "__id": "DataSource" }
+            }
+          ]
+        },
+        {
+          "id": "!module/Methods[showAddEditDataSourceType]",
+          "name": "showAddEditDataSourceType",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditDataSourceType" } },
+          "parameters":
+          [
+            {
+              "id": "!module/Methods[showAddEditDataSourceType]/Parameters[DataSourceType]",
+              "name": "DataSourceType",
+              "parameterType": { "__id": "DataSourceType" }
+            }
+          ]
         },
         {
           "id": "!module/Methods[showAddEditFunctionalArea]",
@@ -4587,6 +5317,19 @@
               "id": "!module/Methods[showAddEditFunctionalArea]/Parameters[FunctionalArea]",
               "name": "FunctionalArea",
               "parameterType": { "__id": "FunctionalArea" }
+            }
+          ]
+        },
+        {
+          "id": "!module/Methods[showAddEditQuery]",
+          "name": "showAddEditQuery",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditQuery" } },
+          "parameters":
+          [
+            {
+              "id": "!module/Methods[showAddEditQuery]/Parameters[Query]",
+              "name": "Query",
+              "parameterType": { "__id": "Query" }
             }
           ]
         },
@@ -4604,17 +5347,19 @@
           ]
         },
         {
-          "id": "!module/Methods[showAddEditQuery]",
-          "name": "showAddEditQuery",
-          ":@ShowScreenMethod": { "targetScreen": { "__id": "AddEditQuery" } },
-          "parameters":
-          [
-            {
-              "id": "!module/Methods[showAddEditQuery]/Parameters[Query]",
-              "name": "Query",
-              "parameterType": { "__id": "Query" }
-            }
-          ]
+          "id": "!module/Methods[showBrowseDataSources]",
+          "name": "showBrowseDataSources",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "BrowseDataSources" } }
+        },
+        {
+          "id": "!module/Methods[showBrowseDataSourceTypes]",
+          "name": "showBrowseDataSourceTypes",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "BrowseDataSourceTypes" } }
+        },
+        {
+          "id": "!module/Methods[showBrowseFunctionalAreas]",
+          "name": "showBrowseFunctionalAreas",
+          ":@ShowScreenMethod": { "targetScreen": { "__id": "BrowseFunctionalAreas" } }
         }
       ]
     }

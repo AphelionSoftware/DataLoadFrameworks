@@ -8,6 +8,53 @@
         $toODataString = msls._toODataString,
         $defineShowScreen = msls._defineShowScreen;
 
+    function AddEditDataSource(parameters, dataWorkspace) {
+        /// <summary>
+        /// Represents the AddEditDataSource screen.
+        /// </summary>
+        /// <param name="parameters" type="Array">
+        /// An array of screen parameter values.
+        /// </param>
+        /// <param name="dataWorkspace" type="msls.application.DataWorkspace" optional="true">
+        /// An existing data workspace for this screen to use. By default, a new data workspace is created.
+        /// </param>
+        /// <field name="DataSource" type="msls.application.DataSource">
+        /// Gets or sets the dataSource for this screen.
+        /// </field>
+        /// <field name="DataSourceTypesSorted" type="msls.VisualCollection" elementType="msls.application.DataSourceType">
+        /// Gets the dataSourceTypesSorted for this screen.
+        /// </field>
+        /// <field name="details" type="msls.application.AddEditDataSource.Details">
+        /// Gets the details for this screen.
+        /// </field>
+        if (!dataWorkspace) {
+            dataWorkspace = new lightSwitchApplication.DataWorkspace();
+        }
+        $Screen.call(this, dataWorkspace, "AddEditDataSource", parameters);
+    }
+
+    function AddEditDataSourceType(parameters, dataWorkspace) {
+        /// <summary>
+        /// Represents the AddEditDataSourceType screen.
+        /// </summary>
+        /// <param name="parameters" type="Array">
+        /// An array of screen parameter values.
+        /// </param>
+        /// <param name="dataWorkspace" type="msls.application.DataWorkspace" optional="true">
+        /// An existing data workspace for this screen to use. By default, a new data workspace is created.
+        /// </param>
+        /// <field name="DataSourceType" type="msls.application.DataSourceType">
+        /// Gets or sets the dataSourceType for this screen.
+        /// </field>
+        /// <field name="details" type="msls.application.AddEditDataSourceType.Details">
+        /// Gets the details for this screen.
+        /// </field>
+        if (!dataWorkspace) {
+            dataWorkspace = new lightSwitchApplication.DataWorkspace();
+        }
+        $Screen.call(this, dataWorkspace, "AddEditDataSourceType", parameters);
+    }
+
     function AddEditFunctionalArea(parameters, dataWorkspace) {
         /// <summary>
         /// Represents the AddEditFunctionalArea screen.
@@ -46,6 +93,9 @@
         /// <field name="Query" type="msls.application.Query">
         /// Gets or sets the query for this screen.
         /// </field>
+        /// <field name="TestsSorted" type="msls.VisualCollection" elementType="msls.application.Test">
+        /// Gets the testsSorted for this screen.
+        /// </field>
         /// <field name="details" type="msls.application.AddEditQuery.Details">
         /// Gets the details for this screen.
         /// </field>
@@ -80,9 +130,9 @@
         $Screen.call(this, dataWorkspace, "AddEditTest", parameters);
     }
 
-    function BrowseFunctionalAreas(parameters, dataWorkspace) {
+    function BrowseDataSources(parameters, dataWorkspace) {
         /// <summary>
-        /// Represents the BrowseFunctionalAreas screen.
+        /// Represents the BrowseDataSources screen.
         /// </summary>
         /// <param name="parameters" type="Array">
         /// An array of screen parameter values.
@@ -90,16 +140,16 @@
         /// <param name="dataWorkspace" type="msls.application.DataWorkspace" optional="true">
         /// An existing data workspace for this screen to use. By default, a new data workspace is created.
         /// </param>
-        /// <field name="FunctionalAreas" type="msls.VisualCollection" elementType="msls.application.FunctionalArea">
-        /// Gets the functionalAreas for this screen.
+        /// <field name="DataSources" type="msls.VisualCollection" elementType="msls.application.DataSource">
+        /// Gets the dataSources for this screen.
         /// </field>
-        /// <field name="details" type="msls.application.BrowseFunctionalAreas.Details">
+        /// <field name="details" type="msls.application.BrowseDataSources.Details">
         /// Gets the details for this screen.
         /// </field>
         if (!dataWorkspace) {
             dataWorkspace = new lightSwitchApplication.DataWorkspace();
         }
-        $Screen.call(this, dataWorkspace, "BrowseFunctionalAreas", parameters);
+        $Screen.call(this, dataWorkspace, "BrowseDataSources", parameters);
     }
 
     function BrowseDataSourceTypes(parameters, dataWorkspace) {
@@ -124,9 +174,9 @@
         $Screen.call(this, dataWorkspace, "BrowseDataSourceTypes", parameters);
     }
 
-    function AddEditDataSourceType(parameters, dataWorkspace) {
+    function BrowseFunctionalAreas(parameters, dataWorkspace) {
         /// <summary>
-        /// Represents the AddEditDataSourceType screen.
+        /// Represents the BrowseFunctionalAreas screen.
         /// </summary>
         /// <param name="parameters" type="Array">
         /// An array of screen parameter values.
@@ -134,63 +184,35 @@
         /// <param name="dataWorkspace" type="msls.application.DataWorkspace" optional="true">
         /// An existing data workspace for this screen to use. By default, a new data workspace is created.
         /// </param>
-        /// <field name="DataSourceType" type="msls.application.DataSourceType">
-        /// Gets or sets the dataSourceType for this screen.
+        /// <field name="FunctionalAreas" type="msls.VisualCollection" elementType="msls.application.FunctionalArea">
+        /// Gets the functionalAreas for this screen.
         /// </field>
-        /// <field name="details" type="msls.application.AddEditDataSourceType.Details">
+        /// <field name="details" type="msls.application.BrowseFunctionalAreas.Details">
         /// Gets the details for this screen.
         /// </field>
         if (!dataWorkspace) {
             dataWorkspace = new lightSwitchApplication.DataWorkspace();
         }
-        $Screen.call(this, dataWorkspace, "AddEditDataSourceType", parameters);
-    }
-
-    function BrowseDataSources(parameters, dataWorkspace) {
-        /// <summary>
-        /// Represents the BrowseDataSources screen.
-        /// </summary>
-        /// <param name="parameters" type="Array">
-        /// An array of screen parameter values.
-        /// </param>
-        /// <param name="dataWorkspace" type="msls.application.DataWorkspace" optional="true">
-        /// An existing data workspace for this screen to use. By default, a new data workspace is created.
-        /// </param>
-        /// <field name="DataSources" type="msls.VisualCollection" elementType="msls.application.DataSource">
-        /// Gets the dataSources for this screen.
-        /// </field>
-        /// <field name="details" type="msls.application.BrowseDataSources.Details">
-        /// Gets the details for this screen.
-        /// </field>
-        if (!dataWorkspace) {
-            dataWorkspace = new lightSwitchApplication.DataWorkspace();
-        }
-        $Screen.call(this, dataWorkspace, "BrowseDataSources", parameters);
-    }
-
-    function AddEditDataSource(parameters, dataWorkspace) {
-        /// <summary>
-        /// Represents the AddEditDataSource screen.
-        /// </summary>
-        /// <param name="parameters" type="Array">
-        /// An array of screen parameter values.
-        /// </param>
-        /// <param name="dataWorkspace" type="msls.application.DataWorkspace" optional="true">
-        /// An existing data workspace for this screen to use. By default, a new data workspace is created.
-        /// </param>
-        /// <field name="DataSource" type="msls.application.DataSource">
-        /// Gets or sets the dataSource for this screen.
-        /// </field>
-        /// <field name="details" type="msls.application.AddEditDataSource.Details">
-        /// Gets the details for this screen.
-        /// </field>
-        if (!dataWorkspace) {
-            dataWorkspace = new lightSwitchApplication.DataWorkspace();
-        }
-        $Screen.call(this, dataWorkspace, "AddEditDataSource", parameters);
+        $Screen.call(this, dataWorkspace, "BrowseFunctionalAreas", parameters);
     }
 
     msls._addToNamespace("msls.application", {
+
+        AddEditDataSource: $defineScreen(AddEditDataSource, [
+            { name: "DataSource", kind: "local", type: lightSwitchApplication.DataSource },
+            {
+                name: "DataSourceTypesSorted", kind: "collection", elementType: lightSwitchApplication.DataSourceType,
+                createQuery: function () {
+                    return this.dataWorkspace.Aphelion_DB_BalancingData.DataSourceTypesSorted();
+                }
+            }
+        ], [
+        ]),
+
+        AddEditDataSourceType: $defineScreen(AddEditDataSourceType, [
+            { name: "DataSourceType", kind: "local", type: lightSwitchApplication.DataSourceType }
+        ], [
+        ]),
 
         AddEditFunctionalArea: $defineScreen(AddEditFunctionalArea, [
             { name: "FunctionalArea", kind: "local", type: lightSwitchApplication.FunctionalArea },
@@ -210,7 +232,13 @@
         ]),
 
         AddEditQuery: $defineScreen(AddEditQuery, [
-            { name: "Query", kind: "local", type: lightSwitchApplication.Query }
+            { name: "Query", kind: "local", type: lightSwitchApplication.Query },
+            {
+                name: "TestsSorted", kind: "collection", elementType: lightSwitchApplication.Test,
+                createQuery: function () {
+                    return this.dataWorkspace.Aphelion_DB_BalancingData.TestsSorted();
+                }
+            }
         ], [
         ]),
 
@@ -231,11 +259,11 @@
         ], [
         ]),
 
-        BrowseFunctionalAreas: $defineScreen(BrowseFunctionalAreas, [
+        BrowseDataSources: $defineScreen(BrowseDataSources, [
             {
-                name: "FunctionalAreas", kind: "collection", elementType: lightSwitchApplication.FunctionalArea,
+                name: "DataSources", kind: "collection", elementType: lightSwitchApplication.DataSource,
                 createQuery: function () {
-                    return this.dataWorkspace.Aphelion_DB_BalancingData.FunctionalAreas;
+                    return this.dataWorkspace.Aphelion_DB_BalancingData.DataSources.orderBy("DataSourceName").expand("DataSourceType");
                 }
             }
         ], [
@@ -245,31 +273,45 @@
             {
                 name: "DataSourceTypes", kind: "collection", elementType: lightSwitchApplication.DataSourceType,
                 createQuery: function () {
-                    return this.dataWorkspace.Aphelion_DB_BalancingData.DataSourceTypes;
+                    return this.dataWorkspace.Aphelion_DB_BalancingData.DataSourceTypes.orderBy("DataSourceTypeName");
                 }
             }
         ], [
         ]),
 
-        AddEditDataSourceType: $defineScreen(AddEditDataSourceType, [
-            { name: "DataSourceType", kind: "local", type: lightSwitchApplication.DataSourceType }
-        ], [
-        ]),
-
-        BrowseDataSources: $defineScreen(BrowseDataSources, [
+        BrowseFunctionalAreas: $defineScreen(BrowseFunctionalAreas, [
             {
-                name: "DataSources", kind: "collection", elementType: lightSwitchApplication.DataSource,
+                name: "FunctionalAreas", kind: "collection", elementType: lightSwitchApplication.FunctionalArea,
                 createQuery: function () {
-                    return this.dataWorkspace.Aphelion_DB_BalancingData.DataSources.expand("DataSourceType");
+                    return this.dataWorkspace.Aphelion_DB_BalancingData.FunctionalAreas.orderBy("FunctionalAreaName");
                 }
             }
         ], [
         ]),
 
-        AddEditDataSource: $defineScreen(AddEditDataSource, [
-            { name: "DataSource", kind: "local", type: lightSwitchApplication.DataSource }
-        ], [
-        ]),
+        showAddEditDataSource: $defineShowScreen(function showAddEditDataSource(DataSource, options) {
+            /// <summary>
+            /// Asynchronously navigates forward to the AddEditDataSource screen.
+            /// </summary>
+            /// <param name="options" optional="true">
+            /// An object that provides one or more of the following options:<br/>- beforeShown: a function that is called after boundary behavior has been applied but before the screen is shown.<br/>+ Signature: beforeShown(screen)<br/>- afterClosed: a function that is called after boundary behavior has been applied and the screen has been closed.<br/>+ Signature: afterClosed(screen, action : msls.NavigateBackAction)
+            /// </param>
+            /// <returns type="WinJS.Promise" />
+            var parameters = Array.prototype.slice.call(arguments, 0, 1);
+            return lightSwitchApplication.showScreen("AddEditDataSource", parameters, options);
+        }),
+
+        showAddEditDataSourceType: $defineShowScreen(function showAddEditDataSourceType(DataSourceType, options) {
+            /// <summary>
+            /// Asynchronously navigates forward to the AddEditDataSourceType screen.
+            /// </summary>
+            /// <param name="options" optional="true">
+            /// An object that provides one or more of the following options:<br/>- beforeShown: a function that is called after boundary behavior has been applied but before the screen is shown.<br/>+ Signature: beforeShown(screen)<br/>- afterClosed: a function that is called after boundary behavior has been applied and the screen has been closed.<br/>+ Signature: afterClosed(screen, action : msls.NavigateBackAction)
+            /// </param>
+            /// <returns type="WinJS.Promise" />
+            var parameters = Array.prototype.slice.call(arguments, 0, 1);
+            return lightSwitchApplication.showScreen("AddEditDataSourceType", parameters, options);
+        }),
 
         showAddEditFunctionalArea: $defineShowScreen(function showAddEditFunctionalArea(FunctionalArea, options) {
             /// <summary>
@@ -307,16 +349,16 @@
             return lightSwitchApplication.showScreen("AddEditTest", parameters, options);
         }),
 
-        showBrowseFunctionalAreas: $defineShowScreen(function showBrowseFunctionalAreas(options) {
+        showBrowseDataSources: $defineShowScreen(function showBrowseDataSources(options) {
             /// <summary>
-            /// Asynchronously navigates forward to the BrowseFunctionalAreas screen.
+            /// Asynchronously navigates forward to the BrowseDataSources screen.
             /// </summary>
             /// <param name="options" optional="true">
             /// An object that provides one or more of the following options:<br/>- beforeShown: a function that is called after boundary behavior has been applied but before the screen is shown.<br/>+ Signature: beforeShown(screen)<br/>- afterClosed: a function that is called after boundary behavior has been applied and the screen has been closed.<br/>+ Signature: afterClosed(screen, action : msls.NavigateBackAction)
             /// </param>
             /// <returns type="WinJS.Promise" />
             var parameters = Array.prototype.slice.call(arguments, 0, 0);
-            return lightSwitchApplication.showScreen("BrowseFunctionalAreas", parameters, options);
+            return lightSwitchApplication.showScreen("BrowseDataSources", parameters, options);
         }),
 
         showBrowseDataSourceTypes: $defineShowScreen(function showBrowseDataSourceTypes(options) {
@@ -331,40 +373,16 @@
             return lightSwitchApplication.showScreen("BrowseDataSourceTypes", parameters, options);
         }),
 
-        showAddEditDataSourceType: $defineShowScreen(function showAddEditDataSourceType(DataSourceType, options) {
+        showBrowseFunctionalAreas: $defineShowScreen(function showBrowseFunctionalAreas(options) {
             /// <summary>
-            /// Asynchronously navigates forward to the AddEditDataSourceType screen.
-            /// </summary>
-            /// <param name="options" optional="true">
-            /// An object that provides one or more of the following options:<br/>- beforeShown: a function that is called after boundary behavior has been applied but before the screen is shown.<br/>+ Signature: beforeShown(screen)<br/>- afterClosed: a function that is called after boundary behavior has been applied and the screen has been closed.<br/>+ Signature: afterClosed(screen, action : msls.NavigateBackAction)
-            /// </param>
-            /// <returns type="WinJS.Promise" />
-            var parameters = Array.prototype.slice.call(arguments, 0, 1);
-            return lightSwitchApplication.showScreen("AddEditDataSourceType", parameters, options);
-        }),
-
-        showBrowseDataSources: $defineShowScreen(function showBrowseDataSources(options) {
-            /// <summary>
-            /// Asynchronously navigates forward to the BrowseDataSources screen.
+            /// Asynchronously navigates forward to the BrowseFunctionalAreas screen.
             /// </summary>
             /// <param name="options" optional="true">
             /// An object that provides one or more of the following options:<br/>- beforeShown: a function that is called after boundary behavior has been applied but before the screen is shown.<br/>+ Signature: beforeShown(screen)<br/>- afterClosed: a function that is called after boundary behavior has been applied and the screen has been closed.<br/>+ Signature: afterClosed(screen, action : msls.NavigateBackAction)
             /// </param>
             /// <returns type="WinJS.Promise" />
             var parameters = Array.prototype.slice.call(arguments, 0, 0);
-            return lightSwitchApplication.showScreen("BrowseDataSources", parameters, options);
-        }),
-
-        showAddEditDataSource: $defineShowScreen(function showAddEditDataSource(DataSource, options) {
-            /// <summary>
-            /// Asynchronously navigates forward to the AddEditDataSource screen.
-            /// </summary>
-            /// <param name="options" optional="true">
-            /// An object that provides one or more of the following options:<br/>- beforeShown: a function that is called after boundary behavior has been applied but before the screen is shown.<br/>+ Signature: beforeShown(screen)<br/>- afterClosed: a function that is called after boundary behavior has been applied and the screen has been closed.<br/>+ Signature: afterClosed(screen, action : msls.NavigateBackAction)
-            /// </param>
-            /// <returns type="WinJS.Promise" />
-            var parameters = Array.prototype.slice.call(arguments, 0, 1);
-            return lightSwitchApplication.showScreen("AddEditDataSource", parameters, options);
+            return lightSwitchApplication.showScreen("BrowseFunctionalAreas", parameters, options);
         })
 
     });
