@@ -101,6 +101,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnCreateStgIgnorePrefixes = new System.Windows.Forms.Button();
             this.chkStageDrop = new System.Windows.Forms.CheckBox();
             this.txtStageScript = new System.Windows.Forms.TextBox();
             this.btnStaging = new System.Windows.Forms.Button();
@@ -135,6 +136,11 @@
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
+            this.chkInclKeys = new System.Windows.Forms.CheckBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.txtTableExclStg = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -921,6 +927,12 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label47);
+            this.tabPage3.Controls.Add(this.txtSchemaExclStg);
+            this.tabPage3.Controls.Add(this.label46);
+            this.tabPage3.Controls.Add(this.txtTableExclStg);
+            this.tabPage3.Controls.Add(this.chkInclKeys);
+            this.tabPage3.Controls.Add(this.btnCreateStgIgnorePrefixes);
             this.tabPage3.Controls.Add(this.chkStageDrop);
             this.tabPage3.Controls.Add(this.txtStageScript);
             this.tabPage3.Controls.Add(this.btnStaging);
@@ -944,12 +956,23 @@
             this.tabPage3.Text = "CreateStaging";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnCreateStgIgnorePrefixes
+            // 
+            this.btnCreateStgIgnorePrefixes.Location = new System.Drawing.Point(19, 430);
+            this.btnCreateStgIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateStgIgnorePrefixes.Name = "btnCreateStgIgnorePrefixes";
+            this.btnCreateStgIgnorePrefixes.Size = new System.Drawing.Size(263, 27);
+            this.btnCreateStgIgnorePrefixes.TabIndex = 75;
+            this.btnCreateStgIgnorePrefixes.Text = "Create Staging - ignore prefixes";
+            this.btnCreateStgIgnorePrefixes.UseVisualStyleBackColor = true;
+            this.btnCreateStgIgnorePrefixes.Click += new System.EventHandler(this.button1_Click);
+            // 
             // chkStageDrop
             // 
             this.chkStageDrop.AutoSize = true;
             this.chkStageDrop.Checked = true;
             this.chkStageDrop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStageDrop.Location = new System.Drawing.Point(180, 231);
+            this.chkStageDrop.Location = new System.Drawing.Point(180, 221);
             this.chkStageDrop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkStageDrop.Name = "chkStageDrop";
             this.chkStageDrop.Size = new System.Drawing.Size(102, 21);
@@ -959,7 +982,7 @@
             // 
             // txtStageScript
             // 
-            this.txtStageScript.Location = new System.Drawing.Point(24, 298);
+            this.txtStageScript.Location = new System.Drawing.Point(19, 477);
             this.txtStageScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtStageScript.Multiline = true;
             this.txtStageScript.Name = "txtStageScript";
@@ -968,10 +991,10 @@
             // 
             // btnStaging
             // 
-            this.btnStaging.Location = new System.Drawing.Point(24, 254);
+            this.btnStaging.Location = new System.Drawing.Point(19, 393);
             this.btnStaging.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStaging.Name = "btnStaging";
-            this.btnStaging.Size = new System.Drawing.Size(125, 23);
+            this.btnStaging.Size = new System.Drawing.Size(263, 23);
             this.btnStaging.TabIndex = 72;
             this.btnStaging.Text = "Create Staging";
             this.btnStaging.UseVisualStyleBackColor = true;
@@ -1003,7 +1026,7 @@
             this.txtStgSrcConn.Name = "txtStgSrcConn";
             this.txtStgSrcConn.Size = new System.Drawing.Size(1245, 22);
             this.txtStgSrcConn.TabIndex = 69;
-            this.txtStgSrcConn.Text = "Data Source=.\\sql2012;Initial Catalog=Okavango;Integrated Security=True\r\n";
+            this.txtStgSrcConn.Text = "Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True\r\n";
             // 
             // label29
             // 
@@ -1023,7 +1046,8 @@
             this.txtStgFieldExcl.Name = "txtStgFieldExcl";
             this.txtStgFieldExcl.Size = new System.Drawing.Size(1245, 50);
             this.txtStgFieldExcl.TabIndex = 66;
-            this.txtStgFieldExcl.Text = "\'sysModifiedOn\', \'sysModifiedBy\', \'sysCreatedOn\', \'sysCreatedBy\', \'sysActive\'";
+            this.txtStgFieldExcl.Text = "\'sys_ModifiedOn\', \'sys_ModifiedBy\', \'sys_CreatedOn\', \'sys_CreatedBy\', \'sys_Active" +
+    "\', \'Active\'";
             // 
             // label30
             // 
@@ -1080,7 +1104,7 @@
             this.txtStgDB.Name = "txtStgDB";
             this.txtStgDB.Size = new System.Drawing.Size(1245, 22);
             this.txtStgDB.TabIndex = 60;
-            this.txtStgDB.Text = "Okavango";
+            this.txtStgDB.Text = "MeerkatStaging";
             // 
             // tabPage4
             // 
@@ -1292,6 +1316,60 @@
             this.txtTblSchema.TabIndex = 74;
             this.txtTblSchema.Text = "Cube";
             // 
+            // chkInclKeys
+            // 
+            this.chkInclKeys.AutoSize = true;
+            this.chkInclKeys.Checked = true;
+            this.chkInclKeys.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInclKeys.Location = new System.Drawing.Point(310, 434);
+            this.chkInclKeys.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkInclKeys.Name = "chkInclKeys";
+            this.chkInclKeys.Size = new System.Drawing.Size(192, 21);
+            this.chkInclKeys.TabIndex = 76;
+            this.chkInclKeys.Text = "Include Keys for matching";
+            this.chkInclKeys.UseVisualStyleBackColor = true;
+            this.chkInclKeys.Visible = false;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(4, 254);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(110, 17);
+            this.label46.TabIndex = 78;
+            this.label46.Text = "TableExclusions";
+            // 
+            // txtTableExclStg
+            // 
+            this.txtTableExclStg.Location = new System.Drawing.Point(180, 248);
+            this.txtTableExclStg.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTableExclStg.Multiline = true;
+            this.txtTableExclStg.Name = "txtTableExclStg";
+            this.txtTableExclStg.Size = new System.Drawing.Size(1245, 50);
+            this.txtTableExclStg.TabIndex = 77;
+            this.txtTableExclStg.Text = "\'DimDate\', \'Age\', \'templateMenueGroup\', \'DimMunicipalityGEOM\', \'ActiveType\'";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(4, 312);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(125, 17);
+            this.label47.TabIndex = 80;
+            this.label47.Text = "SchemaExclusions";
+            // 
+            // txtSchemaExclStg
+            // 
+            this.txtSchemaExclStg.Location = new System.Drawing.Point(180, 306);
+            this.txtSchemaExclStg.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSchemaExclStg.Multiline = true;
+            this.txtSchemaExclStg.Name = "txtSchemaExclStg";
+            this.txtSchemaExclStg.Size = new System.Drawing.Size(1245, 50);
+            this.txtSchemaExclStg.TabIndex = 79;
+            this.txtSchemaExclStg.Text = "\'forms\'";
+            // 
             // ProgramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1420,6 +1498,12 @@
         private System.Windows.Forms.TextBox txtExDB;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtExServer;
+        private System.Windows.Forms.Button btnCreateStgIgnorePrefixes;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.TextBox txtSchemaExclStg;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.TextBox txtTableExclStg;
+        private System.Windows.Forms.CheckBox chkInclKeys;
 
     }
 }

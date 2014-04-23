@@ -188,5 +188,14 @@ namespace PW.CustomCodeConverter
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeys.Checked, this.txtTableExclStg.Text, this.txtSchemaExclStg.Text);
+            scTables.CreateScript();
+
+            this.txtStageScript.Text = scTables.OutputScript();
+        
+        }
     }
 }

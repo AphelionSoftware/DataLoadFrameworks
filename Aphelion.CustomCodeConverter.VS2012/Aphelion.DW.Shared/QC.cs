@@ -72,6 +72,19 @@ DROP DATABASE [{0}]
         #endregion
 
         #region Tables
+        /// <summary>
+        /// Query tables 
+        /// 0: Table exclusions
+        /// 1: Schema exclusions
+        /// </summary>
+        public const string qryTableQueryExcl = @"SELECT table_schema, table_name FROM 
+information_schema.tables
+WHERE table_name not in ({0})
+and table_schema not in ({1})
+AND Table_type = 'BASE TABLE'
+and table_name = 'Indicator'
+ORDER BY table_schema, table_name";
+        
         public const string qryTableQuery = @"SELECT table_schema, table_name FROM 
 information_schema.tables
 WHERE table_name like '{0}%'
@@ -126,6 +139,7 @@ ORDER BY table_schema, table_name";
 	    ///5 KCU.Table_SChema UNQ_Schema
 	    ///6 KCU.Table_Name Unq_Table
 	    ///7 KCU.Column_Name Unq_Column
+        ///8 CCU_U.IS_NULLABLE
         /// </summary>
         public const string qryReferenceQuery = @"
 select 
@@ -137,6 +151,7 @@ select
 	,KCU.Table_SChema UNQ_Schema
 	,KCU.Table_Name Unq_Table
 	,KCU.Column_Name Unq_Column
+	, CCU_C.IS_NULLABLE 
 	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
 INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
 ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
@@ -144,6 +159,13 @@ and RC.CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
 INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE KCU
 ON RC.UNIQUE_CONSTRAINT_SCHEMA = KCU.CONSTRAINT_SCHEMA
 AND RC.UNIQUE_CONSTRAINT_NAME = KCU.CONSTRAINT_NAME
+
+
+INNER JOIN INFORMATION_SCHEMA.COLUMNS CCU_C
+	ON CCU.TABLE_SCHEMA = CCU_C.TABLE_SCHEMA
+	AND CCU.TABLE_NAME = CCU_C.TABLE_NAME
+	AND CCU.COLUMN_NAME = CCU_C.COLUMN_NAME
+
 
 WHERE CCU.TABLE_SCHEMA = '{0}'
 AND CCU.TABLE_NAME = '{1}'
