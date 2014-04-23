@@ -26,11 +26,12 @@ namespace Aphelion.DW.StagingCreate
         public string sDimFilter;
         SqlConnection srcConn;
         SqlConnection srcFactConn;
-        //SqlConnection srcDimConn;
+        SqlConnection srcDimConn;
         SqlConnection destConn;
         public string strFullCreate;
         public bool bDropStage;
         public bool bInclKeys;
+        public bool bInclRefKeys;
         public string strTableExcl;
         public string strSchemaExcl;
             
@@ -57,7 +58,8 @@ namespace Aphelion.DW.StagingCreate
              sDimTablePrefix = pDimTablePrefix;
              sFieldExcl = pFieldExcl;
              bDropStage = pDropStage;
-            bInclKeys = false;
+            bInclKeys = true;
+            bInclRefKeys = false;
             strTableExcl = "";
             strSchemaExcl = "";
         
@@ -73,6 +75,7 @@ namespace Aphelion.DW.StagingCreate
          string pFieldExcl
             , bool pDropStage
             , bool pInclKeys
+            , bool pInclRefKeys
             , string pTableExcl
             , string pSchemaExcl
                 )
@@ -85,6 +88,7 @@ namespace Aphelion.DW.StagingCreate
             sFieldExcl = pFieldExcl;
             bDropStage = pDropStage;
             bInclKeys = pInclKeys;
+            bInclRefKeys = pInclRefKeys;
             strTableExcl = pTableExcl;
             strSchemaExcl = pSchemaExcl;
         
@@ -97,6 +101,9 @@ namespace Aphelion.DW.StagingCreate
             srcConn.Open();
             srcFactConn = new SqlConnection(this.srcDBConn);
             srcFactConn.Open();
+            srcDimConn = new SqlConnection(this.srcDBConn);
+            srcDimConn.Open();
+            
             
             SqlCommand command = srcConn.CreateCommand();
 
@@ -189,7 +196,16 @@ namespace Aphelion.DW.StagingCreate
             drRefs.Close();
 
             //Build related tables 
-            comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName), srcFactConn);
+
+            if (this.sFactTablePrefix == "")
+            {
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExcl, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl), srcFactConn);
+            
+            }
+            else
+            {
+                comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName), srcFactConn);
+            }
             drRefs = comm.ExecuteReader();
             //drRefs.Read();
             string sDimTable = "";
@@ -201,9 +217,45 @@ namespace Aphelion.DW.StagingCreate
             {
 
                 //Remove referential columns from list of columns
-                lstTC.RemoveAll(item => 
-                    item.TableName == drRefs.GetString(3)
-                                && item.ColumnName == drRefs.GetString(4));
+                if (!bInclRefKeys)
+                {
+                    lstTC.RemoveAll(item =>
+                        item.TableName == drRefs.GetString(3)
+                                    && item.ColumnName == drRefs.GetString(4));
+                }
+
+                //Remove primary keys from generated tables
+                if (!bInclKeys)
+                {
+                    SqlCommand comm2 = new SqlCommand(string.Format(QC.qryPrimaryColumns, drRefs.GetString(2), drRefs.GetString(3)), srcDimConn);
+                    SqlDataReader drKeys = comm2.ExecuteReader();
+                    while (drKeys.Read())
+                    {
+                        lstTC.RemoveAll(item =>
+                        item.TableName == drKeys.GetString(1) //Table name
+                                    && item.ColumnName == drKeys.GetString(2)); //column name
+                
+                    }
+                    drKeys.Close();
+            
+                }
+                    //Otherwise make them nullable to allow for inserts
+                else
+                {
+                    SqlCommand comm2 = new SqlCommand(string.Format(QC.qryPrimaryColumns, drRefs.GetString(2), drRefs.GetString(3)), srcDimConn);
+                    SqlDataReader drKeys = comm2.ExecuteReader();
+                    while (drKeys.Read())
+                    {
+                        lstTC.Find(item =>
+                        item.TableName == drKeys.GetString(1) //Table name
+                                    && item.ColumnName == drKeys.GetString(2))
+                                    .Nullable = "NULL"
+                                    ; //column name
+
+                    }
+                    drKeys.Close();
+                }
+
 
                 if (sDimTable != drRefs.GetString(6) ||
                     sDimSchema != drRefs.GetString(5))

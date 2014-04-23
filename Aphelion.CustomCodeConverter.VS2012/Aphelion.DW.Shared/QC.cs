@@ -81,8 +81,7 @@ DROP DATABASE [{0}]
 information_schema.tables
 WHERE table_name not in ({0})
 and table_schema not in ({1})
-AND Table_type = 'BASE TABLE'
-and table_name = 'Indicator'
+AND Table_type = 'BASE TABLE' 
 ORDER BY table_schema, table_name";
         
         public const string qryTableQuery = @"SELECT table_schema, table_name FROM 
@@ -127,6 +126,61 @@ ORDER BY table_schema, table_name";
         #endregion   
         
         #region Columns
+        /// <summary>
+        /// 0: Table Schema
+        /// 1: Table name
+        /// 2: Exclude tables
+        /// 3: Exclude schemas
+        /// Results:
+        ///0 RC.CONSTRAINT_SCHEMA
+        ///1 RC.CONSTRAINT_NAME	
+        ///2 CCU.TABLE_SCHEMA Ref_Schema
+        ///3 CCU.TABLE_NAME Ref_Table
+        ///4 CCU.COLUMN_NAME Ref_Column
+        ///5 KCU.Table_SChema UNQ_Schema
+        ///6 KCU.Table_Name Unq_Table
+        ///7 KCU.Column_Name Unq_Column
+        ///8 CCU_U.IS_NULLABLE
+        /// </summary>
+        public const string qryReferenceQueryExcl = @"
+select 
+	RC.CONSTRAINT_SCHEMA
+	,RC.CONSTRAINT_NAME	
+	,CCU.TABLE_SCHEMA Ref_Schema
+	,CCU.TABLE_NAME Ref_Table
+	,CCU.COLUMN_NAME Ref_Column
+	,KCU.Table_SChema UNQ_Schema
+	,KCU.Table_Name Unq_Table
+	,KCU.Column_Name Unq_Column
+	, CCU_C.IS_NULLABLE 
+	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
+INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
+ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
+and RC.CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
+INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE KCU
+ON RC.UNIQUE_CONSTRAINT_SCHEMA = KCU.CONSTRAINT_SCHEMA
+AND RC.UNIQUE_CONSTRAINT_NAME = KCU.CONSTRAINT_NAME
+
+
+INNER JOIN INFORMATION_SCHEMA.COLUMNS CCU_C
+	ON CCU.TABLE_SCHEMA = CCU_C.TABLE_SCHEMA
+	AND CCU.TABLE_NAME = CCU_C.TABLE_NAME
+	AND CCU.COLUMN_NAME = CCU_C.COLUMN_NAME
+
+
+WHERE CCU.TABLE_SCHEMA = '{0}'
+AND CCU.TABLE_NAME = '{1}'
+AND NOT 
+	(KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
+	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
+
+
+and not kcu.TABLE_NAME in ({2})
+
+and not kcu.TABLE_SCHEMA in ({3})
+
+ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
+";
         /// <summary>
         /// 0: Table Schema
         /// 1: Table name
@@ -306,6 +360,35 @@ AND NOT C.COLUMN_NAME IN
 ORDER BY C.TABLE_NAME, C.COLUMN_NAME
 ";
 
+
+        /// <summary>
+        /// Get a list of primary columns
+        /// {0} table_schema
+        /// {1} table_name
+        /// 0: Table_schema
+        /// 1: table_name
+        /// 2: column_name
+        /// 3: data type
+        /// 4: IS Nullable
+        /// </summary>
+            public const string qryPrimaryColumns = @"SELECT c.TABLE_SCHEMA , c.TABLE_NAME, c.COLUMN_NAME,c.DATA_TYPE,  c.is_nullable
+             
+FROM INFORMATION_SCHEMA.COLUMNS c
+INNER JOIN (
+            SELECT ku.TABLE_CATALOG,ku.TABLE_SCHEMA,ku.TABLE_NAME,ku.COLUMN_NAME
+            FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS tc
+            INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS ku
+                ON tc.CONSTRAINT_TYPE = 'PRIMARY KEY' 
+                AND tc.CONSTRAINT_NAME = ku.CONSTRAINT_NAME
+         )   pk 
+ON  c.TABLE_CATALOG = pk.TABLE_CATALOG
+            AND c.TABLE_SCHEMA = pk.TABLE_SCHEMA
+            AND c.TABLE_NAME = pk.TABLE_NAME
+            AND c.COLUMN_NAME = pk.COLUMN_NAME
+WHERE c.TABLE_SCHEMA  = '{0}'
+and c.TABLE_NAME = '{1}' 
+ORDER BY c.TABLE_SCHEMA,c.TABLE_NAME, c.ORDINAL_POSITION "
+        ;
 
 #endregion
 

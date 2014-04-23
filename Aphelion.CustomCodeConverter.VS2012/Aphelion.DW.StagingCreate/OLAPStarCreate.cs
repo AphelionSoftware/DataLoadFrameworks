@@ -543,6 +543,7 @@ namespace Aphelion.DW.StagingCreate
             #region refs
             //Build related tables 
             comm = srcDimConn.CreateCommand();
+
             comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimTable);
             drRefs = comm.ExecuteReader();
             //drRefs.Read();
