@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="PW.CustomCodeConverter">
+</Property><Property Name="Solution File" Value="D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\PW.CustomCodeConverter.sln">
+</Property><Property Name="Date" Value="23 August 2012">
+</Property><Property Name="Time" Value="16:50:30 PM">
+</Property></Properties><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\OX.Copyable.csproj" Description="Project file successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\OX.Copyable.csproj">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\IInstanceProvider.cs" Description="File successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\IInstanceProvider.cs">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\InstanceProvider.cs" Description="File successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\InstanceProvider.cs">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\ObjectExtensions.cs" Description="File successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\ObjectExtensions.cs">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\Copyable.cs" Description="File successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\Copyable.cs">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\VisitedGraph.cs" Description="File successfully backed up as D:\Dropbox\Clients\XMLA_TabularConverter\Development\PW.CustomCodeConverter\Backup\VisitedGraph.cs">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\OX.Copyable.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\OX.Copyable.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="OX.Copyable" Source="OX.Copyable\OX.Copyable\OX.Copyable.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
