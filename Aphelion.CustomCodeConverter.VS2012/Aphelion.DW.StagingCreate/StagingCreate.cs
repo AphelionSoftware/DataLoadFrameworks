@@ -138,22 +138,26 @@ namespace Aphelion.DW.StagingCreate
             }
             drFacts.Close();
 
-            command.CommandText = string.Format(QC.qryTableQuery, this.sDimTablePrefix);
-
-            SqlDataReader drDims = command.ExecuteReader();
-            //drFacts.Read();
-            while (drDims.Read())
+            //If we ignore prefixes, we just need the fact build
+            if (this.sFactTablePrefix != "" || this.sDimTablePrefix != "")
             {
-                sSchemaTable = drDims.GetString(0);
-                sTableName = drDims.GetString(1);
-                List<TableColumn> lstTC = new List<TableColumn>();
-                if (!lstTS.Any(item => item.Key == sSchemaTable + "." + sTableName))
+                command.CommandText = string.Format(QC.qryTableQuery, this.sDimTablePrefix);
+
+                SqlDataReader drDims = command.ExecuteReader();
+                //drFacts.Read();
+                while (drDims.Read())
                 {
-                    sCreate = BuildTableCreate(sSchemaTable, sTableName, sFieldExcl, sFactFilter, sDimFilter, ref lstTC);
-                    lstTS.Add(sSchemaTable + "." + sTableName, new SchemaTable(sSchemaTable, sTableName, sCreate, lstTC));
+                    sSchemaTable = drDims.GetString(0);
+                    sTableName = drDims.GetString(1);
+                    List<TableColumn> lstTC = new List<TableColumn>();
+                    if (!lstTS.Any(item => item.Key == sSchemaTable + "." + sTableName))
+                    {
+                        sCreate = BuildTableCreate(sSchemaTable, sTableName, sFieldExcl, sFactFilter, sDimFilter, ref lstTC);
+                        lstTS.Add(sSchemaTable + "." + sTableName, new SchemaTable(sSchemaTable, sTableName, sCreate, lstTC));
+                    }
                 }
+                drDims.Close();
             }
-            drDims.Close();
             this.strFullCreate = "";
             if (this.bDropStage)
             {
@@ -246,6 +250,15 @@ namespace Aphelion.DW.StagingCreate
                     SqlDataReader drKeys = comm2.ExecuteReader();
                     while (drKeys.Read())
                     {
+                        if (!lstTC.Exists(item =>
+                        item.TableName == drKeys.GetString(1) //Table name
+                                    && item.ColumnName == drKeys.GetString(2))
+                                    )
+                        {
+                            //We removed the primary key due to a self-referencing relationship perhaps
+                            lstTC.Add(new TableColumn(drKeys.GetString(1), drKeys.GetString(2)));
+                        }
+
                         lstTC.Find(item =>
                         item.TableName == drKeys.GetString(1) //Table name
                                     && item.ColumnName == drKeys.GetString(2))

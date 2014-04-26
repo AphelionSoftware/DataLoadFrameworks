@@ -101,6 +101,12 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkInclRefKeysStg = new System.Windows.Forms.CheckBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.txtTableExclStg = new System.Windows.Forms.TextBox();
+            this.chkInclKeysStg = new System.Windows.Forms.CheckBox();
             this.btnCreateStgIgnorePrefixes = new System.Windows.Forms.Button();
             this.chkStageDrop = new System.Windows.Forms.CheckBox();
             this.txtStageScript = new System.Windows.Forms.TextBox();
@@ -136,12 +142,6 @@
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
-            this.chkInclKeysStg = new System.Windows.Forms.CheckBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.txtTableExclStg = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
-            this.chkInclRefKeysStg = new System.Windows.Forms.CheckBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -958,6 +958,71 @@
             this.tabPage3.Text = "CreateStaging";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // chkInclRefKeysStg
+            // 
+            this.chkInclRefKeysStg.AutoSize = true;
+            this.chkInclRefKeysStg.Location = new System.Drawing.Point(560, 436);
+            this.chkInclRefKeysStg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkInclRefKeysStg.Name = "chkInclRefKeysStg";
+            this.chkInclRefKeysStg.Size = new System.Drawing.Size(262, 21);
+            this.chkInclRefKeysStg.TabIndex = 81;
+            this.chkInclRefKeysStg.Text = "Include Reference Keys for matching";
+            this.chkInclRefKeysStg.UseVisualStyleBackColor = true;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(4, 312);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(125, 17);
+            this.label47.TabIndex = 80;
+            this.label47.Text = "SchemaExclusions";
+            // 
+            // txtSchemaExclStg
+            // 
+            this.txtSchemaExclStg.Location = new System.Drawing.Point(180, 306);
+            this.txtSchemaExclStg.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSchemaExclStg.Multiline = true;
+            this.txtSchemaExclStg.Name = "txtSchemaExclStg";
+            this.txtSchemaExclStg.Size = new System.Drawing.Size(1245, 50);
+            this.txtSchemaExclStg.TabIndex = 79;
+            this.txtSchemaExclStg.Text = "\'forms\'";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(4, 254);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(110, 17);
+            this.label46.TabIndex = 78;
+            this.label46.Text = "TableExclusions";
+            // 
+            // txtTableExclStg
+            // 
+            this.txtTableExclStg.Location = new System.Drawing.Point(180, 248);
+            this.txtTableExclStg.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTableExclStg.Multiline = true;
+            this.txtTableExclStg.Name = "txtTableExclStg";
+            this.txtTableExclStg.Size = new System.Drawing.Size(1245, 50);
+            this.txtTableExclStg.TabIndex = 77;
+            this.txtTableExclStg.Text = "\'DimDate\', \'Age\', \'templateMenueGroup\', \'DimMunicipalityGEOM\', \'ActiveType\',\'sysd" +
+    "iagrams\', \'__RefactorLog\'";
+            // 
+            // chkInclKeysStg
+            // 
+            this.chkInclKeysStg.AutoSize = true;
+            this.chkInclKeysStg.Checked = true;
+            this.chkInclKeysStg.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInclKeysStg.Location = new System.Drawing.Point(310, 434);
+            this.chkInclKeysStg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkInclKeysStg.Name = "chkInclKeysStg";
+            this.chkInclKeysStg.Size = new System.Drawing.Size(244, 21);
+            this.chkInclKeysStg.TabIndex = 76;
+            this.chkInclKeysStg.Text = "Include Primary Keys for matching";
+            this.chkInclKeysStg.UseVisualStyleBackColor = true;
+            // 
             // btnCreateStgIgnorePrefixes
             // 
             this.btnCreateStgIgnorePrefixes.Location = new System.Drawing.Point(19, 430);
@@ -1317,71 +1382,6 @@
             this.txtTblSchema.Size = new System.Drawing.Size(1245, 22);
             this.txtTblSchema.TabIndex = 74;
             this.txtTblSchema.Text = "Cube";
-            // 
-            // chkInclKeysStg
-            // 
-            this.chkInclKeysStg.AutoSize = true;
-            this.chkInclKeysStg.Checked = true;
-            this.chkInclKeysStg.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInclKeysStg.Location = new System.Drawing.Point(310, 434);
-            this.chkInclKeysStg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkInclKeysStg.Name = "chkInclKeysStg";
-            this.chkInclKeysStg.Size = new System.Drawing.Size(244, 21);
-            this.chkInclKeysStg.TabIndex = 76;
-            this.chkInclKeysStg.Text = "Include Primary Keys for matching";
-            this.chkInclKeysStg.UseVisualStyleBackColor = true;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(4, 254);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(110, 17);
-            this.label46.TabIndex = 78;
-            this.label46.Text = "TableExclusions";
-            // 
-            // txtTableExclStg
-            // 
-            this.txtTableExclStg.Location = new System.Drawing.Point(180, 248);
-            this.txtTableExclStg.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTableExclStg.Multiline = true;
-            this.txtTableExclStg.Name = "txtTableExclStg";
-            this.txtTableExclStg.Size = new System.Drawing.Size(1245, 50);
-            this.txtTableExclStg.TabIndex = 77;
-            this.txtTableExclStg.Text = "\'DimDate\', \'Age\', \'templateMenueGroup\', \'DimMunicipalityGEOM\', \'ActiveType\',\'sysd" +
-    "iagrams\'";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(4, 312);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(125, 17);
-            this.label47.TabIndex = 80;
-            this.label47.Text = "SchemaExclusions";
-            // 
-            // txtSchemaExclStg
-            // 
-            this.txtSchemaExclStg.Location = new System.Drawing.Point(180, 306);
-            this.txtSchemaExclStg.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSchemaExclStg.Multiline = true;
-            this.txtSchemaExclStg.Name = "txtSchemaExclStg";
-            this.txtSchemaExclStg.Size = new System.Drawing.Size(1245, 50);
-            this.txtSchemaExclStg.TabIndex = 79;
-            this.txtSchemaExclStg.Text = "\'forms\'";
-            // 
-            // chkInclRefKeysStg
-            // 
-            this.chkInclRefKeysStg.AutoSize = true;
-            this.chkInclRefKeysStg.Location = new System.Drawing.Point(560, 436);
-            this.chkInclRefKeysStg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkInclRefKeysStg.Name = "chkInclRefKeysStg";
-            this.chkInclRefKeysStg.Size = new System.Drawing.Size(262, 21);
-            this.chkInclRefKeysStg.TabIndex = 81;
-            this.chkInclRefKeysStg.Text = "Include Reference Keys for matching";
-            this.chkInclRefKeysStg.UseVisualStyleBackColor = true;
             // 
             // ProgramForm
             // 
