@@ -5,6 +5,8 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Aphelion.SSIS.QueueingContr
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Aphelion.SSIS.ScheduleController", "Aphelion.SSIS.ScheduleController\Aphelion.SSIS.ScheduleController.dtproj", "{464845E7-2AFF-4E5D-A64C-DFF41C49C93E}"
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Aphelion.SSIS.LoadStaging", "Aphelion.SSIS.LoadStaging\Aphelion.SSIS.LoadStaging.dtproj", "{779EEAE5-EE27-40F2-A740-2490DBFEBEAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
@@ -14,6 +16,8 @@ Global
 		{E4BABE62-B0C6-4D7E-B079-36EDD84C66DC}.Development|Default.Build.0 = Development
 		{464845E7-2AFF-4E5D-A64C-DFF41C49C93E}.Development|Default.ActiveCfg = Development
 		{464845E7-2AFF-4E5D-A64C-DFF41C49C93E}.Development|Default.Build.0 = Development
+		{779EEAE5-EE27-40F2-A740-2490DBFEBEAD}.Development|Default.ActiveCfg = Development
+		{779EEAE5-EE27-40F2-A740-2490DBFEBEAD}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
