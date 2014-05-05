@@ -45,7 +45,7 @@ BEGIN
 			ON S.ScheduleID = SCD.ScheduleID
 		WHERE S.Active = 1
           AND S.StartTime <= @timTime --schedule start time must be less than current time
-		  AND S.EndTime >= @timTime --schedule end time must be greater than current time
+		  AND ISNULL(S.EndTime, @timTime) >= @timTime --schedule end time must be greater than current time
           AND ((FT.FrequencyTypeName = 'Monthly'
                 AND S.[DayOfMonth] = @intDayOfMonth
                 AND CONVERT(DATE,ISNULL(S.LastRunDate,'1 Jan 1900')) < @dDate --if LastRunDate today then schedule has already run

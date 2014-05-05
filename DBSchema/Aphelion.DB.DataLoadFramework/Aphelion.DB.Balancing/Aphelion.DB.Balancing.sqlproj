@@ -60,8 +60,6 @@
     <Folder Include="Properties" />
     <Folder Include="Balancing" />
     <Folder Include="Balancing\Tables" />
-    <Folder Include="ETL" />
-    <Folder Include="ETL\Tables" />
     <Folder Include="Security" />
     <Folder Include="Scripts" />
     <Folder Include="Scripts\Post-Deployment" />
@@ -73,10 +71,9 @@
     <Build Include="Balancing\Tables\DataSourceTypes.sql" />
     <Build Include="Balancing\Tables\FunctionalAreas.sql" />
     <Build Include="Balancing\Tables\Queries.sql" />
-    <Build Include="Balancing\Tables\Reports.sql" />
+    <Build Include="Balancing\Tables\Results.sql" />
     <Build Include="Balancing\Tables\Tests.sql" />
     <Build Include="Security\Balancing.sql" />
-    <Build Include="ETL\Sequence.sql" />
     <Build Include="Balancing\Tables\Run.sql" />
     <Build Include="Balancing\Views\vwQueries.sql" />
     <Build Include="Balancing\Stored Procedures\ResultsPerRun.sql" />
