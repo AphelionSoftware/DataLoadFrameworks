@@ -142,6 +142,8 @@
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.txtSrcKeyName = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -928,6 +930,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label48);
+            this.tabPage3.Controls.Add(this.txtSrcKeyName);
             this.tabPage3.Controls.Add(this.chkInclRefKeysStg);
             this.tabPage3.Controls.Add(this.label47);
             this.tabPage3.Controls.Add(this.txtSchemaExclStg);
@@ -1383,6 +1387,26 @@
             this.txtTblSchema.TabIndex = 74;
             this.txtTblSchema.Text = "Cube";
             // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label48.Location = new System.Drawing.Point(4, 372);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(144, 17);
+            this.label48.TabIndex = 83;
+            this.label48.Text = "SourceKeyFieldName";
+            // 
+            // txtSrcKeyName
+            // 
+            this.txtSrcKeyName.Location = new System.Drawing.Point(180, 365);
+            this.txtSrcKeyName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSrcKeyName.Name = "txtSrcKeyName";
+            this.txtSrcKeyName.Size = new System.Drawing.Size(1245, 22);
+            this.txtSrcKeyName.TabIndex = 82;
+            this.txtSrcKeyName.Text = "BusinessKey";
+            // 
             // ProgramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1518,6 +1542,8 @@
         private System.Windows.Forms.TextBox txtTableExclStg;
         private System.Windows.Forms.CheckBox chkInclKeysStg;
         private System.Windows.Forms.CheckBox chkInclRefKeysStg;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox txtSrcKeyName;
 
     }
 }

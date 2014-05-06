@@ -34,6 +34,7 @@ namespace Aphelion.DW.StagingCreate
         public bool bInclRefKeys;
         public string strTableExcl;
         public string strSchemaExcl;
+        public string strSrcKeyName = "SourceKey";
             
 
 
@@ -48,6 +49,7 @@ namespace Aphelion.DW.StagingCreate
          string pFactTablePrefix,
         string pDimTablePrefix,
          string pFieldExcl
+            ,string pSrcKey
             , bool pDropStage
                 )
         {
@@ -62,6 +64,7 @@ namespace Aphelion.DW.StagingCreate
             bInclRefKeys = false;
             strTableExcl = "";
             strSchemaExcl = "";
+            strSrcKeyName = pSrcKey;
         
              }
 
@@ -78,6 +81,8 @@ namespace Aphelion.DW.StagingCreate
             , bool pInclRefKeys
             , string pTableExcl
             , string pSchemaExcl
+             , string pSrcKey
+           
                 )
         {
             srcDBConn = pSrcDBConn;
@@ -91,6 +96,8 @@ namespace Aphelion.DW.StagingCreate
             bInclRefKeys = pInclRefKeys;
             strTableExcl = pTableExcl;
             strSchemaExcl = pSchemaExcl;
+            strSrcKeyName = pSrcKey;
+        
         
         }
 
@@ -286,7 +293,7 @@ namespace Aphelion.DW.StagingCreate
 
                     }
                     //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + "SourceKey", "NO", "varchar", "255"));
-                    lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + "SourceKey", sIsNullable, "varchar", "255"));
+                    lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, "varchar", "255"));
                     /*if (!lstTS.ContainsKey(sDimSchema + "." + sDimTable))
                     {
                         lstTS.Add(sDimSchema + "." + sDimTable

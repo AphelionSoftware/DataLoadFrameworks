@@ -153,7 +153,7 @@ namespace PW.CustomCodeConverter
 
         private void btnStaging_Click(object sender, EventArgs e)
         {
-            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, this.txtStgFactPrefix.Text, this.txtStgDimPrefix.Text, this.txtStgFieldExcl.Text, this.chkStageDrop.Checked);
+            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, this.txtStgFactPrefix.Text, this.txtStgDimPrefix.Text, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
             scTables.CreateScript();
 
             this.txtStageScript.Text = scTables.OutputScript();
@@ -191,7 +191,7 @@ namespace PW.CustomCodeConverter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked ,this.txtTableExclStg.Text, this.txtSchemaExclStg.Text);
+            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked ,this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
             scTables.CreateScript();
 
             this.txtStageScript.Text = scTables.OutputScript();
