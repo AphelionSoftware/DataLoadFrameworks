@@ -247,6 +247,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         ///8  DATA TYPE
         ///9 Hierachy name - can be null
         ///10 Hierarchy level - can be null
+        ///11 Is Computed
         /// </summary>
         public const string qryListColumns = @"SELECT COLUMN_NAME
 , C.IS_NULLABLE
@@ -259,6 +260,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 , C.DATA_TYPE
 , EPHierarchy.value HierarchyName
 , EPHierarchyLevel.value HierarchyLevel
+, csys.is_computed
 FROM INFORMATION_SCHEMA.COLUMNS C
 inner join sys.columns cSys
 ON c.COLUMN_NAME = cSys.name

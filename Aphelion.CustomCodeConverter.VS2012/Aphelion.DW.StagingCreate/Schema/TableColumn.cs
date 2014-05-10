@@ -81,6 +81,28 @@ namespace Aphelion.DW.StagingCreate.Schema
             }
         }
         /// <summary>
+        /// For date/datetime
+        /// </summary>
+        /// <param name="pTable"></param>
+        /// <param name="pColumn"></param>
+        /// <param name="pDataType"></param>
+        public TableColumn(string pTable, string pColumn, string pNullable, string pDataType)
+        {
+            this.TableName = pTable;
+            this.TableAlias = pTable;
+            this.ColumnName = pColumn;
+            if (pNullable == "YES")
+            {
+                this.Nullable = "NULL";
+            }
+            else
+            {
+                this.Nullable = "NOT NULL";
+            }
+            this.DataType = pDataType;
+            
+        }
+        /// <summary>
         /// For decimals and floats. 
         /// </summary>
         /// <param name="pTable"></param>
