@@ -340,10 +340,13 @@ namespace Aphelion.DW.StagingCreate
             switch (lstTC[iLoop].DataType)
             {
                 case "datetime":
+                case "datetime2":
                 case "date":
                     strColumnList = string.Format("\n\t[{0}] {1} {2}", lstTC[iLoop].ColumnName, lstTC[iLoop].DataType, lstTC[iLoop].Nullable);
                     
                     break;
+                case "char":
+                case "nchar":
                 case "varchar":
                 case "nvarchar":
                     strColumnList = string.Format("\n\t[{0}] {1}({2}) {3}", lstTC[iLoop].ColumnName, lstTC[iLoop].DataType, lstTC[iLoop].CharacterLength, lstTC[iLoop].Nullable);
@@ -375,6 +378,7 @@ namespace Aphelion.DW.StagingCreate
             switch (drRefs.GetString(2))
             {
                 case "datetime":
+                case "datetime2":
                 case "date":
                     lstTC.Add(new TableColumn(pTableName
                             , drRefs.GetString(0)
@@ -383,6 +387,8 @@ namespace Aphelion.DW.StagingCreate
                             ));
                     break;
                     ///TODO:Test dates
+                case "char":
+                case "nchar":
                 case "varchar":
                 case "nvarchar":
 
