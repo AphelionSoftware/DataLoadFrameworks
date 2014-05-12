@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Properties\Client.lsml" Checksum="9FEC010459508A7D663E2219BB9A2C73FE4DBC0881E6CA3979D38956C9C402E1" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Properties\Proxies.lsml" Checksum="CDF12CDC346F5A347F28278B41BCF13C57127636DAFD7BB6AA38DCB859EF1A0C" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\BrowseDatabases.lsml" Checksum="25B6C393DA7954C1914F86036A3B441C500D2687E13D665682B11FB66229437B" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\AddEditDatabase.lsml" Checksum="A474A1E9E7005DE460C1638AE8CFF5FA3ECE6A6B8576CAD442E227FD8E9AE713" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\BrowsePackages.lsml" Checksum="34194217D76700D3ED04BEF72EAB65D8DE6CAAF53C5F621C97F8ED25B1008145" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\AddEditPackage.lsml" Checksum="2D8778835DA9AA6DE7F214F3648BB177B86F0B77CF02C6749257DD6B561DBF08" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\BrowseTests.lsml" Checksum="06DBFF555E864B0E0EFC036B663EA2CA6AD22F59B006684D91A8E342F48D294A" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\AddEditTest.lsml" Checksum="810A7137C69CDEC69CBB652FF6B9FBC3E1665004963341FFFD1797FC8EA94E6F" />
+    <Document FullPath="D:\Dropbox\GitHub\DataLoadFrameworks\TestProjects\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens\Aphelion.DLF.TestScreens.HTMLClient\Screens\AddEditTestStep.lsml" Checksum="17B997CA26D730AA848944F04DB3274BA9FC04BB6986013AA5EE8843836504AC" />
+  </Documents>
+</ModelDocumentManifest>

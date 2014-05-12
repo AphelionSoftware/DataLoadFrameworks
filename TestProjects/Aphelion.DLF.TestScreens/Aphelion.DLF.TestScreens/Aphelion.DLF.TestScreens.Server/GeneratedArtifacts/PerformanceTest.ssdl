@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="PerformanceTestStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PerformanceTestStore">
+    <EntitySet Name="Databases" EntityType="PerformanceTestStore.Database" store:Type="Tables" Schema="Test" Table="Database" />
+    <EntitySet Name="Packages" EntityType="PerformanceTestStore.Package" store:Type="Tables" Schema="Test" Table="Package" />
+    <EntitySet Name="Runs" EntityType="PerformanceTestStore.Run" store:Type="Tables" Schema="Test" Table="Run" />
+    <EntitySet Name="RunSteps" EntityType="PerformanceTestStore.RunStep" store:Type="Tables" Schema="Test" Table="RunStep" />
+    <EntitySet Name="Tests" EntityType="PerformanceTestStore.Test" store:Type="Tables" Schema="Test" Table="Test" />
+    <EntitySet Name="TestSteps" EntityType="PerformanceTestStore.TestStep" store:Type="Tables" Schema="Test" Table="TestStep" />
+    <AssociationSet Name="FK_Run_Test" Association="PerformanceTestStore.FK_Run_Test">
+      <End Role="Test" EntitySet="Tests" />
+      <End Role="Run" EntitySet="Runs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RunStep_TestStep" Association="PerformanceTestStore.FK_RunStep_TestStep">
+      <End Role="TestStep" EntitySet="TestSteps" />
+      <End Role="RunStep" EntitySet="RunSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_DestDatabase" Association="PerformanceTestStore.FK_TestStep_DestDatabase">
+      <End Role="Database" EntitySet="Databases" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_Package" Association="PerformanceTestStore.FK_TestStep_Package">
+      <End Role="Package" EntitySet="Packages" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_SrcDatabase" Association="PerformanceTestStore.FK_TestStep_SrcDatabase">
+      <End Role="Database" EntitySet="Databases" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_Test" Association="PerformanceTestStore.FK_TestStep_Test">
+      <End Role="Test" EntitySet="Tests" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Database">
+    <Key>
+      <PropertyRef Name="DatabaseID" />
+    </Key>
+    <Property Name="DatabaseID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DatabaseName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ServerName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="2000" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Package">
+    <Key>
+      <PropertyRef Name="PackageID" />
+    </Key>
+    <Property Name="PackageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PackageName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PackageGUID" Type="uniqueidentifier" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Run">
+    <Key>
+      <PropertyRef Name="RunID" />
+    </Key>
+    <Property Name="RunID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RunStartTime" Type="datetime" />
+    <Property Name="RunEndTime" Type="datetime" />
+    <Property Name="RunTime" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="TestID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RunStep">
+    <Key>
+      <PropertyRef Name="RunStepID" />
+    </Key>
+    <Property Name="RunStepID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RunStepStartTime" Type="datetime" />
+    <Property Name="RunStepEndTime" Type="datetime" />
+    <Property Name="RunStepTime" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="TestStepID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="TestID" />
+    </Key>
+    <Property Name="TestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TestName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="TestStep">
+    <Key>
+      <PropertyRef Name="TestStepID" />
+    </Key>
+    <Property Name="TestStepID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TestStepName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+    <Property Name="DestDatabaseID" Type="int" Nullable="false" />
+    <Property Name="PackageID" Type="int" Nullable="false" />
+    <Property Name="SrcDatabaseID" Type="int" Nullable="false" />
+    <Property Name="TestID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Run_Test">
+    <End Role="Test" Type="PerformanceTestStore.Test" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="Run" Type="PerformanceTestStore.Run" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="Run">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RunStep_TestStep">
+    <End Role="TestStep" Type="PerformanceTestStore.TestStep" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="RunStep" Type="PerformanceTestStore.RunStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestStep">
+        <PropertyRef Name="TestStepID" />
+      </Principal>
+      <Dependent Role="RunStep">
+        <PropertyRef Name="TestStepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_DestDatabase">
+    <End Role="Database" Type="PerformanceTestStore.Database" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="TestStep" Type="PerformanceTestStore.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Database">
+        <PropertyRef Name="DatabaseID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="DestDatabaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_Package">
+    <End Role="Package" Type="PerformanceTestStore.Package" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="TestStep" Type="PerformanceTestStore.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="PackageID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="PackageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_SrcDatabase">
+    <End Role="Database" Type="PerformanceTestStore.Database" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="TestStep" Type="PerformanceTestStore.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Database">
+        <PropertyRef Name="DatabaseID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="SrcDatabaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_Test">
+    <End Role="Test" Type="PerformanceTestStore.Test" Multiplicity="1">
+      <OnDeleteAnnotation Action="Unset" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="TestStep" Type="PerformanceTestStore.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

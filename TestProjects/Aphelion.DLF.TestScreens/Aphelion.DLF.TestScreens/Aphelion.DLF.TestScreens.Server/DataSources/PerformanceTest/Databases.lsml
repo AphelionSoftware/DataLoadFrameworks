@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Database">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="DatabaseID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="DatabaseName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ServerName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Description"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="2000" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Username"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="2000" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Password"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="2000" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="TestSteps"
+        Association="FK_TestStep_DestDatabase"
+        FromEnd="Database"
+        ToEnd="TestStep" />
+      <NavigationProperty
+        Name="TestSteps1"
+        Association="FK_TestStep_SrcDatabase"
+        FromEnd="Database"
+        ToEnd="TestStep" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_TestStep_DestDatabase">
+    <AssociationEnd
+      Name="Database"
+      Multiplicity="One"
+      EntityType="Database">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="TestStep"
+      Multiplicity="Many"
+      EntityType="TestStep" />
+  </Association>
+  <Association
+    Name="FK_TestStep_SrcDatabase">
+    <AssociationEnd
+      Name="Database"
+      Multiplicity="One"
+      EntityType="Database">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="TestStep"
+      Multiplicity="Many"
+      EntityType="TestStep" />
+  </Association>
+  <EntityContainer
+    Name="PerformanceTest">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Databases"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Database" />
+    <AssociationSet
+      Name="FK_TestStep_DestDatabase"
+      Association="FK_TestStep_DestDatabase">
+      <AssociationSetEnd
+        Name="Database"
+        EntitySet="Databases" />
+      <AssociationSetEnd
+        Name="TestStep"
+        EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_TestStep_SrcDatabase"
+      Association="FK_TestStep_SrcDatabase">
+      <AssociationSetEnd
+        Name="Database"
+        EntitySet="Databases" />
+      <AssociationSetEnd
+        Name="TestStep"
+        EntitySet="TestSteps" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Databases_Single"
+      ReturnType="Database">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="DatabaseID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="DatabaseID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Databases" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="DatabaseID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'DatabaseID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Databases_SingleOrDefault"
+      ReturnType="Database">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="DatabaseID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="DatabaseID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Databases" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="DatabaseID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'DatabaseID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="PerformanceTestDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Databases">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="Test"
+          Table="Database" />
+        <SsdlProperty
+          Name="DatabaseID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Database/Properties[DatabaseID]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="DatabaseName"
+          Nullable="False"
+          Type="varchar"
+          Property="Database/Properties[DatabaseName]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="ServerName"
+          Nullable="False"
+          Type="varchar"
+          Property="Database/Properties[ServerName]" />
+        <SsdlProperty
+          MaxLength="2000"
+          Name="Description"
+          Nullable="True"
+          Type="varchar"
+          Property="Database/Properties[Description]" />
+        <SsdlProperty
+          MaxLength="2000"
+          Name="Username"
+          Nullable="False"
+          Type="varchar"
+          Property="Database/Properties[Username]" />
+        <SsdlProperty
+          MaxLength="2000"
+          Name="Password"
+          Nullable="False"
+          Type="varchar"
+          Property="Database/Properties[Password]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_TestStep_DestDatabase">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_TestStep_DestDatabase" />
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_TestStep_DestDatabase]/Members[Database]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DatabaseID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_TestStep_DestDatabase]/Members[TestStep]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DestDatabaseID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_TestStep_SrcDatabase">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_TestStep_SrcDatabase" />
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_TestStep_SrcDatabase]/Members[Database]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DatabaseID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_TestStep_SrcDatabase]/Members[TestStep]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="SrcDatabaseID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

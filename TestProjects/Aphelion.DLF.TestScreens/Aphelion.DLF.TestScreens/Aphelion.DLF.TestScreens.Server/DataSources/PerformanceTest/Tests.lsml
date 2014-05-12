@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Test">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="TestID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="TestName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Description"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="2000" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Runs"
+        Association="FK_Run_Test"
+        FromEnd="Test"
+        ToEnd="Run" />
+      <NavigationProperty
+        Name="TestSteps"
+        Association="FK_TestStep_Test"
+        FromEnd="Test"
+        ToEnd="TestStep" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Run_Test">
+    <AssociationEnd
+      Name="Test"
+      Multiplicity="One"
+      EntityType="Test">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Run"
+      Multiplicity="Many"
+      EntityType="Run" />
+  </Association>
+  <Association
+    Name="FK_TestStep_Test">
+    <AssociationEnd
+      Name="Test"
+      Multiplicity="One"
+      EntityType="Test">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="TestStep"
+      Multiplicity="Many"
+      EntityType="TestStep" />
+  </Association>
+  <EntityContainer
+    Name="PerformanceTest">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Tests"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Test" />
+    <AssociationSet
+      Name="FK_Run_Test"
+      Association="FK_Run_Test">
+      <AssociationSetEnd
+        Name="Test"
+        EntitySet="Tests" />
+      <AssociationSetEnd
+        Name="Run"
+        EntitySet="Runs" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_TestStep_Test"
+      Association="FK_TestStep_Test">
+      <AssociationSetEnd
+        Name="Test"
+        EntitySet="Tests" />
+      <AssociationSetEnd
+        Name="TestStep"
+        EntitySet="TestSteps" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Tests_Single"
+      ReturnType="Test">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="TestID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="TestID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Tests" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="TestID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'TestID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Tests_SingleOrDefault"
+      ReturnType="Test">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="TestID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="TestID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Tests" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="TestID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'TestID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="PerformanceTestDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Tests">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="Test"
+          Table="Test" />
+        <SsdlProperty
+          Name="TestID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Test/Properties[TestID]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="TestName"
+          Nullable="False"
+          Type="varchar"
+          Property="Test/Properties[TestName]" />
+        <SsdlProperty
+          MaxLength="2000"
+          Name="Description"
+          Nullable="True"
+          Type="varchar"
+          Property="Test/Properties[Description]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Run_Test">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Run_Test" />
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_Run_Test]/Members[Test]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_Run_Test]/Members[Run]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_TestStep_Test">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_TestStep_Test" />
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_TestStep_Test]/Members[Test]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_TestStep_Test]/Members[TestStep]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

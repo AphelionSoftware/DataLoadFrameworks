@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="TestStep">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="TestStepID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="TestStepName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Description"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="2000" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="RunSteps"
+        Association="FK_RunStep_TestStep"
+        FromEnd="TestStep"
+        ToEnd="RunStep" />
+      <NavigationProperty
+        Name="SrcDatabase"
+        Association="FK_TestStep_DestDatabase"
+        FromEnd="TestStep"
+        ToEnd="Database" />
+      <NavigationProperty
+        Name="Package"
+        Association="FK_TestStep_Package"
+        FromEnd="TestStep"
+        ToEnd="Package" />
+      <NavigationProperty
+        Name="DestDatabase"
+        Association="FK_TestStep_SrcDatabase"
+        FromEnd="TestStep"
+        ToEnd="Database" />
+      <NavigationProperty
+        Name="Test"
+        Association="FK_TestStep_Test"
+        FromEnd="TestStep"
+        ToEnd="Test" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_RunStep_TestStep">
+    <AssociationEnd
+      Name="TestStep"
+      Multiplicity="One"
+      EntityType="TestStep">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="RunStep"
+      Multiplicity="Many"
+      EntityType="RunStep" />
+  </Association>
+  <EntityContainer
+    Name="PerformanceTest">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="TestSteps"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TestStep" />
+    <AssociationSet
+      Name="FK_RunStep_TestStep"
+      Association="FK_RunStep_TestStep">
+      <AssociationSetEnd
+        Name="TestStep"
+        EntitySet="TestSteps" />
+      <AssociationSetEnd
+        Name="RunStep"
+        EntitySet="RunSteps" />
+    </AssociationSet>
+    <QueryOperation
+      Name="TestSteps_Single"
+      ReturnType="TestStep">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="TestStepID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="TestStepID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TestSteps" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="TestStepID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'TestStepID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TestSteps_SingleOrDefault"
+      ReturnType="TestStep">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="TestStepID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="TestStepID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TestSteps" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="TestStepID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'TestStepID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="PerformanceTestDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="TestSteps">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="Test"
+          Table="TestStep" />
+        <SsdlProperty
+          Name="TestStepID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="TestStep/Properties[TestStepID]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="TestStepName"
+          Nullable="False"
+          Type="varchar"
+          Property="TestStep/Properties[TestStepName]" />
+        <SsdlProperty
+          MaxLength="2000"
+          Name="Description"
+          Nullable="True"
+          Type="varchar"
+          Property="TestStep/Properties[Description]" />
+        <SsdlForeignKeyProperty
+          Name="DestDatabaseID"
+          Nullable="False"
+          Type="int"
+          PropertyName="DestDatabaseID" />
+        <SsdlForeignKeyProperty
+          Name="PackageID"
+          Nullable="False"
+          Type="int"
+          PropertyName="PackageID" />
+        <SsdlForeignKeyProperty
+          Name="SrcDatabaseID"
+          Nullable="False"
+          Type="int"
+          PropertyName="SrcDatabaseID" />
+        <SsdlForeignKeyProperty
+          Name="TestID"
+          Nullable="False"
+          Type="int"
+          PropertyName="TestID" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_RunStep_TestStep">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_RunStep_TestStep" />
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_RunStep_TestStep]/Members[TestStep]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestStepID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="PerformanceTest/Members[FK_RunStep_TestStep]/Members[RunStep]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TestStepID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

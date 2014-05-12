@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Database">
+    <Key>
+      <PropertyRef Name="DatabaseID" />
+    </Key>
+    <Property Name="DatabaseID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatabaseName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="ServerName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Description" Type="Edm.String" MaxLength="2000" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Username" Type="Edm.String" Nullable="false" MaxLength="2000" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="2000" Unicode="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="TestSteps" Relationship="LightSwitchApplication.FK_TestStep_DestDatabase" ToRole="TestStep" FromRole="Database" />
+    <NavigationProperty Name="TestSteps1" Relationship="LightSwitchApplication.FK_TestStep_SrcDatabase" ToRole="TestStep" FromRole="Database" />
+  </EntityType>
+  <EntityType Name="Package">
+    <Key>
+      <PropertyRef Name="PackageID" />
+    </Key>
+    <Property Name="PackageID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PackageName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="PackageGUID" Type="Edm.Guid" ConcurrencyMode="Fixed" />
+    <Property Name="Description" Type="Edm.String" MaxLength="2000" Unicode="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="TestSteps" Relationship="LightSwitchApplication.FK_TestStep_Package" ToRole="TestStep" FromRole="Package" />
+  </EntityType>
+  <EntityType Name="Run">
+    <Key>
+      <PropertyRef Name="RunID" />
+    </Key>
+    <Property Name="RunID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RunStartTime" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="RunEndTime" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="RunTime" Type="Edm.Int32" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TestID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Test" Relationship="LightSwitchApplication.FK_Run_Test" ToRole="Test" FromRole="Run" />
+  </EntityType>
+  <EntityType Name="RunStep">
+    <Key>
+      <PropertyRef Name="RunStepID" />
+    </Key>
+    <Property Name="RunStepID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RunStepStartTime" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="RunStepEndTime" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="RunStepTime" Type="Edm.Int32" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TestStepID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="TestStep" Relationship="LightSwitchApplication.FK_RunStep_TestStep" ToRole="TestStep" FromRole="RunStep" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="TestID" />
+    </Key>
+    <Property Name="TestID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Description" Type="Edm.String" MaxLength="2000" Unicode="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Runs" Relationship="LightSwitchApplication.FK_Run_Test" ToRole="Run" FromRole="Test" />
+    <NavigationProperty Name="TestSteps" Relationship="LightSwitchApplication.FK_TestStep_Test" ToRole="TestStep" FromRole="Test" />
+  </EntityType>
+  <EntityType Name="TestStep">
+    <Key>
+      <PropertyRef Name="TestStepID" />
+    </Key>
+    <Property Name="TestStepID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestStepName" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="Description" Type="Edm.String" MaxLength="2000" Unicode="false" ConcurrencyMode="Fixed" />
+    <Property Name="DestDatabaseID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="PackageID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="SrcDatabaseID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="TestID" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="RunSteps" Relationship="LightSwitchApplication.FK_RunStep_TestStep" ToRole="RunStep" FromRole="TestStep" />
+    <NavigationProperty Name="SrcDatabase" Relationship="LightSwitchApplication.FK_TestStep_DestDatabase" ToRole="Database" FromRole="TestStep" />
+    <NavigationProperty Name="Package" Relationship="LightSwitchApplication.FK_TestStep_Package" ToRole="Package" FromRole="TestStep" />
+    <NavigationProperty Name="DestDatabase" Relationship="LightSwitchApplication.FK_TestStep_SrcDatabase" ToRole="Database" FromRole="TestStep" />
+    <NavigationProperty Name="Test" Relationship="LightSwitchApplication.FK_TestStep_Test" ToRole="Test" FromRole="TestStep" />
+  </EntityType>
+  <Association Name="FK_Run_Test">
+    <End Role="Test" Type="LightSwitchApplication.Test" Multiplicity="1" />
+    <End Role="Run" Type="LightSwitchApplication.Run" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="Run">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RunStep_TestStep">
+    <End Role="TestStep" Type="LightSwitchApplication.TestStep" Multiplicity="1" />
+    <End Role="RunStep" Type="LightSwitchApplication.RunStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestStep">
+        <PropertyRef Name="TestStepID" />
+      </Principal>
+      <Dependent Role="RunStep">
+        <PropertyRef Name="TestStepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_DestDatabase">
+    <End Role="Database" Type="LightSwitchApplication.Database" Multiplicity="1" />
+    <End Role="TestStep" Type="LightSwitchApplication.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Database">
+        <PropertyRef Name="DatabaseID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="DestDatabaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_Package">
+    <End Role="Package" Type="LightSwitchApplication.Package" Multiplicity="1" />
+    <End Role="TestStep" Type="LightSwitchApplication.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="PackageID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="PackageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_SrcDatabase">
+    <End Role="Database" Type="LightSwitchApplication.Database" Multiplicity="1" />
+    <End Role="TestStep" Type="LightSwitchApplication.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Database">
+        <PropertyRef Name="DatabaseID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="SrcDatabaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestStep_Test">
+    <End Role="Test" Type="LightSwitchApplication.Test" Multiplicity="1" />
+    <End Role="TestStep" Type="LightSwitchApplication.TestStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="TestStep">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PerformanceTest" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Databases" EntityType="LightSwitchApplication.Database" />
+    <EntitySet Name="Packages" EntityType="LightSwitchApplication.Package" />
+    <EntitySet Name="Runs" EntityType="LightSwitchApplication.Run" />
+    <EntitySet Name="RunSteps" EntityType="LightSwitchApplication.RunStep" />
+    <EntitySet Name="Tests" EntityType="LightSwitchApplication.Test" />
+    <EntitySet Name="TestSteps" EntityType="LightSwitchApplication.TestStep" />
+    <AssociationSet Name="FK_Run_Test" Association="LightSwitchApplication.FK_Run_Test">
+      <End Role="Test" EntitySet="Tests" />
+      <End Role="Run" EntitySet="Runs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RunStep_TestStep" Association="LightSwitchApplication.FK_RunStep_TestStep">
+      <End Role="TestStep" EntitySet="TestSteps" />
+      <End Role="RunStep" EntitySet="RunSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_DestDatabase" Association="LightSwitchApplication.FK_TestStep_DestDatabase">
+      <End Role="Database" EntitySet="Databases" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_Package" Association="LightSwitchApplication.FK_TestStep_Package">
+      <End Role="Package" EntitySet="Packages" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_SrcDatabase" Association="LightSwitchApplication.FK_TestStep_SrcDatabase">
+      <End Role="Database" EntitySet="Databases" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestStep_Test" Association="LightSwitchApplication.FK_TestStep_Test">
+      <End Role="Test" EntitySet="Tests" />
+      <End Role="TestStep" EntitySet="TestSteps" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

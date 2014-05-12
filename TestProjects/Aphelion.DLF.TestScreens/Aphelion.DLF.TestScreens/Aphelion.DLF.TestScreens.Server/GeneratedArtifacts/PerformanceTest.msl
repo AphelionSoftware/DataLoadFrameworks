@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping CdmEntityContainer="PerformanceTest" StorageEntityContainer="PerformanceTestStore">
+    <EntitySetMapping Name="Databases">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Database)">
+        <MappingFragment StoreEntitySet="Databases">
+          <ScalarProperty Name="DatabaseID" ColumnName="DatabaseID" />
+          <ScalarProperty Name="DatabaseName" ColumnName="DatabaseName" />
+          <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packages">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Package)">
+        <MappingFragment StoreEntitySet="Packages">
+          <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+          <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+          <ScalarProperty Name="PackageGUID" ColumnName="PackageGUID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Runs">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Run)">
+        <MappingFragment StoreEntitySet="Runs">
+          <ScalarProperty Name="RunID" ColumnName="RunID" />
+          <ScalarProperty Name="RunStartTime" ColumnName="RunStartTime" />
+          <ScalarProperty Name="RunEndTime" ColumnName="RunEndTime" />
+          <ScalarProperty Name="RunTime" ColumnName="RunTime" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunSteps">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.RunStep)">
+        <MappingFragment StoreEntitySet="RunSteps">
+          <ScalarProperty Name="RunStepID" ColumnName="RunStepID" />
+          <ScalarProperty Name="RunStepStartTime" ColumnName="RunStepStartTime" />
+          <ScalarProperty Name="RunStepEndTime" ColumnName="RunStepEndTime" />
+          <ScalarProperty Name="RunStepTime" ColumnName="RunStepTime" />
+          <ScalarProperty Name="TestStepID" ColumnName="TestStepID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.Test)">
+        <MappingFragment StoreEntitySet="Tests">
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="TestName" ColumnName="TestName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestSteps">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.TestStep)">
+        <MappingFragment StoreEntitySet="TestSteps">
+          <ScalarProperty Name="TestStepID" ColumnName="TestStepID" />
+          <ScalarProperty Name="TestStepName" ColumnName="TestStepName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DestDatabaseID" ColumnName="DestDatabaseID" />
+          <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+          <ScalarProperty Name="SrcDatabaseID" ColumnName="SrcDatabaseID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
