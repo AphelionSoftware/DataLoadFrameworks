@@ -4,9 +4,13 @@
   DTS:DTSID="{6A6D8A8F-142A-494F-8B6C-307970358AAF}"
   DTS:CreationName="OLEDB">
   <DTS:PropertyExpression
-    DTS:Name="ServerName">@[$Project::strSchedulerServer]</DTS:PropertyExpression>
+    DTS:Name="ConnectionString">@[$Project::strSchedulerConnectionString]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=.;Initial Catalog=Aphelion.DB.Scheduler;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=icmkgil6ip.database.windows.net;User ID=Scheduler;Initial Catalog=Aphelion.Scheduler;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA46BLVP72AEihOXwSSSU1kAAAAAACAAAAAAADZgAAwAAAABAAAADzp8rrt+jcM/7IorHKmDJGAAAAAASAAACgAAAAEAAAAPKgtX0KoYCiBB9oqrpx4UN4AAAAXNMU6yEpIgYvADYX4knI38WujXwkBslgzVi/7wznGuQM01d09mVurjRMt4pwQPhMOuJ15VU1O6IRC5MfIscTc9We0gaiobClF7X9+FwlQXTqShfzJZvWgiMH9eAJ+NmOeNxZljpep76nNvwp0VATuzydcmZqFLeNFAAAAOeElmmHX3R+4LVt2jUlasSi8C65</DTS:Password>
+    </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
