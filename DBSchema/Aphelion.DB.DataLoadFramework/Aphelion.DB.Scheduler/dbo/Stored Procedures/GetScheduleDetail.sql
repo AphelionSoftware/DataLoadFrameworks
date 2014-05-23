@@ -40,6 +40,9 @@ BEGIN
 				 , S.RunBalancing
 				 , S.RunSchemaCompare
 				 , S.RunFKChecks
+				 , A.LoadQueueUsername
+				 , A.LoadQueuePassword
+				 , A.LoadQueueDatabaseName
 			FROM Schedule	S
 			JOIN [Application]	A
 				ON S.ApplicationID = A.ApplicationID
@@ -57,6 +60,9 @@ BEGIN
 				 , SCD.CubeTableID
 				 , SCD.StartPartitionValue
 				 , SCD.EndPartitionValue
+				 , A.LoadQueueUsername
+				 , A.LoadQueuePassword
+				 , A.LoadQueueDatabaseName
 			FROM Schedule	S
 			JOIN [Application]	A
 				ON S.ApplicationID = A.ApplicationID

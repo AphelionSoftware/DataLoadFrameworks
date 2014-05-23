@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[PackageLoadStep] (
     [sys_CreatedBy]   NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
     [sys_ModifiedOn]  DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_ModifiedBy]  NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
-    CONSTRAINT [PK_PackageLoadStep] PRIMARY KEY CLUSTERED ([PackageLoadStepID] ASC) WITH (FILLFACTOR = 20),
+    CONSTRAINT [PK_PackageLoadStep] PRIMARY KEY CLUSTERED ([PackageLoadStepID] ASC),
     CONSTRAINT [FK_PackageLoadStep_PackageLoad] FOREIGN KEY ([PackageLoadID]) REFERENCES [dbo].[PackageLoad] ([PackageLoadID]),
     CONSTRAINT [FK_PackageLoadStep_StepType] FOREIGN KEY ([StepTypeID]) REFERENCES [dbo].[StepType] ([StepTypeID]),
 	CONSTRAINT [FK_PackageLoadStep_Package] FOREIGN KEY ([PackageID]) REFERENCES [dbo].[Package] ([PackageID])

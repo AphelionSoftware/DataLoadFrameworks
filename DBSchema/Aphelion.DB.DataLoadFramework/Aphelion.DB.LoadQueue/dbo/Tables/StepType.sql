@@ -28,6 +28,6 @@ CREATE TABLE [dbo].[StepType] (
     [sys_CreatedBy]  NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
     [sys_ModifiedOn] DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_ModifiedBy] NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
-    CONSTRAINT [PK_StepType] PRIMARY KEY CLUSTERED ([StepTypeID] ASC) WITH (FILLFACTOR = 20)
+    CONSTRAINT [PK_StepType] PRIMARY KEY CLUSTERED ([StepTypeID] ASC)
 );
 

@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[DWLoaderStepDetails] (
     [sys_CreatedBy]   NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
     [sys_ModifiedOn]  DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_ModifiedBy]  NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
-    CONSTRAINT [PK_DWLoaderStepDetails] PRIMARY KEY CLUSTERED ([DWLoaderStepDetailsID] ASC) WITH (FILLFACTOR = 20),
+    CONSTRAINT [PK_DWLoaderStepDetails] PRIMARY KEY CLUSTERED ([DWLoaderStepDetailsID] ASC),
     CONSTRAINT [FK_DWLoaderStepDetails_PackageLoad] FOREIGN KEY ([PackageLoadStepID]) REFERENCES [dbo].[PackageLoadStep] ([PackageLoadStepID])
 );
 
