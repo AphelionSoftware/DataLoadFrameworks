@@ -61,7 +61,7 @@ BEGIN
                    AND DATEDIFF(MI,ISNULL(S.LastRunDate,'1 Jan 1900'),@dtDateTime) >= S.FrequencyInterval
                   )
                OR (FT.FrequencyTypeName = 'Hourly'
-                   AND DATEDIFF(HH,ISNULL(S.LastRunDate,'1 Jan 1900'),@dtDateTime) >= S.FrequencyInterval
+                   AND DATEDIFF(MI,ISNULL(S.LastRunDate,'1 Jan 1900'),@dtDateTime)/60.0 >= S.FrequencyInterval
                   )
               )
                    

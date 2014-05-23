@@ -97,7 +97,7 @@ BEGIN
              , @strDescription
 			 , @intQueueLoadTypeID
 			 , @intPackageLoadID
-             , CASE WHEN @intTableListCount = 1
+             , CASE WHEN ISNULL(@intTableListCount,1) = 1
                     THEN 0
                     ELSE 1 END --IsBatch
              , @intFrequencyTypeID
