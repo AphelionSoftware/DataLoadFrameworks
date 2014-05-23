@@ -21,7 +21,14 @@
 -- =============================================
 CREATE PROCEDURE [dbo].[AddSchedule]
       @intApplicationID			INT
-	, @intQueueLoadTypeID		INT = NULL --from LoadQueue database
+	, @intQueueLoadTypeID		INT = NULL --from LoadQueue database 
+			/*
+			1	information_schema
+			2	package
+			3	cube process
+			4	balancing test
+			5	dwloader
+			*/
     , @tblTableList             [dbo].[TableListType] READONLY --from LoadQueue database
 	, @intPackageLoadID			INT --from LoadQueue database
     , @strName                  VARCHAR(100)
@@ -30,7 +37,7 @@ CREATE PROCEDURE [dbo].[AddSchedule]
     , @intFrequencyTypeID       INT -- Daily, Weekly, Monthly
 	, @intFrequencyInterval		INT -- every x days/weeks/months
     , @timStartTime             TIME
-	, @timEndTime             TIME
+	, @timEndTime				TIME
     , @dtStartDate              DATETIME = NULL -- default to GETDATE()
     , @dtEndDate                DATETIME = NULL
     , @strDayOfWeek             VARCHAR(50) = NULL
@@ -54,6 +61,7 @@ BEGIN
           , @intScheduleID  INT
 
     SELECT @intTableListCount = COUNT(1) FROM @tblTableList
+	SELECT @dtStartDate = ISNULL(@dtStartDate,GETDATE())
 
     BEGIN TRY
         --run sanity checks
@@ -61,8 +69,8 @@ BEGIN
 		IF EXISTS (SELECT 1 FROM [dbo].Schedule WHERE ScheduleName = @strName)
 			RAISERROR( 'Expected Schedule with same name already exists', 11, 1)
 
-        --check table list contains data
-        IF @intTableListCount = 0
+        --check table list contains data if cube process schedule
+        IF @intTableListCount = 0 AND @intQueueLoadTypeID = 3
             RAISERROR( 'Table list is empty', 11, 1)
 
         --check application exists
@@ -105,10 +113,10 @@ BEGIN
 			 , @bitRunFKChecks
              , NULL --LastRunDate
 			 , 1 --Active
-			 , NULL
+			 , GETDATE()
 			 , @strCreatedBy
-			 , NULL
-			 , NULL
+			 , GETDATE()
+			 , @strCreatedBy
 
         SET @intScheduleID = SCOPE_IDENTITY()
 
