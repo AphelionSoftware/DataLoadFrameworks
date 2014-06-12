@@ -12,9 +12,9 @@
            
     History:  
     --------  
-    Date       Modifier    Version  Reason  
-    --------   ----------  -------- -------  
-
+    Date			Modifier			Version		Reason  
+    --------		----------			--------	-------  
+	12 June 2014	Geoffrey Smith		1.1			Add StatusMessage column to store error message
       
 
 **********************************************************************************************/
@@ -25,6 +25,7 @@ CREATE TABLE [dbo].[Queue]
 	[SchedulerID]		BIGINT NULL, --if queued by scheduler
     [QueueLoadTypeID]	INT NOT NULL, --package or cubes processing
 	[StatusID]          INT NOT NULL,
+	[StatusMessage]     NVARCHAR(4000) NULL,
 	[PackageLoadID]		INT NULL, --if package load
 	[IsBatch]             BIT DEFAULT (0) NOT NULL, --if cube process
     [IsBatchComplete]     BIT DEFAULT (0) NOT NULL, --if cube process
