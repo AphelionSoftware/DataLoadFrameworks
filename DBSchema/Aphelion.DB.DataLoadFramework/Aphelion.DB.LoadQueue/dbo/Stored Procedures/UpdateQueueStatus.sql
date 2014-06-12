@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateQueueStatus]
 	  @intQueueID		INT
 	, @strStatusName	VARCHAR(255)
+	, @strStatusMessage	NVARCHAR(4000) = NULL
 AS
 
 /****************************************************************************************  
@@ -21,9 +22,9 @@ AS
            
     History:  
     --------  
-    Date       Modifier    Version  Reason  
-    --------   ----------  -------- -------  
-
+    Date			Modifier			Version		Reason  
+    --------		----------			--------	-------  
+	12 June 2014	Geoffrey Smith		1.1			Add StatusMessage parameter and update
       
 
 **********************************************************************************************/
@@ -52,6 +53,7 @@ BEGIN
 		UPDATE [Queue] 
 		SET StatusID = @intStatusID
 		  , EndTime = CURRENT_TIMESTAMP
+		  , StatusMessage = ISNULL(@strStatusMessage,StatusMessage)
 		WHERE QueueID = @intQueueID
 	END
 END
