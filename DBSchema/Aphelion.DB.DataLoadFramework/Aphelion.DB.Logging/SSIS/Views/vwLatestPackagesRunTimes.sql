@@ -12,7 +12,7 @@ select TOP 2147483647
       ,StartSSIS.[sourceid]
       ,StartSSIS.[executionid]
       ,StartSSIS.[starttime]
-	  ,EndSSIS.[Endtime]
+	  ,EndSSIS.[endtime]
  from dbo.sysssislog  StartSSIS
 LEFT JOIN dbo.sysssislog  EndSSIS
 on endssis.executionid = (select top 1 executionid from ssis.[vwLatestExecutions])

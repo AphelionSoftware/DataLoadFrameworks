@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Source_DB]
+    AUTHORIZATION [dbo];
+

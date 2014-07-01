@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Number] (
+    [N] INT NOT NULL,
+    CONSTRAINT [Number_PK] PRIMARY KEY CLUSTERED ([N] ASC)
+);
+

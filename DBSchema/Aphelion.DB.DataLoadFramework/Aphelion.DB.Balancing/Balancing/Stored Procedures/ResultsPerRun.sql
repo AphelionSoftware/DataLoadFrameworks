@@ -1,5 +1,5 @@
 ﻿
-CREATE PROC Balancing.ResultsPerRun
+CREATE PROC [Balancing].[ResultsPerRun]
 @RunID int 
 AS
 --DECLARE @RunID int = 1;
@@ -8,7 +8,7 @@ WITH base AS
 (
 	SELECT 
 		t.FunctionalAreaID,
-		fa.functionalAreaName,
+		fa.FunctionalAreaName,
 		t.TestId,
 		t.TestName,
 		q.QueryId,
@@ -17,7 +17,9 @@ WITH base AS
 		r.TestResult,
 		r.TestDateTime,
 		CASE 
-		/*A derivative of Fibonacci. Two of these numbers added together are guaranteed to be unique*/
+		/*A derivative of Fibonacci.
+		
+		 Two of these numbers added together are guaranteed to be unique*/
 		
 		WHEN dst.DataSourceTypeID = 1 THEN 1
 		WHEN dst.DataSourceTypeID = 2 THEN 3
@@ -46,13 +48,18 @@ WITH base AS
 		fa.FunctionalAreaID = t.FunctionalAreaID
 	WHERE 
 		r.RunID = @RunID
+		/*and (Q.QueryName not like '%MTD%'
+				OR getdate() > '2014/02/03')
+
+		and fa.functionalareaname not like '%force%'
+		*/
 )
 
 SELECT DISTINCT COMP
-	,FunctionalAreaID
-	,FunctionalAreaName
-	,TestName
-	, TestID
+	,src.FunctionalAreaID
+	,src.FunctionalAreaName
+	,src.TestName
+	, src.TestID
 	, OuterSourceTypeID
 	, DataSourceTypeID
 	, TestResult
@@ -67,7 +74,7 @@ SELECT DISTINCT COMP
 		ELSE (ComparisonResult - TestResult) / ComparisonResult 
 		END as DeltaPercent
 	
-	
+	, Tests.ExpectedResult
  From (
 SELECT TOP 2147483647
 	InnerT.HalfComp + OuterT.HalfComp AS COMP,
@@ -104,8 +111,9 @@ ORDER BY
 	)
 
 	src
-	 
-	order by COMP
+	 INNER JOIN Balancing.Tests
+	 on src.TestID = Tests.TestID 
+	order by COMP, src.TestID
 
 
 	END

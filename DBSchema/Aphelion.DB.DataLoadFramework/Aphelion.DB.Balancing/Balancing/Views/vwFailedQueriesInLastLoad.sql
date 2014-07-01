@@ -1,8 +1,10 @@
-﻿
-CREATE VIEW [Balancing].[vwQueries]
+﻿CREATE VIEW Balancing.vwFailedQueriesInLastLoad
 
 AS 
-SELECT Q.QueryID
+SELECT Errors.[RunID]
+      ,Errors.[ErrorID]
+      ,Errors.[TestDateTime]
+	  ,Q.QueryID
 	  ,Q.QueryName
 	  ,Q.QueryText
 	  ,DS.DataSourceID
@@ -11,8 +13,11 @@ SELECT Q.QueryID
 	  , T.TestName
 	  , T.ExpectedResult
 	  , FA.FunctionalAreaName
-	  , FA.FunctionalAreaID
-  FROM  Balancing.Queries Q
+  FROM [Balancing].[Errors]
+  INNER JOIN (SELECT MAX( RunID ) As RunID FROM Balancing.Results) results
+  ON Errors.RunID = results.RunID
+  INNER JOIN Balancing.Queries Q
+  ON ErrorS.QueryID = Q.QueryID
   INNER JOIN Balancing.DataSources DS
   ON Q.DataSourceID = DS.DataSourceID
   INNER JOIN Balancing.Tests T

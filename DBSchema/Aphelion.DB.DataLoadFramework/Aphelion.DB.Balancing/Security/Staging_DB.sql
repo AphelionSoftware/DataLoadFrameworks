@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Staging_DB]
+    AUTHORIZATION [dbo];
+
