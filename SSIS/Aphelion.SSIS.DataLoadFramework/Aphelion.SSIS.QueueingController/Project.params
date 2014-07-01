@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <SSIS:Parameters xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
   <SSIS:Parameter
-    SSIS:Name="strLoadQueueServer">
+    SSIS:Name="strLoadQueueConnStr">
     <SSIS:Properties>
       <SSIS:Property
         SSIS:Name="ID">{133df796-e212-49a6-b37d-f61eed6181d4}</SSIS:Property>
@@ -16,7 +16,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">.</SSIS:Property>
+        SSIS:Name="Value">Data Source=icmkgil6ip.database.windows.net;User ID=Zero1ETL;Password=Denali@2011;Initial Catalog=Aphelion.Zero1.LoadQueue;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>

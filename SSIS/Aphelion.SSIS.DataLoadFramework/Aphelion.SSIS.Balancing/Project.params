@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0"?>
 <SSIS:Parameters xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
   <SSIS:Parameter
-    SSIS:Name="pFunctionalArea">
+    SSIS:Name="strBalancingConnStr">
     <SSIS:Properties>
       <SSIS:Property
-        SSIS:Name="ID">{a0e27e42-af41-4cd8-9f16-d04d1c8e15a8}</SSIS:Property>
+        SSIS:Name="ID">{2efcdaba-1f1e-4db4-bbf8-7cae32148a21}</SSIS:Property>
       <SSIS:Property
         SSIS:Name="CreationName"></SSIS:Property>
       <SSIS:Property
@@ -12,11 +12,11 @@
       <SSIS:Property
         SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Required">1</SSIS:Property>
+        SSIS:Name="Required">0</SSIS:Property>
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value"></SSIS:Property>
+        SSIS:Name="Value">Data Source=.;Initial Catalog=Aphelion.DB.Balancing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>

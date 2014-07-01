@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="000_Controller"
   DTS:PackageType="5"
-  DTS:VersionBuild="112"
-  DTS:VersionGUID="{F9B7825E-59D9-4794-AF93-5F0EF93667A2}">
+  DTS:VersionBuild="116"
+  DTS:VersionGUID="{0068F6EC-19BE-4D22-9D6D-ED49956BBEDD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,7 +35,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA46BLVP72AEihOXwSSSU1kAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACar/vmnwFASWRSYJMeczcoAAAAAASAAACgAAAAEAAAALD5DNFGD3HCKn/a66BiZjcYAAAAhzFvYvrj2PvS0cJqKs8Zkyo9faMsA+IbFAAAAFPbZchBZerI/CLyYPfSdZDFJi0d</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA46BLVP72AEihOXwSSSU1kAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADxm07go5bl9INtGJU2I7V2AAAAAASAAACgAAAAEAAAADMqhcsPO4tIVkp5N8rOZv4YAAAAuaIXlBLkl1IuAOB01b3p3WdNdW8JbQ3dFAAAAPT9QeMlzMiIZkjvkQar21BD/J7Q</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -506,6 +506,37 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\EPT_Balancing"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{bee3c38e-3d7b-474e-9c5f-2e09d05eaab4}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_Balancing"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>200_Balancing.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>strDatabaseServer</ParameterName>
+            <BindedVariableOrParameterName>User::strDatabaseServer</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>strCubeName</ParameterName>
+            <BindedVariableOrParameterName>User::strCubeName</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>strCubeServer</ParameterName>
+            <BindedVariableOrParameterName>User::strCubeServer</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\EPT_SchemaCompare"
       DTS:CreationName="SSIS.ExecutePackageTask.3"
       DTS:Description="Execute Package Task"
@@ -545,35 +576,14 @@
           ReadOnlyVariables="System::PackageName"
           ReadWriteVariables="User::intLatchLock">
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_5ddcbe9ac2874ab68d82dc51c97cad2f")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RMB")]
-[assembly: AssemblyProduct("ST_5ddcbe9ac2874ab68d82dc51c97cad2f")]
-[assembly: AssemblyCopyright("Copyright @ RMB 2013")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -880,14 +890,35 @@ namespace ST_5ddcbe9ac2874ab68d82dc51c97cad2f.Properties {
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_5ddcbe9ac2874ab68d82dc51c97cad2f")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("RMB")]
+[assembly: AssemblyProduct("ST_5ddcbe9ac2874ab68d82dc51c97cad2f")]
+[assembly: AssemblyCopyright("Copyright @ RMB 2013")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1212,11 +1243,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{40BCE9E0-AEDD-47B6-B864-AA2AA9388131}"
+      DTS:DTSID="{116FB11E-D93D-4AC4-B788-7F0F84C7428F}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::bitRunBalancing]"
       DTS:From="Package\EPT_100_PackageIterator"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\SQL_UpdateQueueStatus Complete" />
+      DTS:To="Package\EPT_Balancing" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
@@ -1228,6 +1261,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\SQL_UpdateQueueStatus Busy" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F299B797-9061-49F6-B483-1568DB51E508}"
+      DTS:EvalOp="3"
+      DTS:Expression="!@[User::bitRunBalancing]"
+      DTS:From="Package\EPT_100_PackageIterator"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_UpdateQueueStatus Complete" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
       DTS:DTSID="{8B6FD022-9AA7-46DA-BCF2-3B65C445DE47}"
@@ -1237,6 +1279,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
       DTS:To="Package\EPT_SchemaCompare" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{2750499F-7FC4-4F9C-8C23-D31D9A35484E}"
+      DTS:From="Package\EPT_Balancing"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL_UpdateQueueStatus Complete" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
@@ -1340,7 +1389,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <NodeLayout
           Size="232,42"
           Id="Package\SCR_Check for running instance"
-          TopLeft="410.015868790175,37.0028768339716" />
+          TopLeft="411.015868790175,36.0028768339716" />
         <NodeLayout
           Size="153,42"
           Id="Package\SQL_PollQueue"
@@ -1350,31 +1399,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\SQL_UpdateQueueStatus Busy"
           TopLeft="407.5,213.5" />
         <NodeLayout
-          Size="247,42"
+          Size="245,42"
           Id="Package\SQL_UpdateQueueStatus Complete"
-          TopLeft="393.5,483.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="516.25,434">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49.5"
-              Start="0,0"
-              End="0,42">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="389.5,562.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="520.25,165">
@@ -1507,25 +1534,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="523.257934395087,79.0028768339716">
+          TopLeft="523.757934395087,78.0028768339716">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43.9971231660284"
+              EndConnector="0,44.9971231660284"
               Start="0,0"
-              End="0,36.4971231660284">
+              End="0,37.4971231660284">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.4971231660284" />
+                    End="0,37.4971231660284" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,10.2485615830142,16,16"
+              BoundingBox="-8,10.7485615830142,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1563,14 +1590,131 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           FontInfo="{assembly:Null}"
           Size="280,56"
           Id="28bd32a4-e4bf-4397-ac9d-6960e23e70a0"
-          TopLeft="650,489" />
+          TopLeft="646,568" />
         <AnnotationLayout
-          Text="if BitSchemaCompare is TRUE&#xA;*is SchemaCompare a&#xA;package within this solution?"
+          Text="if BitSchemaCompare is TRUE"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="176,104"
+          Size="185,40"
           Id="8d7ca2f2-b026-4912-8841-0954b6f31551"
           TopLeft="112,302" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\EPT_Balancing"
+          TopLeft="306,477" />
+        <AnnotationLayout
+          Text="if BitRunBalancing is TRUE"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="167,40"
+          Id="05df449c-1698-43bc-a830-ca8c52c47d04"
+          TopLeft="114,475" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="515.5,434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-135.5,43"
+              Start="0,0"
+              End="-135.5,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="-4,21.5" />
+                  <mssgle:LineSegment
+                    End="-131.5,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-131.5,21.5"
+                    Point2="-135.5,21.5"
+                    Point3="-135.5,25.5" />
+                  <mssgle:LineSegment
+                    End="-135.5,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-75.75,26.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="548,434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36,128.5"
+              Start="0,0"
+              End="-36,121">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.0029325513197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.0029325513197"
+                    Point2="0,52.0029325513197"
+                    Point3="-4,52.0029325513197" />
+                  <mssgle:LineSegment
+                    End="-32,52.0029325513197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32,52.0029325513197"
+                    Point2="-36,52.0029325513197"
+                    Point3="-36,56.0029325513197" />
+                  <mssgle:LineSegment
+                    End="-36,121" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26,57.0029325513197,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="380,519">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.5,43.5"
+              Start="0,0"
+              End="92.5,36">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9306569343066" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.9306569343066"
+                    Point2="0,25.9306569343066"
+                    Point3="4,25.9306569343066" />
+                  <mssgle:LineSegment
+                    End="88.5,25.9306569343066" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.5,25.9306569343066"
+                    Point2="92.5,25.9306569343066"
+                    Point3="92.5,29.9306569343066" />
+                  <mssgle:LineSegment
+                    End="92.5,36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1587,7 +1731,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Text="Update Queue status to Failed and set EndTime and StatusMessage"
           ParentId="Package.EventHandlers[OnError]"
           FontInfo="{assembly:Null}"
-          Size="386,40"
+          Size="386,NaN"
           Id="7254784b-e1ad-4985-9dc3-ec0bbff456f0"
           TopLeft="505,104" />
       </GraphLayout>
