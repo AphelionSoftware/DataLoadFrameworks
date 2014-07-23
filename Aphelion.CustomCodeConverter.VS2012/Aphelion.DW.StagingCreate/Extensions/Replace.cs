@@ -30,5 +30,24 @@ namespace Aphelion.DW.StagingCreate
 
             return sb.ToString();
         }
+
+        public static long HashFNV1a_64_ABS(string value)
+        {
+            ulong offset64 = 0xcbf29ce484222325;
+            ulong prime64 = 1099511628211;
+            ulong hash = offset64;
+
+            byte[] bytes = Encoding.UTF8.GetBytes(value.ToLower());
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash = (hash ^ bytes[i]) * prime64;
+            }
+            return Math.Abs((long)(hash - long.MaxValue));
+
+        }
+    
     }
+
+    
 }

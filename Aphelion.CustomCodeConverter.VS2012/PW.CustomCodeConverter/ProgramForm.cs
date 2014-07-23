@@ -143,6 +143,7 @@ namespace PW.CustomCodeConverter
                 , this.txtTableExcl.Text
                 , this.txtFactFilter.Text
                 , this.txtDimFilter.Text
+                , this.chkSchema.Checked
                 );
             scOLAP.CreateScript();
 
@@ -196,6 +197,11 @@ namespace PW.CustomCodeConverter
 
             this.txtStageScript.Text = scTables.OutputScript();
         
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

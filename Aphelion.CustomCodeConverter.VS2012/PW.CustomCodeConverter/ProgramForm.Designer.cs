@@ -101,6 +101,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label48 = new System.Windows.Forms.Label();
+            this.txtSrcKeyName = new System.Windows.Forms.TextBox();
             this.chkInclRefKeysStg = new System.Windows.Forms.CheckBox();
             this.label47 = new System.Windows.Forms.Label();
             this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
@@ -142,8 +144,8 @@
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.txtSrcKeyName = new System.Windows.Forms.TextBox();
+            this.chkSchema = new System.Windows.Forms.CheckBox();
+            this.label49 = new System.Windows.Forms.Label();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -714,6 +716,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label49);
+            this.tabPage2.Controls.Add(this.chkSchema);
             this.tabPage2.Controls.Add(this.txtResults);
             this.tabPage2.Controls.Add(this.label26);
             this.tabPage2.Controls.Add(this.txtDimFilter);
@@ -755,7 +759,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(7, 354);
+            this.label26.Location = new System.Drawing.Point(7, 379);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(63, 17);
@@ -764,7 +768,7 @@
             // 
             // txtDimFilter
             // 
-            this.txtDimFilter.Location = new System.Drawing.Point(183, 348);
+            this.txtDimFilter.Location = new System.Drawing.Point(183, 373);
             this.txtDimFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtDimFilter.Multiline = true;
             this.txtDimFilter.Name = "txtDimFilter";
@@ -774,7 +778,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(7, 292);
+            this.label25.Location = new System.Drawing.Point(7, 317);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(66, 17);
@@ -783,7 +787,7 @@
             // 
             // txtFactFilter
             // 
-            this.txtFactFilter.Location = new System.Drawing.Point(183, 286);
+            this.txtFactFilter.Location = new System.Drawing.Point(183, 311);
             this.txtFactFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtFactFilter.Multiline = true;
             this.txtFactFilter.Name = "txtFactFilter";
@@ -793,7 +797,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(5, 144);
+            this.label24.Location = new System.Drawing.Point(5, 169);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(103, 17);
@@ -802,12 +806,11 @@
             // 
             // txtDimPrefix
             // 
-            this.txtDimPrefix.Location = new System.Drawing.Point(181, 138);
+            this.txtDimPrefix.Location = new System.Drawing.Point(181, 163);
             this.txtDimPrefix.Margin = new System.Windows.Forms.Padding(4);
             this.txtDimPrefix.Name = "txtDimPrefix";
             this.txtDimPrefix.Size = new System.Drawing.Size(1245, 22);
             this.txtDimPrefix.TabIndex = 58;
-            this.txtDimPrefix.Text = "Dim";
             // 
             // txtSrcConn
             // 
@@ -816,33 +819,32 @@
             this.txtSrcConn.Name = "txtSrcConn";
             this.txtSrcConn.Size = new System.Drawing.Size(1245, 22);
             this.txtSrcConn.TabIndex = 57;
-            this.txtSrcConn.Text = "Data Source=.\\sql2012;Initial Catalog=Okavango;Integrated Security=True";
+            this.txtSrcConn.Text = "Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(5, 231);
+            this.label22.Location = new System.Drawing.Point(5, 256);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(110, 17);
             this.label22.TabIndex = 54;
             this.label22.Text = "TableExclusions";
-            this.label22.Visible = false;
             // 
             // txtTableExcl
             // 
-            this.txtTableExcl.Location = new System.Drawing.Point(181, 226);
+            this.txtTableExcl.Location = new System.Drawing.Point(181, 251);
             this.txtTableExcl.Margin = new System.Windows.Forms.Padding(4);
             this.txtTableExcl.Multiline = true;
             this.txtTableExcl.Name = "txtTableExcl";
             this.txtTableExcl.Size = new System.Drawing.Size(1245, 52);
             this.txtTableExcl.TabIndex = 53;
-            this.txtTableExcl.Visible = false;
+            this.txtTableExcl.Text = "\'ActiveType\'";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(5, 174);
+            this.label21.Location = new System.Drawing.Point(5, 199);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(104, 17);
@@ -851,18 +853,18 @@
             // 
             // txtFieldExcl
             // 
-            this.txtFieldExcl.Location = new System.Drawing.Point(181, 167);
+            this.txtFieldExcl.Location = new System.Drawing.Point(181, 192);
             this.txtFieldExcl.Margin = new System.Windows.Forms.Padding(4);
             this.txtFieldExcl.Multiline = true;
             this.txtFieldExcl.Name = "txtFieldExcl";
             this.txtFieldExcl.Size = new System.Drawing.Size(1245, 50);
             this.txtFieldExcl.TabIndex = 51;
-            this.txtFieldExcl.Text = "\'sysModifiedOn\', \'sysModifiedBy\', \'sysCreatedOn\', \'sysCreatedBy\', \'sysActive\', \'D" +
-    "eltaHash\', \'SourceKeyHash\'";
+            this.txtFieldExcl.Text = "\'sys_ModifiedOn\', \'sys_ModifiedBy\', \'sys_CreatedOn\', \'sys_CreatedBy\', \'Active\', \'" +
+    "DeltaHash\', \'SourceKeyHash\'";
             // 
             // btnStage
             // 
-            this.btnStage.Location = new System.Drawing.Point(27, 423);
+            this.btnStage.Location = new System.Drawing.Point(27, 441);
             this.btnStage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStage.Name = "btnStage";
             this.btnStage.Size = new System.Drawing.Size(125, 23);
@@ -874,7 +876,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 114);
+            this.label18.Location = new System.Drawing.Point(5, 139);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(106, 17);
@@ -883,12 +885,12 @@
             // 
             // txtFactPrefix
             // 
-            this.txtFactPrefix.Location = new System.Drawing.Point(181, 108);
+            this.txtFactPrefix.Location = new System.Drawing.Point(181, 133);
             this.txtFactPrefix.Margin = new System.Windows.Forms.Padding(4);
             this.txtFactPrefix.Name = "txtFactPrefix";
             this.txtFactPrefix.Size = new System.Drawing.Size(1245, 22);
             this.txtFactPrefix.TabIndex = 48;
-            this.txtFactPrefix.Text = "Fact";
+            this.txtFactPrefix.Text = "\'RBM\'";
             // 
             // label19
             // 
@@ -896,9 +898,9 @@
             this.label19.Location = new System.Drawing.Point(5, 82);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(59, 17);
+            this.label19.Size = new System.Drawing.Size(92, 17);
             this.label19.TabIndex = 47;
-            this.label19.Text = "Schema";
+            this.label19.Text = "Dest Schema";
             // 
             // txtSchema
             // 
@@ -926,7 +928,7 @@
             this.txtDestConn.Name = "txtDestConn";
             this.txtDestConn.Size = new System.Drawing.Size(1245, 22);
             this.txtDestConn.TabIndex = 44;
-            this.txtDestConn.Text = "Data Source=.\\sql2012;Initial Catalog=Okavango;Integrated Security=True\r\n";
+            this.txtDestConn.Text = "Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True\r\n";
             // 
             // tabPage3
             // 
@@ -961,6 +963,26 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "CreateStaging";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label48.Location = new System.Drawing.Point(4, 372);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(144, 17);
+            this.label48.TabIndex = 83;
+            this.label48.Text = "SourceKeyFieldName";
+            // 
+            // txtSrcKeyName
+            // 
+            this.txtSrcKeyName.Location = new System.Drawing.Point(180, 365);
+            this.txtSrcKeyName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSrcKeyName.Name = "txtSrcKeyName";
+            this.txtSrcKeyName.Size = new System.Drawing.Size(1245, 22);
+            this.txtSrcKeyName.TabIndex = 82;
+            this.txtSrcKeyName.Text = "BusinessKey";
             // 
             // chkInclRefKeysStg
             // 
@@ -1254,7 +1276,7 @@
             this.txtTblCubeDB.Name = "txtTblCubeDB";
             this.txtTblCubeDB.Size = new System.Drawing.Size(1245, 22);
             this.txtTblCubeDB.TabIndex = 92;
-            this.txtTblCubeDB.Text = "Mining";
+            this.txtTblCubeDB.Text = "Meerkat";
             // 
             // txtTblDestConn
             // 
@@ -1264,7 +1286,7 @@
             this.txtTblDestConn.Size = new System.Drawing.Size(1245, 22);
             this.txtTblDestConn.TabIndex = 91;
             this.txtTblDestConn.Text = "Provider=MSOLAP.4;Integrated Security=SSPI;Persist Security Info=True;Data Source" +
-    "=.\\sql2012Tabular;Initial Catalog=Tabular_CalculatedColumn";
+    "=.\\sql2012Tabular;Initial Catalog=Mining";
             // 
             // label38
             // 
@@ -1366,7 +1388,7 @@
             this.txtTblSrcConn.Name = "txtTblSrcConn";
             this.txtTblSrcConn.Size = new System.Drawing.Size(1245, 22);
             this.txtTblSrcConn.TabIndex = 79;
-            this.txtTblSrcConn.Text = "Data Source=.\\sql2012;Initial Catalog=PW_AEL_BlastI;Integrated Security=True";
+            this.txtTblSrcConn.Text = "Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True";
             // 
             // label35
             // 
@@ -1385,27 +1407,30 @@
             this.txtTblSchema.Name = "txtTblSchema";
             this.txtTblSchema.Size = new System.Drawing.Size(1245, 22);
             this.txtTblSchema.TabIndex = 74;
-            this.txtTblSchema.Text = "Cube";
+            this.txtTblSchema.Text = "OLAP_Gen";
             // 
-            // label48
+            // chkSchema
             // 
-            this.label48.AutoSize = true;
-            this.label48.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label48.Location = new System.Drawing.Point(4, 372);
-            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(144, 17);
-            this.label48.TabIndex = 83;
-            this.label48.Text = "SourceKeyFieldName";
+            this.chkSchema.AutoSize = true;
+            this.chkSchema.Checked = true;
+            this.chkSchema.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSchema.Location = new System.Drawing.Point(183, 105);
+            this.chkSchema.Name = "chkSchema";
+            this.chkSchema.Size = new System.Drawing.Size(110, 21);
+            this.chkSchema.TabIndex = 65;
+            this.chkSchema.Text = "Use Schema";
+            this.chkSchema.UseVisualStyleBackColor = true;
+            this.chkSchema.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // txtSrcKeyName
+            // label49
             // 
-            this.txtSrcKeyName.Location = new System.Drawing.Point(180, 365);
-            this.txtSrcKeyName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSrcKeyName.Name = "txtSrcKeyName";
-            this.txtSrcKeyName.Size = new System.Drawing.Size(1245, 22);
-            this.txtSrcKeyName.TabIndex = 82;
-            this.txtSrcKeyName.Text = "BusinessKey";
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(7, 109);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(137, 17);
+            this.label49.TabIndex = 66;
+            this.label49.Text = "Use instead of prefix";
             // 
             // ProgramForm
             // 
@@ -1544,6 +1569,8 @@
         private System.Windows.Forms.CheckBox chkInclRefKeysStg;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.TextBox txtSrcKeyName;
+        private System.Windows.Forms.CheckBox chkSchema;
+        private System.Windows.Forms.Label label49;
 
     }
 }

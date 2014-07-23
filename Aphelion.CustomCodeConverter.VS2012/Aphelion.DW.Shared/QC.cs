@@ -83,10 +83,19 @@ WHERE table_name not in ({0})
 and table_schema not in ({1})
 AND Table_type = 'BASE TABLE' 
 ORDER BY table_schema, table_name";
-        
+
         public const string qryTableQuery = @"SELECT table_schema, table_name FROM 
 information_schema.tables
 WHERE table_name like '{0}%'
+AND Table_type = 'BASE TABLE'
+ORDER BY table_schema, table_name";
+        
+        /// <summary>
+        /// 0: Table Schema List
+        /// </summary>
+        public const string qryTableQueryBySchema = @"SELECT table_schema, table_name FROM 
+information_schema.tables
+WHERE table_schema in ({0})
 AND Table_type = 'BASE TABLE'
 ORDER BY table_schema, table_name";
         /// <summary>
@@ -333,6 +342,30 @@ AND NOT COLUMN_NAME IN
         /// 1: Alias
         /// 2: Src Table
         /// </summary>
+        public const string qryDimColumns = @"SELECT  C.COLUMN_NAME ,
+    CASE WHEN /*T.TABLE_NAME IS NULL 
+	AND KCU.TABLE_NAME IS NULL */
+	1=1
+	THEN  
+	REPLACE ( 
+	REPLACE(C.TABLE_NAME, '{4}','') + C.COLUMN_NAME
+	,
+	C.TABLE_NAME + C.Table_Name, C.TABLE_NAME )
+	ELSE C.COLUMN_NAME
+	END AS ALIAS
+, ColT.TABLE_NAME
+FROM INFORMATION_SCHEMA.COLUMNS C
+INNER JOIN INFORMATION_SCHEMA.TABLES ColT
+ON C.TABLE_NAME = ColT.TABLE_NAME
+AND C.TABLE_SCHEMA = ColT.TABLE_SCHEMA
+WHERE C.TABLE_NAME = '{0}'
+AND C.TABLE_SCHEMA = '{3}'
+AND NOT C.COLUMN_NAME IN
+({2})
+
+ORDER BY C.TABLE_NAME, C.COLUMN_NAME
+";
+        /*
         public const string qryDimColumns = @"SELECT C.COLUMN_NAME ,
     CASE WHEN T.TABLE_NAME IS NULL 
 	AND KCU.TABLE_NAME IS NULL 
@@ -350,6 +383,10 @@ ON REPLACE(T.TABLE_NAME, 'Dim','') = Right( LEFT(
 	, len(column_name) - 2)
 	, LEN( REPLACE(T.TABLE_NAME, 'Dim','') ) )
 LEFT JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE KCU
+    JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
+	    ON KCU.CONSTRAINT_NAME = RC.CONSTRAINT_NAME
+	    OR KCU.CONSTRAINT_NAME = RC.UNIQUE_CONSTRAINT_NAME
+
 ON C.TABLE_SCHEMA = KCU.TABLE_SCHEMA
 AND C.TABLE_NAME = KCU.TABLE_NAME
 AND C.COLUMN_NAME = KCU.COLUMN_NAME
@@ -360,7 +397,7 @@ AND NOT C.COLUMN_NAME IN
 ({2})
 
 ORDER BY C.TABLE_NAME, C.COLUMN_NAME
-";
+";*/
 
 
         /// <summary>
@@ -441,9 +478,55 @@ CREATE TABLE [{0}].[{1}]
         /// 3: Table
         /// 4: Column
         /// 5: Alias
+        /// 6: Interleaved joins
+        /// </summary>
+        public const string qryInterJoins = @"
+    JOIN [{0}].[{3}] AS [{5}] 
+    {6}
+        ON  [{1}].[{2}] = [{5}].[{4}]
+";
+
+
+        /// <summary>
+        /// 0: Schema
+        /// 1: Src Table
+        /// 2: Src Column
+        /// 3: Table
+        /// 4: Column
+        /// 5: Alias
+        /// 6: Interleaved joins
+        /// </summary>
+        public const string qryInterLeftJoins = @"
+    LEFT JOIN [{0}].[{3}] AS [{5}] 
+    {6}
+    ON  [{1}].[{2}] = [{5}].[{4}]
+        
+";
+        
+        /// <summary>
+        /// 0: Schema
+        /// 1: Src Table
+        /// 2: Src Column
+        /// 3: Table
+        /// 4: Column
+        /// 5: Alias
         /// </summary>
         public const string qryJoins = @"
-    JOIN [{0}].[{3}] {5} ON
+    JOIN [{0}].[{3}] AS [{5}] ON
+        [{1}].[{2}] = [{5}].[{4}]
+        
+";
+
+        /// <summary>
+        /// 0: Schema
+        /// 1: Src Table
+        /// 2: Src Column
+        /// 3: Table
+        /// 4: Column
+        /// 5: Alias
+        /// </summary>
+        public const string qryLeftJoins = @"
+    LEFT JOIN [{0}].[{3}] AS [{5}] ON
         [{1}].[{2}] = [{5}].[{4}]
         
 ";
@@ -480,6 +563,30 @@ SELECT {2}
 FROM [{3}].[{1}]
 {4}
 {5}
+
+    GO  
+";/// <summary>
+        /// 0: View schema
+        /// 1: View name
+        /// 2: Column list
+        /// 3: Table schema
+        /// 4: Alias
+        /// 5: JOINS
+        /// 6: WHERE clause
+        /// </summary>
+        public const string qryCreateDimViewAliased = @"IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS 
+	WHERE VIEWS.TABLE_SCHEMA = '{0}'
+		AND VIEWS.TABLE_NAME = '{1}')
+	DROP VIEW [{0}].[{1}]
+    GO  
+
+CREATE VIEW [{0}].[{1}]
+AS
+
+SELECT {2}
+FROM [{3}].[{1}] AS [{4}]
+{5}
+{6}
 
     GO  
 ";
@@ -531,15 +638,36 @@ AND VIEW_NAME = '{1}'
 	    /// 7: UNIQUE_COLUMN_NAME
  
         /// </summary>
-        public const string qryViewReferences = @"select 
+        public const string qryViewReferences = @"WITH CTE as (select c.name Column_Name
+, v.Name  ViewName 
+, MAX(CASE WHEN ep.name = 'SrcColumn' THEN ep.value  END) as SrcColumn_Name
+, MAX(CASE WHEN ep.name = 'SrcTable' THEN ep.value  END) as SrcTable_Name
+, MAX(CASE WHEN ep.name = 'SrcSchema' THEN ep.value  END) as SrcSchema_Name
+
+FROM sys.extended_properties AS ep
+INNER JOIN sys.views v on ep.major_id = v.object_id
+iNNER JOIN sys.columns c on ep.minor_id = c.column_id
+
+and v.object_id = c.object_id
+
+
+WHERE ep.name in ( 'SrcColumn', 'SrcTable', 'SrcSchema')
+
+GROUP BY c.name, v.name
+)
+
+select 
 	VTU.VIEW_SCHEMA
 	, VTU.VIEW_NAME
 	, VTU.TABLE_SCHEMA
 	, VTU.TABLE_NAME
-	, CCU.COLUMN_NAME
+	, /*CCU.COLUMN_NAME*/ CTEChild.Column_name
 	, CTUUnq.TABLE_SCHEMA UNIQUE_TABLE_SCHEMA
 	, CTUUnq.TABLE_NAME UNIQUE_TABLE_NAME
-	, CCUUnq.COLUMN_NAME UNIQUE_COLUMN_NAME
+	, /*CCUUnq.COLUMN_NAME UNIQUE_COLUMN_NAME*/
+	CTEParent.Column_Name UNIQUE_COLUMN_NAME
+
+
  from INFORMATION_SCHEMA.VIEW_TABLE_USAGE VTU
  INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_TABLE_USAGE CTU
  ON		VTU.TABLE_SCHEMA = CTU.TABLE_SCHEMA
@@ -570,9 +698,18 @@ AND VIEW_NAME = '{1}'
 	ON CTUUnq.CONSTRAINT_SCHEMA = TCUnq.CONSTRAINT_SCHEMA
 	AND CTUUnq.CONSTRAINT_NAME = TCUnq.CONSTRAINT_NAME
 	AND TCUnq.CONSTRAINT_TYPE = 'PRIMARY KEY'
+
+JOIN CTE CTEChild
+	on VTU.TABLE_NAME = CTEChild.SrcTable_Name
+		AND CCU.COLUMN_NAME = CTEChild.SrcColumn_Name
+
+	JOIN CTE CTEParent
+	on CTUUnq.TABLE_NAME = CTEParent.SrcTable_Name
+		AND CCUUnq.COLUMN_NAME = CTEParent.SrcColumn_Name
+
  
  WHERE VIEW_SCHEMA = '{0}'
-
+and NOT VTU.table_name = CTUUnq.TABLE_NAME 
 ";
 
               /// <summary>
