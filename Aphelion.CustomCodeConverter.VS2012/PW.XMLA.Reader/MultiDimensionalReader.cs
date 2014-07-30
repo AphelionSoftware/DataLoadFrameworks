@@ -193,19 +193,19 @@ namespace PW.XMLA.Reader
             XMLAModel xModel = cbOriginalCube.lstCubeModels[0];
             foreach(DSVRelationship dsvR in this.cbOriginalCube.lstDSV[0].lstRelationships)
             {
-                if( xModel.lstDimensions.Exists(
+                if (xModel.lstDimensions.Exists(
                     item => item.sKeyTableName == dsvR.childTable
                            && item.sKeySchemaName == dsvR.childSchema)
                     &&
                     xModel.lstDimensions.Exists(
                     item => item.sKeyTableName == dsvR.parentTable
                            && item.sKeySchemaName == dsvR.parentSchema)
-                    ) 
+                    )
                 {
                     XMLADimension xDimChild = xModel.lstDimensions.Find(
                     item => item.sKeyTableName == dsvR.childTable
                            && item.sKeySchemaName == dsvR.childSchema);
-                    XMLADimension xDimParent= xModel.lstDimensions.Find(
+                    XMLADimension xDimParent = xModel.lstDimensions.Find(
                     item => item.sKeyTableName == dsvR.parentTable
                            && item.sKeySchemaName == dsvR.parentSchema);
                     //Create a relationship
@@ -237,9 +237,10 @@ namespace PW.XMLA.Reader
                                && item.sKeySchemaName == dsvR.parentSchema)
                                .lstDimensionAttributes.Find(item => item.sDBColumnName == ToColumn)
                                .sNullProcessing = "Error";
-                    }   
+                    }
 
                 }
+                else { var x = 1; }
                     
             }
         }
@@ -811,17 +812,8 @@ namespace PW.XMLA.Reader
             cdColumn.sDBColumnName = MultiDimensionalReader.FixIDs(atDim.NameColumn.Source.ToString().Split('.')[1]).Replace("_", "");
             cdColumn.boolVisible = atDim.AttributeHierarchyVisible;
 
-            ///TODO: Double check this. Was 0
-            if (atDim.NameColumn.Source.ToString().Contains("TimesheetDetailID") || atDim.NameColumn.Source.ToString().Contains("ClientID"))
-            {
-                int ip = 1;
-            }
-
+            
             string colName = atDim.NameColumn.Source.ToString().Split('.')[1];
-            if (colName.Contains("_"))
-            {
-                int ip = 1;
-            }
             CreateNewDimensionAttribute(ref cdDim, cdColumn, colName);
 
             

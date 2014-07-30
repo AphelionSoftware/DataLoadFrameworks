@@ -16,7 +16,8 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
         public string sTableName;
         public string sSchemaName;
         public string sKeyColumn;
-
+        public string sXMLATableType = "Table";
+        public bool bCoalesceFields = false;
 
         public override string ToString()
         {
@@ -24,6 +25,20 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
         }
         public DSVTable()
         {
+        }
+
+
+        public DSVTable(string pName, string pID, string pFriendlyName, string pTableType, string pTableName, string pSchemaName, string pXMLATableType)
+        {
+            sName = pName;
+            sID = pID;
+            sFriendlyName = pFriendlyName;
+            sTableType = pTableType;
+            sTableName = pTableName;
+            sSchemaName = pSchemaName;
+            sXMLATableType = pXMLATableType;
+
+
         }
         public DSVTable( string pName, string pID, string pFriendlyName, string pTableType, string pTableName, string pSchemaName ="") 
         {

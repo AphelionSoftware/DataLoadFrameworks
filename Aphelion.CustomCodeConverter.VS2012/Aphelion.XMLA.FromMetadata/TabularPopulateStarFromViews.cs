@@ -102,6 +102,16 @@ namespace Aphelion.XMLA.FromMetadata
             xmlaWriter.connDestConnection = this.destTabularConn;
             xmlaWriter.srcCubeReader.cbOriginalCube = this.cbNewCube;
             xmlaWriter.BuildTabularXMLA();
+
+        }
+
+        public void ProcessCube()
+        {
+            if (xmlaWriter == null)
+            {
+                this.CreateCube();
+            }
+            xmlaWriter.ProcessCubeFull();
         }
 
 
@@ -127,7 +137,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             CreateDataSource();
             CreateDSV();
             CreateDimensions();
-
 
             return this.cbNewCube;
         }
@@ -211,6 +220,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 }
                 #endregion
 
+                #region DimensionSetup
                 XMLADimension xDim = new XMLADimension(
                         dsvT.sID
                         , dsvT.sFriendlyName
@@ -258,7 +268,45 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                 xDim.lstDimensionAttributes = lstXDA;
                 xDim.lstHierarchies = lstXDH;
+                #endregion
+
+                #region ReferenceDimension
+                //Set up reference dimensions for all measure groups
+                if (dsvT.sXMLATableType == "MeasureGroup")
+                {
+                    foreach (DSVRelationship dsvR in
+                        this.cbNewCube.lstDSV[0].lstRelationships.FindAll(
+                        item => item.childTable == dsvT.sTableName
+                            && item.childSchema == dsvT.sSchemaName
+                        )
+                        )
+                    {
+
+                        if (!(xDim.lstReferenceDimensions.Exists(item => item.sID == dsvR.sID)))
+                        {
+
+                            XMLAReferenceDimension xrDim = new XMLAReferenceDimension(dsvR.ToString()
+                                , dsvR.sID
+                                , dsvR.childTable
+                               , dsvR.childColumn
+                                , "Regular"
+                                , dsvR.parentTable
+                                , dsvR.parentColumn);
+                            xDim.lstReferenceDimensions.Add(xrDim);
+
+                            var x = 1;
+                        }
+                        else
+                        {
+                            var y = 2;
+                        }
+                    }
+                   
+                }
+
+                #endregion
                 this.cbNewCube.lstCubeModels[0].lstDimensions.Add(xDim);
+                
             }    
 
         }
@@ -294,6 +342,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             SqlCommand comm;
             SqlCommand commCol;
             SqlDataReader drRefs;
+            SqlDataReader drCustomRefs;
             SqlDataReader drCols;
             //Build field list
             comm = new SqlCommand(string.Format(QC.qryOLAPTablesQuery, this.sTableExcl, this.sSchema), srcConn);
@@ -308,7 +357,9 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     , drRefs.GetString(3)
                     , drRefs.GetString(1)
                     , this.sSchema
+                    , drRefs.GetString(4)
                     );
+                //System.Boolean.TryParse(drRefs.GetString(5), out dsvT.bCoalesceFields);
                 srcFactConn = new SqlConnection(this.srcDBConn);
                 srcFactConn.Open();
                 commCol = new SqlCommand(string.Format(QC.qryListColumns, drRefs.GetString(1), this.sSchema, this.sFieldExcl), srcFactConn);
@@ -317,9 +368,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 {
 
                     #region Column
-                    if (dsvT.sID.Contains("Location"))
-                    {
-                    }
+                    
 
                     DSVColumn dsvC = new DSVColumn(
                         drCols.GetString(0) //Name
@@ -433,11 +482,18 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
             #region  Relationships
             //Build relationships list
+            
             comm = new SqlCommand(string.Format(QC.qryViewReferences, this.sSchema), srcFactConn);
             
             drRefs = comm.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(drRefs);
+            drRefs.Close();
+            SqlCommand commRel = new SqlCommand(string.Format(QC.qryAdditionalRelationships ), srcFactConn);
+            drCustomRefs = commRel.ExecuteReader();
+            DataTable dtCustomRefs = new DataTable();
+            dtCustomRefs.Load(drCustomRefs);
+            drCustomRefs.Close();
             foreach (DSVTable dTable in dsv.lstDSVTables)
             {
                 DataRow[] lstRows ;
@@ -455,6 +511,28 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     dsvR.sID = dsvR.parentTable + "-" + dsvR.childColumn;
                     dsv.lstRelationships.Add(dsvR);
                 }
+
+                DataRow[] lstRowRefs = dtCustomRefs.Select("TABLE_NAME = '" + dTable.sID + "'");
+                foreach (DataRow dr in lstRowRefs)
+                {
+                    DSVRelationship dsvR = new DSVRelationship();
+
+                    dsvR.parentSchema = this.sSchema;
+                    dsvR.parentTable = dr["UNIQUE_TABLE_NAME"].ToString();
+                    dsvR.parentColumn = dr["UNIQUE_COLUMN_NAME"].ToString();
+                    dsvR.childSchema = this.sSchema;
+                    dsvR.childTable = dr["TABLE_NAME"].ToString();
+                    dsvR.childColumn = dr["COLUMN_NAME"].ToString();
+                    dsvR.sID = dsvR.parentTable + "-" + dsvR.childColumn;
+                    dsv.lstRelationships.Add(dsvR);
+                }
+
+
+                
+            #region  CustomRelationships
+                
+            #endregion
+
             }
 
             drRefs.Close();
@@ -462,9 +540,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             this.cbNewCube.lstDSV.Add(dsv);
             #endregion
 
-
         }
-
+        #region Commented Out
         /*public 
             void PopulateFactTable(string pSchemaTable, string pTableName, string pFieldExcl, string pTableExcl, ref List<TableColumn> lstTC)
         {
@@ -525,6 +602,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             }
         }
     */
+        #endregion
 
     }
 

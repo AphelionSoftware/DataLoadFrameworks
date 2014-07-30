@@ -23,6 +23,30 @@ WHERE t.name = '{0}'
 and (c.name not in ({1}))
     
 ";
+        /// <summary>
+        /// creates a new extended property at view level
+        /// 0: Name
+        /// 1: Value
+        /// 2: Schema
+        /// 3: Table 
+        /// </summary>
+        public const string qryAddExtendedPropertyView = @"
+IF NOT EXISTS (SELECT 1 
+FROM sys.extended_properties AS ep
+INNER JOIN sys.views t on ep.major_id = t.object_id 
+WHERE t.name = '{3}' 
+and ep.name = '{0}')
+
+EXEC sys.sp_addextendedproperty 
+         @name  = N'{0}', 
+         @value = N'{1}', 
+         @level0type = N'SCHEMA',
+         @level0name = N'{2}', 
+         @level1type = N'VIEW',
+         @level1name = N'{3}' 
+    GO  
+;
+    ";
 
         /// <summary>
         /// creates a new extended property
@@ -58,17 +82,107 @@ EXEC sys.sp_addextendedproperty
         #endregion
         #region DB
         public const string qryCreateDB = @"
+
 IF NOT EXISTS (SELECT 1 FROM SYS.DATABASES
 	WHERE DATABASES.NAME = '{0}')
 CREATE DATABASE [{0}]
         GO    
 ";
         public const string qryDropDB = @"
+USE Master
+GO
 IF EXISTS (SELECT 1 FROM SYS.DATABASES
 	WHERE DATABASES.NAME = '{0}')
+BEGIN
+ALTER DATABASE [{0}] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
 DROP DATABASE [{0}]
+END
         GO    
 ";
+        #endregion
+
+
+        #region Additional Attributes
+        /// <summary>
+        /// Results
+        /// 1: Table Name
+        /// 2: Column Name
+        /// 3: Unique Table Name
+        /// 4: Unique Column Name
+        /// 5: Name
+        /// 6: Value
+        /// </summary>
+        public const string qryAdditionalRelationships = @"
+SELECT object_Name(major_id) TABLE_NAME,
+	   col.name COLUMN_NAME,
+	   SUBSTRING( convert(varchar(255),EPRel.value), 0, charindex('[',convert(varchar(255),EPRel.value))) As UNIQUE_TABLE_NAME,
+	   REPLACE(SUBSTRING( convert(varchar(255),EPRel.value), charindex('[',convert(varchar(255),EPRel.value))+ 1, 
+	   LEN(convert(varchar(255),EPRel.value))
+	   ), ']', '') As UNIQUE_COLUMN_NAME,
+
+EPRel.name, EPRel.value 
+	FROM sys.extended_properties EPRel
+	inner join sys.columns col
+	on col.object_id = major_id
+	and column_id = minor_id
+    WHERE replace(EPRel.name, ' ', '') LIKE 'AdditionalRelationship%'
+	and class_desc = 'OBJECT_OR_COLUMN'
+";
+        /// <summary>
+        /// 0: Table schema
+        /// 1: Table Name
+        /// Results
+        /// 1: Name
+        /// 2: Value
+        /// </summary>
+        public const string qryAdditionalProperties = @"
+SELECT EPProps.name, EPProps.value 
+	FROM sys.extended_properties EPProps
+    WHERE replace(EPProps.name, ' ', '') LIKE 'AdditionalProperties%'
+    and minor_id = 0
+	and class_desc = 'OBJECT_OR_COLUMN'
+	and OBJECT_ID( '{0}' +'.' + '{1}', 'TABLE')  = EPProps.major_id";
+        /// <summary>
+        /// 0: Table schema
+        /// 1: Table Name
+        /// Results
+        /// 1: Name
+        /// 2: Value
+        /// </summary>
+        public const string qryAdditionalFields = @"
+SELECT EPFields.name, EPFields.value 
+	FROM sys.extended_properties EPFields
+    WHERE replace(EPFields.name, ' ', '') LIKE 'AdditionalField%'
+    and minor_id = 0
+	and class_desc = 'OBJECT_OR_COLUMN'
+	and OBJECT_ID( '{0}' +'.' + '{1}', 'TABLE')  = EPFields.major_id";
+        /// <summary>
+        /// 0: Table schema
+        /// 1: Table Name
+        /// Results
+        /// 1: Name
+        /// 2: Value
+        /// </summary>
+        public const string qryAdditionalJoins = @"
+SELECT EPFields.name, EPFields.value 
+	FROM sys.extended_properties EPFields
+    WHERE replace(EPFields.name, ' ', '') LIKE 'AdditionalJoin%'
+    and minor_id = 0
+	and class_desc = 'OBJECT_OR_COLUMN'
+	and OBJECT_ID( '{0}' +'.' + '{1}', 'TABLE')  = EPFields.major_id";
+
+        /// <summary>
+        /// Results
+        /// 1: Name
+        /// 2: Value
+        /// </summary>
+        public const string qryAdditionalViews = @"
+SELECT EPViews.name, EPViews.value 
+	FROM sys.extended_properties EPViews
+    WHERE replace(EPViews.name, ' ', '') LIKE 'AdditionalView%'
+    and minor_id = 0
+	and class_desc = 'DATABASE'";
+
         #endregion
 
         #region Tables
@@ -116,18 +230,26 @@ ORDER BY table_schema, table_name";
         /// 0: Schema
         /// 1: Name
         /// 2: DisplayName
+        /// 3: TableType
+        /// 4: Coalesce fields
         /// </summary>
         public const string qryOLAPTablesQuery = @"SELECT 
 	table_schema
 	, table_name 
     , table_type
 	, ISNULL(EPDisplay.value, table_name) DisplayName
+	, ISNULL(EPTableType.Value, 'Table') XMLATableType
 FROM 
 information_schema.tables t
 LEFT JOIN sys.extended_properties EPDisplay
-on OBJECT_ID(table_schema +'.' + table_name, table_type)  = EPDisplay.major_id
-and replace(EPDisplay.name, ' ', '') = 'DisplayName'
-and minor_id = 0
+    on OBJECT_ID(table_schema +'.' + table_name, table_type)  = EPDisplay.major_id
+    and replace(EPDisplay.name, ' ', '') = 'DisplayName'
+    and minor_id = 0
+LEFT JOIN sys.extended_properties EPTableType
+    on OBJECT_ID(table_schema +'.' + table_name, table_type)  = EPTableType.major_id
+    and replace(EPTableType.name, ' ', '') = 'XMLATableType'
+    and EPTableType.minor_id = 0
+
 WHERE (NOT table_name in ({0}) OR {0} = '')
 AND Table_Schema = '{1}'
 ORDER BY table_schema, table_name";
@@ -135,6 +257,146 @@ ORDER BY table_schema, table_name";
         #endregion   
         
         #region Columns
+
+        /// <summary>
+        /// 0: Table Schema
+        /// 1: Table name
+        /// 2: Lookup Key column
+        /// Results:
+        ///0 RC.CONSTRAINT_SCHEMA
+        ///1 RC.CONSTRAINT_NAME	
+        ///2 CCU.TABLE_SCHEMA Ref_Schema
+        ///3 CCU.TABLE_NAME Ref_Table
+        ///4 CCU.COLUMN_NAME Ref_Column
+        ///5 KCU.Table_SChema UNQ_Schema
+        ///6 KCU.Table_Name Unq_Table
+        ///7 KCU.Column_Name Unq_Column
+        ///8 CCU_U.IS_NULLABLE
+        ///9 Coalesce Fields in view
+        ///10 Data type
+        ///11 Character maximum length
+        /// </summary>
+        public const string qryReferenceQueryWithKeyCol = @"
+select 
+	RC.CONSTRAINT_SCHEMA
+	,RC.CONSTRAINT_NAME	
+	,CCU.TABLE_SCHEMA Ref_Schema
+	,CCU.TABLE_NAME Ref_Table
+	,CCU.COLUMN_NAME Ref_Column
+	,KCU.Table_SChema UNQ_Schema
+	,KCU.Table_Name Unq_Table
+	,KCU.Column_Name Unq_Column
+	, CCU_C.IS_NULLABLE 
+	, ISNULL(EPCoalesce.Value, 'False') CoalesceFields
+	, CKey.DATA_TYPE
+	, CKey.CHARACTER_MAXIMUM_LENGTH
+	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
+INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
+ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
+and RC.CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
+INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE KCU
+ON RC.UNIQUE_CONSTRAINT_SCHEMA = KCU.CONSTRAINT_SCHEMA
+AND RC.UNIQUE_CONSTRAINT_NAME = KCU.CONSTRAINT_NAME
+
+
+INNER JOIN INFORMATION_SCHEMA.COLUMNS CCU_C
+	ON CCU.TABLE_SCHEMA = CCU_C.TABLE_SCHEMA
+	AND CCU.TABLE_NAME = CCU_C.TABLE_NAME
+	AND CCU.COLUMN_NAME = CCU_C.COLUMN_NAME
+
+LEFT JOIN sys.extended_properties EPCoalesce
+    on OBJECT_ID(KCU.TABLE_SCHEMA +'.' + KCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
+    and replace(EPCoalesce.name, ' ', '') = 'CoalesceFieldsInView'
+    and EPCoalesce.minor_id = 0
+
+INNER JOIN INFORMATION_SCHEMA.COLUMNS CKey
+	ON CCU_C.TABLE_SCHEMA = CKey.TABLE_SCHEMA
+	AND CCU_C.TABLE_NAME = CKey.TABLE_NAME
+	and CKey.COLUMN_NAME = '{2}'
+
+WHERE CCU.TABLE_SCHEMA = '{0}'
+AND CCU.TABLE_NAME = '{1}'
+AND NOT 
+	(KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
+	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
+
+
+ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
+";
+
+        /// <summary>
+        /// 0: Table Schema
+        /// 1: Table name
+        /// 2: Exclude tables
+        /// 3: Exclude schemas
+        /// 4:  Lookup Key column
+        /// Results:
+        ///0 RC.CONSTRAINT_SCHEMA
+        ///1 RC.CONSTRAINT_NAME	
+        ///2 CCU.TABLE_SCHEMA Ref_Schema
+        ///3 CCU.TABLE_NAME Ref_Table
+        ///4 CCU.COLUMN_NAME Ref_Column
+        ///5 KCU.Table_SChema UNQ_Schema
+        ///6 KCU.Table_Name Unq_Table
+        ///7 KCU.Column_Name Unq_Column
+        ///8 CCU_U.IS_NULLABLE
+        ///9 Coalesce Fields in view
+        ///10 Data type
+        ///11 Character maximum length
+        /// </summary>
+        public const string qryReferenceQueryExclWithKeyCol = @"
+select 
+	RC.CONSTRAINT_SCHEMA
+	,RC.CONSTRAINT_NAME	
+	,CCU.TABLE_SCHEMA Ref_Schema
+	,CCU.TABLE_NAME Ref_Table
+	,CCU.COLUMN_NAME Ref_Column
+	,KCU.Table_SChema UNQ_Schema
+	,KCU.Table_Name Unq_Table
+	,KCU.Column_Name Unq_Column
+	, CCU_C.IS_NULLABLE 
+	, ISNULL(EPCoalesce.Value, 'False') CoalesceFields
+	, CKey.DATA_TYPE
+	, CKey.CHARACTER_MAXIMUM_LENGTH
+	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
+INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
+ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
+and RC.CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
+INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE KCU
+ON RC.UNIQUE_CONSTRAINT_SCHEMA = KCU.CONSTRAINT_SCHEMA
+AND RC.UNIQUE_CONSTRAINT_NAME = KCU.CONSTRAINT_NAME
+
+
+INNER JOIN INFORMATION_SCHEMA.COLUMNS CCU_C
+	ON CCU.TABLE_SCHEMA = CCU_C.TABLE_SCHEMA
+	AND CCU.TABLE_NAME = CCU_C.TABLE_NAME
+	AND CCU.COLUMN_NAME = CCU_C.COLUMN_NAME
+
+LEFT JOIN sys.extended_properties EPCoalesce
+    on OBJECT_ID(KCU.TABLE_SCHEMA +'.' + KCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
+    and replace(EPCoalesce.name, ' ', '') = 'CoalesceFieldsInView'
+    and EPCoalesce.minor_id = 0
+
+
+INNER JOIN INFORMATION_SCHEMA.COLUMNS CKey
+	ON CCU_C.TABLE_SCHEMA = CKey.TABLE_SCHEMA
+	AND CCU_C.TABLE_NAME = CKey.TABLE_NAME
+	and CKey.COLUMN_NAME = '{4}'
+
+WHERE CCU.TABLE_SCHEMA = '{0}'
+AND CCU.TABLE_NAME = '{1}'
+AND NOT 
+	(KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
+	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
+
+
+and not kcu.TABLE_NAME in ({2})
+
+and not kcu.TABLE_SCHEMA in ({3})
+
+ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
+";
+
         /// <summary>
         /// 0: Table Schema
         /// 1: Table name
@@ -150,6 +412,7 @@ ORDER BY table_schema, table_name";
         ///6 KCU.Table_Name Unq_Table
         ///7 KCU.Column_Name Unq_Column
         ///8 CCU_U.IS_NULLABLE
+        ///9 Coalesce Fields in view
         /// </summary>
         public const string qryReferenceQueryExcl = @"
 select 
@@ -162,6 +425,7 @@ select
 	,KCU.Table_Name Unq_Table
 	,KCU.Column_Name Unq_Column
 	, CCU_C.IS_NULLABLE 
+	, ISNULL(EPCoalesce.Value, 'False') CoalesceFields
 	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
 INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
 ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
@@ -175,6 +439,12 @@ INNER JOIN INFORMATION_SCHEMA.COLUMNS CCU_C
 	ON CCU.TABLE_SCHEMA = CCU_C.TABLE_SCHEMA
 	AND CCU.TABLE_NAME = CCU_C.TABLE_NAME
 	AND CCU.COLUMN_NAME = CCU_C.COLUMN_NAME
+
+LEFT JOIN sys.extended_properties EPCoalesce
+    on OBJECT_ID(KCU.TABLE_SCHEMA +'.' + KCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
+    and replace(EPCoalesce.name, ' ', '') = 'CoalesceFieldsInView'
+    and EPCoalesce.minor_id = 0
+
 
 
 WHERE CCU.TABLE_SCHEMA = '{0}'
@@ -203,6 +473,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 	    ///6 KCU.Table_Name Unq_Table
 	    ///7 KCU.Column_Name Unq_Column
         ///8 CCU_U.IS_NULLABLE
+        ///9 Coalesce Fields in view
         /// </summary>
         public const string qryReferenceQuery = @"
 select 
@@ -215,6 +486,7 @@ select
 	,KCU.Table_Name Unq_Table
 	,KCU.Column_Name Unq_Column
 	, CCU_C.IS_NULLABLE 
+	, ISNULL(EPCoalesce.Value, 'False') CoalesceFields
 	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
 INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
 ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
@@ -228,6 +500,11 @@ INNER JOIN INFORMATION_SCHEMA.COLUMNS CCU_C
 	ON CCU.TABLE_SCHEMA = CCU_C.TABLE_SCHEMA
 	AND CCU.TABLE_NAME = CCU_C.TABLE_NAME
 	AND CCU.COLUMN_NAME = CCU_C.COLUMN_NAME
+
+LEFT JOIN sys.extended_properties EPCoalesce
+    on OBJECT_ID(KCU.TABLE_SCHEMA +'.' + KCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
+    and replace(EPCoalesce.name, ' ', '') = 'CoalesceFieldsInView'
+    and EPCoalesce.minor_id = 0
 
 
 WHERE CCU.TABLE_SCHEMA = '{0}'
@@ -258,13 +535,13 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         ///10 Hierarchy level - can be null
         ///11 Is Computed
         /// </summary>
-        public const string qryListColumns = @"SELECT COLUMN_NAME
+        public const string qryListColumns = @"SELECT C.COLUMN_NAME
 , C.IS_NULLABLE
 , C.DATA_TYPE 
-, CAST(CHARACTER_MAXIMUM_LENGTH as varchar(255)) CHARACTER_MAXIMUM_LENGTH 
-, CAST(NUMERIC_PRECISION as varchar(255)) NUMERIC_PRECISION
-, CAST(NUMERIC_PRECISION_RADIX as varchar(255)) NUMERIC_PRECISION_RADIX
-, CAST(NUMERIC_SCALE as varchar(255))  NUMERIC_SCALE
+, CAST(C.CHARACTER_MAXIMUM_LENGTH as varchar(255)) CHARACTER_MAXIMUM_LENGTH 
+, CAST(C.NUMERIC_PRECISION as varchar(255)) NUMERIC_PRECISION
+, CAST(C.NUMERIC_PRECISION_RADIX as varchar(255)) NUMERIC_PRECISION_RADIX
+, CAST(C.NUMERIC_SCALE as varchar(255))  NUMERIC_SCALE
 , ISNULL(EPDisplay.value, C.COLUMN_NAME) DISPLAYNAME
 , C.DATA_TYPE
 , EPHierarchy.value HierarchyName
@@ -277,6 +554,18 @@ ON c.COLUMN_NAME = cSys.name
 		OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = cSys.object_id
 		)
 
+OUTER APPLY (
+	select * from 
+	INFORMATION_SCHEMA.COLUMNS colInner
+		WHERE COLUMN_NAME like '%ID'
+			and c.TABLE_NAME = colInner.TABLE_NAME
+						and 
+				(colInner.COLUMN_NAME = c.TABLE_NAME + 'ID'
+					OR 
+					colInner.COLUMN_NAME = c.TABLE_NAME + '_ID'
+				)
+			and colInner.TABLE_SCHEMA = C.TABLE_SCHEMA
+) colKey
 
 LEFT JOIN sys.extended_properties EPDisplay
 ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPDisplay.major_id
@@ -299,10 +588,14 @@ and csys.column_id = EPHierarchyLevel.minor_id
 AND REPLACE(EPHierarchyLevel.name, ' ' , '') = 'HierarchyLevel'
 
 
-WHERE TABLE_NAME = '{0}'
-AND TABLE_SCHEMA = '{1}'
-AND NOT COLUMN_NAME IN
+WHERE C.TABLE_NAME = '{0}'
+AND C.TABLE_SCHEMA = '{1}'
+AND NOT C.COLUMN_NAME IN
 ({2})
+
+ORDER BY 
+ CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN '_'
+ELSE C.COLUMN_NAME END 
 ";        /// <summary>
         /// 0: Table name
         /// 1: Schema name
@@ -438,6 +731,8 @@ ORDER BY c.TABLE_SCHEMA,c.TABLE_NAME, c.ORDINAL_POSITION "
         /// 2: Column list
         /// 3: Table schema
         /// 4: WHERE clause
+        /// 5: Additional Fields List
+        /// 6: Additional JOINs list
         /// </summary>
         public const string qryCreateFactView = @"IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS 
 	WHERE VIEWS.TABLE_SCHEMA = '{0}'
@@ -449,7 +744,9 @@ CREATE VIEW [{0}].[{1}]
 AS
 
 SELECT {2}
-FROM [{3}].[{1}]
+{5}
+FROM [{3}].[{1}] [{1}]
+{6}
 {4}
 
         GO    

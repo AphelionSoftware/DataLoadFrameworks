@@ -192,7 +192,8 @@ namespace PW.ExcelCode.Writer
             BackupCube();
             this.ErrorSource = "ZipInsert";
             this.sMsg = "Inserting cube from file " + this.strInsertFilename + " into file " + this.sFilename + " using template " + this.sTemplateFilename;
-            ZipInsert(sFilename, @"/xl/customData/item1.data", strInsertFilename);
+            //ZipInsert(sFilename, @"/xl/customData/item1.data", strInsertFilename);
+            ZipInsert(sFilename, @"/xl/model/item.data", strInsertFilename);
         
 
         }

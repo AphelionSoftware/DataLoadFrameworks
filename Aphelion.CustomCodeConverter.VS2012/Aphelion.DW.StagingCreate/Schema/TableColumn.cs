@@ -21,6 +21,8 @@ namespace Aphelion.DW.StagingCreate.Schema
 
         public string Alias;
 
+        public List<TableColumn> lstDuplicatedTableColumns = new List<TableColumn>();
+
         public override string ToString()
         {
             return this.TableName + "." + this.ColumnName + " as " + this.Alias;

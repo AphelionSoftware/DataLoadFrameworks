@@ -16,6 +16,7 @@ namespace Aphelion.DW.StagingCreate
         #region Properties
 
         public Dictionary<string, SchemaTable> lstTS = new Dictionary<string, SchemaTable>();
+        public Dictionary<string, string> lstViews = new Dictionary<string, string>();
 
         public string srcDBConn;
         public string destDBConn;
@@ -76,10 +77,19 @@ namespace Aphelion.DW.StagingCreate
         {
             this.strFullCreate = string.Format(QC.qryCreateSchema, this.sSchema);
 
+            //View Creation from tables
             foreach (KeyValuePair<string, SchemaTable> kv in lstTS)
             {
                 this.strFullCreate +=
                     kv.Value.CreateStatement;
+            }
+            //Custom view additions
+            foreach (KeyValuePair<string, string> kv in lstViews)
+            {
+                this.strFullCreate +=
+                    kv.Value + @"
+GO
+";
             }
             return strFullCreate;
         }
@@ -121,27 +131,49 @@ namespace Aphelion.DW.StagingCreate
                 }
 
                 //drFacts.Read();
+            }
 
+
+            drFacts.Close();
+            command.CommandText = QC.qryAdditionalViews;
+            SqlDataReader drViews = command.ExecuteReader();
+            string sPropertyName;
+            string sViewDefinition;
+            while (drViews.Read())
+            {
+                sPropertyName = drViews.GetString(0);
+                sViewDefinition = drViews.GetString(1);
+
+                if (!lstViews.ContainsKey(sPropertyName))
+                {
+                    lstViews.Add(sPropertyName, sViewDefinition);
+                }
+
+                //drFacts.Read();
             }
         }
 
         public string BuildFactTableCreate(string pSchemaTable, string pTableName, string pFieldExcl, string pFactFilter, string pDimFilter)
         {
             string strCreate;
+            string strExProps = "";
             //List<TableColumn> tcLst = new List<TableColumn>();
             SqlCommand comm ;
             SqlDataReader drRefs ;
             string strColumnProps = "";
             //Build field list
             string strColumnList = "";
+            string sAdditionalFields = "";
+            string sAdditionalJoins = "";
+            bool bCoalesce = false;
             comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl), srcFactConn);
             drRefs = comm.ExecuteReader();
             drRefs.Read();
-            strColumnList = string.Format("\n\t[{0}]", drRefs.GetString(0));
+            strColumnList = string.Format("\n\t[{0}].[{1}] ", pTableName, drRefs.GetString(0));
             //////drRefs.Read();
             while (drRefs.Read())
             {
-                strColumnList += string.Format("\n\t,[{0}]", drRefs.GetString(0));
+                strColumnList += string.Format("\n\t,[{0}].[{1}] ", pTableName, drRefs.GetString(0));
                 #region Column Properties
                 strColumnProps += @"
     GO  
@@ -176,12 +208,41 @@ namespace Aphelion.DW.StagingCreate
                 #endregion
                 //drRefs.Read();
             }
+            drRefs.Close();
+
+            comm = new SqlCommand(string.Format(QC.qryAdditionalFields, pSchemaTable, pTableName), srcFactConn);
+            drRefs = comm.ExecuteReader();
+            if (drRefs.Read())
+            {
+                sAdditionalFields = string.Format("\n\t,{0} ", drRefs.GetString(1));
+                //////drRefs.Read();
+                while (drRefs.Read())
+                {
+                    sAdditionalFields += string.Format("\n\t,{0} ", drRefs.GetString(1));
+                }
+            }
+            drRefs.Close();
+
+            comm = new SqlCommand(string.Format(QC.qryAdditionalJoins, pSchemaTable, pTableName), srcFactConn);
+            drRefs = comm.ExecuteReader();
+            if (drRefs.Read())
+            {
+                sAdditionalJoins = string.Format("\n\t{0} ", drRefs.GetString(1));
+                //////drRefs.Read();
+                while (drRefs.Read())
+                {
+                    sAdditionalJoins += string.Format("\n\t{0} ", drRefs.GetString(1));
+                }
+            }
+            drRefs.Close();
             strCreate = string.Format(QC.qryCreateFactView,
                 this.sSchema
                 , pTableName
                 , strColumnList
                 , pSchemaTable
                 , pFactFilter
+                , sAdditionalFields
+                , sAdditionalJoins
                 );
             drRefs.Close();
 
@@ -213,12 +274,14 @@ namespace Aphelion.DW.StagingCreate
 
                     if (!lstTS.ContainsKey(sDimSchema + "." + sDimTable))
                     {
+
+                        System.Boolean.TryParse(drRefs.GetString(9), out bCoalesce);
                         lstTS.Add(sDimSchema + "." + sDimTable
                             , new SchemaTable(
                                 sDimSchema
                                 , sDimTable
 
-                                , BuildDimensionTableCreate(sDimSchema, sDimTable, pFieldExcl, pDimFilter)));
+                                , BuildDimensionTableCreate(sDimSchema, sDimTable, pFieldExcl, pDimFilter, bCoalesce)));
                     }
 
                     }
@@ -238,7 +301,7 @@ namespace Aphelion.DW.StagingCreate
             {
                 #region Extended Properties
                 //string sAlias = 
-                strCreate += @"
+                strExProps += @"
     GO  
 " + string.Format(QC.qryAddExtendedProperty
                     , drProps.GetString(0)
@@ -251,13 +314,33 @@ namespace Aphelion.DW.StagingCreate
             }
             drProps.Close();
 
+            commProp.CommandText = string.Format(QC.qryAdditionalProperties, pSchemaTable, pTableName) ;
+
+            drProps = commProp.ExecuteReader();
+            while (drProps.Read())
+            {
+                strExProps += drProps.GetString(1);
+            }
+
+            drProps.Close();
+
+            strExProps += @"
+    GO    
+" + string.Format(QC.qryAddExtendedPropertyView
+                    , "XMLATableType"
+                    , "MeasureGroup"
+                    , this.sSchema
+                    , pTableName
+                    );
+
+            strCreate += strExProps;
             strCreate += strColumnProps;    
 
             return strCreate;
 
         }
 
-        public string BuildDimensionTableCreate(string pDimSchema, string pDimName, string pFieldExcl, string pDimFilter)
+        public string BuildDimensionTableCreate(string pDimSchema, string pDimName, string pFieldExcl, string pDimFilter, bool pCoalesceFields)
         {
             string strColumnProps = "";
             string strCreate = "";
@@ -273,22 +356,16 @@ namespace Aphelion.DW.StagingCreate
             comm = srcDimConn.CreateCommand();
             comm.CommandText = string.Format(QC.qryDimColumns, pDimName, this.sDimTablePrefix, pFieldExcl, pDimSchema, this.sDimTablePrefix);
             drRefs = comm.ExecuteReader();
-            //drRefs.Read();
-
-            //strColumnList = string.Format("\n\t{0}", drRefs.GetString(0));
-
-            //drRefs.Read();
+             
             while (drRefs.Read())
             {
-                ///TODO:
-                ///This looks up a single table. Problem is that one table may be linked twice?
+                ///TODO: This looks up a single table. Problem is that one table may be linked twice?
                 ///Column should take care of that...
                 if (!tcList.Exists(item => item.TableName == pDimName && item.ColumnName == drRefs.GetString(0)))
                 {
                     tcList.Add(new TableColumn(pDimName, drRefs.GetString(0), drRefs.GetString(1)));
                 }
-                //strColumnList += string.Format("\n\t,{0}", drRefs.GetString(0));
-                //drRefs.Read();
+ 
             }
 
             drRefs.Close();
@@ -320,6 +397,7 @@ namespace Aphelion.DW.StagingCreate
             string sJoinAliasHash = "";
             string sSourceAlias = "";
             string sAltColumn = "";
+            bool bCoalesce = false;
             //List<TableColumn> lstTC;
             while (drRefs.Read())
             {
@@ -346,7 +424,7 @@ namespace Aphelion.DW.StagingCreate
                     sAltColumn = drRefs.GetString(7);
                     sConstraintSchema = drRefs.GetString(0);
                     sConstraintName = drRefs.GetString(1);
-                    
+                    System.Boolean.TryParse(drRefs.GetString(9), out bCoalesce);
                     foreach (TableColumn TC in tcList.FindAll(item => item.TableName == sJoinTable
                             && item.ColumnName == sColumnName
                             ))
@@ -362,11 +440,7 @@ namespace Aphelion.DW.StagingCreate
 
                     //Prefixing with the source alias we're joining from, for queries that may go to the same table multiple times, e.g. Active
                     sJoinAlias = sSourceAlias + "_" + sJoinTable + "_" + sColumnName;
-                    //if (sJoinAlias.Length > 128)
-                    //{
-                        ///TODO: Make this into a hash suffix to guarantee uniqueness
-                        //sJoinAlias = sJoinAlias.Substring(0, 127);
-                        //}
+ 
                     sJoinAliasHash = sJoinTable + "_" + Extensions.HashFNV1a_64_ABS(sJoinAlias).ToString();
 
 
@@ -470,7 +544,7 @@ namespace Aphelion.DW.StagingCreate
                 string sAlias;
                 if (tcList[iLoop].Alias.Length > 128)
                 {
-                    ///TODO: Make this into a hash suffix to guarantee uniqueness
+ 
                     sAlias = tcList[iLoop].Alias.Substring(0,127);
                 } else {
                     sAlias = tcList[iLoop].Alias;
@@ -478,7 +552,31 @@ namespace Aphelion.DW.StagingCreate
 
                 sTableAlias = tcList[iLoop].TableName + "_" + Extensions.HashFNV1a_64_ABS(tcList[iLoop].TableAlias).ToString();
 
-                strColumnList += string.Format("\n\t,[{0}].[{1}] AS [{2}]", sTableAlias, tcList[iLoop].ColumnName, sAlias);
+                if (pCoalesceFields)
+                {
+                    if (tcList[iLoop].lstDuplicatedTableColumns.Count == 0)
+                    {
+                        strColumnList += string.Format("\n\t,[{0}].[{1}] AS [{2}]", sTableAlias, tcList[iLoop].ColumnName, sAlias);
+                    }
+                    else
+                    {
+                        string sAddColumns = "";
+                        foreach (TableColumn TCInner in tcList[iLoop].lstDuplicatedTableColumns)
+                        {
+
+                            sAddColumns += string.Format(", [{0}].[{1}]",
+                                TCInner.TableName + "_" + Extensions.HashFNV1a_64_ABS(TCInner.TableAlias).ToString()
+                                , TCInner.ColumnName
+                                );
+                        }
+                        strColumnList += string.Format("\n\t,COALESCE([{0}].[{1}] {2} ) AS [{3}]", sTableAlias, tcList[iLoop].ColumnName, sAddColumns, sAlias);
+                    
+                    }
+                }
+                else
+                {
+                    strColumnList += string.Format("\n\t,[{0}].[{1}] AS [{2}]", sTableAlias, tcList[iLoop].ColumnName, sAlias);
+                }
 
                 #region Column Properties
                 strColumnProps += @"
@@ -552,9 +650,7 @@ namespace Aphelion.DW.StagingCreate
                 );
             SqlConnection srcPropConn = new SqlConnection(this.srcDBConn);
             srcPropConn.Open();
-            if (pDimName.Contains("Driver"))
-            {
-            }
+
             SqlCommand commProp = new SqlCommand(string.Format(QC.qryGetExtendedProperties, pDimName, pFieldExcl), srcPropConn);
             SqlDataReader drProps;
 
@@ -589,9 +685,6 @@ namespace Aphelion.DW.StagingCreate
         public void AddDimensionFields(string pDimSchema, string pDimTable,string pDimAlias,  string pDimFilter, string pFieldExcl, ref List<TableColumn> tcList, ref string strJoins, ref string strExProps, string pRootDimName, int pHierarchyLevel = 1)
         {
 
-            if (pDimTable.Contains("Excl"))
-            {
-            }
             #region Cols
             SqlCommand comm;
             SqlDataReader drRefs;
@@ -625,7 +718,34 @@ namespace Aphelion.DW.StagingCreate
                         }
                         else
                         {
-                            var x = "Smoking gun";
+                            //Adding to the list of columns we may want to coalesce in the view
+                            if (!(tcList.Exists(item => item.ColumnName == drRefs.GetString(0)
+                            && item.TableName == drRefs.GetString(2)
+                            && item.TableAlias == pDimAlias
+                            )))
+                            {
+                                TableColumn TC = new TableColumn(pDimTable, drRefs.GetString(0), drRefs.GetString(1), pHierarchyLevel);
+                                TC.TableAlias = pDimAlias;
+
+                                tcList.Find(item => item.ColumnName == drRefs.GetString(0) )
+                                .lstDuplicatedTableColumns.Add(TC);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Adding to the list of columns we may want to coalesce in the view
+                        if (!(tcList.Exists(item => item.ColumnName == drRefs.GetString(0)
+                            && item.TableName == drRefs.GetString(2)
+                            && item.TableAlias == pDimAlias
+                        )))
+                        {
+                            TableColumn TC = new TableColumn(pDimTable, drRefs.GetString(0), drRefs.GetString(1), pHierarchyLevel);
+                            TC.TableAlias = pDimAlias;
+
+                            tcList.Find(item => item.ColumnName == drRefs.GetString(0)
+                            && item.TableName == drRefs.GetString(2))
+                            .lstDuplicatedTableColumns.Add(TC);
                         }
                     }
                     //strColumnList += string.Format("\n\t,{0}", drRefs.GetString(0));
@@ -707,11 +827,7 @@ namespace Aphelion.DW.StagingCreate
                     //sJoinAlias = sSourceAlias + "_" + sJoinTable + "_" + sColumnName;
                     ///TODO: Check that we're using the correct alias
                     sJoinAlias = pDimAlias + "_" + sJoinTable + "_" + sColumnName;
-                    /*if (sJoinAlias.Length > 128)
-                    {
-                        ///TODO: Make this into a hash suffix to guarantee uniqueness
-                        sJoinAlias = sJoinAlias.Substring(0, 127);
-                    }*/
+ 
                     sJoinAliasHash = sJoinTable + "_" + Extensions.HashFNV1a_64_ABS(sJoinAlias).ToString();
 
                     AddDimensionFields(sJoinSchema, sJoinTable, sJoinAlias, sDimFilter, pFieldExcl, ref tcList, ref strChildJoins, ref strExProps, pRootDimName, pHierarchyLevel + 1);
@@ -768,10 +884,7 @@ namespace Aphelion.DW.StagingCreate
             SqlCommand commProp = new SqlCommand(string.Format(QC.qryGetExtendedProperties, pDimTable, pFieldExcl), srcPropConn);
             SqlDataReader drProps;
 
-            if (pDimTable.Contains("Manu"))
-            {
-            }
-
+            
             drProps = commProp.ExecuteReader();
             while (drProps.Read())
             {

@@ -18,7 +18,7 @@ namespace PW.CustomCodeConverter
 {
     public partial class ProgramForm : Form
     {
-
+        public TabularPopulateStarFromViews TPR;
         public MultiDimensionalReader mdrCube = new MultiDimensionalReader();
         public TabularXMLAWriter txwCube = new TabularXMLAWriter();
         public ExcelSrcCopyWriter excelCube = new ExcelSrcCopyWriter();
@@ -162,7 +162,7 @@ namespace PW.CustomCodeConverter
 
         private void btnTblCreateCube_Click(object sender, EventArgs e)
         {
-            TabularPopulateStarFromViews TPR = new TabularPopulateStarFromViews(
+            this.TPR = new TabularPopulateStarFromViews(
                 txtTblCubeDB.Text
                 , txtTblDSConn.Text
                 , txtTblConnSecurity.Text
@@ -200,6 +200,61 @@ namespace PW.CustomCodeConverter
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            btnStage_Click( sender, e);
+            btnTblCreateCube_Click(sender, e);
+            btnProcess_Click(sender, e);
+        }
+
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            if (TPR == null)
+            {
+                btnTblCreateCube_Click(sender, e);
+            }
+            TPR.ProcessCube();
+        }
+
+        private void btnInsert_Click_2(object sender, EventArgs e)
+        {
+            string sServer = this.txtExServer.Text;
+            string sDB = this.txtExDB.Text;
+            string sDest = this.txtExDest.Text;
+            string sInsertPath = this.txtExInsertPath.Text;
+            string sBackupPath = this.txtExBackupPath.Text;
+            string sTemplate = this.txtExTemplate.Text;
+
+
+
+
+            ExcelInsertBackupWriter excel = new ExcelInsertBackupWriter(sServer, sDB, sTemplate, sDest, sBackupPath, sInsertPath);
+            excel.CreateExcel();
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            btnStage_Click(sender, e);
+            btnTblCreateCube_Click(sender, e);
+            btnProcess_Click(sender, e);
+            btnInsert_Click_2(sender, e);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            btnStage_Click(sender, e);
+            btnTblCreateCube_Click(sender, e);
+            btnProcess_Click(sender, e);
+            btnInsert_Click_2(sender, e);
+        }
+
+        private void txtSrcKeyName_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -36,6 +36,17 @@ namespace PW.XMLA.Writer
 </Process>";
 
         /// <summary>
+        /// 0 is DB ID
+        /// </summary>
+        public string XMLAProcessFull = @"
+<Process xmlns=""http://schemas.microsoft.com/analysisservices/2003/engine"">
+  <Type>ProcessFull</Type>
+  <Object>
+    <DatabaseID>{0}</DatabaseID>
+  </Object>
+</Process>";
+
+        /// <summary>
         /// 0 is DB ID, 1 is Model, 2 is MG ID, 3 is Partition ID, 4 is data source ID, 5 is query
         /// </summary>
         public string XMLAProcessAdd = @"<Batch xmlns=""http://schemas.microsoft.com/analysisservices/2003/engine"">
@@ -1504,6 +1515,17 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             XmlaResultCollection result = cubeServer.Execute(this.sXMLAAlterStatement);
         }
 
+        public void ProcessCubeFull()
+        {
+            string sProcessCommand = string.Format(this.XMLAProcessFull, this.sDBName);
+            if (!cubeServer.Connected)
+            {
+                cubeServer.Connect(this.connDestConnection);
+            }
+            XmlaResultCollection result = cubeServer.Execute(sProcessCommand);
+       
+        }
+
         public void DeleteCube()
         {
             if (!cubeServer.Connected)
@@ -1806,6 +1828,10 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     {
                         sXMLARelationships += string.Format(constXMLADbDimensionRelationship, rel.sID, rel.fromTable, rel.fromColumn, rel.toTable, rel.toColumn);
                     }
+                    else
+                    {
+                        var x = rel;
+                    }
                 }
 
 
@@ -1858,8 +1884,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         /// <returns></returns>
         private static string FormatDBColumnName(string sName)
         {
-            ///TODO: msDbProp:DBColumnName
-            //return "[" + sName + "]";
             return sName;
         }
         /// <summary>
@@ -2254,8 +2278,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 string sXMLADimensionAttributesLst = "";
 
                 foreach (PW.XMLA.Reader.XMLAPropertyClasses.XMLAMeasure xMeasure in xMG.lstMeasures)
-                {//Need table name and column no
-                    ///TODO:
+                {
+                    ///TODO: //Need table name and column no for measure groups
                     //sXMLADimensionAttributesLst += string.Format(constXMLACubeDimensionAttribute, xMeasure.sName, xMeasure.sDataType, xMeasure.sDataSize, xMG., daColumns.sDBColumnName);
                 }
             }

@@ -7,6 +7,10 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
 {
     public class DSVRelationship
     {
+        public override string ToString()
+        {
+            return this.childTable + "." + this.childColumn + " to " + this.sID;
+        }
         public string sID;
         public string childSchema;
         public string childTable;

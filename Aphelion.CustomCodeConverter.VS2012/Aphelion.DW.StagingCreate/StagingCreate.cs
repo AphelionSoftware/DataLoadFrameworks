@@ -213,12 +213,13 @@ namespace Aphelion.DW.StagingCreate
 
             if (this.sFactTablePrefix == "")
             {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExcl, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExclWithKeyCol, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl,  this.strSrcKeyName), srcFactConn);
             
             }
             else
             {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName), srcFactConn);
+               
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryWithKeyCol, pSchemaTable, pTableName, this.strSrcKeyName), srcFactConn);
             }
             drRefs = comm.ExecuteReader();
             //drRefs.Read();
@@ -227,6 +228,8 @@ namespace Aphelion.DW.StagingCreate
             string sColumnName = "";
             string sDimColumnName = "";
             string sIsNullable = "";
+            string sDataType = "";
+            string sCharacterLength = "";
             while (drRefs.Read())
             {
 
@@ -289,6 +292,8 @@ namespace Aphelion.DW.StagingCreate
                     sDimColumnName = drRefs.GetString(7);
                     sColumnName = drRefs.GetString(4);
                     sIsNullable = drRefs.GetString(8);
+                    sDataType = drRefs.GetString(10);
+                    sCharacterLength = drRefs.GetSqlInt32(11).ToString();
 
                     if (lstTC.Exists(item => item.ColumnName == sColumnName))
                     {
@@ -296,7 +301,8 @@ namespace Aphelion.DW.StagingCreate
 
                     }
                     //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + "SourceKey", "NO", "varchar", "255"));
-                    lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, "varchar", "255"));
+                    //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, "varchar", "255"));
+                    lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, sDataType, sCharacterLength));
                     /*if (!lstTS.ContainsKey(sDimSchema + "." + sDimTable))
                     {
                         lstTS.Add(sDimSchema + "." + sDimTable

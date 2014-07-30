@@ -131,6 +131,7 @@ namespace PW.XMLA.Writer
                     }
 
                 }
+                else { var x = 1; }
 
             }
         }
@@ -541,8 +542,7 @@ namespace PW.XMLA.Writer
                                     }
                                     else
                                     {
-                                        ///TODO:
-                                        //Currently only handling 2 levels of relationship away. Need to implement recursion.
+                                        ///TODO:  //Currently only handling 2 levels of relationship away. Need to implement recursion.
                                         //throw new Exception("Still need to implement multi-level snowflakes");
                                     }
 
