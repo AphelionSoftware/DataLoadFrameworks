@@ -382,6 +382,15 @@ namespace Aphelion.DW.StagingCreate
 
         private static void AddTC(string pTableName, ref List<TableColumn> lstTC, SqlDataReader drRefs)
         {
+            string sIsNullable;
+            if (drRefs.GetString(12) == "YES" || drRefs.GetString(1) == "YES")
+            {
+                sIsNullable = "YES";
+            }
+            else
+            {
+                sIsNullable = "NO";
+            }
             switch (drRefs.GetString(2))
             {
                 case "datetime":
@@ -389,7 +398,7 @@ namespace Aphelion.DW.StagingCreate
                 case "date":
                     lstTC.Add(new TableColumn(pTableName
                             , drRefs.GetString(0)
-                            , drRefs.GetString(1)
+                            , sIsNullable
                             , drRefs.GetString(2)
                             ));
                     break;
@@ -401,7 +410,7 @@ namespace Aphelion.DW.StagingCreate
 
                     lstTC.Add(new TableColumn(pTableName
                             , drRefs.GetString(0)
-                            , drRefs.GetString(1)
+                            , sIsNullable
                             , drRefs.GetString(2)
                             , drRefs.GetString(3)
                             ));
@@ -416,7 +425,7 @@ namespace Aphelion.DW.StagingCreate
 
                     lstTC.Add(new TableColumn(pTableName
                             , drRefs.GetString(0)
-                            , drRefs.GetString(1)
+                            , sIsNullable
                             , drRefs.GetString(2)
                             , drRefs.GetString(4)
                             , drRefs.GetString(5)
@@ -426,7 +435,7 @@ namespace Aphelion.DW.StagingCreate
                 case "float":
                     lstTC.Add(new TableColumn(pTableName
                             , drRefs.GetString(0)
-                            , drRefs.GetString(1)
+                            , sIsNullable
                             , drRefs.GetString(2)
                             , drRefs.GetString(4)
                             , drRefs.GetString(5)

@@ -534,9 +534,10 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         ///9 Hierachy name - can be null
         ///10 Hierarchy level - can be null
         ///11 Is Computed
+        ///12 Is Primary Key
         /// </summary>
         public const string qryListColumns = @"SELECT C.COLUMN_NAME
-,  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN 'YES' ELSE C.IS_NULLABLE END
+, C.IS_NULLABLE 
 , C.DATA_TYPE 
 , CAST(C.CHARACTER_MAXIMUM_LENGTH as varchar(255)) CHARACTER_MAXIMUM_LENGTH 
 , CAST(C.NUMERIC_PRECISION as varchar(255)) NUMERIC_PRECISION
@@ -547,6 +548,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 , EPHierarchy.value HierarchyName
 , EPHierarchyLevel.value HierarchyLevel
 , csys.is_computed
+,  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN 'YES' ELSE 'NO' END
 FROM INFORMATION_SCHEMA.COLUMNS C
 inner join sys.columns cSys
 ON c.COLUMN_NAME = cSys.name
