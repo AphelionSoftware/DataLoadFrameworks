@@ -232,7 +232,7 @@ namespace Aphelion.DW.StagingCreate
             string sCharacterLength = "";
             while (drRefs.Read())
             {
-
+                string sTableDel = drRefs.GetString(6);
                 //Remove referential columns from list of columns
                 if (!bInclRefKeys)
                 {
@@ -259,6 +259,7 @@ namespace Aphelion.DW.StagingCreate
                     //Otherwise make them nullable to allow for inserts
                 else
                 {
+                    
                     SqlCommand comm2 = new SqlCommand(string.Format(QC.qryPrimaryColumns, drRefs.GetString(2), drRefs.GetString(3)), srcDimConn);
                     SqlDataReader drKeys = comm2.ExecuteReader();
                     while (drKeys.Read())

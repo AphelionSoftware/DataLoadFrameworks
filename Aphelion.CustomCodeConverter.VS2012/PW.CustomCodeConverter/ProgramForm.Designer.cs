@@ -1030,7 +1030,7 @@
             this.txtTableExclStg.Size = new System.Drawing.Size(935, 41);
             this.txtTableExclStg.TabIndex = 77;
             this.txtTableExclStg.Text = "\'DimDate\', \'Age\', \'templateMenueGroup\', \'DimMunicipalityGEOM\', \'ActiveType\',\'sysd" +
-    "iagrams\', \'__RefactorLog\'";
+    "iagrams\', \'__RefactorLog\', \'GlobalSettings\'";
             // 
             // chkInclKeysStg
             // 
