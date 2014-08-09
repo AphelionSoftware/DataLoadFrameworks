@@ -1486,7 +1486,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
     
         #region AMO properties
         Microsoft.AnalysisServices.Server cubeServer = new Server();
-        Microsoft.AnalysisServices.Database cubeDatabase;
+        //Microsoft.AnalysisServices.Database cubeDatabase;
         #endregion
 
 
@@ -1770,10 +1770,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                     //sXMLADimensionAttributesLst += string.Format(constXMLADbDimensionAttribute,daColumns.sID,  daColumns.sName, daColumns.sDataType, daColumns.sDataSize, daColumns.sDBTableName, daColumns.sDBColumnName);
                     //Need to use the resultant table ID, NOT the table name 
-                    if (daColumns.sName.Contains("ClientID") )
-                    {
-                        int ip = 1;
-                    }
+                   
                         
                     if (daColumns.boolVisible)
                     {
@@ -1785,10 +1782,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         else
                         {
                             //sXMLADimensionAttributesLst += string.Format(constXMLADbDimensionAttribute, FormatColumnName(daColumns.sID)/*_x0020_*/, FormatColumnName(daColumns.sName), daColumns.sDataType, daColumns.sDataSize, daColumns.sDimensionID, FormatColumnID(daColumns.sID.Replace(" ", ""))/*_x0020_*/, daColumns.sNullProcessing, "");
-                            if (daColumns.sID.Contains("FileName"))
-                            {
-                                int ip = 1;
-                            }
+                            
                             sXMLADimensionAttributesLst += string.Format(constXMLADbDimensionAttribute, FormatColumnName(daColumns.sID)/*_x0020_*/, FormatColumnName(daColumns.sName), daColumns.sDataType, daColumns.sDataSize, daColumns.sDimensionID, FormatColumnID(daColumns.sDBColumnName.Replace(" ", ""))/*_x0020_*/, daColumns.sNullProcessing, "");
                         }
                     }
@@ -2455,7 +2449,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         }
         string XMLADimensionCreate = "";
             string sXMLADimensionAttributesLst = "";
-            string sXMLAPartition = "";
+            //string sXMLAPartition = "";
             //For now, just do the first model
             XMLAModel cmActiveModel = this.srcCubeReader.cbOriginalCube.lstCubeModels[0];
             foreach (PW.XMLA.Reader.XMLAPropertyClasses.XMLADimension dimCD in cmActiveModel.lstDimensions)

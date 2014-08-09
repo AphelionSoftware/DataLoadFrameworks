@@ -131,7 +131,7 @@ namespace PW.XMLA.Writer
                     }
 
                 }
-                else { var x = 1; }
+                else { }
 
             }
         }
@@ -151,13 +151,7 @@ namespace PW.XMLA.Writer
                 replaced = false;
                 string sDimensionID = xColumn.sDimensionID;
                 string sDimensionName = xColumn.sDimensionName;
-                if ((xColumn.sID.Contains("Billable") && xDim.sID.Contains("DimClient"))
-                            || (sDimensionID.Contains("Billable") && xDim.sID.Contains("DimClient"))
-                            || (xColumn.sID.Contains("Billable") && sDimensionID.Contains("DimClient"))
-                            )
-                {
-                    int ipb = 1;
-                }
+               
                 //if (xColumn.sDimensionID.Contains("DimProject") || xColumn.sDimensionName.Contains("DimProject"))
                 //{
                 if (
@@ -167,11 +161,7 @@ namespace PW.XMLA.Writer
                     string sDimID = xModel.lstDimensions.Find(item => item.sKeyTableName == xColumn.sDBTableName).sID;
                     string sDimName = xModel.lstDimensions.Find(item => item.sKeyTableName == xColumn.sDBTableName).sName;
 
-                    if (sDimID.Contains("DimProject"))
-                    {
-                        int ipc = 1;
-                    }
-
+                   
                     if (xColumn.sDimensionID != sDimID)
                     {
 
@@ -196,7 +186,6 @@ namespace PW.XMLA.Writer
 
                         if ((xColumn.sDBSchemaName == xDim.sKeySchemaName && xColumn.sDBTableName == xDim.sKeyTableName))
                         {
-                            int ips = 1;
                         }
                         //We have a snowflaked column from a different table
                         //First check if we have a table already
@@ -243,8 +232,7 @@ namespace PW.XMLA.Writer
                             {
                                 //We don't have a findable key column.....
                                 //Not all that surprising as this will mostly be a new dimension
-                                int iii = 1;
-                                if ( targetCubeReader.cbOriginalCube.lstDSV[0].lstDSVTables.Exists( item => item.sSchemaName == dimNew.sKeySchemaName
+                               if ( targetCubeReader.cbOriginalCube.lstDSV[0].lstDSVTables.Exists( item => item.sSchemaName == dimNew.sKeySchemaName
                                     && item.sTableName == dimNew.sKeyTableName))
                                 {
                                     DSVTable dsvT = targetCubeReader.cbOriginalCube.lstDSV[0].lstDSVTables.Find( item => item.sSchemaName == dimNew.sKeySchemaName
@@ -350,13 +338,7 @@ namespace PW.XMLA.Writer
                             {
                             }
 
-                            if ((xColumn.sID.Contains("Billable") && xDim.sID.Contains("DimClient"))
-                            || (sDimensionID.Contains("Billable") && xDim.sID.Contains("DimClient"))
-                            || (xColumn.sID.Contains("Billable") && sDimensionID.Contains("DimClient"))
-                            )
-                            {
-                                int ipb = 1;
-                            }
+                            
                             try
                             {
                                 if (!dimNew.lstDimensionAttributes.Exists(item => item.sID == xColumn.sID)
@@ -374,7 +356,6 @@ namespace PW.XMLA.Writer
 
                                         if (xColumn.boolRelated)
                                         {
-                                            int xxx = 1;
                                             if (xColumn.sDimensionID != sDimensionID)
                                             {
                                                 if (xColumn.sDimensionID.Contains("Customer"))
@@ -573,10 +554,6 @@ namespace PW.XMLA.Writer
                         else
                         {
 
-                            if (xDim.sName.Contains("DimProject"))
-                            {
-                                int ipz = 1;
-                            }
                         }
 
                         #endregion
@@ -584,13 +561,7 @@ namespace PW.XMLA.Writer
 
                     if (xColumn.sDimensionID != xDim.sID || xColumn.boolRelated)
                     {
-                        if ((xColumn.sID.Contains("Billable") && xDim.sID.Contains("DimClient"))
-                            || (sDimensionID.Contains("Billable") && xDim.sID.Contains("DimClient"))
-                            || (xColumn.sID.Contains("Billable") && sDimensionID.Contains("DimClient"))
-                            )
-                        {
-                            int ipb = 1;
-                        }
+                        
                 
                         XMLADimension dimNew;
                         dimNew = xDim;

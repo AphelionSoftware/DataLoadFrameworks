@@ -27,7 +27,7 @@ namespace Aphelion.DW.StagingCreate
         SqlConnection srcConn;
         SqlConnection srcFactConn;
         SqlConnection srcDimConn;
-        SqlConnection destConn;
+        //SqlConnection destConn;
         public string strFullCreate;
         public bool bDropStage;
         public bool bInclKeys;
@@ -101,7 +101,17 @@ namespace Aphelion.DW.StagingCreate
         
         }
 
+        public void RunScript()
+        {
+            string[] strCommands = this.strFullCreate.Split(new string[] { "GO" }, StringSplitOptions.None);
+            SqlCommand comm = new SqlCommand(this.strFullCreate, this.srcConn);
+            foreach (string strComm in strCommands)
+            {
 
+                comm.CommandText = strComm;
+                comm.ExecuteNonQuery();
+            }
+        }
         public void CreateScript()
         {
             srcConn = new SqlConnection(this.srcDBConn);
@@ -204,7 +214,7 @@ namespace Aphelion.DW.StagingCreate
             {
                 if (drRefs.GetBoolean(11) != true)
                 {
-                    AddTC(pTableName, ref lstTC, drRefs);
+                    SC.AddTC(pTableName, ref lstTC, drRefs);
                 }
             }
             drRefs.Close();
@@ -320,10 +330,10 @@ namespace Aphelion.DW.StagingCreate
             }
 
             drRefs.Close();
-            strColumnList = AddColumn(lstTC, 0);
+            strColumnList = SC.AddColumn(lstTC, 0);
             for (int iLoop = 1; iLoop < lstTC.Count; iLoop++)
             {
-                strColumnList += "," + AddColumn(lstTC, iLoop);
+                strColumnList += "," + SC.AddColumn(lstTC, iLoop);
                 }
 
             strCreate = string.Format(QC.qryCreateStageTable,
@@ -336,7 +346,7 @@ namespace Aphelion.DW.StagingCreate
             return strCreate;
 
         }
-
+        /*
         private static string AddColumn(List<TableColumn> lstTC, int iLoop)
         {
             if (iLoop >= lstTC.Count)
@@ -379,8 +389,8 @@ namespace Aphelion.DW.StagingCreate
             }
             return strColumnList;
         }
-
-        private static void AddTC(string pTableName, ref List<TableColumn> lstTC, SqlDataReader drRefs)
+        */
+        /*private static void AddTC(string pTableName, ref List<TableColumn> lstTC, SqlDataReader drRefs)
         {
             string sIsNullable;
             if (drRefs.GetString(12) == "YES" || drRefs.GetString(1) == "YES")
@@ -443,7 +453,7 @@ namespace Aphelion.DW.StagingCreate
                             ));
                     break;
             }
-        }
+        }*/
         public string BuildDimensionTableCreate(string pDimSchema, string pDimName, string pFieldExcl, string pDimFilter)
         {
             return "";

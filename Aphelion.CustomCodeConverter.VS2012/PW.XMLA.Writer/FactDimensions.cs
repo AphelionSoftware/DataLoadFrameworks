@@ -411,11 +411,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
             xdaNew.sDimensionID = xSubDim.sID;
             xMeasure.sDimensionID = xSubDim.sID;
 
-            if (xSubDim.sName.Replace(" ", "").Replace("_", "").Contains("DimProject"))
-            {
-                int ip = 1;
-            }
-
+            
             xMeasure.sDimensionName = xSubDim.sName;
             xMeasure.sAttributeName = xdaNew.sAttributeName;
             xSubDim.lstDimensionAttributes.Add(xdaNew);
@@ -462,10 +458,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
             xdaNew.sDBColumnName = xMeasure.sDBColumnName;
             xdaNew.sDimensionID = xSubDim.sID;
             xMeasure.sDimensionID = xSubDim.sID;
-            if (xSubDim.sName.Replace(" ", "").Replace("_", "").Contains("DimProject"))
-            {
-                int ip = 1;
-            }
+            
             xMeasure.sDimensionName = xSubDim.sName;
             xMeasure.sAttributeName = xdaNew.sAttributeName;
             xSubDim.lstDimensionAttributes.Add(xdaNew);

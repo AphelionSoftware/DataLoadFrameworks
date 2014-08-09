@@ -591,9 +591,9 @@ AND REPLACE(EPHierarchyLevel.name, ' ' , '') = 'HierarchyLevel'
 
 
 WHERE C.TABLE_NAME = '{0}'
-AND C.TABLE_SCHEMA = '{1}'
-AND NOT C.COLUMN_NAME IN
-({2})
+AND (C.TABLE_SCHEMA = '{1}' OR '{1}' = '')
+AND (NOT C.COLUMN_NAME IN
+({2}) OR OR '{2}' = '')
 
 ORDER BY 
  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN '_'

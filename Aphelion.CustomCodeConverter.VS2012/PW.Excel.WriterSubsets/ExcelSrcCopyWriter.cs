@@ -970,7 +970,7 @@ namespace PW.ExcelCode.Writer
 
         #region AMO properties
         Microsoft.AnalysisServices.Server cubeServer = new Server();
-        Microsoft.AnalysisServices.Database cubeDatabase;
+        //Microsoft.AnalysisServices.Database cubeDatabase;
         #endregion
 
 
@@ -979,7 +979,7 @@ namespace PW.ExcelCode.Writer
         private Application app = null;
         private Workbook workbook = null;
         private Worksheet worksheet = null;
-        private Range workSheet_range = null;
+        //private Range workSheet_range = null;
 
         public void CreateExcel() 
         {
@@ -1022,7 +1022,7 @@ namespace PW.ExcelCode.Writer
 
         private static readonly Server srv = new Server();
         private static readonly Scripter scripter = new Scripter();
-        private static Database db;
+        //private static Database db;
 
         private static byte[] GetPackagePartContents(string packagePath, string partPath)
         {
@@ -1084,6 +1084,7 @@ namespace PW.ExcelCode.Writer
             catch (Exception e)
             {
                 workbook.Save();
+
                 //Console.Write("Error");
             }
             finally
@@ -1248,10 +1249,7 @@ namespace PW.ExcelCode.Writer
                 sXMLADimensionAttributesLst = string.Format(constXMLADbRowNumberAttribute, dimCD.sID.Replace(" ", "_"));
                 foreach (PW.XMLA.Reader.XMLAPropertyClasses.XMLADimensionAttribute daColumns in dimCD.lstDimensionAttributes)
                 {
-                    if (daColumns.boolRelated)
-                    {
-                        int ip = 1;
-                    }
+                    
                     sXMLADimensionAttributesLst += string.Format(constXMLADbDimensionAttribute, daColumns.sID, daColumns.sName, daColumns.sDataType, daColumns.sDataSize, daColumns.sDBTableName, daColumns.sID);
                 }
                 sXMLADbDimensions += string.Format(constXMLADbDimensionList, dimCD.sID.Replace(" ", "_"), dimCD.sName, "False", dimCD.sDataSourceID.Replace(" ", "_"), dimCD.sQueryDefinition, sXMLADimensionAttributesLst, dimCD.sDSVID);

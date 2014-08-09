@@ -258,5 +258,39 @@ namespace PW.CustomCodeConverter
         {
 
         }
+
+        private void tabPage6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGenerateErrors_Click(object sender, EventArgs e)
+        {
+            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked);
+            errTables.CreateScript();
+            this.txtErrorResult.Text = errTables.OutputScript();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStgCreateDB_Click(object sender, EventArgs e)
+        {
+            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked, this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
+            scTables.CreateScript();
+
+            this.txtStageScript.Text = scTables.OutputScript();
+            scTables.RunScript();
+        }
+
+        private void btnErrorCreate_Click(object sender, EventArgs e)
+        {
+            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked);
+            errTables.CreateScript();
+            this.txtErrorResult.Text = errTables.OutputScript();
+            errTables.RunScript();
+        }
     }
 }

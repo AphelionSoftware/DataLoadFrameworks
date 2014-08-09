@@ -26,7 +26,6 @@ namespace Aphelion.XMLA.FromMetadata
         public string sTableExcl;
         SqlConnection srcConn;
         SqlConnection srcFactConn;
-        SqlConnection srcKeysConn;
         public string sCubeName;
         public string sConnStringSecurity;
         public string sImpersonationMode;
@@ -294,11 +293,9 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                 , dsvR.parentColumn);
                             xDim.lstReferenceDimensions.Add(xrDim);
 
-                            var x = 1;
                         }
                         else
                         {
-                            var y = 2;
                         }
                     }
                    

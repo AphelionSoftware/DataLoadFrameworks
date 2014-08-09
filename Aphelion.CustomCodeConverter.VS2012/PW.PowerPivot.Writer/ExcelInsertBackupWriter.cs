@@ -40,7 +40,7 @@ namespace PW.ExcelCode.Writer
         public string strInsertFilename;
         private string sMsg = "";
         Microsoft.AnalysisServices.Server cubeServer = new Server();
-        Microsoft.AnalysisServices.Database cubeDatabase;
+        //Microsoft.AnalysisServices.Database cubeDatabase;
  
 
         #region ExcelCreation

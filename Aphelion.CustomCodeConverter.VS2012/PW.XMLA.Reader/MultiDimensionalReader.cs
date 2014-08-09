@@ -240,7 +240,7 @@ namespace PW.XMLA.Reader
                     }
 
                 }
-                else { var x = 1; }
+                else { }
                     
             }
         }
@@ -705,10 +705,7 @@ namespace PW.XMLA.Reader
                     XMLADimensionHierarchy xHier = new XMLADimensionHierarchy(srcHier.ID + new Guid().ToString(), srcHier.Name + " hier");
                     foreach ( Level srcLevel in srcHier.Levels) 
                     {
-                        if (srcLevel.SourceAttributeID.Replace(" ", "").Contains("TimesheetDetailDateID") || srcLevel.ID.Replace(" ", "").Contains("TimesheetDetailDateID"))
-                        {
-                            int ii = 1;
-                        }
+                        
                         string srcAttribute;
                         if (srcLevel.SourceAttributeID.Length >= 16 && srcLevel.SourceAttributeID.Substring(0, 16) == "CalculatedColumn")
                         {
@@ -743,10 +740,7 @@ namespace PW.XMLA.Reader
         {
             
             XMLADimensionAttribute cdColumn = new XMLADimensionAttribute();
-            if (atDim.Name.Length >= 6 && atDim.Name.Substring(0, 6) == "Client")
-            {
-                int dd = 5;
-            }
+            
             if (atDim.NameColumn.Source.ToString().Split('.')[0].ToString().IndexOf("_") > 0)
             {
                 cdColumn.sDBTableName = (atDim.NameColumn.Source.ToString().Split('.')[0]).Split('_')[1];
@@ -758,21 +752,9 @@ namespace PW.XMLA.Reader
                     cdColumn.sDBSchemaName = "dbo";
 
             }
-            if (cdColumn.sDBTableName.Contains("Project"))
-            {
-                int id = 1;
-                if (cdColumn.sDBTableName.Contains("DimProject"))
-                {
-                    int ip = 1;
-                }
-                else
-                {
-                    int ip = 1;
-                }
-            }
             if (cdColumn.sDBTableName != cdDim.sKeyTableName)
             {
-                int ii = 1;
+              
                 //if (cdDim.sKeyTableName.Contains("Project"))
                 cdColumn.boolRelated = true;
                 cdColumn.sExpression = "";
@@ -783,10 +765,7 @@ namespace PW.XMLA.Reader
                 cdColumn.boolRelated = false;
             }
 
-            if (dim.Name.Replace(" ", "").Replace("_", "").Contains("DimProject"))
-            {
-                int ip = 1;
-            }
+           
                         
             cdColumn.sDimensionName = dim.Name.Replace(" ", "").Replace("_", "")/*x0020*/;
             //cdColumn.sDimensionID = dim.ID.Replace(" ", "").Replace("_", "")/*x0020*/;
@@ -841,28 +820,13 @@ namespace PW.XMLA.Reader
                     {
                         keyDim = cdDim.sID;
                     }
-                    if (keyName.Substring(0, 6) == "Client")
-                    {
-                        int x = 8;
-                    }
                     cdColumn = new XMLADimensionAttribute();
                     cdColumn.sDBTableName = (atDim.NameColumn.Source.ToString().Split('.')[0]).Split('_')[1];
                     cdColumn.sDBSchemaName = (atDim.NameColumn.Source.ToString().Split('.')[0]).Split('_')[0];
-                    if (cdColumn.sDBTableName.Contains("Project"))
-                    {
-                        int id = 1;
-                        if (cdColumn.sDBTableName.Contains("DimProject"))
-                        {
-                            int ip = 1;
-                        }
-                    }
+                    
             
 
-                    if (keyName.Replace(" ", "").Replace("_", "").Contains("TimesheetDetailID") || keyDim.Replace(" ", "").Replace("_", "").Contains("TimesheetDetailID"))
-                    {
-                        int ip = 1;
-                    }
-
+                    
                     //MGS 2013//12/18
                     //Adding this to it's own table hopefully. Snowflake code should then pick it up
                     //cdColumn.sDimensionName = keyName.Replace(" ", "").Replace("_", "")/*x0020*/;
@@ -878,10 +842,6 @@ namespace PW.XMLA.Reader
                         cdColumn.boolRelated = true;
                     }
 
-                    if (cdColumn.sDimensionID.Contains("DimProject"))
-                    {
-                        int ip = 1;
-                    }
                     
                     
                     cdColumn.sName = MultiDimensionalReader.FixIDs(keyName.Replace(" ", "")/*_x0020*/);
@@ -951,12 +911,7 @@ namespace PW.XMLA.Reader
 
             if (cdColumn.sDBTableName != cdDim.sKeyTableName)
             {
-                int ii = 1;
-                //if (cdDim.sKeyTableName.Contains("Project"))
-                if (cdColumn.sName.Contains("ProjectName"))
-                {
-                    int ik = 1;
-                }
+                
                 cdColumn.boolRelated = true;
                 cdColumn.sExpression = "";
 
@@ -993,7 +948,7 @@ namespace PW.XMLA.Reader
                 }
                 else
                 {
-                    int iLoop = 1; //This attribute exists
+                    //int iLoop = 1; //This attribute exists
                 }
             }
         }

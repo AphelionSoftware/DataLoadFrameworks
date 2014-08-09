@@ -36,17 +36,18 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorDBCreate.cs" />
     <Compile Include="Extensions\Replace.cs" />
     <Compile Include="QC.cs" />
     <Compile Include="OLAPStarCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\ExtendedProperty.cs" />
     <Compile Include="Schema\MDXCommand.cs" />
+    <Compile Include="Schema\SC.cs" />
     <Compile Include="Schema\SchemaTable.cs" />
     <Compile Include="Schema\TableColumn.cs" />
     <Compile Include="StagingCreate.cs" />
