@@ -166,6 +166,8 @@
             this.btnGenerateErrors = new System.Windows.Forms.Button();
             this.txtErrorSrc = new System.Windows.Forms.TextBox();
             this.btnStgCreateDB = new System.Windows.Forms.Button();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txtErrorsFieldExcl = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -1543,6 +1545,8 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label54);
+            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
             this.tabPage6.Controls.Add(this.btnErrorCreate);
             this.tabPage6.Controls.Add(this.chkErrorsDropDB);
             this.tabPage6.Controls.Add(this.label53);
@@ -1582,7 +1586,7 @@
             this.chkErrorsDropDB.AutoSize = true;
             this.chkErrorsDropDB.Checked = true;
             this.chkErrorsDropDB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkErrorsDropDB.Location = new System.Drawing.Point(193, 186);
+            this.chkErrorsDropDB.Location = new System.Drawing.Point(193, 235);
             this.chkErrorsDropDB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkErrorsDropDB.Name = "chkErrorsDropDB";
             this.chkErrorsDropDB.Size = new System.Drawing.Size(97, 21);
@@ -1685,6 +1689,27 @@
             this.btnStgCreateDB.Text = "Create Staging - ignore prefixes";
             this.btnStgCreateDB.UseVisualStyleBackColor = true;
             this.btnStgCreateDB.Click += new System.EventHandler(this.btnStgCreateDB_Click);
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(17, 185);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(104, 17);
+            this.label54.TabIndex = 101;
+            this.label54.Text = "FieldExclusions";
+            // 
+            // txtErrorsFieldExcl
+            // 
+            this.txtErrorsFieldExcl.Location = new System.Drawing.Point(193, 179);
+            this.txtErrorsFieldExcl.Margin = new System.Windows.Forms.Padding(4);
+            this.txtErrorsFieldExcl.Multiline = true;
+            this.txtErrorsFieldExcl.Name = "txtErrorsFieldExcl";
+            this.txtErrorsFieldExcl.Size = new System.Drawing.Size(1245, 50);
+            this.txtErrorsFieldExcl.TabIndex = 100;
+            this.txtErrorsFieldExcl.Text = "\'sys_ModifiedOn\', \'sys_ModifiedBy\', \'sys_CreatedOn\', \'sys_CreatedBy\', \'sys_Active" +
+    "\', \'Active\'";
             // 
             // ProgramForm
             // 
@@ -1844,6 +1869,8 @@
         private System.Windows.Forms.CheckBox chkErrorsDropDB;
         private System.Windows.Forms.Button btnErrorCreate;
         private System.Windows.Forms.Button btnStgCreateDB;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox txtErrorsFieldExcl;
 
     }
 }

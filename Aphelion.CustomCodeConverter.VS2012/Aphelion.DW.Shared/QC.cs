@@ -550,6 +550,11 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 , csys.is_computed
 ,  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN 'YES' ELSE 'NO' END
 FROM INFORMATION_SCHEMA.COLUMNS C
+INNER join INFORMATION_SCHEMA.TABLES  t
+on c.table_schema = t.table_schema
+and c.table_name = t.table_name
+and t.table_type = 'BASE TABLE'
+
 inner join sys.columns cSys
 ON c.COLUMN_NAME = cSys.name
 	and (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = cSys.object_id
@@ -593,7 +598,7 @@ AND REPLACE(EPHierarchyLevel.name, ' ' , '') = 'HierarchyLevel'
 WHERE C.TABLE_NAME = '{0}'
 AND (C.TABLE_SCHEMA = '{1}' OR '{1}' = '')
 AND (NOT C.COLUMN_NAME IN
-({2}) OR OR '{2}' = '')
+({2}) )
 
 ORDER BY 
  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN '_'

@@ -266,7 +266,7 @@ namespace PW.CustomCodeConverter
 
         private void btnGenerateErrors_Click(object sender, EventArgs e)
         {
-            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked);
+            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
             errTables.CreateScript();
             this.txtErrorResult.Text = errTables.OutputScript();
         }
@@ -287,7 +287,7 @@ namespace PW.CustomCodeConverter
 
         private void btnErrorCreate_Click(object sender, EventArgs e)
         {
-            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked);
+            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
             errTables.CreateScript();
             this.txtErrorResult.Text = errTables.OutputScript();
             errTables.RunScript();

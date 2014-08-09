@@ -26,7 +26,7 @@ namespace Aphelion.DW.StagingCreate
         public bool bDropError;
         public string strTableExcl;
         public string strSchemaExcl;
-
+        public string sFieldExcl;
 
 
         public ErrorDBCreate(
@@ -36,6 +36,7 @@ namespace Aphelion.DW.StagingCreate
          string pStageSchema,
          string pErrorSchema,
             bool pDropError
+            , string pFieldExcl
                 )
         {
              strStageConn = pStageDBConn;
@@ -44,7 +45,7 @@ namespace Aphelion.DW.StagingCreate
              sStageSchema = pStageSchema;
              sErrorSchema = pErrorSchema;
              bDropError = pDropError;
-            
+             sFieldExcl = pFieldExcl;
              }
         public void RunScript()
         {
@@ -72,7 +73,7 @@ namespace Aphelion.DW.StagingCreate
             if (this.strTableExcl == "") this.strTableExcl = "''";
             if (this.strSchemaExcl == "") this.strSchemaExcl = "''";
 
-            command.CommandText = string.Format(QC.qryTableQueryExcl, this.strTableExcl, this.strSchemaExcl);
+            command.CommandText = string.Format(QC.qryTableQueryBySchema, string.Format("'{0}'", this.sStageSchema));
             SqlDataReader drStaging = command.ExecuteReader();
             string sStageSchemaTable;
             string sTableName;
@@ -89,6 +90,25 @@ namespace Aphelion.DW.StagingCreate
             }
             drStaging.Close();
 
+            //Build the create string
+            this.strFullCreate = "";
+            if (this.bDropError)
+            {
+                this.strFullCreate += string.Format(QC.qryDropDB, this.sErrorDB);
+            }
+            this.strFullCreate += string.Format(QC.qryCreateDB, this.sErrorDB);
+
+            this.strFullCreate += string.Format(QC.qryUse, this.sErrorDB);
+
+            this.strFullCreate += string.Format(QC.qryCreateSchema, this.sErrorSchema);
+
+            foreach (KeyValuePair<string, SchemaTable> st in lstTS)
+            {
+                if (st.Value.lstTC != null && st.Value.lstTC.Count > 0)
+                {
+                    this.strFullCreate += st.Value.CreateStatement;
+                }
+            }
 
         }
 
@@ -102,9 +122,9 @@ namespace Aphelion.DW.StagingCreate
 
             lstTC.Add(new TableColumn(pTableName, "QueueID", "True", "int", ""));
             lstTC.Add(new TableColumn(pTableName, "ErrorCode", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "ErrorColumnID", "True", "int", ""));
+            lstTC.Add(new TableColumn(pTableName, "ErrorColumn", "True", "int", ""));
             lstTC.Add(new TableColumn(pTableName, "PackageName", "True", "varchar", "255"));
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", ""), srcStageConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl), srcStageConn);
             drCols = comm.ExecuteReader();
             while (drCols.Read())
             {
@@ -116,8 +136,8 @@ namespace Aphelion.DW.StagingCreate
             drCols.Close();
 
             SqlDataReader drRefs;
-            //Reading all table regardless of schema, 
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", ""), srcTableConn);
+            //Reading all table regardless of schema, that match the staging name
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl), srcTableConn);
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {
