@@ -536,6 +536,12 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         ///10 Hierarchy level - can be null
         ///11 Is Computed
         ///12 Is Primary Key
+        ///13 is Average agg
+        ///14 is Count
+        ///15 is DistinctCount agg
+        ///16 is Max agg
+        ///17 is Min agg
+        ///18 is Sum agg
         /// </summary>
         public const string qryListColumns = @"SELECT C.COLUMN_NAME
 , C.IS_NULLABLE 
@@ -550,6 +556,13 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 , EPHierarchyLevel.value HierarchyLevel
 , csys.is_computed
 ,  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN 'YES' ELSE 'NO' END
+, EPAverage.value As MeasureAverage
+, EPCount.value As MeasureCount
+, EPDistinctCount.value As MeasureDistinctCount
+, EPMax.value As MeasureMax
+, EPMin.value As MeasureMin
+, EPSum.value As MeasureSum
+
 FROM INFORMATION_SCHEMA.COLUMNS C
 INNER join INFORMATION_SCHEMA.TABLES  t
 on c.table_schema = t.table_schema
@@ -594,6 +607,44 @@ ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPHierarchyLevel.majo
 OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPHierarchyLevel.major_id)
 and csys.column_id = EPHierarchyLevel.minor_id
 AND REPLACE(EPHierarchyLevel.name, ' ' , '') = 'HierarchyLevel'
+
+/* Aggregation values*/
+LEFT JOIN sys.extended_properties EPAverage
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPAverage.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPAverage.major_id)
+and csys.column_id = EPAverage.minor_id
+AND REPLACE(EPAverage.name, ' ' , '') = 'MeasureAverage'
+
+LEFT JOIN sys.extended_properties EPCount
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPCount.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPCount.major_id)
+and csys.column_id = EPCount.minor_id
+AND REPLACE(EPCount.name, ' ' , '') = 'MeasureCount'
+
+LEFT JOIN sys.extended_properties EPDistinctCount
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPDistinctCount.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPDistinctCount.major_id)
+and csys.column_id = EPDistinctCount.minor_id
+AND REPLACE(EPDistinctCount.name, ' ' , '') = 'MeasureDistinctCount'
+
+LEFT JOIN sys.extended_properties EPMax
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPMax.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPMax.major_id)
+and csys.column_id = EPMax.minor_id
+AND REPLACE(EPMax.name, ' ' , '') = 'MeasureMax'
+
+LEFT JOIN sys.extended_properties EPMin
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPMin.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPMin.major_id)
+and csys.column_id = EPMin.minor_id
+AND REPLACE(EPMin.name, ' ' , '') = 'MeasureMin'
+
+LEFT JOIN sys.extended_properties EPSum
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPSum.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPSum.major_id)
+and csys.column_id = EPSum.minor_id
+AND REPLACE(EPSum.name, ' ' , '') = 'MeasureSum'
+
 
 
 WHERE C.TABLE_NAME = '{0}'

@@ -173,13 +173,12 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         ;
 
                     #region Measures
-
-                    if (dsvC.sAggregationType != null && dsvC.sAggregationType != "")
+                    foreach (string sAggregationType in dsvC.lstAggregationTypes)
                     {
                         XMLAMeasure xm = new XMLAMeasure(
-                            dsvC.sAggregationType + "_" + dsvC.sName
-                            , dsvC.sAggregationType + "_" + dsvC.sID
-                            , dsvC.sAggregationType
+                            sAggregationType + "_" + dsvC.sName
+                            , sAggregationType + "_" + dsvC.sID
+                            , sAggregationType
                             , ""
                             , ""
                             , ""
@@ -411,6 +410,44 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     if (!drCols.IsDBNull(10))
                     {
                         dsvC.sHierarchyLevel = drCols.GetString(10);
+                    }
+                    ///TODO:AGGS
+
+                    if (!drCols.IsDBNull(13) &&
+                        (drCols.GetString(13).ToLower() == "true")
+                        )
+                    {
+                        dsvC.lstAggregationTypes.Add("AVERAGE");
+                    }
+                    if (!drCols.IsDBNull(14) &&
+                         (drCols.GetString(14).ToLower() == "true")
+                         )
+                    {
+                        dsvC.lstAggregationTypes.Add("COUNT");
+                    }
+                    if (!drCols.IsDBNull(15) &&
+                         (drCols.GetString(15).ToLower() == "true")
+                         )
+                    {
+                        dsvC.lstAggregationTypes.Add("DISTINCTCOUNT");
+                    }
+                    if (!drCols.IsDBNull(16) &&
+                         (drCols.GetString(16).ToLower() == "true")
+                         )
+                    {
+                        dsvC.lstAggregationTypes.Add("MIN");
+                    }
+                    if (!drCols.IsDBNull(17) &&
+                         (drCols.GetString(17).ToLower() == "true")
+                         )
+                    {
+                        dsvC.lstAggregationTypes.Add("MAX");
+                    }
+                    if (!drCols.IsDBNull(18) &&
+                         (drCols.GetString(18).ToLower() == "true")
+                         )
+                    {
+                        dsvC.lstAggregationTypes.Add("SUM");
                     }
                     #endregion
 

@@ -457,7 +457,7 @@
             this.txtExDest.Name = "txtExDest";
             this.txtExDest.Size = new System.Drawing.Size(1245, 22);
             this.txtExDest.TabIndex = 82;
-            this.txtExDest.Text = "C:\\Dropbox\\GitHub\\Meerkat\\Excel\\Status.xlsx";
+            this.txtExDest.Text = "C:\\GitHub\\Meerkat\\Excel\\Status.xlsx";
             // 
             // label15
             // 
