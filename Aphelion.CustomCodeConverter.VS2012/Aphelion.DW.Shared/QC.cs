@@ -521,6 +521,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         /// 0: Table name
         /// 1: Schema name
         /// 2: Exclusions
+        /// 3: Table Type
         /// Results:
         ///0 COLUMN_NAME
         ///1  IS_NULLABLE
@@ -553,7 +554,7 @@ FROM INFORMATION_SCHEMA.COLUMNS C
 INNER join INFORMATION_SCHEMA.TABLES  t
 on c.table_schema = t.table_schema
 and c.table_name = t.table_name
-and t.table_type = 'BASE TABLE'
+and t.table_type = '{3}'
 
 inner join sys.columns cSys
 ON c.COLUMN_NAME = cSys.name

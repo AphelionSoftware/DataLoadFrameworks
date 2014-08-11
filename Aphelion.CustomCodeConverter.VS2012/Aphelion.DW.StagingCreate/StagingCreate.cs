@@ -208,7 +208,7 @@ namespace Aphelion.DW.StagingCreate
             SqlDataReader drRefs;
             //Build field list
             string strColumnList = "";
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl), srcFactConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl, "BASE TABLE"), srcFactConn);
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {

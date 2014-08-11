@@ -144,8 +144,12 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         /// </summary>
         public void CreateDimensions()
         {
+
+            List<DSVTable> lstDSVT = new List<DSVTable>(this.cbNewCube.lstDSV[0].lstDSVTables);
+            //Make a copy as we're modifying the list of dimensions
+                
             string sSelect;
-            foreach (DSVTable dsvT in this.cbNewCube.lstDSV[0].lstDSVTables)
+            foreach (DSVTable dsvT in lstDSVT)
             {
                 sSelect = "SELECT ";
                 List<XMLADimensionAttribute> lstXDA = new List<XMLADimensionAttribute>();
@@ -211,6 +215,11 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 #endregion
                 sSelect = sSelect.Substring(0, sSelect.Length - 1);//Remove trailing comma
                 sSelect += " FROM [" + dsvT.sSchemaName + "].[" + dsvT.sTableName + "]";
+
+                //Update the query definition for the DSV
+                this.cbNewCube.lstDSV[0].lstDSVTables[
+                    this.cbNewCube.lstDSV[0].lstDSVTables.FindIndex(item => item.sID == dsvT.sID)
+                    ].sQueryDefiniton = sSelect;
 
                 string sKeyColumn = "";
                 if (dsvT.lstKeyColumns.Count > 0)
@@ -359,7 +368,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 //System.Boolean.TryParse(drRefs.GetString(5), out dsvT.bCoalesceFields);
                 srcFactConn = new SqlConnection(this.srcDBConn);
                 srcFactConn.Open();
-                commCol = new SqlCommand(string.Format(QC.qryListColumns, drRefs.GetString(1), this.sSchema, this.sFieldExcl), srcFactConn);
+                commCol = new SqlCommand(string.Format(QC.qryListColumns, drRefs.GetString(1), this.sSchema, this.sFieldExcl, "VIEW"), srcFactConn);
                 drCols = commCol.ExecuteReader();
                 while (drCols.Read())
                 {

@@ -12,6 +12,7 @@ namespace PW.XMLA.Writer
     {
 
         public bool isTabularSource = false;
+        public bool isNewPowerPivotSchema = true;
         #region constants
 
         /// <summary>
@@ -828,7 +829,13 @@ namespace PW.XMLA.Writer
 			<DataSourceID>{2}</DataSourceID>
             <Schema>
                 <xs:schema id=""{0}"" xmlns="""" xmlns:xs=""http://www.w3.org/2001/XMLSchema"" xmlns:msdata=""urn:schemas-microsoft-com:xml-msdata"" xmlns:msprop=""urn:schemas-microsoft-com:xml-msprop"">
-            {3}
+                    <xs:element name=""{0}"" msdata:IsDataSet=""true"" msdata:Locale=""en-US"">
+                    <xs:complexType>
+                        <xs:choice minOccurs=""0"" maxOccurs=""unbounded"">
+                        {3}
+                        </xs:choice>
+                   </xs:complexType>
+                   </xs:element>
             </xs:schema>
             </Schema>
             
@@ -1644,7 +1651,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     string sColumns = "";
                     foreach (DSVColumn dsvC in dsvT.lstColumns)
                     {
-
+#region columns
                         if (dsvC.sRestrictionBase != null)
                         {
                             dsvC.sRestrictionBase = dsvC.sRestrictionBase.Replace(" ", "");
@@ -1698,6 +1705,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                             //Apparently tabular uses the name as the DB Name
                             sColumns += string.Format(this.XMLAColumnElement, FormatColumnID (FactDimensions.FixIDs( dsvC.sDBColumnName)), FormatDBColumnName(dsvC.sDBColumnName), dsvC.sID.Replace(" ", "_"), dsvC.sType);
                         }
+#endregion 
                     }
 
                     if (dsvT.sQueryDefiniton == null)
@@ -1715,7 +1723,16 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                  * Do the Constraints here
                  * */
 
-                string sSchema = sTables + " " + sConstraints;
+                string sSchema;
+                if (!this.isNewPowerPivotSchema)
+                {
+
+                    sSchema = sTables + " " + sConstraints;
+                }
+                else
+                {
+                    sSchema = sTables + " " + sConstraints;
+                }
                 /* Check this assumption that cube ID is Model*/
                 this.sXMLADSV += string.Format(constXMLADSV, dsvDSV.sID.Replace(" ", "_"), dsvDSV.sName, dsvDSV.sDataSourceID.Replace(" ", "_"), sSchema);
             }
