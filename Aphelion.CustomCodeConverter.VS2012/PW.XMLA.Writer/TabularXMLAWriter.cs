@@ -1874,7 +1874,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         /// <returns></returns>
         private static string FormatColumnID(string sID)
         {
-            return "_x005B_" + sID.Replace(" ", "").Replace("|", "_x007C_") + "_x005D_";
+            //return "_x005B_" + sID.Replace(" ", "").Replace("|", "_x007C_") + "_x005D_";
+            return sID.Replace(" ", "").Replace("|", "_x007C_") ;
         }
 
         /// <summary>

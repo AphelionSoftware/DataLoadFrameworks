@@ -961,7 +961,7 @@ WHERE ep.name in ( 'SrcColumn', 'SrcTable', 'SrcSchema')
 GROUP BY c.name, v.name
 )
 
-select 
+select DISTINCT
 	VTU.VIEW_SCHEMA
 	, VTU.VIEW_NAME
 	, VTU.TABLE_SCHEMA
@@ -1015,6 +1015,7 @@ JOIN CTE CTEChild
  
  WHERE VIEW_SCHEMA = '{0}'
 and NOT VTU.table_name = CTUUnq.TABLE_NAME 
+ORDER BY VTU.VIEW_NAME, CTEChild.Column_name
 ";
 
               /// <summary>

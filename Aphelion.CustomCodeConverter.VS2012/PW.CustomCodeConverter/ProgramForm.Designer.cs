@@ -959,7 +959,7 @@
             this.txtTableExcl.Name = "txtTableExcl";
             this.txtTableExcl.Size = new System.Drawing.Size(1245, 52);
             this.txtTableExcl.TabIndex = 53;
-            this.txtTableExcl.Text = "\'ActiveType\'";
+            this.txtTableExcl.Text = "\'ActiveType\', \'DataVersion\'";
             // 
             // label21
             // 
@@ -980,7 +980,7 @@
             this.txtFieldExcl.Size = new System.Drawing.Size(1245, 50);
             this.txtFieldExcl.TabIndex = 51;
             this.txtFieldExcl.Text = "\'sys_ModifiedOn\', \'sys_ModifiedBy\', \'sys_CreatedOn\', \'sys_CreatedBy\', \'Active\', \'" +
-    "DeltaHash\', \'SourceKeyHash\'";
+    "DeltaHash\', \'SourceKeyHash\', \'DataVersion_ID\'";
             // 
             // btnStage
             // 
