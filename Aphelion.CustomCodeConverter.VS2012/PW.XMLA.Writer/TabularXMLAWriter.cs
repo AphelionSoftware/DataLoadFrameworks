@@ -841,9 +841,24 @@ namespace PW.XMLA.Writer
             
 		</DataSourceView>";
         /// <summary>
+        /// 0: Full name
+        /// 1: Table name
+        /// </summary>
+        public const string constXMLAMeasureAnnotation = @"
+                                        <Annotation>
+                                            <Name>FullName</Name>
+                                            <Value>{0}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>Table</Name>
+                                            <Value>{1}</Value>
+                                        </Annotation>"            ;
+
+        /// <summary>
         /// 0 is the measures
         /// 1 is the command text
         /// 2 is the calculation properties
+        /// 3 is annotations
         /// </summary>
         public const string constXMLAMDX = @"<MdxScript>
                             <ID>MdxScript</ID>
@@ -858,8 +873,10 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                 </Command>
                                 <Command>
                                     <Text>
-{1}
-</Text>
+                                        {1}
+                                    </Text>
+                                    <Annotations>
+                                    </Annotations>
                                 </Command>
                             </Commands>
                             <CalculationProperties>{2}
@@ -2149,6 +2166,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
             string sMDX = "";
             string sMeasuresList ="";
+            string sAnnotationsList = "";
             string sCalculationOptionsList = "";
             foreach (XMLAMeasureGroup xMG in cmActiveModel.lstMeasureGroups) 
             {
@@ -2184,6 +2202,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 {
                     #region Build standard measures
                     string sMeasure = "";
+                    #region aggsWork
                     if (xm.sAggregationFunction == "Count")
                     {
                         //sMeasure = string.Format(constXMLAMeasure, xm.sDBTableName, xm.sName, "COUNTROWS", xm.sDBColumnName); 
@@ -2235,10 +2254,23 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                             sMeasure = string.Format(constXMLAMeasure, xm.sDimensionID, xm.sID, xm.sAggregationFunction, xm.sAttributeName);
                         }
                     }
+                    #endregion
+
+                    sAnnotationsList += string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
                     sMeasuresList += sMeasure + "\n";
+
+                    //Any measures with no calc props need to have them added. Is this the right place? Perhaps not...
+                    if (!cmActiveModel.mdxScript.CalcProps.Exists(item => item.sCalculationReference == xm.sID))
+                    {
+                        //Adding [] to the calc reference
+                        cmActiveModel.mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID +"]", "Member", "''"));
+                    }
+
                     #endregion
                 }
             }
+
+            
             //One set of calcs across the whole cube
             foreach (MDXScriptCalcProp calcProp in cmActiveModel.mdxScript.CalcProps)
             {
@@ -2249,7 +2281,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
             if (isTabularSource)
             {
-                sMDX = string.Format(constXMLAMDX, sMeasuresList, this.srcCubeReader.cbOriginalCube.lstCubeModels[0].sPowerPivotMDXCommand, sCalculationOptionsList).Replace("\t", "");
+                sMDX = string.Format(constXMLAMDX, sMeasuresList, this.srcCubeReader.cbOriginalCube.lstCubeModels[0].sPowerPivotMDXCommand, sCalculationOptionsList, sAnnotationsList).Replace("\t", "");
             }
             else
             {
@@ -2262,7 +2294,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     sMDXList += string.Format(constXMLAMeasureCustom, cmActiveModel.lstMeasureGroups[0].sID, comm.sName, comm.sCommand.Replace("&", "&amp;"));
                         
                 }
-                sMDX = string.Format(constXMLAMDX, sMDXList, sPowerPivotCalc, sCalculationOptionsList).Replace("\t", "");
+                sMDX = string.Format(constXMLAMDX, sMDXList, sPowerPivotCalc, sCalculationOptionsList, sAnnotationsList).Replace("\t", "");
             
             }
 
