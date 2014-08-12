@@ -54,10 +54,10 @@ namespace Aphelion.DW.StagingCreate.Schema
 
 
 
-        public static void AddTC(string pTableName, ref List<TableColumn> lstTC, SqlDataReader drRefs)
+        public static void AddTC(string pTableName, ref List<TableColumn> lstTC, SqlDataReader drRefs, bool MakeNullable = false)
         {
             string sIsNullable;
-            if (drRefs.GetString(12) == "YES" || drRefs.GetString(1) == "YES")
+            if (drRefs.GetString(12) == "YES" || drRefs.GetString(1) == "YES" || MakeNullable )
             {
                 sIsNullable = "YES";
             }
