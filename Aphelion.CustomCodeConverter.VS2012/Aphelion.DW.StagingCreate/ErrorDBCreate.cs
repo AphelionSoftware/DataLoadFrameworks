@@ -120,11 +120,12 @@ namespace Aphelion.DW.StagingCreate
             //Build field list
             string strColumnList = "";
 
-            lstTC.Add(new TableColumn(pTableName, "QueueID", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "ErrorCode", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "ErrorColumn", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "PackageName", "True", "varchar", "255"));
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcStageConn);
+            lstTC.Add(new TableColumn(pTableName, "QueueID", "true", "int", ""));
+            lstTC.Add(new TableColumn(pTableName, "SSISErrorCode", "true", "int", ""));
+            lstTC.Add(new TableColumn(pTableName, "SSISErrorColumn", "true", "int", ""));
+            lstTC.Add(new TableColumn(pTableName, "PackageName", "true", "varchar", "255"));
+            lstTC.Add(new TableColumn(pTableName, "ErrorType", "true", "varchar", "255"));
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl), srcStageConn);
             drCols = comm.ExecuteReader();
             while (drCols.Read())
             {
@@ -137,7 +138,7 @@ namespace Aphelion.DW.StagingCreate
 
             SqlDataReader drRefs;
             //Reading all table regardless of schema, that match the staging name
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcTableConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl), srcTableConn);
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {
@@ -145,7 +146,7 @@ namespace Aphelion.DW.StagingCreate
                 {
                     if (!lstTC.Exists(item => item.TableName == pTableName && item.ColumnName == drRefs.GetString(0)))
                     {
-                        SC.AddTC(pTableName, ref lstTC, drRefs);
+                        SC.AddTC(pTableName, ref lstTC, drRefs, true);
                     }
                 }
             }
