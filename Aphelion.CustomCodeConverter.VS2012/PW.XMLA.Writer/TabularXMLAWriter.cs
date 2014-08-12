@@ -786,7 +786,7 @@ namespace PW.XMLA.Writer
             {5}
             </DataSourceViews>
 			<ddl200_200:StorageEngineUsed>InMemory</ddl200_200:StorageEngineUsed>
-			<ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+			<ddl200:CompatibilityLevel>1103</ddl200:CompatibilityLevel>
 		</Database>
 	</ObjectDefinition>
 </Alter>";
@@ -979,7 +979,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 <ImpersonationMode>Default</ImpersonationMode>
             </DataSourceImpersonationInfo>
             <ddl200_200:StorageEngineUsed>InMemory</ddl200_200:StorageEngineUsed>
-            <ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+            <ddl200:CompatibilityLevel>1103</ddl200:CompatibilityLevel>
         </Database>
     </ObjectDefinition>
 </Create>";
@@ -1204,7 +1204,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 </Cube>
 </Cubes>
 			<ddl200_200:StorageEngineUsed>InMemory</ddl200_200:StorageEngineUsed>
-			<ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+			<ddl200:CompatibilityLevel>1103</ddl200:CompatibilityLevel>
 </Database>
 
       </ObjectDefinition>
