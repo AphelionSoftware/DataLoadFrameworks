@@ -476,7 +476,7 @@
             this.txtExTemplate.Name = "txtExTemplate";
             this.txtExTemplate.Size = new System.Drawing.Size(1245, 22);
             this.txtExTemplate.TabIndex = 80;
-            this.txtExTemplate.Text = "C:\\temp\\Single.xlsx";
+            this.txtExTemplate.Text = "C:\\temp\\Empty.xlsx";
             // 
             // label13
             // 

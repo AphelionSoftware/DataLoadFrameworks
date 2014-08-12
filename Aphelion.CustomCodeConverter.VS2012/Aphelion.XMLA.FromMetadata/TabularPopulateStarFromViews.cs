@@ -176,8 +176,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     foreach (string sAggregationType in dsvC.lstAggregationTypes)
                     {
                         XMLAMeasure xm = new XMLAMeasure(
-                            sAggregationType + "_" + dsvC.sName
-                            , sAggregationType + "_" + dsvC.sID
+                            sAggregationType + "_" + dsvT.sFriendlyName + "_" + dsvC.sName
+                            , sAggregationType + "_" + dsvT.sFriendlyName + "_" + dsvC.sID
                             , sAggregationType
                             , ""
                             , ""
@@ -532,7 +532,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             DataTable dt = new DataTable();
             dt.Load(drRefs);
             drRefs.Close();
-            SqlCommand commRel = new SqlCommand(string.Format(QC.qryAdditionalRelationships ), srcFactConn);
+            SqlCommand commRel = new SqlCommand(string.Format(QC.qryAdditionalRelationships, this.sSchema ), srcFactConn);
             drCustomRefs = commRel.ExecuteReader();
             DataTable dtCustomRefs = new DataTable();
             dtCustomRefs.Load(drCustomRefs);
@@ -555,6 +555,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     dsv.lstRelationships.Add(dsvR);
                 }
 
+                #region  CustomRelationships
+
                 DataRow[] lstRowRefs = dtCustomRefs.Select("TABLE_NAME = '" + dTable.sID + "'");
                 foreach (DataRow dr in lstRowRefs)
                 {
@@ -572,7 +574,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
 
                 
-            #region  CustomRelationships
                 
             #endregion
 

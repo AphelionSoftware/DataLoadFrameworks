@@ -129,9 +129,16 @@ namespace PW.XMLA.Writer
                                .lstDimensionAttributes.Find(item => item.sDBColumnName == ToColumn)
                                .sNullProcessing = "Error";
                     }
+                    else
+                    {
+                    }
 
                 }
-                else { }
+                else { 
+                ///TODO:
+                    ///TODO: Error handling? Warning messages? To log?
+           
+                }
 
             }
         }

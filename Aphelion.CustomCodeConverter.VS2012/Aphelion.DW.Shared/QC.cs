@@ -104,6 +104,7 @@ END
 
         #region Additional Attributes
         /// <summary>
+        /// 0: Schema
         /// Results
         /// 1: Table Name
         /// 2: Column Name
@@ -121,12 +122,15 @@ SELECT object_Name(major_id) TABLE_NAME,
 	   ), ']', '') As UNIQUE_COLUMN_NAME,
 
 EPRel.name, EPRel.value 
+
+, OBJECT_SCHEMA_NAME(major_id) SCHEMA_NAME
 	FROM sys.extended_properties EPRel
 	inner join sys.columns col
 	on col.object_id = major_id
 	and column_id = minor_id
     WHERE replace(EPRel.name, ' ', '') LIKE 'AdditionalRelationship%'
 	and class_desc = 'OBJECT_OR_COLUMN'
+    and OBJECT_SCHEMA_NAME(major_id)  = '{0}'
 ";
         /// <summary>
         /// 0: Table schema
