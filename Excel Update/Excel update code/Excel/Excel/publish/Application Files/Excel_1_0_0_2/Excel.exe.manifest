@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Excel.exe" version="1.0.0.2" publicKeyToken="9e90a7af872b14f6" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Excel" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Excel.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site" Unrestricted="true" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+            If you want to change the Windows User Account Control level replace the 
+            requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel node will disable file and registry virtualization.
+            If you want to utilize File and Registry Virtualization for backward 
+            compatibility then delete the requestedExecutionLevel node.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="DocumentFormat.OpenXml" version="2.0.5022.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Excel.exe" size="11264">
+      <assemblyIdentity name="Excel" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>cIAcqrCF/6p40mZC2Y5ZE68a1MM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="connections.xml" size="677" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>D+XHnUaZqa9HRvS28tbYjjh6aUE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Excel.exe.config" size="77">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>w7WNgu5MxCvL4DAgISBxgwmhDzU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of all Windows versions that this application is designed to work with. 
+      Windows will automatically select the most compatible environment.-->
+      <!-- If your application is designed to work with Windows Vista, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}"></supportedOS>-->
+      <!-- If your application is designed to work with Windows 7, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>-->
+      <!-- If your application is designed to work with Windows 8, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}"></supportedOS>-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=DENISALTECH\DENIS" issuerKeyHash="d2a8dde9bdf597bb751bc5dee901dec5c56bd728" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>eEuws4A5Y966YphlkZrMv2HmZ4Y=</DigestValue></Reference></SignedInfo><SignatureValue>oJzG+8o45QfUN9b1sXrTcc3EyBDNAAJkV1qlNPRHYUUgrviACr0O56dQEKsC8XtcdMPiBX015J+EZ3j3fd8cvOYt9PTtRJLAmviDrEsdNUoRhhwsUv5thopdCEfF3xIPMPXY5XngEVMk6VUcwPIlGXggwMnry1UpOinW8znNnO8=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>yJUfhoyo7Aw0MwsRWVhORiBHdUmPodaN5UKy5vIVUVHGSb0qh3ovRpDXtcbiuA5sMFDUKJBe59pdTanNXrtyp9zWMIt7NRYZp/o0TSrNAF9BXGGWYkkg7D3g1tfG435erozNf4e9OwQydX4N/Y+txHhfTzAlBfLlw9Lm0/cs70M=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="8667e661bfcc9a91659862bade633980b3b04b78" Description="" Url=""><as:assemblyIdentity name="Excel.exe" version="1.0.0.2" publicKeyToken="9e90a7af872b14f6" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DENISALTECH\DENIS</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>7GtNCIRzsX/SM7s192dCxbqVIJg=</DigestValue></Reference></SignedInfo><SignatureValue>H8pQKu37bBgd+Uzwk7SpyQ2uHk9xq8QhNjjdZ0feGP4NeZiGYK44qS/Y7sJdA4LJaI+zLviiSSc+0ew3MRwngsWmiKDE3yaKkQ3pOBXKCTZ0DwH+HsnKrLvFdlvRbWQ/OM+B+HgMbOmq4bJ3UH/hGc1qJXfYTFEAvOGfw0jRZws=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>yJUfhoyo7Aw0MwsRWVhORiBHdUmPodaN5UKy5vIVUVHGSb0qh3ovRpDXtcbiuA5sMFDUKJBe59pdTanNXrtyp9zWMIt7NRYZp/o0TSrNAF9BXGGWYkkg7D3g1tfG435erozNf4e9OwQydX4N/Y+txHhfTzAlBfLlw9Lm0/cs70M=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB3TCCAUagAwIBAgIQFmrmWQR6yZFPro7NCzTUrDANBgkqhkiG9w0BAQUFADAtMSswKQYDVQQDHiIARABFAE4ASQBTAEEATABUAEUAQwBIAFwARABFAE4ASQBTMB4XDTE0MDIwMzIwNTQwOVoXDTE1MDIwNDAyNTQwOVowLTErMCkGA1UEAx4iAEQARQBOAEkAUwBBAEwAVABFAEMASABcAEQARQBOAEkAUzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAyJUfhoyo7Aw0MwsRWVhORiBHdUmPodaN5UKy5vIVUVHGSb0qh3ovRpDXtcbiuA5sMFDUKJBe59pdTanNXrtyp9zWMIt7NRYZp/o0TSrNAF9BXGGWYkkg7D3g1tfG435erozNf4e9OwQydX4N/Y+txHhfTzAlBfLlw9Lm0/cs70MCAwEAATANBgkqhkiG9w0BAQUFAAOBgQAoJcpCk44PvPpSDP8dlM8CVmNr6fO90A712bod80NkbFBcvDCXR+sCmW6280cWenl2ByIXp+bbGTI9P/qgirM+RCApUIIc5LbNJd5LuS+A3inRaa+aLTDNq+iFtEMfULRq2CMdHlLbn1GZRPRKsSZno/fSKnIqVtUZwmWUoVBNBQ==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
