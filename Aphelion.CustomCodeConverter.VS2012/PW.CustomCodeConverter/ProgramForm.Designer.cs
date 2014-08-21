@@ -42,23 +42,15 @@
             this.chkExInlMeasures = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.txtExDim = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.txtExDimValue = new System.Windows.Forms.TextBox();
             this.btnSubset = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtExInsertPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtExBackupPath = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtExDest = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtExTemplate = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtExDB = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtExServer = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.txtTemplateFileName = new System.Windows.Forms.TextBox();
@@ -168,6 +160,14 @@
             this.txtErrorResult = new System.Windows.Forms.TextBox();
             this.btnGenerateErrors = new System.Windows.Forms.Button();
             this.txtErrorSrc = new System.Windows.Forms.TextBox();
+            this.txtExDim = new System.Windows.Forms.TextBox();
+            this.txtExDimValue = new System.Windows.Forms.TextBox();
+            this.txtExInsertPath = new System.Windows.Forms.TextBox();
+            this.txtExBackupPath = new System.Windows.Forms.TextBox();
+            this.txtExDest = new System.Windows.Forms.TextBox();
+            this.txtExTemplate = new System.Windows.Forms.TextBox();
+            this.txtExDB = new System.Windows.Forms.TextBox();
+            this.txtExServer = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -325,6 +325,8 @@
             // chkExInlMeasures
             // 
             this.chkExInlMeasures.AutoSize = true;
+            this.chkExInlMeasures.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkExInlMeasures_Checked;
+            this.chkExInlMeasures.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkExInlMeasures_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.chkExInlMeasures.Location = new System.Drawing.Point(189, 278);
             this.chkExInlMeasures.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkExInlMeasures.Name = "chkExInlMeasures";
@@ -352,15 +354,6 @@
             this.label44.TabIndex = 93;
             this.label44.Text = "Subset dimension";
             // 
-            // txtExDim
-            // 
-            this.txtExDim.Location = new System.Drawing.Point(189, 207);
-            this.txtExDim.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDim.Name = "txtExDim";
-            this.txtExDim.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDim.TabIndex = 92;
-            this.txtExDim.Text = "DimDate";
-            // 
             // label43
             // 
             this.label43.AutoSize = true;
@@ -370,15 +363,6 @@
             this.label43.Size = new System.Drawing.Size(90, 17);
             this.label43.TabIndex = 91;
             this.label43.Text = "Subset value";
-            // 
-            // txtExDimValue
-            // 
-            this.txtExDimValue.Location = new System.Drawing.Point(191, 241);
-            this.txtExDimValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDimValue.Name = "txtExDimValue";
-            this.txtExDimValue.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDimValue.TabIndex = 90;
-            this.txtExDimValue.Text = "20130101";
             // 
             // btnSubset
             // 
@@ -412,15 +396,6 @@
             this.label16.TabIndex = 87;
             this.label16.Text = "Remote backup";
             // 
-            // txtExInsertPath
-            // 
-            this.txtExInsertPath.Location = new System.Drawing.Point(189, 174);
-            this.txtExInsertPath.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExInsertPath.Name = "txtExInsertPath";
-            this.txtExInsertPath.Size = new System.Drawing.Size(1245, 22);
-            this.txtExInsertPath.TabIndex = 86;
-            this.txtExInsertPath.Text = "c:\\Backups\\Subset.abf";
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -430,15 +405,6 @@
             this.label17.Size = new System.Drawing.Size(92, 17);
             this.label17.TabIndex = 85;
             this.label17.Text = "Local backup";
-            // 
-            // txtExBackupPath
-            // 
-            this.txtExBackupPath.Location = new System.Drawing.Point(189, 142);
-            this.txtExBackupPath.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExBackupPath.Name = "txtExBackupPath";
-            this.txtExBackupPath.Size = new System.Drawing.Size(1245, 22);
-            this.txtExBackupPath.TabIndex = 84;
-            this.txtExBackupPath.Text = "c:\\Backups\\Subset.abf";
             // 
             // label14
             // 
@@ -450,15 +416,6 @@
             this.label14.TabIndex = 83;
             this.label14.Text = "Excel Destination";
             // 
-            // txtExDest
-            // 
-            this.txtExDest.Location = new System.Drawing.Point(189, 110);
-            this.txtExDest.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDest.Name = "txtExDest";
-            this.txtExDest.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDest.TabIndex = 82;
-            this.txtExDest.Text = "C:\\GitHub\\Meerkat\\Excel\\Status.xlsx";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -468,15 +425,6 @@
             this.label15.Size = new System.Drawing.Size(104, 17);
             this.label15.TabIndex = 81;
             this.label15.Text = "Excel Template";
-            // 
-            // txtExTemplate
-            // 
-            this.txtExTemplate.Location = new System.Drawing.Point(189, 78);
-            this.txtExTemplate.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExTemplate.Name = "txtExTemplate";
-            this.txtExTemplate.Size = new System.Drawing.Size(1245, 22);
-            this.txtExTemplate.TabIndex = 80;
-            this.txtExTemplate.Text = "C:\\temp\\Empty.xlsx";
             // 
             // label13
             // 
@@ -488,15 +436,6 @@
             this.label13.TabIndex = 79;
             this.label13.Text = "Database";
             // 
-            // txtExDB
-            // 
-            this.txtExDB.Location = new System.Drawing.Point(189, 46);
-            this.txtExDB.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDB.Name = "txtExDB";
-            this.txtExDB.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDB.TabIndex = 78;
-            this.txtExDB.Text = "Meerkat";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -506,15 +445,6 @@
             this.label12.Size = new System.Drawing.Size(50, 17);
             this.label12.TabIndex = 77;
             this.label12.Text = "Server";
-            // 
-            // txtExServer
-            // 
-            this.txtExServer.Location = new System.Drawing.Point(189, 14);
-            this.txtExServer.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExServer.Name = "txtExServer";
-            this.txtExServer.Size = new System.Drawing.Size(1245, 22);
-            this.txtExServer.TabIndex = 76;
-            this.txtExServer.Text = ".\\sql2012tabular";
             // 
             // tabPage1
             // 
@@ -1711,6 +1641,86 @@
             this.txtErrorSrc.TabIndex = 83;
             this.txtErrorSrc.Text = "Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True";
             // 
+            // txtExDim
+            // 
+            this.txtExDim.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDim_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDim.Location = new System.Drawing.Point(189, 207);
+            this.txtExDim.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDim.Name = "txtExDim";
+            this.txtExDim.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDim.TabIndex = 92;
+            this.txtExDim.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDim_Text;
+            // 
+            // txtExDimValue
+            // 
+            this.txtExDimValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtexDimValue_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDimValue.Location = new System.Drawing.Point(191, 241);
+            this.txtExDimValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDimValue.Name = "txtExDimValue";
+            this.txtExDimValue.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDimValue.TabIndex = 90;
+            this.txtExDimValue.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtexDimValue_Text;
+            // 
+            // txtExInsertPath
+            // 
+            this.txtExInsertPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExInsertPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExInsertPath.Location = new System.Drawing.Point(189, 174);
+            this.txtExInsertPath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExInsertPath.Name = "txtExInsertPath";
+            this.txtExInsertPath.Size = new System.Drawing.Size(1245, 22);
+            this.txtExInsertPath.TabIndex = 86;
+            this.txtExInsertPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExInsertPath_Text;
+            // 
+            // txtExBackupPath
+            // 
+            this.txtExBackupPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExBackupPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExBackupPath.Location = new System.Drawing.Point(189, 142);
+            this.txtExBackupPath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExBackupPath.Name = "txtExBackupPath";
+            this.txtExBackupPath.Size = new System.Drawing.Size(1245, 22);
+            this.txtExBackupPath.TabIndex = 84;
+            this.txtExBackupPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExBackupPath_Text;
+            // 
+            // txtExDest
+            // 
+            this.txtExDest.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDest_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDest.Location = new System.Drawing.Point(189, 110);
+            this.txtExDest.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDest.Name = "txtExDest";
+            this.txtExDest.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDest.TabIndex = 82;
+            this.txtExDest.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDest_Text;
+            // 
+            // txtExTemplate
+            // 
+            this.txtExTemplate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExTemplate_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExTemplate.Location = new System.Drawing.Point(189, 78);
+            this.txtExTemplate.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExTemplate.Name = "txtExTemplate";
+            this.txtExTemplate.Size = new System.Drawing.Size(1245, 22);
+            this.txtExTemplate.TabIndex = 80;
+            this.txtExTemplate.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExTemplate_Text;
+            // 
+            // txtExDB
+            // 
+            this.txtExDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExDB_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDB.Location = new System.Drawing.Point(189, 46);
+            this.txtExDB.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDB.Name = "txtExDB";
+            this.txtExDB.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDB.TabIndex = 78;
+            this.txtExDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExDB_Text;
+            // 
+            // txtExServer
+            // 
+            this.txtExServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExServer_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExServer.Location = new System.Drawing.Point(189, 14);
+            this.txtExServer.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExServer.Name = "txtExServer";
+            this.txtExServer.Size = new System.Drawing.Size(1245, 22);
+            this.txtExServer.TabIndex = 76;
+            this.txtExServer.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExServer_Text;
+            // 
             // ProgramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1720,6 +1730,8 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProgramForm";
             this.Text = "ConverterTest";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProgramForm_FormClosing);
+            this.Load += new System.EventHandler(this.ProgramForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();

@@ -526,6 +526,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         /// 1: Schema name
         /// 2: Exclusions
         /// 3: Table Type
+        /// 4: Exclude From (ExtendedProperty)
         /// Results:
         ///0 COLUMN_NAME
         ///1  IS_NULLABLE
@@ -566,6 +567,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 , EPMax.value As MeasureMax
 , EPMin.value As MeasureMin
 , EPSum.value As MeasureSum
+
 
 FROM INFORMATION_SCHEMA.COLUMNS C
 INNER join INFORMATION_SCHEMA.TABLES  t
@@ -655,6 +657,20 @@ WHERE C.TABLE_NAME = '{0}'
 AND (C.TABLE_SCHEMA = '{1}' OR '{1}' = '')
 AND (NOT C.COLUMN_NAME IN
 ({2}) )
+
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+
+	    WHERE epX.Name = 'ExcludeFrom{4}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND SCHEMA_NAME(epX.major_id) = C.TABLE_NAME
+	    AND OBJECT_NAME(epX.major_id) = C.TABLE_NAME
+	    AND OBJECT_NAME(epX.minor_ID) = C.COLUMN_NAME
+
+)
 
 ORDER BY 
  CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN '_'

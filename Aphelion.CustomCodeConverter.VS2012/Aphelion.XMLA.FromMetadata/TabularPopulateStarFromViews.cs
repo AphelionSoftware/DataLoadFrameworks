@@ -367,7 +367,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 //System.Boolean.TryParse(drRefs.GetString(5), out dsvT.bCoalesceFields);
                 srcFactConn = new SqlConnection(this.srcDBConn);
                 srcFactConn.Open();
-                commCol = new SqlCommand(string.Format(QC.qryListColumns, drRefs.GetString(1), this.sSchema, this.sFieldExcl, "VIEW"), srcFactConn);
+                commCol = new SqlCommand(string.Format(QC.qryListColumns, drRefs.GetString(1), this.sSchema, this.sFieldExcl, "VIEW", "CUBE"), srcFactConn);
                 drCols = commCol.ExecuteReader();
                 while (drCols.Read())
                 {
