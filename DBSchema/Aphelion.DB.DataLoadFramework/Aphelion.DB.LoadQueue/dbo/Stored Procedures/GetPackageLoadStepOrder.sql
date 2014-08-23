@@ -29,7 +29,7 @@ BEGIN
 	SET NOCOUNT ON
 
 	SELECT PL.PackageLoadID
-		 , ISNULL(PL.MaxParallel,0) AS MaxParallel
+		 , ISNULL(PLS.MaxParallel,ISNULL(PL.MaxParallel,0)) AS MaxParallel
 		 , PLS.StepOrder
 		 , COUNT(PLS.PackageLoadStepID) AS NoOfPackages
 	FROM [Queue]			AS Q
@@ -39,9 +39,11 @@ BEGIN
 		ON PL.PackageLoadID = PLS.PackageLoadID
 		AND PLS.Active = 1
 	WHERE Q.QueueID = @intQueueID
-	GROUP BY PL.PackageLoadID
+	GROUP BY PLS.MaxParallel,PL.PackageLoadID
 		   , PL.MaxParallel
 		   , PLS.StepOrder
-	ORDER BY PLS.StepOrder
+	ORDER BY PLS.StepOrder,PLS.MaxParallel
 
 END
+
+GO
