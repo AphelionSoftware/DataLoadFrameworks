@@ -125,7 +125,7 @@ namespace Aphelion.DW.StagingCreate
             lstTC.Add(new TableColumn(pTableName, "SSISErrorColumn", "true", "int", ""));
             lstTC.Add(new TableColumn(pTableName, "PackageName", "true", "varchar", "255"));
             lstTC.Add(new TableColumn(pTableName, "ErrorType", "true", "varchar", "255"));
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcStageConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE", "Error"), srcStageConn);
             drCols = comm.ExecuteReader();
             while (drCols.Read())
             {
@@ -138,7 +138,7 @@ namespace Aphelion.DW.StagingCreate
 
             SqlDataReader drRefs;
             //Reading all table regardless of schema, that match the staging name
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcTableConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE", "Error"), srcTableConn);
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {

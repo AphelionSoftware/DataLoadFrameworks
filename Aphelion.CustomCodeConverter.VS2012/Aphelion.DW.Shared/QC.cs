@@ -526,6 +526,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         /// 1: Schema name
         /// 2: Exclusions
         /// 3: Table Type
+        /// 4: Exclude From (ExtendedProperty)
         /// Results:
         ///0 COLUMN_NAME
         ///1  IS_NULLABLE
@@ -566,6 +567,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 , EPMax.value As MeasureMax
 , EPMin.value As MeasureMin
 , EPSum.value As MeasureSum
+
 
 FROM INFORMATION_SCHEMA.COLUMNS C
 INNER join INFORMATION_SCHEMA.TABLES  t
@@ -649,6 +651,20 @@ OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPSum.major_id)
 and csys.column_id = EPSum.minor_id
 AND REPLACE(EPSum.name, ' ' , '') = 'MeasureSum'
 
+LEFT JOIN sys.extended_properties EPSource
+ON (OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'U') = EPSource.major_id
+OR OBJECT_ID(C.TABLE_SCHEMA + '.' +  C.TABLE_NAME, 'V') = EPSource.major_id)
+and csys.column_id = EPSource.minor_id
+AND REPLACE(EPSource.name, ' ' , '') = 'SourceKey'
+
+LEFT JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
+	INNER JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
+		ON CCU.CONSTRAINT_NAME = RC.CONSTRAINT_NAME
+		AND CCU.CONSTRAINT_SCHEMA = RC.CONSTRAINT_SCHEMA
+
+ON C.TABLE_SCHEMA = CCU.TABLE_SCHEMA
+AND C.TABLE_NAME = CCU.TABLE_NAME
+AND C.COLUMN_NAME = CCU.COLUMN_NAME
 
 
 WHERE C.TABLE_NAME = '{0}'
@@ -656,9 +672,28 @@ AND (C.TABLE_SCHEMA = '{1}' OR '{1}' = '')
 AND (NOT C.COLUMN_NAME IN
 ({2}) )
 
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+
+	    WHERE epX.Name = 'ExcludeFrom{4}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND SCHEMA_NAME(epX.major_id) = C.TABLE_NAME
+	    AND OBJECT_NAME(epX.major_id) = C.TABLE_NAME
+	    AND OBJECT_NAME(epX.minor_ID) = C.COLUMN_NAME
+
+)
+
+
 ORDER BY 
- CASE WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN '_'
-ELSE C.COLUMN_NAME END 
+ CASE 
+ WHEN colkey.COLUMN_NAME = C.COLUMN_NAME THEN '000' + C.COLUMN_NAME
+ WHEN EPSource.value = 'true' OR EPSource.value = '1' THEN '010' + C.COLUMN_NAME
+ WHEN CCU.COLUMN_NAME IS NOT NULL THEN '090' + C.COLUMN_NAME
+ ELSE '050' + C.COLUMN_NAME
+ END
 ";        /// <summary>
         /// 0: Table name
         /// 1: Schema name

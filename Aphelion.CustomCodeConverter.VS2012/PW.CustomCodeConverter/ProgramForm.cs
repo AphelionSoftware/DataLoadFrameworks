@@ -292,5 +292,19 @@ namespace PW.CustomCodeConverter
             this.txtErrorResult.Text = errTables.OutputScript();
             errTables.RunScript();
         }
+
+        private void ProgramForm_Load(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// Save the values of each of the text boxes away to a file to keep state for next time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProgramForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+               
+        }
     }
 }

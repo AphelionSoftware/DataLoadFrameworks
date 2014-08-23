@@ -1,7 +1,33 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PW.CustomCodeConverter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="txtExServer_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\sql2012tabular</Value>
+    </Setting>
+    <Setting Name="txExDB_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Meerkat</Value>
+    </Setting>
+    <Setting Name="txExTemplate_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp\Empty.xlsx</Value>
+    </Setting>
+    <Setting Name="txtExDest_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\GitHub\Meerkat\Excel\Status.xlsx</Value>
+    </Setting>
+    <Setting Name="txtExBackupPath_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\Backups\Subset.abf</Value>
+    </Setting>
+    <Setting Name="txtExInsertPath_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\Backups\Subset.abf</Value>
+    </Setting>
+    <Setting Name="txtExDim_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DimDate</Value>
+    </Setting>
+    <Setting Name="txtexDimValue_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20130101</Value>
+    </Setting>
+    <Setting Name="chkExInlMeasures_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
