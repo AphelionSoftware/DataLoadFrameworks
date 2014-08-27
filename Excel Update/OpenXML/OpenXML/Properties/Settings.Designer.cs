@@ -103,8 +103,8 @@ namespace OpenXML.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Dropbox {Data)\\Clients\\Meerkat\\CARE Somalia\\Data\\StagingTemplates\\Export\\20140" +
-            "823\\Staging.PeopleReachedValues.xlsx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dropbox (PW South Africa)\\Clients\\Meerkat\\CARE Somalia\\Data\\StagingTemplates\\T" +
+            "emplates\\Staging.Activity.xlsx")]
         public string txtFileLocation_Text {
             get {
                 return ((string)(this["txtFileLocation_Text"]));

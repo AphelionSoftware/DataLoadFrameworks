@@ -114,6 +114,120 @@ namespace OpenXML
       
 #endregion
 
+        private int InsertTwoLinesIntoExcel( string pFileLocation,   string pSheetName, string strNotes, string strLstHeadings)
+        {
+            DateTime dTime = DateTime.Now;
+           
+
+            string cl = "";
+            uint iRow = (uint)1;
+            int index;
+            Cell cell;
+
+            using (SpreadsheetDocument document = SpreadsheetDocument.Open(pFileLocation, true))
+            {
+                IEnumerable<Sheet> sheets = document.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == pSheetName);
+                if (sheets.Count() == 0)
+                {
+                    return -1;
+                }
+
+                WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheets.First().Id);
+                Worksheet worksheet = worksheetPart.Worksheet;
+                SheetData sheetData = worksheet.GetFirstChild<SheetData>();
+                string cellReference;
+#region Heading
+                    Row row;
+                    if (sheetData.Elements<Row>().Where(r => r.RowIndex == iRow).Count() != 0)
+                    {
+                        row = sheetData.Elements<Row>().Where(r => r.RowIndex == iRow).First();
+                    }
+                    else
+                    {
+                        row = new Row() { RowIndex = iRow };
+                        sheetData.Append(row);
+                    }
+
+                     cl = "A1";
+                    SharedStringTablePart shareStringPartHeading;
+                    if (document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
+                    {
+                        shareStringPartHeading = document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
+                    }
+                    else
+                    {
+                        shareStringPartHeading = document.WorkbookPart.AddNewPart<SharedStringTablePart>();
+                    }
+                    index = shareStringPartHeading.SharedStringTable.Count();
+                    shareStringPartHeading.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text( strNotes)));
+                    shareStringPartHeading.SharedStringTable.Save();
+
+
+                    cellReference = cl + iRow;
+                     
+                    Cell refCellHeading = null;
+
+                    cell = new Cell() { CellReference = cellReference };
+                    row.InsertBefore(cell, refCellHeading);
+                    //}
+                    cell.CellValue = new CellValue(index.ToString());
+                    cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+#endregion
+
+                string [] strArrHeadings = strLstHeadings.Split(',');
+                    for (int idx = 0; idx < strArrHeadings.Length; idx++)
+                    {
+                        #region Get data
+                        SharedStringTablePart shareStringPart;
+                        if (document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
+                        {
+                            shareStringPart = document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
+                        }
+                        else
+                        {
+                            shareStringPart = document.WorkbookPart.AddNewPart<SharedStringTablePart>();
+                        }
+
+                        if (idx >= 26)
+                        {
+                            cl = "A" + Convert.ToString(Convert.ToChar(65 + idx - 26));
+                        }
+                        else
+                        {
+                            cl = Convert.ToString(Convert.ToChar(65 + idx));
+                        }
+
+                        #endregion
+
+
+                        // Insert the text into the SharedStringTablePart.
+
+                        index = shareStringPart.SharedStringTable.Count();
+                        shareStringPart.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text(Convert.ToString(strArrHeadings[idx]))));
+                        shareStringPart.SharedStringTable.Save();
+
+
+                        cellReference = cl + iRow;
+                     
+                        Cell refCell = null;
+
+                        cell = new Cell() { CellReference = cellReference };
+                        row.InsertBefore(cell, refCell);
+                        //}
+                        cell.CellValue = new CellValue(index.ToString());
+                        cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+                        
+
+                    }
+                worksheet.Save();
+            }
+
+            return (DateTime.Now - dTime).Seconds;
+
+        }
+
+       
+
         private int InsertIntoExcel(string pConn, string pFileLocation, string pSQL, string pExcelQuery, string pSheetName, int pRow)
         {
             DateTime dTime = DateTime.Now;
