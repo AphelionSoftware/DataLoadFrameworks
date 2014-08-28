@@ -29,6 +29,7 @@ namespace PW.CustomCodeConverter
 
         private void tstConvert_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             txwCube = new TabularXMLAWriter();
             mdrCube = new MultiDimensionalReader();
             mdrCube.connSrcConnection = this.txtsrcConnectionString.Text;
@@ -95,6 +96,7 @@ namespace PW.CustomCodeConverter
 
         private void btnSubset_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save(); 
             string sServer = this.txtExServer.Text;
             string sDB = this.txtExDB.Text;
             string stempDB = this.txtExDB.Text + "_TEMP";
@@ -133,6 +135,7 @@ namespace PW.CustomCodeConverter
 
         private void btnStage_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             OLAPStarCreate scOLAP = new OLAPStarCreate(
                 this.txtSrcConn.Text
                 , this.txtDestConn.Text
@@ -154,6 +157,7 @@ namespace PW.CustomCodeConverter
 
         private void btnStaging_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, this.txtStgFactPrefix.Text, this.txtStgDimPrefix.Text, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
             scTables.CreateScript();
 
@@ -162,6 +166,7 @@ namespace PW.CustomCodeConverter
 
         private void btnTblCreateCube_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             this.TPR = new TabularPopulateStarFromViews(
                 txtTblCubeDB.Text
                 , txtTblDSConn.Text
@@ -192,7 +197,8 @@ namespace PW.CustomCodeConverter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked ,this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
+            Properties.Settings.Default.Save();
+            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked, this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
             scTables.CreateScript();
 
             this.txtStageScript.Text = scTables.OutputScript();
@@ -206,13 +212,15 @@ namespace PW.CustomCodeConverter
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            btnStage_Click( sender, e);
+            Properties.Settings.Default.Save();
+            btnStage_Click(sender, e);
             btnTblCreateCube_Click(sender, e);
             btnProcess_Click(sender, e);
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             if (TPR == null)
             {
                 btnTblCreateCube_Click(sender, e);
@@ -222,6 +230,7 @@ namespace PW.CustomCodeConverter
 
         private void btnInsert_Click_2(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             string sServer = this.txtExServer.Text;
             string sDB = this.txtExDB.Text;
             string sDest = this.txtExDest.Text;
@@ -239,6 +248,7 @@ namespace PW.CustomCodeConverter
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             btnStage_Click(sender, e);
             btnTblCreateCube_Click(sender, e);
             btnProcess_Click(sender, e);
@@ -247,7 +257,7 @@ namespace PW.CustomCodeConverter
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.Save(); 
             btnStage_Click(sender, e);
             btnTblCreateCube_Click(sender, e);
             btnProcess_Click(sender, e);
@@ -266,6 +276,7 @@ namespace PW.CustomCodeConverter
 
         private void btnGenerateErrors_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
             errTables.CreateScript();
             this.txtErrorResult.Text = errTables.OutputScript();
@@ -278,6 +289,7 @@ namespace PW.CustomCodeConverter
 
         private void btnStgCreateDB_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked, this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
             scTables.CreateScript();
 
@@ -287,6 +299,7 @@ namespace PW.CustomCodeConverter
 
         private void btnErrorCreate_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
             errTables.CreateScript();
             this.txtErrorResult.Text = errTables.OutputScript();
@@ -295,7 +308,6 @@ namespace PW.CustomCodeConverter
 
         private void ProgramForm_Load(object sender, EventArgs e)
         {
-
         }
         /// <summary>
         /// Save the values of each of the text boxes away to a file to keep state for next time
@@ -304,7 +316,14 @@ namespace PW.CustomCodeConverter
         /// <param name="e"></param>
         private void ProgramForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-               
+
+            Properties.Settings.Default.Save(); 
+        }
+
+        private void btnCreateExcel_Click_1(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save(); 
+            
         }
     }
 }
