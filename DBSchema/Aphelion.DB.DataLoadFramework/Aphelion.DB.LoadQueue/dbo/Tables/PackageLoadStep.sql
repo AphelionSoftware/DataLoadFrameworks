@@ -30,6 +30,7 @@ CREATE TABLE [dbo].[PackageLoadStep] (
 	[StepOrder]			INT NOT NULL,
 	[ContinueOnFailure]	BIT DEFAULT (0) NOT NULL,
     [Active]            INT DEFAULT (1) NOT NULL,
+	[MaxParallel]		INT NULL,
     [sys_CreatedOn]   DATETIME       DEFAULT (getdate()) NOT NULL,
     [sys_CreatedBy]   NVARCHAR (255) DEFAULT ('Unknown') NOT NULL,
     [sys_ModifiedOn]  DATETIME       DEFAULT (getdate()) NOT NULL,

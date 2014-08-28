@@ -120,20 +120,16 @@ namespace Aphelion.DW.StagingCreate
             //Build field list
             string strColumnList = "";
 
-<<<<<<< HEAD
-            lstTC.Add(new TableColumn(pTableName, "QueueID", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "ErrorCode", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "ErrorColumn", "True", "int", ""));
-            lstTC.Add(new TableColumn(pTableName, "PackageName", "True", "varchar", "255"));
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcStageConn);
-=======
             lstTC.Add(new TableColumn(pTableName, "QueueID", "true", "int", ""));
             lstTC.Add(new TableColumn(pTableName, "SSISErrorCode", "true", "int", ""));
             lstTC.Add(new TableColumn(pTableName, "SSISErrorColumn", "true", "int", ""));
             lstTC.Add(new TableColumn(pTableName, "PackageName", "true", "varchar", "255"));
             lstTC.Add(new TableColumn(pTableName, "ErrorType", "true", "varchar", "255"));
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl), srcStageConn);
->>>>>>> Error code
+<<<<<<< HEAD
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcStageConn);
+=======
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE", "Error"), srcStageConn);
+>>>>>>> 27f21063f851dd8fab0ddeff2b3f72122fc4fddd
             drCols = comm.ExecuteReader();
             while (drCols.Read())
             {
@@ -146,7 +142,7 @@ namespace Aphelion.DW.StagingCreate
 
             SqlDataReader drRefs;
             //Reading all table regardless of schema, that match the staging name
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE"), srcTableConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, "", this.sFieldExcl, "BASE TABLE", "Error"), srcTableConn);
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {

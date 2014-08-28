@@ -166,7 +166,7 @@ GO
             string sAdditionalFields = "";
             string sAdditionalJoins = "";
             bool bCoalesce = false;
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl, "BASE TABLE"), srcFactConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl, "BASE TABLE", "Cube"), srcFactConn);
             drRefs = comm.ExecuteReader();
             drRefs.Read();
             strColumnList = string.Format("\n\t[{0}].[{1}] ", pTableName, drRefs.GetString(0));
