@@ -29,5 +29,133 @@
     <Setting Name="chkExInlMeasures_Checked" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="txtSrcConn_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="txtDestConn_Text" Type="System.Windows.Forms.HorizontalAlignment" Scope="User">
+      <Value Profile="(Default)">Left</Value>
+    </Setting>
+    <Setting Name="txtSchema_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OLAP_GEN</Value>
+    </Setting>
+    <Setting Name="chkSchema_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="txtFactPrefix_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'RBM'</Value>
+    </Setting>
+    <Setting Name="txtDimPrefix_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtFieldExcl_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'sys_ModifiedOn', 'sys_ModifiedBy', 'sys_CreatedOn', 'sys_CreatedBy', 'Active', 'DeltaHash', 'SourceKeyHash', 'DataVersion_ID'</Value>
+    </Setting>
+    <Setting Name="txtTableExcl_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'ActiveType', 'DataVersion'</Value>
+    </Setting>
+    <Setting Name="txtFactFilter_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtDimFilter_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtStgSrcConn_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True
+</Value>
+    </Setting>
+    <Setting Name="txtStgDB_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MeerkatStaging</Value>
+    </Setting>
+    <Setting Name="txtStgSchema_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Staging</Value>
+    </Setting>
+    <Setting Name="txtStgFactPrefix_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fact</Value>
+    </Setting>
+    <Setting Name="txtStgDimPrefix_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dim</Value>
+    </Setting>
+    <Setting Name="txtStgFieldExcl_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'sys_ModifiedOn', 'sys_ModifiedBy', 'sys_CreatedOn', 'sys_CreatedBy', 'sys_Active', 'Active'</Value>
+    </Setting>
+    <Setting Name="chkStageDrop_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="txtTableExclStg_Checked" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'DimDate', 'Age', 'templateMenueGroup', 'DimMunicipalityGEOM', 'ActiveType','sysdiagrams', '__RefactorLog', 'GlobalSettings'</Value>
+    </Setting>
+    <Setting Name="txtSchemaExclStg_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'forms'</Value>
+    </Setting>
+    <Setting Name="txtSrcKeyName_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BusinessKey</Value>
+    </Setting>
+    <Setting Name="chkInclKeysStg_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="chkInclRefKeysStg_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="txtTblSrcConn_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="txtTblDSConn_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Provider=SQLNCLI11.1;Data Source=.\sql2012;Integrated Security=SSPI;Initial Catalog=Meerkat</Value>
+    </Setting>
+    <Setting Name="txtTblDestConn_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Provider=MSOLAP.4;Integrated Security=SSPI;Persist Security Info=True;Data Source=.\sql2012Tabular;Initial Catalog=Test</Value>
+    </Setting>
+    <Setting Name="txtTblSchema_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OLAP_Gen</Value>
+    </Setting>
+    <Setting Name="txtTblConnSecurity_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtTblImpersonationMode_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ImpersonateServiceAccount</Value>
+    </Setting>
+    <Setting Name="txtTblUsername_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtTblPwd_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtTblCubeDB_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Meerkat</Value>
+    </Setting>
+    <Setting Name="txtTblImpersonationSecurity_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="txtErrorSrc_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="txtErrorStg_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=MeerkatStaging;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="txtErrorStagingSchema_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Staging</Value>
+    </Setting>
+    <Setting Name="txtErrorDB_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MeerkatErrors</Value>
+    </Setting>
+    <Setting Name="txtErrorsSchema_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Errors</Value>
+    </Setting>
+    <Setting Name="txtErrorsFieldExcl_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'sys_ModifiedOn', 'sys_ModifiedBy', 'sys_CreatedOn', 'sys_CreatedBy', 'sys_Active', 'Active'</Value>
+    </Setting>
+    <Setting Name="chkErrorsDropDB_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="txtDestConnOLAP_Text" Type="System.Windows.Forms.HorizontalAlignment" Scope="User">
+      <Value Profile="(Default)">Left</Value>
+    </Setting>
+    <Setting Name="txtDestConn2_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True
+</Value>
+    </Setting>
+    <Setting Name="numMaxRecurse_Value" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
