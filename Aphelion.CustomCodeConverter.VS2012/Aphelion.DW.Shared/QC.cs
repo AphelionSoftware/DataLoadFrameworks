@@ -398,6 +398,9 @@ and not kcu.TABLE_NAME in ({2})
 
 and not kcu.TABLE_SCHEMA in ({3})
 
+
+
+
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 ";
 
@@ -406,6 +409,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         /// 1: Table name
         /// 2: Exclude tables
         /// 3: Exclude schemas
+        /// 4: Exclusions via EP
         /// Results:
         ///0 RC.CONSTRAINT_SCHEMA
         ///1 RC.CONSTRAINT_NAME	
@@ -462,11 +466,30 @@ and not kcu.TABLE_NAME in ({2})
 
 and not kcu.TABLE_SCHEMA in ({3})
 
+
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+        inner join sys.columns col
+	        on col.object_id = major_id
+	        and column_id = minor_id
+    
+	    WHERE epX.Name = 'ExcludeFrom{4}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = CCU.TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = CCU.TABLE_NAME
+	    AND col.Name = CCU.COLUMN_NAME
+    )
+
+
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 ";
         /// <summary>
         /// 0: Table Schema
         /// 1: Table name
+        /// 2: Exclusions via EP
         /// Results:
         ///0 RC.CONSTRAINT_SCHEMA
 	    ///1 RC.CONSTRAINT_NAME	
@@ -516,6 +539,23 @@ AND CCU.TABLE_NAME = '{1}'
 AND NOT 
 	(KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
 	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
+
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+        inner join sys.columns col
+	        on col.object_id = major_id
+	        and column_id = minor_id
+    
+	    WHERE epX.Name = 'ExcludeFrom{2}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = CCU.TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = CCU.TABLE_NAME
+	    AND col.Name = CCU.COLUMN_NAME
+    )
+
 
 
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
@@ -676,13 +716,16 @@ AND NOT EXISTS (
     SELECT 1 
     ,OBJECT_NAME(epX.major_id) 
 	    FROM sys.extended_properties  epX
-
+        inner join sys.columns col
+	        on col.object_id = major_id
+	        and column_id = minor_id
+    
 	    WHERE epX.Name = 'ExcludeFrom{4}' 
 	    AND 
 		    (epX.Value = 'true' OR epX.VALUE = 1)
-	    AND SCHEMA_NAME(epX.major_id) = C.TABLE_NAME
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = C.TABLE_SCHEMA
 	    AND OBJECT_NAME(epX.major_id) = C.TABLE_NAME
-	    AND OBJECT_NAME(epX.minor_ID) = C.COLUMN_NAME
+	    AND col.name = C.COLUMN_NAME
 
 )
 
@@ -728,10 +771,12 @@ AND NOT COLUMN_NAME IN
         /// 2: Field exclusions
         /// 3: Schema
         /// 4: Dimension prefix
+        /// 5: Exclude from EPs
         /// Fields: 
         /// 0: Column_name
         /// 1: Alias
         /// 2: Src Table
+        /// 
         /// </summary>
         public const string qryDimColumns = @"SELECT  C.COLUMN_NAME ,
     CASE WHEN /*T.TABLE_NAME IS NULL 
@@ -753,6 +798,24 @@ WHERE C.TABLE_NAME = '{0}'
 AND C.TABLE_SCHEMA = '{3}'
 AND NOT C.COLUMN_NAME IN
 ({2})
+
+
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+        inner join sys.columns col
+	        on col.object_id = major_id
+	        and column_id = minor_id
+    
+	    WHERE epX.Name = 'ExcludeFrom{5}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = C.TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = C.TABLE_NAME
+	    AND col.Name = C.COLUMN_NAME
+    )
+
 
 ORDER BY C.TABLE_NAME, C.COLUMN_NAME
 ";

@@ -8,15 +8,31 @@ using System.Data.SqlClient;
 using System.Data;
 using Aphelion.DW.StagingCreate.Schema;
 using Aphelion.DW.Shared;
+using System.ComponentModel;
 
 namespace Aphelion.DW.StagingCreate
 {
+
+    public class ProgressReport
+    {
+        public string Message = "";
+        public ProgressReport(string pMsg)
+        {
+            this.Message = pMsg;
+        }
+        public override string ToString()
+        {
+            return this.Message;
+        }
+        
+    }
+
     public class OLAPStarCreate
     {
         
         #region Properties
 
-       
+        public BackgroundWorker backWorker { get; set; }
         public Dictionary<string, SchemaTable> lstTS = new Dictionary<string, SchemaTable>();
         public Dictionary<string, string> lstViews = new Dictionary<string, string>();
 
@@ -36,7 +52,8 @@ namespace Aphelion.DW.StagingCreate
         SqlConnection destConn;
         public int intMaxRecursion;
         public string strFullCreate;
-
+        public string sErr  = "";
+        public string strFullResult = "";
         #endregion
 
         public OLAPStarCreate(
@@ -66,14 +83,40 @@ namespace Aphelion.DW.StagingCreate
 
         public void RunScript()
         {
+            
+            sErr = "";
             string[] strCommands = this.strFullCreate.Split( new string[] {"GO"}, StringSplitOptions.None);
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Running {0} scripts", strCommands.Length.ToString())));
+            }
+            int iLoop = 0;
             SqlCommand comm = new SqlCommand(this.strFullCreate, this.destConn);
             foreach (string strComm in strCommands)
             {
+                try
+                {
+                    if (++iLoop % 100 == 0)
+                    {
+                        if (backWorker != null)
+                        {
+                            backWorker.ReportProgress(0, new ProgressReport(string.Format("Running script {0} of {1}", iLoop, strCommands.Length.ToString())));
+                        }
+                    }
+                    comm.CommandText = strComm;
+                    comm.ExecuteNonQuery();
+                }
+                catch (System.Exception ex)
+                {
+                    sErr += strComm + "\n errored with: \n " + ex.Message + "\n\n";
+                    if (backWorker != null)
+                    {
+                        backWorker.ReportProgress(0, new ProgressReport(sErr));
+                    }
 
-                comm.CommandText = strComm;
-                comm.ExecuteNonQuery();
+                }
             }
+            this.strFullResult = this.sErr + "\n\n\n" + this.strFullCreate;
         }
 
         public string OutputScript()
@@ -158,6 +201,11 @@ GO
 
         public string BuildFactTableCreate(string pSchemaTable, string pTableName, string pFieldExcl, string pFactFilter, string pDimFilter)
         {
+
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Building fact {0}.{1}", pSchemaTable, pTableName)));
+            }
             string strCreate;
             string strExProps = "";
             //List<TableColumn> tcLst = new List<TableColumn>();
@@ -252,10 +300,10 @@ GO
             //Build related tables 
             if (sTableExcl != "") 
             {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExcl, pSchemaTable, pTableName, sTableExcl, "''"), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExcl, pSchemaTable, pTableName, sTableExcl, "''", "OLAP"), srcFactConn);
             
             } else {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName, "OLAP"), srcFactConn);
             }
             drRefs = comm.ExecuteReader();
             
@@ -345,6 +393,11 @@ GO
 
         public string BuildDimensionTableCreate(string pDimSchema, string pDimName, string pFieldExcl, string pDimFilter, bool pCoalesceFields)
         {
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Building dimension {0}.{1}", pDimSchema, pDimName)));
+            }
+            
             string strColumnProps = "";
             string strCreate = "";
             List<TableColumn> tcList = new List<TableColumn>();
@@ -357,7 +410,7 @@ GO
             SqlConnection srcDimConn = new SqlConnection(this.srcDBConn);
             srcDimConn.Open();
             comm = srcDimConn.CreateCommand();
-            comm.CommandText = string.Format(QC.qryDimColumns, pDimName, this.sDimTablePrefix, pFieldExcl, pDimSchema, this.sDimTablePrefix);
+            comm.CommandText = string.Format(QC.qryDimColumns, pDimName, this.sDimTablePrefix, pFieldExcl, pDimSchema, this.sDimTablePrefix, "OLAP");
             drRefs = comm.ExecuteReader();
              
             while (drRefs.Read())
@@ -377,12 +430,12 @@ GO
             comm = srcDimConn.CreateCommand();
             if (sTableExcl != "")
             {
-                comm.CommandText =string.Format(QC.qryReferenceQueryExcl, pDimSchema, pDimName, sTableExcl, "''") ;
+                comm.CommandText =string.Format(QC.qryReferenceQueryExcl, pDimSchema, pDimName, sTableExcl, "''", "OLAP") ;
 
             }
             else
             {
-                comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimName);
+                comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimName, "OLAP");
             }
             drRefs = comm.ExecuteReader();
             //drRefs.Read();
@@ -661,18 +714,23 @@ GO
             while (drProps.Read())
             {
                 #region Extended Properties
-                string sAlias = tcList.Find(item => item.TableName == pDimName
-                    && item.ColumnName == drProps.GetString(2)).Alias;
+                //Could be missing due to an exclusion property
+                if (tcList.Exists(item => item.TableName == pDimName
+                    && item.ColumnName == drProps.GetString(2)))
+                {
+                    string sAlias = tcList.Find(item => item.TableName == pDimName
+                        && item.ColumnName == drProps.GetString(2)).Alias;
 
-                strExProps += @"
+                    strExProps += @"
     GO    
 " + string.Format(QC.qryAddExtendedProperty
-                    , drProps.GetString(0)
-                    , drProps.GetString(1)
-                    , this.sSchema
-                    , pDimName
-                    , sAlias
-                    );
+                        , drProps.GetString(0)
+                        , drProps.GetString(1)
+                        , this.sSchema
+                        , pDimName
+                        , sAlias
+                        );
+                }
                 #endregion
             }
             drProps.Close();
@@ -687,6 +745,11 @@ GO
 
         public void AddDimensionFields(string pDimSchema, string pDimTable,string pDimAlias,  string pDimFilter, string pFieldExcl, ref List<TableColumn> tcList, ref string strJoins, ref string strExProps, string pRootDimName, int pHierarchyLevel = 1)
         {
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Building dimension {0}.{1} at level ", pDimSchema, pDimTable, pHierarchyLevel)));
+            }
+            
 
             #region Cols
             SqlCommand comm;
@@ -709,7 +772,7 @@ GO
                 srcDimConn.Open();
             }
             comm = srcDimConn.CreateCommand();
-            comm.CommandText = string.Format(QC.qryDimColumns, pDimTable, this.sDimTablePrefix, pFieldExcl, pDimSchema, this.sDimTablePrefix);
+            comm.CommandText = string.Format(QC.qryDimColumns, pDimTable, this.sDimTablePrefix, pFieldExcl, pDimSchema, this.sDimTablePrefix, "OLAP");
 
             #region refs
             //drRefs = comm.ExecuteReader();
@@ -795,11 +858,11 @@ GO
                 comm = srcDimConn.CreateCommand();
                 if (sTableExcl != "")
                 {
-                    comm.CommandText = string.Format(QC.qryReferenceQueryExcl, pDimSchema, pDimTable, sTableExcl, "''");
+                    comm.CommandText = string.Format(QC.qryReferenceQueryExcl, pDimSchema, pDimTable, sTableExcl, "''", "OLAP");
                 }
                 else
                 {
-                    comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimTable);
+                    comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimTable, "OLAP");
                 }
 
                 da = new SqlDataAdapter(comm);

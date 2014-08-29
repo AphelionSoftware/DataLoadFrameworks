@@ -18,6 +18,8 @@ namespace PW.CustomCodeConverter
 {
     public partial class ProgramForm : Form
     {
+
+        OLAPStarCreate scOLAP;
         public TabularPopulateStarFromViews TPR;
         public MultiDimensionalReader mdrCube = new MultiDimensionalReader();
         public TabularXMLAWriter txwCube = new TabularXMLAWriter();
@@ -133,10 +135,18 @@ namespace PW.CustomCodeConverter
             //excel.CreateExcelFromSubset(sDB);
         }
 
+        /// <summary>
+        /// Actually btnOLAP
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStage_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
-            OLAPStarCreate scOLAP = new OLAPStarCreate(
+            this.txtResults.Text = "Running in the background.....";
+            backgroundWorkerOLAP.RunWorkerAsync();
+            /*
+             * OLAPStarCreate scOLAP = new OLAPStarCreate(
                 this.txtSrcConn.Text
                 , this.txtDestConn.Text
                 , this.txtSchema.Text
@@ -153,7 +163,7 @@ namespace PW.CustomCodeConverter
 
             this.txtResults.Text = scOLAP.OutputScript();
             scOLAP.RunScript();
-
+            */
         }
 
         private void btnStaging_Click(object sender, EventArgs e)
@@ -326,5 +336,55 @@ namespace PW.CustomCodeConverter
             Properties.Settings.Default.Save(); 
             
         }
+
+        /// <summary>
+        /// Creating OLAP Schema
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerOLAP_DoWork(object sender, DoWorkEventArgs e)
+        {
+            this.scOLAP = new OLAPStarCreate(
+                this.txtSrcConn.Text
+                , this.txtDestConn.Text
+                , this.txtSchema.Text
+                , this.txtFactPrefix.Text
+                , this.txtDimPrefix.Text
+                , this.txtFieldExcl.Text
+                , this.txtTableExcl.Text
+                , this.txtFactFilter.Text
+                , this.txtDimFilter.Text
+                , this.chkSchema.Checked
+                );
+            scOLAP.backWorker = this.backgroundWorkerOLAP;
+            scOLAP.intMaxRecursion = (int)this.numMaxRecurse.Value;
+            scOLAP.CreateScript();
+            scOLAP.OutputScript();
+            scOLAP.RunScript();
+
+            
+        }
+
+        private void backgroundWorkerOLAP_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            this.txtResults.Text = scOLAP.strFullResult;
+            
+        }
+
+        private void backgroundWorkerOLAP_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //this.txtResults.Text = "Update";
+            this.txtResults.Text = e.UserState.ToString();
+        }
+
+        private void btnCancelOLAP_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorkerOLAP.IsBusy)
+            {
+                backgroundWorkerOLAP.CancelAsync();
+            }
+        }
+       
     }
 }
