@@ -31,50 +31,12 @@ namespace OpenXML
 
         private void btnInsertTopLine_Click(object sender, EventArgs e)
         {
-            this.InsertLine(this.txtFileLocation.Text, this.txtSheet.Text, this.txtText.Text);
+            //this.InsertLine(this.txtFileLocation.Text, this.txtSheet.Text, this.txtText.Text);
+            this.InsertTwoLinesIntoExcel(this.txtFileLocation.Text, this.txtSheet.Text, this.txtText.Text, txtHeadings.Text);
         }
 
 
-        private void InsertLine(string pFileLocation, string pSheetName, string pText)
-        {
-
-            // Open the document for editing.
-            using (SpreadsheetDocument document = SpreadsheetDocument.Open(pFileLocation, true))
-            {
-                IEnumerable<Sheet> sheets = document.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == pSheetName);
-                if (sheets.Count() == 0)
-                {
-                    return;
-                }
-
-                WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheets.First().Id);
-                Worksheet worksheet = worksheetPart.Worksheet;
-
-                IEnumerable<Row> rows = worksheet.Descendants<Row>();
-                uint newRowIndex = 0;
-                foreach (Row row in rows)
-                {
-                    newRowIndex = System.Convert.ToUInt32(row.RowIndex.Value + 1);
-
-                    foreach (Cell cell in row.Elements<Cell>())
-                    {
-                        // Update the references for reserved cells.
-                        string cellReference = cell.CellReference.Value;
-                        cell.CellReference = new StringValue(cellReference.Replace(row.RowIndex.Value.ToString(), newRowIndex.ToString()));
-                    }
-                    // Update the row index.
-                    row.RowIndex = new UInt32Value(newRowIndex);
-                }
-
-
-               // Cell cellA1 = InsertCellInWorksheet("A", 1, worksheetPart);
-                //cellA1.CellValue = new CellValue(pText);
-                //cellA1.DataType = new EnumValue<CellValues>(CellValues.SharedString);
-
-                worksheet.Save();
-            }
-        }
-
+       
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -116,10 +78,34 @@ namespace OpenXML
 
         private int InsertTwoLinesIntoExcel( string pFileLocation,   string pSheetName, string strNotes, string strLstHeadings)
         {
-            DateTime dTime = DateTime.Now;
-           
+            #region Create file if it doesn't exist
+            System.IO.FileInfo fi = new System.IO.FileInfo(pFileLocation);
+            
+            if (!fi.Exists)
+            {
+                SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(pFileLocation, SpreadsheetDocumentType.Workbook);
+                WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+                workbookpart.Workbook = new Workbook();
+                WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
 
-            string cl = "";
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+                Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+                Sheet sheet = new Sheet() { Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = pSheetName};
+                sheets.Append(sheet);
+
+
+                /*SharedStringTablePart shareStringTablePart = workbookpart.AddNewPart<SharedStringTablePart>();
+
+                shareStringTablePart.SharedStringTable = new SharedStringTable();
+                //shareStringTablePart.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text(text)));
+                shareStringTablePart.SharedStringTable.Save();
+                */
+                workbookpart.Workbook.Save();
+                spreadsheetDocument.Close();
+            }
+            #endregion 
+            DateTime dTime = DateTime.Now;
+           string cl = "";
             uint iRow = (uint)1;
             int index;
             Cell cell;
@@ -151,19 +137,23 @@ namespace OpenXML
                      cl = "A1";
                     SharedStringTablePart shareStringPartHeading;
                     if (document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
-                    {
+                    {   
                         shareStringPartHeading = document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
                     }
                     else
                     {
                         shareStringPartHeading = document.WorkbookPart.AddNewPart<SharedStringTablePart>();
                     }
+                    if (shareStringPartHeading.SharedStringTable == null)
+                    {
+                        shareStringPartHeading.SharedStringTable = new SharedStringTable();
+                    }
                     index = shareStringPartHeading.SharedStringTable.Count();
                     shareStringPartHeading.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text( strNotes)));
                     shareStringPartHeading.SharedStringTable.Save();
 
 
-                    cellReference = cl + iRow;
+                    cellReference = cl;
                      
                     Cell refCellHeading = null;
 
@@ -172,7 +162,20 @@ namespace OpenXML
                     //}
                     cell.CellValue = new CellValue(index.ToString());
                     cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+
+                    worksheet.Save();
 #endregion
+
+                    iRow++;
+                    if (sheetData.Elements<Row>().Where(r => r.RowIndex == iRow).Count() != 0)
+                    {
+                        row = sheetData.Elements<Row>().Where(r => r.RowIndex == iRow).First();
+                    }
+                    else
+                    {
+                        row = new Row() { RowIndex = iRow };
+                        sheetData.Append(row);
+                    }
 
                 string [] strArrHeadings = strLstHeadings.Split(',');
                     for (int idx = 0; idx < strArrHeadings.Length; idx++)
@@ -202,10 +205,10 @@ namespace OpenXML
 
                         // Insert the text into the SharedStringTablePart.
 
-                        index = shareStringPart.SharedStringTable.Count();
+                        /*index = shareStringPart.SharedStringTable.Count();
                         shareStringPart.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text(Convert.ToString(strArrHeadings[idx]))));
                         shareStringPart.SharedStringTable.Save();
-
+                        */
 
                         cellReference = cl + iRow;
                      
@@ -214,9 +217,11 @@ namespace OpenXML
                         cell = new Cell() { CellReference = cellReference };
                         row.InsertBefore(cell, refCell);
                         //}
-                        cell.CellValue = new CellValue(index.ToString());
-                        cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
-                        
+                        //cell.CellValue = new CellValue(index.ToString());
+                        //cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+
+                        cell.DataType = CellValues.InlineString;
+                        cell.InlineString = new InlineString() { Text = new Text(strArrHeadings[idx]) };
 
                     }
                 worksheet.Save();
@@ -350,6 +355,8 @@ namespace OpenXML
              
         }
 
+
        
+
     }
 }

@@ -14,7 +14,7 @@ SELECT TOP 100 CAST([p].[PeopleReachedValuesID] AS NVARCHAR(MAX)),CAST([Activity
       <Value Profile="(Default)">Sheet1</Value>
     </Setting>
     <Setting Name="txtFileLocation_Text" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Dropbox (PW South Africa)\Clients\Meerkat\CARE Somalia\Data\StagingTemplates\Templates\Staging.Activity.xlsx</Value>
+      <Value Profile="(Default)">C:\Dropbox (Data)\Clients\Meerkat\CARE Somalia\Data\StagingTemplates\Templates\Staging.Activity.xlsx</Value>
     </Setting>
     <Setting Name="txtExcel_Text" Type="System.String" Scope="User">
       <Value Profile="(Default)">SELECT * FROM [Sheet1$A2:XFD]</Value>
