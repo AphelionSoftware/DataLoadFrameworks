@@ -12,7 +12,7 @@ namespace PW.CustomCodeConverter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -602,6 +602,42 @@ namespace PW.CustomCodeConverter.Properties {
             }
             set {
                 this["chkErrorsDropDB_Checked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Left")]
+        public global::System.Windows.Forms.HorizontalAlignment txtDestConnOLAP_Text {
+            get {
+                return ((global::System.Windows.Forms.HorizontalAlignment)(this["txtDestConnOLAP_Text"]));
+            }
+            set {
+                this["txtDestConnOLAP_Text"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True\r\n")]
+        public string txtDestConn2_Text {
+            get {
+                return ((string)(this["txtDestConn2_Text"]));
+            }
+            set {
+                this["txtDestConn2_Text"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public decimal numMaxRecurse_Value {
+            get {
+                return ((decimal)(this["numMaxRecurse_Value"]));
+            }
+            set {
+                this["numMaxRecurse_Value"] = value;
             }
         }
     }

@@ -148,6 +148,7 @@ namespace PW.CustomCodeConverter
                 , this.txtDimFilter.Text
                 , this.chkSchema.Checked
                 );
+            scOLAP.intMaxRecursion = (int)this.numMaxRecurse.Value;
             scOLAP.CreateScript();
 
             this.txtResults.Text = scOLAP.OutputScript();

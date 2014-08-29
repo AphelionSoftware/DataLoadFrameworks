@@ -147,5 +147,15 @@
     <Setting Name="chkErrorsDropDB_Checked" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="txtDestConnOLAP_Text" Type="System.Windows.Forms.HorizontalAlignment" Scope="User">
+      <Value Profile="(Default)">Left</Value>
+    </Setting>
+    <Setting Name="txtDestConn2_Text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True
+</Value>
+    </Setting>
+    <Setting Name="numMaxRecurse_Value" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -5,6 +5,7 @@ using System.Text;
 //using System.Threading.Tasks;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Data;
 using Aphelion.DW.StagingCreate.Schema;
 using Aphelion.DW.Shared;
 
@@ -15,6 +16,7 @@ namespace Aphelion.DW.StagingCreate
         
         #region Properties
 
+       
         public Dictionary<string, SchemaTable> lstTS = new Dictionary<string, SchemaTable>();
         public Dictionary<string, string> lstViews = new Dictionary<string, string>();
 
@@ -30,8 +32,9 @@ namespace Aphelion.DW.StagingCreate
         public bool bUseSchemaFilter;
         SqlConnection srcConn;
         SqlConnection srcFactConn;
-        //SqlConnection srcDimConn;
+        SqlConnection srcDimConn;
         SqlConnection destConn;
+        public int intMaxRecursion;
         public string strFullCreate;
 
         #endregion
@@ -690,194 +693,244 @@ GO
             SqlDataReader drRefs;
 
             //Build field list
-            SqlConnection srcDimConn = new SqlConnection(this.srcDBConn);
-            
+            //We are currently using multiple connections instead of pooling as data readers need their own connecton
+            //Must replace with data tables
+            /*SqlConnection srcDimConn = new SqlConnection(this.srcDBConn);
             srcDimConn.Open();
+            */
+            if (srcDimConn == null)
+            {
+                srcDimConn = new SqlConnection(this.srcDBConn);
+                
+            }
+
+            if (srcDimConn.State == System.Data.ConnectionState.Closed)
+            {
+                srcDimConn.Open();
+            }
             comm = srcDimConn.CreateCommand();
             comm.CommandText = string.Format(QC.qryDimColumns, pDimTable, this.sDimTablePrefix, pFieldExcl, pDimSchema, this.sDimTablePrefix);
-            if (pDimTable.Contains("Region"))
+
+            #region refs
+            //drRefs = comm.ExecuteReader();
+            SqlDataAdapter da = new SqlDataAdapter(comm);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
             {
-            }
-            drRefs = comm.ExecuteReader();
-            if (drRefs.HasRows)
-            {
-                while (drRefs.Read())
+                //while (drRefs.Read())
+                foreach(DataRow dr in dt.Rows)
                 {
-                    var Zero = drRefs.GetString(0);
-                    var One = drRefs.GetString(1);
-                    var Two = drRefs.GetString(2);
-                    if (!(tcList.Exists(item => item.ColumnName == drRefs.GetString(0)
-                            && item.TableName == drRefs.GetString(2)
+                    var Zero = dr[0].ToString();
+                    var One = dr[1].ToString();
+                    var Two = dr[2].ToString();
+                    string sColumn = dr[0].ToString();
+                    string sNewTable = dr[2].ToString();
+                    string sAlias = dr[1].ToString();
+                    if (!(tcList.Exists(item => item.ColumnName == sColumn
+                            && item.TableName == sNewTable
                         )))
                     {
-                        if (!tcList.Exists(item => item.ColumnName == drRefs.GetString(1)))
+                        if (!tcList.Exists(item => item.ColumnName == sAlias))
                         {
-                            TableColumn TC = new TableColumn(pDimTable, drRefs.GetString(0), drRefs.GetString(1), pHierarchyLevel);
+                            TableColumn TC = new TableColumn(pDimTable, sColumn, sAlias, pHierarchyLevel);
                             TC.TableAlias = pDimAlias;
                             tcList.Add(TC);
                         }
                         else
                         {
+                            
                             //Adding to the list of columns we may want to coalesce in the view
-                            if (!(tcList.Exists(item => item.ColumnName == drRefs.GetString(0)
-                            && item.TableName == drRefs.GetString(2)
+                            if (!(tcList.Exists(item => item.ColumnName ==sColumn
+                            && item.TableName == sNewTable
                             && item.TableAlias == pDimAlias
                             )))
                             {
-                                TableColumn TC = new TableColumn(pDimTable, drRefs.GetString(0), drRefs.GetString(1), pHierarchyLevel);
+                                TableColumn TC = new TableColumn(pDimTable,sColumn, sAlias, pHierarchyLevel);
                                 TC.TableAlias = pDimAlias;
 
-                                tcList.Find(item => item.ColumnName == drRefs.GetString(0) )
+                                tcList.Find(item => item.ColumnName ==sColumn )
                                 .lstDuplicatedTableColumns.Add(TC);
+
+                                if (tcList.Exists(item => item.ColumnName == sColumn))
+                                {
+                                    //Here solely because watches can;t read lambas
+
+                                    var x = tcList.Find(item => item.ColumnName == sColumn).lstDuplicatedTableColumns;
+                                }
                             }
                         }
                     }
                     else
                     {
                         //Adding to the list of columns we may want to coalesce in the view
-                        if (!(tcList.Exists(item => item.ColumnName == drRefs.GetString(0)
-                            && item.TableName == drRefs.GetString(2)
+                        if (!(tcList.Exists(item => item.ColumnName == dr[0].ToString()
+                            && item.TableName == dr[2].ToString()
                             && item.TableAlias == pDimAlias
                         )))
                         {
-                            TableColumn TC = new TableColumn(pDimTable, drRefs.GetString(0), drRefs.GetString(1), pHierarchyLevel);
+                            TableColumn TC = new TableColumn(pDimTable, dr[0].ToString(), dr[1].ToString(), pHierarchyLevel);
                             TC.TableAlias = pDimAlias;
 
-                            tcList.Find(item => item.ColumnName == drRefs.GetString(0)
-                            && item.TableName == drRefs.GetString(2))
+                            tcList.Find(item => item.ColumnName == dr[0].ToString()
+                            && item.TableName == dr[2].ToString())
                             .lstDuplicatedTableColumns.Add(TC);
                         }
                     }
-                    //strColumnList += string.Format("\n\t,{0}", drRefs.GetString(0));
+                    //strColumnList += string.Format("\n\t,{0}", dr[0));
                     //drRefs.Read();
                 }
 
             }
+            #endregion
 
-            drRefs.Close();
+            //drRefs.Close();
             
             #endregion
 
             #region refs
-            //Build related tables 
-            comm = srcDimConn.CreateCommand();
-            if (sTableExcl != "")
+            if (pHierarchyLevel <= this.intMaxRecursion && pDimTable != pRootDimName)
             {
-                comm.CommandText = string.Format(QC.qryReferenceQueryExcl, pDimSchema, pDimTable, sTableExcl, "''") ;
-            }
-            else
-            {
-                comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimTable);
-            }
-            drRefs = comm.ExecuteReader();
-            //drRefs.Read();
-            string sColumnName = "";
-            string sDimTable = "";
-            string sDimSchema = "";
-            string sJoinTable = "";
-            string sJoinSchema = "";
-            string strChildJoins = "";
-            string strAddJoins = "";
-            string sJoinAlias = "";
-            string sJoinAliasHash = "";
-            string sConstraintSchema = "";
-            string sConstraintName = "";
-            string sSourceAlias = "";
-            string sAltColumn = "";
-
-            while (drRefs.Read())
-            {
-
-                if (sDimSchema != drRefs.GetString(2) || 
-                    sDimTable != drRefs.GetString(3) ||
-                    sJoinSchema != drRefs.GetString(5) ||
-                    sJoinTable != drRefs.GetString(6) ||
-                    sConstraintSchema != drRefs.GetString(0) ||
-                    sConstraintName != drRefs.GetString(1) 
-                    )
-
+                //Build related tables 
+                comm = srcDimConn.CreateCommand();
+                if (sTableExcl != "")
                 {
-                    //strJoins += strChildJoins;
-                    strChildJoins = "";
-                    strJoins += strAddJoins;
-                    strAddJoins = "";
-                    sDimSchema = drRefs.GetString(2);
-                    sDimTable = drRefs.GetString(3);
-                    sColumnName = drRefs.GetString(4);
-                    sJoinSchema = drRefs.GetString(5);
-                    sJoinTable = drRefs.GetString(6);
-                    sConstraintSchema = drRefs.GetString(0);
-                    sConstraintName = drRefs.GetString(1);
-                    sAltColumn = drRefs.GetString(7);
-                    
-                    foreach (TableColumn TC in tcList.FindAll(item => item.TableName == sJoinTable
-                        && item.ColumnName == sColumnName
-                            ))
-                    {
-                        tcList[tcList.FindIndex(item => item.ColumnName == TC.ColumnName
-                            && item.TableName == sJoinTable
-                            )].TableAlias = sJoinAlias;
-                    }
-
-                    sSourceAlias = tcList.First(item => item.TableName == drRefs.GetString(3)).TableAlias;
-
-                    List<TableColumn> test = tcList.FindAll(item => item.TableName == drRefs.GetString(3));
-
-                    //Prefixing with the source alias we're joining from, for queries that may go to the same table multiple times, e.g. Active
-                    //sJoinAlias = sSourceAlias + "_" + sJoinTable + "_" + sColumnName;
-                    ///TODO: Check that we're using the correct alias
-                    sJoinAlias = pDimAlias + "_" + sJoinTable + "_" + sColumnName;
- 
-                    sJoinAliasHash = sJoinTable + "_" + Extensions.HashFNV1a_64_ABS(sJoinAlias).ToString();
-
-                    AddDimensionFields(sJoinSchema, sJoinTable, sJoinAlias, sDimFilter, pFieldExcl, ref tcList, ref strChildJoins, ref strExProps, pRootDimName, pHierarchyLevel + 1);
-
-
-                    if (drRefs.GetString(8) == "YES")
-                    {
-                        strJoins += string.Format(QC.qryInterLeftJoins
-                            , sJoinSchema
-                            , /*drRefs.GetString(3)*/ /*sSourceAlias*/pDimTable + "_" + Extensions.HashFNV1a_64_ABS(pDimAlias).ToString()
-                            , sColumnName
-                            , sJoinTable
-                            , sAltColumn 
-                            , sJoinAliasHash //Table Alias
-                            , strChildJoins
-                            );
-                    }
-                    else
-                    {
-                        strJoins += string.Format(QC.qryInterJoins
-                            , sJoinSchema
-                            , /*drRefs.GetString(3)*/ /*sSourceAlias*/pDimTable + "_" + Extensions.HashFNV1a_64_ABS(pDimAlias).ToString()
-                            , sColumnName
-                            , sJoinTable
-                            , sAltColumn 
-                            , sJoinAliasHash //Table Alias
-                            , strChildJoins
-                            );
-                    }
-                    
+                    comm.CommandText = string.Format(QC.qryReferenceQueryExcl, pDimSchema, pDimTable, sTableExcl, "''");
                 }
                 else
                 {
-                    strAddJoins += string.Format(QC.qryJoinsAnd
-                        , drRefs.GetString(3)
-                        , drRefs.GetString(4)
-                        , drRefs.GetString(6)
-                        , drRefs.GetString(7)
-                        );
-                    
+                    comm.CommandText = string.Format(QC.qryReferenceQuery, pDimSchema, pDimTable);
                 }
 
+                da = new SqlDataAdapter(comm);
+                dt = new DataTable();
+                da.Fill(dt);
+                //drRefs = comm.ExecuteReader();
                 //drRefs.Read();
-            }
-            //Close up
-            //strJoins += strChildJoins;
-            strJoins += strAddJoins;
-            drRefs.Close();
-            srcDimConn.Close();
+                string sColumnName = "";
+                string sDimTable = "";
+                string sDimSchema = "";
+                string sJoinTable = "";
+                string sJoinSchema = "";
+                string strChildJoins = "";
+                string strAddJoins = "";
+                string sJoinAlias = "";
+                string sJoinAliasHash = "";
+                string sConstraintSchema = "";
+                string sConstraintName = "";
+                string sSourceAlias = "";
+                string sAltColumn = "";
 
+                //while (drRefs.Read())
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    if (sDimSchema != dr[2].ToString() ||
+                        sDimTable != dr[3].ToString() ||
+                        sJoinSchema != dr[5].ToString() ||
+                        sJoinTable != dr[6].ToString() ||
+                        sConstraintSchema != dr[0].ToString() ||
+                        sConstraintName != dr[1].ToString()
+                        )
+                    {
+                        //strJoins += strChildJoins;
+                        strChildJoins = "";
+                        strJoins += strAddJoins;
+                        strAddJoins = "";
+                        sDimSchema = dr[2].ToString();
+                        sDimTable = dr[3].ToString();
+                        sColumnName = dr[4].ToString();
+                        sJoinSchema = dr[5].ToString();
+                        sJoinTable = dr[6].ToString();
+                        sConstraintSchema = dr[0].ToString();
+                        sConstraintName = dr[1].ToString();
+                        sAltColumn = dr[7].ToString();
+
+                        foreach (TableColumn TC in tcList.FindAll(item => item.TableName == sJoinTable
+                            && item.ColumnName == sColumnName
+                                ))
+                        {
+
+                            //Don't rename for root 
+                            if (sJoinTable != pRootDimName && TC.TableAlias == sJoinTable)
+                            {
+                                tcList[tcList.FindIndex(item => item.ColumnName == TC.ColumnName
+                                    && item.TableName == sJoinTable
+
+                                    )].TableAlias = sJoinAlias;
+                            }
+                        }
+
+                        sSourceAlias = tcList.First(item => item.TableName == dr[3].ToString()).TableAlias;
+
+                        List<TableColumn> test = tcList.FindAll(item => item.TableName == dr[3].ToString());
+
+                        //Prefixing with the source alias we're joining from, for queries that may go to the same table multiple times, e.g. Active
+                        //sJoinAlias = sSourceAlias + "_" + sJoinTable + "_" + sColumnName;
+                        ///TODO: Check that we're using the correct alias
+                        sJoinAlias = pDimAlias + "_" + sJoinTable + "_" + sColumnName;
+
+                        sJoinAliasHash = sJoinTable + "_" + Extensions.HashFNV1a_64_ABS(sJoinAlias).ToString();
+
+                        /*if (pHierarchyLevel <= this.intMaxRecursion)
+                        //{
+                        */
+                        //if (sJoinTable != pRootDimName && !sJoinAlias.Contains(sJoinTable)) { 
+                        AddDimensionFields(sJoinSchema, sJoinTable, sJoinAlias, sDimFilter, pFieldExcl, ref tcList, ref strChildJoins, ref strExProps, pRootDimName, pHierarchyLevel + 1);
+                        //}
+                        //else
+                        //{
+                        //    var x = pHierarchyLevel;
+                        //}
+
+                        if (dr[8].ToString() == "YES")
+                        {
+                            strJoins += string.Format(QC.qryInterLeftJoins
+                                , sJoinSchema
+                                , /*drRefs.GetString(3)*/ /*sSourceAlias*/pDimTable + "_" + Extensions.HashFNV1a_64_ABS(pDimAlias).ToString()
+                                , sColumnName
+                                , sJoinTable
+                                , sAltColumn
+                                , sJoinAliasHash //Table Alias
+                                , strChildJoins
+                                );
+                        }
+                        else
+                        {
+                            strJoins += string.Format(QC.qryInterJoins
+                                , sJoinSchema
+                                , /*drRefs.GetString(3)*/ /*sSourceAlias*/pDimTable + "_" + Extensions.HashFNV1a_64_ABS(pDimAlias).ToString()
+                                , sColumnName
+                                , sJoinTable
+                                , sAltColumn
+                                , sJoinAliasHash //Table Alias
+                                , strChildJoins
+                                );
+                        }
+
+                    }
+                    else
+                    {
+                        strAddJoins += string.Format(QC.qryJoinsAnd
+                            , dr[3].ToString()
+                            , dr[4].ToString()
+                            , dr[6].ToString()
+                            , dr[7].ToString()
+                            );
+
+                    }
+
+                    //drRefs.Read();
+                }
+                //Close up
+                //strJoins += strChildJoins;
+                strJoins += strAddJoins;
+                //drRefs.Close();
+                srcDimConn.Close();
+            } else
+            {
+                var x = pHierarchyLevel;
+            }
             #endregion
             SqlConnection srcPropConn = new SqlConnection(this.srcDBConn);
             srcPropConn.Open();

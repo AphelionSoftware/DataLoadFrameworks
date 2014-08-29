@@ -120,6 +120,7 @@
             this.label55 = new System.Windows.Forms.Label();
             this.txtErrorResult = new System.Windows.Forms.TextBox();
             this.btnGenerateErrors = new System.Windows.Forms.Button();
+            this.label56 = new System.Windows.Forms.Label();
             this.chkExInlMeasures = new System.Windows.Forms.CheckBox();
             this.txtExDim = new System.Windows.Forms.TextBox();
             this.txtExDimValue = new System.Windows.Forms.TextBox();
@@ -129,6 +130,7 @@
             this.txtExTemplate = new System.Windows.Forms.TextBox();
             this.txtExDB = new System.Windows.Forms.TextBox();
             this.txtExServer = new System.Windows.Forms.TextBox();
+            this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
             this.chkSchema = new System.Windows.Forms.CheckBox();
             this.txtDimFilter = new System.Windows.Forms.TextBox();
             this.txtFactFilter = new System.Windows.Forms.TextBox();
@@ -183,6 +185,7 @@
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).BeginInit();
             this.SuspendLayout();
             // 
             // label23
@@ -266,7 +269,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(9, 10);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1103, 676);
@@ -296,7 +299,7 @@
             this.tabPage5.Controls.Add(this.label12);
             this.tabPage5.Controls.Add(this.txtExServer);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1095, 650);
             this.tabPage5.TabIndex = 4;
@@ -306,7 +309,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(399, 252);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(316, 23);
             this.button3.TabIndex = 96;
@@ -442,9 +445,9 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.txtsrcConnectionString);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(1095, 650);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CubeConverter";
@@ -664,6 +667,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.numMaxRecurse);
+            this.tabPage2.Controls.Add(this.label56);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.label49);
@@ -689,9 +694,9 @@
             this.tabPage2.Controls.Add(this.txtSchema);
             this.tabPage2.Controls.Add(this.txtDestConn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1095, 650);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CreateOLAPSchema";
@@ -699,8 +704,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(344, 358);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(344, 393);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(316, 19);
             this.button2.TabIndex = 68;
@@ -710,8 +715,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(137, 358);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(137, 393);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(189, 19);
             this.button1.TabIndex = 67;
@@ -730,8 +735,8 @@
             // 
             // txtResults
             // 
-            this.txtResults.Location = new System.Drawing.Point(20, 381);
-            this.txtResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtResults.Location = new System.Drawing.Point(20, 416);
+            this.txtResults.Margin = new System.Windows.Forms.Padding(2);
             this.txtResults.Multiline = true;
             this.txtResults.Name = "txtResults";
             this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -785,8 +790,8 @@
             // 
             // btnStage
             // 
-            this.btnStage.Location = new System.Drawing.Point(20, 358);
-            this.btnStage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStage.Location = new System.Drawing.Point(20, 393);
+            this.btnStage.Margin = new System.Windows.Forms.Padding(2);
             this.btnStage.Name = "btnStage";
             this.btnStage.Size = new System.Drawing.Size(94, 19);
             this.btnStage.TabIndex = 50;
@@ -849,7 +854,7 @@
             this.tabPage3.Controls.Add(this.txtStgSchema);
             this.tabPage3.Controls.Add(this.txtStgDB);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1095, 650);
             this.tabPage3.TabIndex = 2;
@@ -859,7 +864,7 @@
             // btnStgCreateDB
             // 
             this.btnStgCreateDB.Location = new System.Drawing.Point(611, 349);
-            this.btnStgCreateDB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStgCreateDB.Margin = new System.Windows.Forms.Padding(2);
             this.btnStgCreateDB.Name = "btnStgCreateDB";
             this.btnStgCreateDB.Size = new System.Drawing.Size(197, 22);
             this.btnStgCreateDB.TabIndex = 84;
@@ -898,7 +903,7 @@
             // btnCreateStgIgnorePrefixes
             // 
             this.btnCreateStgIgnorePrefixes.Location = new System.Drawing.Point(14, 349);
-            this.btnCreateStgIgnorePrefixes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateStgIgnorePrefixes.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateStgIgnorePrefixes.Name = "btnCreateStgIgnorePrefixes";
             this.btnCreateStgIgnorePrefixes.Size = new System.Drawing.Size(197, 22);
             this.btnCreateStgIgnorePrefixes.TabIndex = 75;
@@ -909,7 +914,7 @@
             // txtStageScript
             // 
             this.txtStageScript.Location = new System.Drawing.Point(14, 388);
-            this.txtStageScript.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStageScript.Margin = new System.Windows.Forms.Padding(2);
             this.txtStageScript.Multiline = true;
             this.txtStageScript.Name = "txtStageScript";
             this.txtStageScript.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -919,7 +924,7 @@
             // btnStaging
             // 
             this.btnStaging.Location = new System.Drawing.Point(14, 319);
-            this.btnStaging.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStaging.Margin = new System.Windows.Forms.Padding(2);
             this.btnStaging.Name = "btnStaging";
             this.btnStaging.Size = new System.Drawing.Size(197, 19);
             this.btnStaging.TabIndex = 72;
@@ -998,7 +1003,7 @@
             this.tabPage4.Controls.Add(this.txtTblSrcConn);
             this.tabPage4.Controls.Add(this.txtTblSchema);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1095, 650);
             this.tabPage4.TabIndex = 3;
@@ -1008,7 +1013,7 @@
             // btnProcess
             // 
             this.btnProcess.Location = new System.Drawing.Point(140, 284);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(2);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(94, 19);
             this.btnProcess.TabIndex = 98;
@@ -1073,7 +1078,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(22, 315);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(1052, 228);
@@ -1082,7 +1087,7 @@
             // btnTblCreateCube
             // 
             this.btnTblCreateCube.Location = new System.Drawing.Point(23, 284);
-            this.btnTblCreateCube.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTblCreateCube.Margin = new System.Windows.Forms.Padding(2);
             this.btnTblCreateCube.Name = "btnTblCreateCube";
             this.btnTblCreateCube.Size = new System.Drawing.Size(94, 19);
             this.btnTblCreateCube.TabIndex = 80;
@@ -1102,21 +1107,21 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.label54);
-            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
             this.tabPage6.Controls.Add(this.btnErrorCreate);
-            this.tabPage6.Controls.Add(this.chkErrorsDropDB);
             this.tabPage6.Controls.Add(this.label53);
-            this.tabPage6.Controls.Add(this.txtErrorsSchema);
             this.tabPage6.Controls.Add(this.label55);
-            this.tabPage6.Controls.Add(this.txtErrorStagingSchema);
-            this.tabPage6.Controls.Add(this.txtErrorDB);
             this.tabPage6.Controls.Add(label52);
-            this.tabPage6.Controls.Add(this.txtErrorStg);
             this.tabPage6.Controls.Add(label51);
             this.tabPage6.Controls.Add(this.txtErrorResult);
             this.tabPage6.Controls.Add(this.btnGenerateErrors);
-            this.tabPage6.Controls.Add(this.txtErrorSrc);
             this.tabPage6.Controls.Add(label50);
+            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
+            this.tabPage6.Controls.Add(this.chkErrorsDropDB);
+            this.tabPage6.Controls.Add(this.txtErrorsSchema);
+            this.tabPage6.Controls.Add(this.txtErrorStagingSchema);
+            this.tabPage6.Controls.Add(this.txtErrorDB);
+            this.tabPage6.Controls.Add(this.txtErrorStg);
+            this.tabPage6.Controls.Add(this.txtErrorSrc);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(1095, 650);
@@ -1137,7 +1142,7 @@
             // btnErrorCreate
             // 
             this.btnErrorCreate.Location = new System.Drawing.Point(156, 332);
-            this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(2);
             this.btnErrorCreate.Name = "btnErrorCreate";
             this.btnErrorCreate.Size = new System.Drawing.Size(94, 19);
             this.btnErrorCreate.TabIndex = 99;
@@ -1166,7 +1171,7 @@
             // txtErrorResult
             // 
             this.txtErrorResult.Location = new System.Drawing.Point(28, 363);
-            this.txtErrorResult.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtErrorResult.Margin = new System.Windows.Forms.Padding(2);
             this.txtErrorResult.Multiline = true;
             this.txtErrorResult.Name = "txtErrorResult";
             this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1176,13 +1181,22 @@
             // btnGenerateErrors
             // 
             this.btnGenerateErrors.Location = new System.Drawing.Point(29, 332);
-            this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerateErrors.Name = "btnGenerateErrors";
             this.btnGenerateErrors.Size = new System.Drawing.Size(122, 19);
             this.btnGenerateErrors.TabIndex = 84;
             this.btnGenerateErrors.Text = "Create Error DB script";
             this.btnGenerateErrors.UseVisualStyleBackColor = true;
             this.btnGenerateErrors.Click += new System.EventHandler(this.btnGenerateErrors_Click);
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(5, 359);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(73, 13);
+            this.label56.TabIndex = 70;
+            this.label56.Text = "Max recursion";
             // 
             // chkExInlMeasures
             // 
@@ -1267,6 +1281,15 @@
             this.txtExServer.Size = new System.Drawing.Size(935, 20);
             this.txtExServer.TabIndex = 76;
             this.txtExServer.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExServer_Text;
+            // 
+            // numMaxRecurse
+            // 
+            this.numMaxRecurse.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::PW.CustomCodeConverter.Properties.Settings.Default, "numMaxRecurse_Value", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numMaxRecurse.Location = new System.Drawing.Point(137, 359);
+            this.numMaxRecurse.Name = "numMaxRecurse";
+            this.numMaxRecurse.Size = new System.Drawing.Size(120, 20);
+            this.numMaxRecurse.TabIndex = 71;
+            this.numMaxRecurse.Value = global::PW.CustomCodeConverter.Properties.Settings.Default.numMaxRecurse_Value;
             // 
             // chkSchema
             // 
@@ -1361,13 +1384,14 @@
             // 
             // txtDestConn
             // 
-            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("TextAlign", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConn_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("TextAlign", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConnOLAP_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConn2_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtDestConn.Location = new System.Drawing.Point(136, 36);
             this.txtDestConn.Name = "txtDestConn";
             this.txtDestConn.Size = new System.Drawing.Size(935, 20);
             this.txtDestConn.TabIndex = 44;
-            this.txtDestConn.Text = "Data Source=.\\sql2012;Initial Catalog=Meerkat;Integrated Security=True\r\n";
-            this.txtDestConn.TextAlign = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConn_Text;
+            this.txtDestConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConn2_Text;
+            this.txtDestConn.TextAlign = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConnOLAP_Text;
             // 
             // txtSrcKeyName
             // 
@@ -1677,6 +1701,7 @@
             this.tabPage4.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1815,6 +1840,8 @@
         private System.Windows.Forms.Button btnStgCreateDB;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.TextBox txtErrorsFieldExcl;
+        private System.Windows.Forms.NumericUpDown numMaxRecurse;
+        private System.Windows.Forms.Label label56;
 
     }
 }
