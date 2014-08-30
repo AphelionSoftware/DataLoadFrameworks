@@ -20,6 +20,9 @@ namespace PW.CustomCodeConverter
     {
 
         OLAPStarCreate scOLAP;
+        StagingCreate scTables;
+        bool boolRunScriptStaging = false; //Really should be a property on the background thread but not interested in inheriting that class just for this.
+        //Sometimes I really like prototype programming
         public TabularPopulateStarFromViews TPR;
         public MultiDimensionalReader mdrCube = new MultiDimensionalReader();
         public TabularXMLAWriter txwCube = new TabularXMLAWriter();
@@ -169,10 +172,22 @@ namespace PW.CustomCodeConverter
         private void btnStaging_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
-            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, this.txtStgFactPrefix.Text, this.txtStgDimPrefix.Text, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
-            scTables.CreateScript();
+            chkRunScript.Checked = false;
+            SetupStagingWorker();
+        }
 
-            this.txtStageScript.Text = scTables.OutputScript();
+        private void SetupStagingWorker()
+        {
+            this.btnStaging.Enabled = false;
+            this.btnStgCreateDB.Enabled = false;
+
+            Dictionary<string, string> dicArgs = new Dictionary<string, string>();
+            if (this.chkIgnorePrefixes.Checked) {
+                dicArgs.Add("UsePrefix", "false");
+            
+            }
+            backgroundWorkerStaging.RunWorkerAsync();
+
         }
 
         private void btnTblCreateCube_Click(object sender, EventArgs e)
@@ -208,12 +223,7 @@ namespace PW.CustomCodeConverter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
-            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked, this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
-            scTables.CreateScript();
-
-            this.txtStageScript.Text = scTables.OutputScript();
-        
+            SetupStagingWorker();    
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -300,12 +310,8 @@ namespace PW.CustomCodeConverter
 
         private void btnStgCreateDB_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
-            StagingCreate scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text, "", "", this.txtStgFieldExcl.Text, this.chkStageDrop.Checked, this.chkInclKeysStg.Checked, this.chkInclRefKeysStg.Checked, this.txtTableExclStg.Text, this.txtSchemaExclStg.Text, this.txtSrcKeyName.Text);
-            scTables.CreateScript();
-
-            this.txtStageScript.Text = scTables.OutputScript();
-            scTables.RunScript();
+            chkRunScript.Checked = true;
+            SetupStagingWorker();
         }
 
         private void btnErrorCreate_Click(object sender, EventArgs e)
@@ -384,6 +390,59 @@ namespace PW.CustomCodeConverter
             {
                 backgroundWorkerOLAP.CancelAsync();
             }
+        }
+
+        private void backgroundWorkerStaging_DoWork(object sender, DoWorkEventArgs e)
+        {
+            /*Dictionary<string, string> dicArgs = (Dictionary<string, string>)e.Argument;
+            string sRunScript;
+            dicArgs.TryGetValue("RunScript", out sRunScript);
+            string sFactPrefix = "";
+            string sDimPrefix = "";
+            string sUsePrefixes;
+
+            dicArgs.TryGetValue("UsePrefix", out sUsePrefixes);
+            if (sUsePrefixes != "false")
+            {
+                dicArgs.TryGetValue("FactPrefix", out sFactPrefix);
+                if (sFactPrefix == "") sFactPrefix = this.txtStgFactPrefix.Text;
+                dicArgs.TryGetValue("DimPrefix", out sDimPrefix);
+                if (sDimPrefix == "") sDimPrefix = this.txtStgDimPrefix.Text;
+            }*/
+
+            string sFactPrefix = "";
+            string sDimPrefix = "";
+
+            if (this.chkIgnorePrefixes.Checked == false)
+            {
+                sFactPrefix = sFactPrefix = this.txtStgFactPrefix.Text;
+                sDimPrefix = this.txtStgDimPrefix.Text;
+            }
+
+            scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text,sFactPrefix , sDimPrefix, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
+            scTables.backWorker = this.backgroundWorkerStaging;
+            scTables.CreateScript();
+            scTables.OutputScript();
+            if (this.chkRunScript.Checked == true) 
+            {
+                scTables.RunScript();
+            }
+        }
+
+        private void backgroundWorkerStaging_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            this.txtStageScript.Text = scTables.strFullResult;
+            this.btnStaging.Enabled = true;
+            this.btnStgCreateDB.Enabled = true;
+            
+        
+        }
+
+        private void backgroundWorkerStaging_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            this.txtStageScript.Text = e.UserState.ToString();
         }
        
     }

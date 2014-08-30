@@ -85,6 +85,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtsrcConnectionString = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnCancelOLAP = new System.Windows.Forms.Button();
             this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
             this.label56 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -115,7 +116,6 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.btnCreateStgIgnorePrefixes = new System.Windows.Forms.Button();
             this.txtStageScript = new System.Windows.Forms.TextBox();
             this.btnStaging = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -171,7 +171,9 @@
             this.txtErrorStg = new System.Windows.Forms.TextBox();
             this.txtErrorSrc = new System.Windows.Forms.TextBox();
             this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
-            this.btnCancelOLAP = new System.Windows.Forms.Button();
+            this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
+            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
+            this.chkRunScript = new System.Windows.Forms.CheckBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -840,6 +842,17 @@
             this.tabPage2.Text = "CreateOLAPSchema";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnCancelOLAP
+            // 
+            this.btnCancelOLAP.Location = new System.Drawing.Point(895, 484);
+            this.btnCancelOLAP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancelOLAP.Name = "btnCancelOLAP";
+            this.btnCancelOLAP.Size = new System.Drawing.Size(125, 23);
+            this.btnCancelOLAP.TabIndex = 72;
+            this.btnCancelOLAP.Text = "Cancel";
+            this.btnCancelOLAP.UseVisualStyleBackColor = true;
+            this.btnCancelOLAP.Click += new System.EventHandler(this.btnCancelOLAP_Click);
+            // 
             // numMaxRecurse
             // 
             this.numMaxRecurse.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::PW.CustomCodeConverter.Properties.Settings.Default, "numMaxRecurse_Value", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1106,11 +1119,12 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.chkRunScript);
+            this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
             this.tabPage3.Controls.Add(this.btnStgCreateDB);
             this.tabPage3.Controls.Add(this.label48);
             this.tabPage3.Controls.Add(this.label47);
             this.tabPage3.Controls.Add(this.label46);
-            this.tabPage3.Controls.Add(this.btnCreateStgIgnorePrefixes);
             this.tabPage3.Controls.Add(this.txtStageScript);
             this.tabPage3.Controls.Add(this.btnStaging);
             this.tabPage3.Controls.Add(this.label27);
@@ -1141,12 +1155,12 @@
             // 
             // btnStgCreateDB
             // 
-            this.btnStgCreateDB.Location = new System.Drawing.Point(815, 430);
+            this.btnStgCreateDB.Location = new System.Drawing.Point(19, 434);
             this.btnStgCreateDB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStgCreateDB.Name = "btnStgCreateDB";
             this.btnStgCreateDB.Size = new System.Drawing.Size(263, 27);
             this.btnStgCreateDB.TabIndex = 84;
-            this.btnStgCreateDB.Text = "Create Staging - ignore prefixes";
+            this.btnStgCreateDB.Text = "Create Staging";
             this.btnStgCreateDB.UseVisualStyleBackColor = true;
             this.btnStgCreateDB.Click += new System.EventHandler(this.btnStgCreateDB_Click);
             // 
@@ -1180,17 +1194,6 @@
             this.label46.Size = new System.Drawing.Size(110, 17);
             this.label46.TabIndex = 78;
             this.label46.Text = "TableExclusions";
-            // 
-            // btnCreateStgIgnorePrefixes
-            // 
-            this.btnCreateStgIgnorePrefixes.Location = new System.Drawing.Point(19, 430);
-            this.btnCreateStgIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCreateStgIgnorePrefixes.Name = "btnCreateStgIgnorePrefixes";
-            this.btnCreateStgIgnorePrefixes.Size = new System.Drawing.Size(263, 27);
-            this.btnCreateStgIgnorePrefixes.TabIndex = 75;
-            this.btnCreateStgIgnorePrefixes.Text = "Create Staging script - ignore prefixes";
-            this.btnCreateStgIgnorePrefixes.UseVisualStyleBackColor = true;
-            this.btnCreateStgIgnorePrefixes.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtStageScript
             // 
@@ -1804,16 +1807,42 @@
             this.backgroundWorkerOLAP.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerOLAP_ProgressChanged);
             this.backgroundWorkerOLAP.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerOLAP_RunWorkerCompleted);
             // 
-            // btnCancelOLAP
+            // backgroundWorkerStaging
             // 
-            this.btnCancelOLAP.Location = new System.Drawing.Point(895, 484);
-            this.btnCancelOLAP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCancelOLAP.Name = "btnCancelOLAP";
-            this.btnCancelOLAP.Size = new System.Drawing.Size(125, 23);
-            this.btnCancelOLAP.TabIndex = 72;
-            this.btnCancelOLAP.Text = "Cancel";
-            this.btnCancelOLAP.UseVisualStyleBackColor = true;
-            this.btnCancelOLAP.Click += new System.EventHandler(this.btnCancelOLAP_Click);
+            this.backgroundWorkerStaging.WorkerReportsProgress = true;
+            this.backgroundWorkerStaging.WorkerSupportsCancellation = true;
+            this.backgroundWorkerStaging.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerStaging_DoWork);
+            this.backgroundWorkerStaging.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerStaging_ProgressChanged);
+            this.backgroundWorkerStaging.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerStaging_RunWorkerCompleted);
+            // 
+            // chkIgnorePrefixes
+            // 
+            this.chkIgnorePrefixes.AutoSize = true;
+            this.chkIgnorePrefixes.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
+            this.chkIgnorePrefixes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIgnorePrefixes.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkIgnorePrefixes.Location = new System.Drawing.Point(296, 221);
+            this.chkIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIgnorePrefixes.Name = "chkIgnorePrefixes";
+            this.chkIgnorePrefixes.Size = new System.Drawing.Size(124, 21);
+            this.chkIgnorePrefixes.TabIndex = 85;
+            this.chkIgnorePrefixes.Text = "Ignore Prefixes";
+            this.chkIgnorePrefixes.UseVisualStyleBackColor = true;
+            // 
+            // chkRunScript
+            // 
+            this.chkRunScript.AutoSize = true;
+            this.chkRunScript.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
+            this.chkRunScript.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRunScript.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkRunScript.Location = new System.Drawing.Point(830, 438);
+            this.chkRunScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkRunScript.Name = "chkRunScript";
+            this.chkRunScript.Size = new System.Drawing.Size(94, 21);
+            this.chkRunScript.TabIndex = 86;
+            this.chkRunScript.Text = "Run script";
+            this.chkRunScript.UseVisualStyleBackColor = true;
+            this.chkRunScript.Visible = false;
             // 
             // ProgramForm
             // 
@@ -1948,7 +1977,6 @@
         private System.Windows.Forms.TextBox txtExDB;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtExServer;
-        private System.Windows.Forms.Button btnCreateStgIgnorePrefixes;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox txtSchemaExclStg;
         private System.Windows.Forms.Label label46;
@@ -1982,6 +2010,9 @@
         private System.Windows.Forms.Label label56;
         private System.ComponentModel.BackgroundWorker backgroundWorkerOLAP;
         private System.Windows.Forms.Button btnCancelOLAP;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerStaging;
+        private System.Windows.Forms.CheckBox chkIgnorePrefixes;
+        private System.Windows.Forms.CheckBox chkRunScript;
 
     }
 }
