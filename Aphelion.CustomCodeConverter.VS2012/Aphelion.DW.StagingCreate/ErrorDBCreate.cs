@@ -6,13 +6,14 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using Aphelion.DW.StagingCreate.Schema;
 using Aphelion.DW.Shared;
+using System.ComponentModel;
 
 namespace Aphelion.DW.StagingCreate
 {
     public class ErrorDBCreate
     {
         public Dictionary<string, SchemaTable> lstTS = new Dictionary<string, SchemaTable>();
-
+        public BackgroundWorker backWorker { get; set; }
         public string strStageConn;
         public string strTableConn;
         public string sErrorDB;
@@ -23,6 +24,7 @@ namespace Aphelion.DW.StagingCreate
         SqlConnection srcTableConn;
         //SqlConnection destConn;
         public string strFullCreate;
+        public string strFullResult;
         public bool bDropError;
         public string strTableExcl;
         public string strSchemaExcl;
@@ -50,22 +52,55 @@ namespace Aphelion.DW.StagingCreate
         public void RunScript()
         {
             string[] strCommands = this.strFullCreate.Split(new string[] { "GO" }, StringSplitOptions.None);
-            SqlCommand comm = new SqlCommand(this.strFullCreate, this.srcStageConn);
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Running {0} scripts", strCommands.Length.ToString())));
+            }
+
+            int iLoop = 0;
+            string sErr = "";
+            SqlCommand comm = new SqlCommand(this.strFullCreate, this.srcConn);
             foreach (string strComm in strCommands)
             {
+                try
+                {
+                    if (++iLoop % 100 == 0)
+                    {
+                        if (backWorker != null)
+                        {
+                            backWorker.ReportProgress(0, new ProgressReport(string.Format("Running script {0} of {1}", iLoop, strCommands.Length.ToString())));
+                        }
+                    }
+                    comm.CommandText = strComm;
+                    comm.ExecuteNonQuery();
+                }
+                catch (System.Exception ex)
+                {
+                    sErr += strComm + "\n errored with: \n " + ex.Message + "\n\n";
+                    if (backWorker != null)
+                    {
+                        backWorker.ReportProgress(0, new ProgressReport(sErr));
+                    }
 
-                comm.CommandText = strComm;
-                comm.ExecuteNonQuery();
+                }
             }
+            this.strFullResult = sErr + "\n\n\n" + this.strFullCreate;
+
         }
         public void CreateScript()
         {
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Creating scripts")));
+            }
+
             srcConn = new SqlConnection(this.strStageConn);
             srcConn.Open();
             srcStageConn = new SqlConnection(this.strStageConn);
             srcStageConn.Open();
             srcTableConn = new SqlConnection(this.strTableConn);
             srcTableConn.Open();
+
 
 
             SqlCommand command = srcConn.CreateCommand();
@@ -84,6 +119,11 @@ namespace Aphelion.DW.StagingCreate
                 sStageSchemaTable = drStaging.GetString(0);
                 sTableName = drStaging.GetString(1);
                 List<TableColumn> lstTC = new List<TableColumn>();
+                if (backWorker != null)
+                {
+                    backWorker.ReportProgress(0, new ProgressReport(string.Format("Building fact {0}.{1}", sStageSchemaTable, sTableName)));
+                }
+            
                 sCreate = BuildTableCreate(sStageSchemaTable, sTableName,  ref lstTC);
                 lstTS.Add(sStageSchemaTable + "." + sTableName, new SchemaTable(sStageSchemaTable, sTableName, sCreate, lstTC));
 

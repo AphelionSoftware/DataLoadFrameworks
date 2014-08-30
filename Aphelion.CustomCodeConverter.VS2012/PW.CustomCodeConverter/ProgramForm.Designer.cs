@@ -85,6 +85,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtsrcConnectionString = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnCreateO_S_E_1 = new System.Windows.Forms.Button();
             this.btnCancelOLAP = new System.Windows.Forms.Button();
             this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
             this.label56 = new System.Windows.Forms.Label();
@@ -112,6 +113,9 @@
             this.txtSchema = new System.Windows.Forms.TextBox();
             this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnCreateO_S_E2 = new System.Windows.Forms.Button();
+            this.chkRunScript = new System.Windows.Forms.CheckBox();
+            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
             this.btnStgCreateDB = new System.Windows.Forms.Button();
             this.label48 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -157,6 +161,7 @@
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.chkRunError = new System.Windows.Forms.CheckBox();
             this.label54 = new System.Windows.Forms.Label();
             this.btnErrorCreate = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
@@ -172,8 +177,8 @@
             this.txtErrorSrc = new System.Windows.Forms.TextBox();
             this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
-            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
-            this.chkRunScript = new System.Windows.Forms.CheckBox();
+            this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
+            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -806,6 +811,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnCreateO_S_E_1);
             this.tabPage2.Controls.Add(this.btnCancelOLAP);
             this.tabPage2.Controls.Add(this.numMaxRecurse);
             this.tabPage2.Controls.Add(this.label56);
@@ -841,6 +847,20 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CreateOLAPSchema";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // btnCreateO_S_E_1
+            // 
+            this.btnCreateO_S_E_1.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E_1.Location = new System.Drawing.Point(1139, 442);
+            this.btnCreateO_S_E_1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateO_S_E_1.Name = "btnCreateO_S_E_1";
+            this.btnCreateO_S_E_1.Size = new System.Drawing.Size(145, 56);
+            this.btnCreateO_S_E_1.TabIndex = 73;
+            this.btnCreateO_S_E_1.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E_1.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E_1.Click += new System.EventHandler(this.btnCreateO_S_E_1_Click);
             // 
             // btnCancelOLAP
             // 
@@ -912,7 +932,7 @@
             this.txtResults.Multiline = true;
             this.txtResults.Name = "txtResults";
             this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtResults.Size = new System.Drawing.Size(1401, 310);
+            this.txtResults.Size = new System.Drawing.Size(1401, 269);
             this.txtResults.TabIndex = 64;
             // 
             // label26
@@ -967,13 +987,15 @@
             // 
             // btnStage
             // 
-            this.btnStage.Location = new System.Drawing.Point(27, 484);
+            this.btnStage.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnStage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStage.Location = new System.Drawing.Point(1301, 442);
             this.btnStage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStage.Name = "btnStage";
-            this.btnStage.Size = new System.Drawing.Size(125, 23);
+            this.btnStage.Size = new System.Drawing.Size(125, 56);
             this.btnStage.TabIndex = 50;
             this.btnStage.Text = "Create OLAP";
-            this.btnStage.UseVisualStyleBackColor = true;
+            this.btnStage.UseVisualStyleBackColor = false;
             this.btnStage.Click += new System.EventHandler(this.btnStage_Click);
             // 
             // label18
@@ -1119,6 +1141,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnCreateO_S_E2);
             this.tabPage3.Controls.Add(this.chkRunScript);
             this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
             this.tabPage3.Controls.Add(this.btnStgCreateDB);
@@ -1153,15 +1176,59 @@
             this.tabPage3.Text = "CreateStaging";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnCreateO_S_E2
+            // 
+            this.btnCreateO_S_E2.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E2.Location = new System.Drawing.Point(1095, 409);
+            this.btnCreateO_S_E2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateO_S_E2.Name = "btnCreateO_S_E2";
+            this.btnCreateO_S_E2.Size = new System.Drawing.Size(145, 56);
+            this.btnCreateO_S_E2.TabIndex = 87;
+            this.btnCreateO_S_E2.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E2.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E2.Click += new System.EventHandler(this.btnCreateO_S_E2_Click);
+            // 
+            // chkRunScript
+            // 
+            this.chkRunScript.AutoSize = true;
+            this.chkRunScript.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
+            this.chkRunScript.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRunScript.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkRunScript.Location = new System.Drawing.Point(628, 409);
+            this.chkRunScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkRunScript.Name = "chkRunScript";
+            this.chkRunScript.Size = new System.Drawing.Size(94, 21);
+            this.chkRunScript.TabIndex = 86;
+            this.chkRunScript.Text = "Run script";
+            this.chkRunScript.UseVisualStyleBackColor = true;
+            this.chkRunScript.Visible = false;
+            // 
+            // chkIgnorePrefixes
+            // 
+            this.chkIgnorePrefixes.AutoSize = true;
+            this.chkIgnorePrefixes.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
+            this.chkIgnorePrefixes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIgnorePrefixes.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkIgnorePrefixes.Location = new System.Drawing.Point(441, 408);
+            this.chkIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIgnorePrefixes.Name = "chkIgnorePrefixes";
+            this.chkIgnorePrefixes.Size = new System.Drawing.Size(124, 21);
+            this.chkIgnorePrefixes.TabIndex = 85;
+            this.chkIgnorePrefixes.Text = "Ignore Prefixes";
+            this.chkIgnorePrefixes.UseVisualStyleBackColor = true;
+            // 
             // btnStgCreateDB
             // 
-            this.btnStgCreateDB.Location = new System.Drawing.Point(19, 434);
+            this.btnStgCreateDB.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnStgCreateDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStgCreateDB.Location = new System.Drawing.Point(1258, 409);
             this.btnStgCreateDB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStgCreateDB.Name = "btnStgCreateDB";
-            this.btnStgCreateDB.Size = new System.Drawing.Size(263, 27);
+            this.btnStgCreateDB.Size = new System.Drawing.Size(162, 65);
             this.btnStgCreateDB.TabIndex = 84;
             this.btnStgCreateDB.Text = "Create Staging";
-            this.btnStgCreateDB.UseVisualStyleBackColor = true;
+            this.btnStgCreateDB.UseVisualStyleBackColor = false;
             this.btnStgCreateDB.Click += new System.EventHandler(this.btnStgCreateDB_Click);
             // 
             // label48
@@ -1207,13 +1274,15 @@
             // 
             // btnStaging
             // 
-            this.btnStaging.Location = new System.Drawing.Point(19, 393);
+            this.btnStaging.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnStaging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStaging.Location = new System.Drawing.Point(19, 409);
             this.btnStaging.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStaging.Name = "btnStaging";
-            this.btnStaging.Size = new System.Drawing.Size(263, 23);
+            this.btnStaging.Size = new System.Drawing.Size(157, 65);
             this.btnStaging.TabIndex = 72;
             this.btnStaging.Text = "Create Staging script";
-            this.btnStaging.UseVisualStyleBackColor = true;
+            this.btnStaging.UseVisualStyleBackColor = false;
             this.btnStaging.Click += new System.EventHandler(this.btnStaging_Click);
             // 
             // label27
@@ -1282,7 +1351,7 @@
             this.chkInclRefKeysStg.AutoSize = true;
             this.chkInclRefKeysStg.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkInclRefKeysStg_Checked;
             this.chkInclRefKeysStg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkInclRefKeysStg_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkInclRefKeysStg.Location = new System.Drawing.Point(547, 434);
+            this.chkInclRefKeysStg.Location = new System.Drawing.Point(441, 444);
             this.chkInclRefKeysStg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkInclRefKeysStg.Name = "chkInclRefKeysStg";
             this.chkInclRefKeysStg.Size = new System.Drawing.Size(262, 21);
@@ -1318,7 +1387,7 @@
             this.chkInclKeysStg.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkInclKeysStg_Checked;
             this.chkInclKeysStg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInclKeysStg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkInclKeysStg_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkInclKeysStg.Location = new System.Drawing.Point(296, 432);
+            this.chkInclKeysStg.Location = new System.Drawing.Point(190, 442);
             this.chkInclKeysStg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkInclKeysStg.Name = "chkInclKeysStg";
             this.chkInclKeysStg.Size = new System.Drawing.Size(244, 21);
@@ -1332,7 +1401,7 @@
             this.chkStageDrop.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
             this.chkStageDrop.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkStageDrop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkStageDrop.Location = new System.Drawing.Point(180, 222);
+            this.chkStageDrop.Location = new System.Drawing.Point(192, 408);
             this.chkStageDrop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkStageDrop.Name = "chkStageDrop";
             this.chkStageDrop.Size = new System.Drawing.Size(102, 21);
@@ -1637,6 +1706,8 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.btnCreateO_S_E3);
+            this.tabPage6.Controls.Add(this.chkRunError);
             this.tabPage6.Controls.Add(this.label54);
             this.tabPage6.Controls.Add(this.btnErrorCreate);
             this.tabPage6.Controls.Add(this.label53);
@@ -1662,6 +1733,17 @@
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
             // 
+            // chkRunError
+            // 
+            this.chkRunError.AutoSize = true;
+            this.chkRunError.Location = new System.Drawing.Point(235, 359);
+            this.chkRunError.Name = "chkRunError";
+            this.chkRunError.Size = new System.Drawing.Size(98, 21);
+            this.chkRunError.TabIndex = 102;
+            this.chkRunError.Text = "RunCreate";
+            this.chkRunError.UseVisualStyleBackColor = true;
+            this.chkRunError.Visible = false;
+            // 
             // label54
             // 
             this.label54.AutoSize = true;
@@ -1674,13 +1756,15 @@
             // 
             // btnErrorCreate
             // 
-            this.btnErrorCreate.Location = new System.Drawing.Point(208, 409);
+            this.btnErrorCreate.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnErrorCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnErrorCreate.Location = new System.Drawing.Point(1331, 357);
             this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnErrorCreate.Name = "btnErrorCreate";
-            this.btnErrorCreate.Size = new System.Drawing.Size(125, 23);
+            this.btnErrorCreate.Size = new System.Drawing.Size(107, 56);
             this.btnErrorCreate.TabIndex = 99;
             this.btnErrorCreate.Text = "Create Error DB";
-            this.btnErrorCreate.UseVisualStyleBackColor = true;
+            this.btnErrorCreate.UseVisualStyleBackColor = false;
             this.btnErrorCreate.Click += new System.EventHandler(this.btnErrorCreate_Click);
             // 
             // label53
@@ -1710,18 +1794,20 @@
             this.txtErrorResult.Multiline = true;
             this.txtErrorResult.Name = "txtErrorResult";
             this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorResult.Size = new System.Drawing.Size(1401, 280);
+            this.txtErrorResult.Size = new System.Drawing.Size(1401, 323);
             this.txtErrorResult.TabIndex = 85;
             // 
             // btnGenerateErrors
             // 
-            this.btnGenerateErrors.Location = new System.Drawing.Point(39, 409);
+            this.btnGenerateErrors.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnGenerateErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateErrors.Location = new System.Drawing.Point(39, 359);
             this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenerateErrors.Name = "btnGenerateErrors";
-            this.btnGenerateErrors.Size = new System.Drawing.Size(163, 23);
+            this.btnGenerateErrors.Size = new System.Drawing.Size(139, 54);
             this.btnGenerateErrors.TabIndex = 84;
             this.btnGenerateErrors.Text = "Create Error DB script";
-            this.btnGenerateErrors.UseVisualStyleBackColor = true;
+            this.btnGenerateErrors.UseVisualStyleBackColor = false;
             this.btnGenerateErrors.Click += new System.EventHandler(this.btnGenerateErrors_Click);
             // 
             // txtErrorsFieldExcl
@@ -1815,34 +1901,26 @@
             this.backgroundWorkerStaging.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerStaging_ProgressChanged);
             this.backgroundWorkerStaging.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerStaging_RunWorkerCompleted);
             // 
-            // chkIgnorePrefixes
+            // backgroundWorkerError
             // 
-            this.chkIgnorePrefixes.AutoSize = true;
-            this.chkIgnorePrefixes.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
-            this.chkIgnorePrefixes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIgnorePrefixes.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkIgnorePrefixes.Location = new System.Drawing.Point(296, 221);
-            this.chkIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkIgnorePrefixes.Name = "chkIgnorePrefixes";
-            this.chkIgnorePrefixes.Size = new System.Drawing.Size(124, 21);
-            this.chkIgnorePrefixes.TabIndex = 85;
-            this.chkIgnorePrefixes.Text = "Ignore Prefixes";
-            this.chkIgnorePrefixes.UseVisualStyleBackColor = true;
+            this.backgroundWorkerError.WorkerReportsProgress = true;
+            this.backgroundWorkerError.WorkerSupportsCancellation = true;
+            this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
+            this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
+            this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
             // 
-            // chkRunScript
+            // btnCreateO_S_E3
             // 
-            this.chkRunScript.AutoSize = true;
-            this.chkRunScript.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
-            this.chkRunScript.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRunScript.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkRunScript.Location = new System.Drawing.Point(830, 438);
-            this.chkRunScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkRunScript.Name = "chkRunScript";
-            this.chkRunScript.Size = new System.Drawing.Size(94, 21);
-            this.chkRunScript.TabIndex = 86;
-            this.chkRunScript.Text = "Run script";
-            this.chkRunScript.UseVisualStyleBackColor = true;
-            this.chkRunScript.Visible = false;
+            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E3.Location = new System.Drawing.Point(1156, 357);
+            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
+            this.btnCreateO_S_E3.Size = new System.Drawing.Size(145, 56);
+            this.btnCreateO_S_E3.TabIndex = 103;
+            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
             // 
             // ProgramForm
             // 
@@ -2013,6 +2091,11 @@
         private System.ComponentModel.BackgroundWorker backgroundWorkerStaging;
         private System.Windows.Forms.CheckBox chkIgnorePrefixes;
         private System.Windows.Forms.CheckBox chkRunScript;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerError;
+        private System.Windows.Forms.CheckBox chkRunError;
+        private System.Windows.Forms.Button btnCreateO_S_E_1;
+        private System.Windows.Forms.Button btnCreateO_S_E2;
+        private System.Windows.Forms.Button btnCreateO_S_E3;
 
     }
 }

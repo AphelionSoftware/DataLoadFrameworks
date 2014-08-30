@@ -21,6 +21,7 @@ namespace PW.CustomCodeConverter
 
         OLAPStarCreate scOLAP;
         StagingCreate scTables;
+        ErrorDBCreate errTables;
         bool boolRunScriptStaging = false; //Really should be a property on the background thread but not interested in inheriting that class just for this.
         //Sometimes I really like prototype programming
         public TabularPopulateStarFromViews TPR;
@@ -297,10 +298,8 @@ namespace PW.CustomCodeConverter
 
         private void btnGenerateErrors_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
-            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
-            errTables.CreateScript();
-            this.txtErrorResult.Text = errTables.OutputScript();
+            this.chkRunError.Checked = false;
+            ErrorBackworkerSetup();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -316,12 +315,11 @@ namespace PW.CustomCodeConverter
 
         private void btnErrorCreate_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
-            ErrorDBCreate errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
-            errTables.CreateScript();
-            this.txtErrorResult.Text = errTables.OutputScript();
-            errTables.RunScript();
+            this.chkRunError.Checked = true;
+            ErrorBackworkerSetup();
         }
+
+        
 
         private void ProgramForm_Load(object sender, EventArgs e)
         {
@@ -443,6 +441,70 @@ namespace PW.CustomCodeConverter
         {
 
             this.txtStageScript.Text = e.UserState.ToString();
+        }
+
+        private void ErrorBackworkerSetup()
+        {
+            Properties.Settings.Default.Save();
+            this.btnErrorCreate.Enabled = false;
+            this.btnGenerateErrors.Enabled = false;
+            backgroundWorkerError.RunWorkerAsync();
+        }
+
+        private void backgroundWorkerError_DoWork(object sender, DoWorkEventArgs e)
+        {
+            errTables = new ErrorDBCreate(this.txtErrorStg.Text, this.txtErrorSrc.Text, this.txtErrorDB.Text, this.txtErrorStagingSchema.Text, this.txtErrorsSchema.Text, this.chkErrorsDropDB.Checked, this.txtErrorsFieldExcl.Text);
+            errTables.backWorker = backgroundWorkerError;
+            errTables.CreateScript();
+            errTables.OutputScript();
+            if (this.chkRunError.Checked )
+            {
+                errTables.RunScript();
+            }
+        }
+
+        private void backgroundWorkerError_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            this.txtErrorResult.Text = e.UserState.ToString();
+           
+        }
+
+        private void backgroundWorkerError_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.btnErrorCreate.Enabled = false;
+            this.btnGenerateErrors.Enabled = false;
+
+            this.txtErrorResult.Text = errTables.strFullResult;
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreateO_S_E_1_Click(object sender, EventArgs e)
+        {
+            btnStage_Click(sender, e);
+            btnStgCreateDB_Click(sender, e);
+            btnErrorCreate_Click(sender, e);
+        }
+
+        private void btnCreateO_S_E2_Click(object sender, EventArgs e)
+        {
+            btnStage_Click(sender, e);
+            btnStgCreateDB_Click(sender, e);
+            btnErrorCreate_Click(sender, e);
+        
+        }
+
+        private void btnCreateO_S_E3_Click(object sender, EventArgs e)
+        {
+            btnStage_Click(sender, e);
+            btnStgCreateDB_Click(sender, e);
+            btnErrorCreate_Click(sender, e);
+        
         }
        
     }
