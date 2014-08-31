@@ -417,7 +417,7 @@ namespace PW.CustomCodeConverter
                 sDimPrefix = this.txtStgDimPrefix.Text;
             }
 
-            scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text,sFactPrefix , sDimPrefix, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
+            scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text,sFactPrefix ,sDimPrefix, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
             scTables.backWorker = this.backgroundWorkerStaging;
             scTables.CreateScript();
             scTables.OutputScript();

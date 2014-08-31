@@ -161,6 +161,7 @@
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
             this.chkRunError = new System.Windows.Forms.CheckBox();
             this.label54 = new System.Windows.Forms.Label();
             this.btnErrorCreate = new System.Windows.Forms.Button();
@@ -178,7 +179,6 @@
             this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
-            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -1421,13 +1421,13 @@
             // 
             // txtStgSrcConn
             // 
-            this.txtStgSrcConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtStgSrcConn_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtStgSrcConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtStgSrcConn2_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtStgSrcConn.Location = new System.Drawing.Point(180, 11);
             this.txtStgSrcConn.Margin = new System.Windows.Forms.Padding(4);
             this.txtStgSrcConn.Name = "txtStgSrcConn";
             this.txtStgSrcConn.Size = new System.Drawing.Size(1245, 22);
             this.txtStgSrcConn.TabIndex = 69;
-            this.txtStgSrcConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtStgSrcConn_Text;
+            this.txtStgSrcConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtStgSrcConn2_Text;
             // 
             // txtStgFieldExcl
             // 
@@ -1733,6 +1733,19 @@
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
             // 
+            // btnCreateO_S_E3
+            // 
+            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E3.Location = new System.Drawing.Point(1156, 357);
+            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
+            this.btnCreateO_S_E3.Size = new System.Drawing.Size(145, 56);
+            this.btnCreateO_S_E3.TabIndex = 103;
+            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
+            // 
             // chkRunError
             // 
             this.chkRunError.AutoSize = true;
@@ -1908,19 +1921,6 @@
             this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
             this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
             this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
-            // 
-            // btnCreateO_S_E3
-            // 
-            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateO_S_E3.Location = new System.Drawing.Point(1156, 357);
-            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
-            this.btnCreateO_S_E3.Size = new System.Drawing.Size(145, 56);
-            this.btnCreateO_S_E3.TabIndex = 103;
-            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
-            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
-            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
             // 
             // ProgramForm
             // 
