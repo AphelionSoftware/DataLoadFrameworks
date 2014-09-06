@@ -113,6 +113,7 @@
             this.txtSchema = new System.Windows.Forms.TextBox();
             this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
             this.btnCreateO_S_E2 = new System.Windows.Forms.Button();
             this.chkRunScript = new System.Windows.Forms.CheckBox();
             this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
@@ -179,7 +180,6 @@
             this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
-            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -1178,6 +1178,20 @@
             this.tabPage3.Text = "CreateStaging";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // chkStgAddSchemaPrefix
+            // 
+            this.chkStgAddSchemaPrefix.AutoSize = true;
+            this.chkStgAddSchemaPrefix.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStgAddSchemaPrefix_Checked;
+            this.chkStgAddSchemaPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkStgAddSchemaPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStgAddSchemaPrefix_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkStgAddSchemaPrefix.Location = new System.Drawing.Point(751, 409);
+            this.chkStgAddSchemaPrefix.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkStgAddSchemaPrefix.Name = "chkStgAddSchemaPrefix";
+            this.chkStgAddSchemaPrefix.Size = new System.Drawing.Size(208, 21);
+            this.chkStgAddSchemaPrefix.TabIndex = 88;
+            this.chkStgAddSchemaPrefix.Text = "Prefix schema to table name";
+            this.chkStgAddSchemaPrefix.UseVisualStyleBackColor = true;
+            // 
             // btnCreateO_S_E2
             // 
             this.btnCreateO_S_E2.BackColor = System.Drawing.Color.DarkOrange;
@@ -1923,21 +1937,6 @@
             this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
             this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
             this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
-            // 
-            // chkStgAddSchemaPrefix
-            // 
-            this.chkStgAddSchemaPrefix.AutoSize = true;
-            this.chkStgAddSchemaPrefix.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStgAddSchemaPrefix_Checked;
-            this.chkStgAddSchemaPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStgAddSchemaPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStgAddSchemaPrefix_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkStgAddSchemaPrefix.Location = new System.Drawing.Point(751, 409);
-            this.chkStgAddSchemaPrefix.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkStgAddSchemaPrefix.Name = "chkStgAddSchemaPrefix";
-            this.chkStgAddSchemaPrefix.Size = new System.Drawing.Size(208, 21);
-            this.chkStgAddSchemaPrefix.TabIndex = 88;
-            this.chkStgAddSchemaPrefix.Text = "Prefix schema to table name";
-            this.chkStgAddSchemaPrefix.UseVisualStyleBackColor = true;
-            this.chkStgAddSchemaPrefix.Visible = false;
             // 
             // ProgramForm
             // 

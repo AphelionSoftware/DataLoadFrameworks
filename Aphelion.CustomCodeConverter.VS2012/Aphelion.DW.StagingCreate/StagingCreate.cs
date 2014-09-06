@@ -268,7 +268,7 @@ ORDER BY table_schema, table_name";*/
             drRefs.Close();
 
             //Build related tables 
-
+            #region Related tables
             if (this.sFactTablePrefix == "")
             {
                 comm = new SqlCommand(string.Format(QC.qryReferenceQueryExclWithKeyCol, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl,  this.strSrcKeyName), srcFactConn);
@@ -390,11 +390,25 @@ ORDER BY table_schema, table_name";*/
             }
 
             drRefs.Close();
+            #endregion
             strColumnList = SC.AddColumn(lstTC, 0);
             for (int iLoop = 1; iLoop < lstTC.Count; iLoop++)
             {
-                strColumnList += "," + SC.AddColumn(lstTC, iLoop);
+                strColumnList += "\n\n\t," + SC.AddColumn(lstTC, iLoop);
             }
+
+            #region Additional database wide columns
+            //Get all columns, staging or stage
+            comm = new SqlCommand(string.Format(QC.qryAdditionalColumnDefinitions, "Stag"), srcFactConn);
+            drRefs = comm.ExecuteReader();
+            while (drRefs.Read())
+            {
+                strColumnList += "\n\n\t," + drRefs.GetString(1);
+            }
+            drRefs.Close();
+            #endregion
+            
+
 
             if (this.bPrefixWithSchema) {
                 strCreate = string.Format(QC.qryCreateStageTable,

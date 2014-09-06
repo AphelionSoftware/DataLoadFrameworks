@@ -416,8 +416,11 @@ namespace PW.CustomCodeConverter
                 sFactPrefix = sFactPrefix = this.txtStgFactPrefix.Text;
                 sDimPrefix = this.txtStgDimPrefix.Text;
             }
-
+            //chkInclKeysStg
             scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text,sFactPrefix ,sDimPrefix, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
+            scTables.bInclKeys = chkInclKeysStg.Checked;
+            scTables.bInclRefKeys = chkInclRefKeysStg.Checked;
+            scTables.bDropStage = chkStageDrop.Checked;
             if (this.chkStgAddSchemaPrefix.Checked)
             {
                 scTables.bPrefixWithSchema = true;

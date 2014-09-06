@@ -176,6 +176,7 @@ SELECT EPFields.name, EPFields.value
 	and OBJECT_ID( '{0}' +'.' + '{1}', 'TABLE')  = EPFields.major_id";
 
         /// <summary>
+        /// 0: Database type, eg Staging
         /// Results
         /// 1: Name
         /// 2: Value
@@ -186,6 +187,21 @@ SELECT EPViews.name, EPViews.value
     WHERE replace(EPViews.name, ' ', '') LIKE 'AdditionalView%'
     and minor_id = 0
 	and class_desc = 'DATABASE'";
+        
+        /// <summary>
+        /// Results
+        /// 1: Name
+        /// 2: Value
+        /// </summary>
+        public const string qryAdditionalColumnDefinitions = @"
+SELECT EPCols.name, EPCols.value 
+	FROM sys.extended_properties EPCols
+    WHERE replace(EPCols.name, ' ', '') LIKE 'AdditionalColumnDefinition{0}%'
+    and minor_id = 0
+	and class_desc = 'DATABASE'";
+
+
+
 
         #endregion
 
