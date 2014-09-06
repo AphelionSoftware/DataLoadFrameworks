@@ -166,7 +166,7 @@ namespace Aphelion.DW.StagingCreate
 
             if (this.sFactTablePrefix == "" )
             {
-                command.CommandText = string.Format(QC.qryTableQueryExcl, this.strTableExcl,this.strSchemaExcl);
+                command.CommandText = string.Format(QC.qryTableQueryExclSchema_EP, this.strTableExcl, this.strSchemaExcl, "Staging");
                 /*command.CommandText = @"SELECT table_schema, table_name FROM 
 information_schema.tables
 WHERE table_name = 'FactProcessTransaction'
@@ -175,7 +175,7 @@ ORDER BY table_schema, table_name";*/
             }
             else 
             {
-                command.CommandText = string.Format(QC.qryTableQuery, this.sFactTablePrefix);
+                command.CommandText = string.Format(QC.qryTableQueryExclEP, this.sFactTablePrefix, "Staging");
             }
 
             SqlDataReader drFacts = command.ExecuteReader();
@@ -267,6 +267,50 @@ ORDER BY table_schema, table_name";*/
             }
             drRefs.Close();
 
+            #region Remove Keys
+            if (!bInclKeys)
+            {
+                SqlCommand comm2 = new SqlCommand(string.Format(QC.qryPrimaryColumns, pSchemaTable, pTableName), srcDimConn);
+                SqlDataReader drKeys = comm2.ExecuteReader();
+                while (drKeys.Read())
+                {
+                    lstTC.RemoveAll(item =>
+                    item.TableName == drKeys.GetString(1) //Table name
+                                && item.ColumnName == drKeys.GetString(2)); //column name
+
+                }
+                drKeys.Close();
+
+            }
+            //Otherwise make them nullable to allow for inserts
+            else
+            {
+
+                SqlCommand comm2 = new SqlCommand(string.Format(QC.qryPrimaryColumns, pSchemaTable, pTableName), srcDimConn);
+                SqlDataReader drKeys = comm2.ExecuteReader();
+                while (drKeys.Read())
+                {
+                    if (!lstTC.Exists(item =>
+                    item.TableName == drKeys.GetString(1) //Table name
+                                && item.ColumnName == drKeys.GetString(2))
+                                )
+                    {
+                        //We removed the primary key due to a self-referencing relationship perhaps
+                        lstTC.Add(new TableColumn(drKeys.GetString(1), drKeys.GetString(2)));
+                    }
+
+                    lstTC.Find(item =>
+                    item.TableName == drKeys.GetString(1) //Table name
+                                && item.ColumnName == drKeys.GetString(2))
+                                .Nullable = "NULL"
+                                ; //column name
+
+                }
+                drKeys.Close();
+            }
+            #endregion
+
+
             //Build related tables 
             #region Related tables
             if (this.sFactTablePrefix == "")
@@ -300,7 +344,9 @@ ORDER BY table_schema, table_name";*/
                 }
 
                 //Remove primary keys from generated tables
-                if (!bInclKeys)
+                /*
+                 * //Moving this to outside the ref loop - basically, each table should have it's primary keys removed, not just ref tables
+                 * if (!bInclKeys)
                 {
                     SqlCommand comm2 = new SqlCommand(string.Format(QC.qryPrimaryColumns, drRefs.GetString(2), drRefs.GetString(3)), srcDimConn);
                     SqlDataReader drKeys = comm2.ExecuteReader();
@@ -340,6 +386,7 @@ ORDER BY table_schema, table_name";*/
                     }
                     drKeys.Close();
                 }
+                 * */
 
 
                 if (sDimTable != drRefs.GetString(6) ||
@@ -394,7 +441,7 @@ ORDER BY table_schema, table_name";*/
             strColumnList = SC.AddColumn(lstTC, 0);
             for (int iLoop = 1; iLoop < lstTC.Count; iLoop++)
             {
-                strColumnList += "\n\n\t," + SC.AddColumn(lstTC, iLoop);
+                strColumnList += "\n\t," + SC.AddColumn(lstTC, iLoop);
             }
 
             #region Additional database wide columns
@@ -403,7 +450,7 @@ ORDER BY table_schema, table_name";*/
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {
-                strColumnList += "\n\n\t," + drRefs.GetString(1);
+                strColumnList += "\n\t," + drRefs.GetString(1);
             }
             drRefs.Close();
             #endregion

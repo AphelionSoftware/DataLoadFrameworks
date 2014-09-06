@@ -421,6 +421,8 @@ namespace PW.CustomCodeConverter
             scTables.bInclKeys = chkInclKeysStg.Checked;
             scTables.bInclRefKeys = chkInclRefKeysStg.Checked;
             scTables.bDropStage = chkStageDrop.Checked;
+            scTables.sTableExcl = txtTableExclStg.Text;
+            scTables.strTableExcl = txtTableExclStg.Text;
             if (this.chkStgAddSchemaPrefix.Checked)
             {
                 scTables.bPrefixWithSchema = true;

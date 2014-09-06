@@ -218,10 +218,62 @@ and table_schema not in ({1})
 AND Table_type = 'BASE TABLE' 
 ORDER BY table_schema, table_name";
 
+
+        /// <summary>
+        /// Query tables 
+        /// 0: Table exclusions
+        /// 1: Schema exclusions
+        /// 2: EP Exclusion suffix
+        /// </summary>
+        public const string qryTableQueryExclSchema_EP = @"SELECT table_schema, table_name FROM 
+information_schema.tables
+WHERE table_name not in ({0})
+and table_schema not in ({1})
+AND Table_type = 'BASE TABLE' 
+
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+       
+	    WHERE epX.Name = 'ExcludeFrom{2}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = TABLE_NAME
+    )
+
+
+ORDER BY table_schema, table_name";
+        /// <summary>
+        /// 0: Table prefix
+        /// </summary>
         public const string qryTableQuery = @"SELECT table_schema, table_name FROM 
 information_schema.tables
 WHERE table_name like '{0}%'
 AND Table_type = 'BASE TABLE'
+ORDER BY table_schema, table_name";
+       
+        /// <summary>
+        /// 0: Table prefix
+        /// 1: EP Exclusion suffix
+        /// </summary>
+        public const string qryTableQueryExclEP = @"SELECT table_schema, table_name FROM 
+information_schema.tables
+WHERE table_name like '{0}%'
+AND Table_type = 'BASE TABLE'
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+        
+	    WHERE epX.Name = 'ExcludeFrom{1}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = TABLE_NAME
+    )
+
 ORDER BY table_schema, table_name";
         
         /// <summary>
@@ -232,6 +284,8 @@ information_schema.tables
 WHERE table_schema in ({0})
 AND Table_type = 'BASE TABLE'
 ORDER BY table_schema, table_name";
+
+
         /// <summary>
         /// 0: Table exclusions
         /// 1: Table schema
@@ -242,6 +296,41 @@ WHERE (NOT table_name in ({0}) OR {0} = '')
 AND Table_type = 'BASE TABLE'
 AND Table_Schema = '{1}'
 ORDER BY table_schema, table_name";
+        /// <summary>
+        /// 0: Table exclusions
+        /// 1: Table schema
+        /// 2: Exclude from
+        /// </summary>
+        public const string qryTablesQueryExclEP = @"SELECT table_schema, table_name FROM 
+information_schema.tables
+WHERE (NOT table_name in ({0}) OR {0} = '')
+AND Table_type = 'BASE TABLE'
+AND Table_Schema = '{1}'
+
+
+   AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+        inner join sys.columns col
+	        on col.object_id = major_id
+	        and column_id = minor_id
+    
+	    WHERE epX.Name = 'ExcludeFrom{4}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = CCU.TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = CCU.TABLE_NAME
+	    AND col.Name = CCU.COLUMN_NAME
+    )
+
+ORDER BY table_schema, table_name";
+
+
+
+     
+
+
         /// <summary>
         /// 0: Table exclusions
         /// 1: Table schema
@@ -884,6 +973,7 @@ ORDER BY C.TABLE_NAME, C.COLUMN_NAME
         /// Get a list of primary columns
         /// {0} table_schema
         /// {1} table_name
+        /// Fields
         /// 0: Table_schema
         /// 1: table_name
         /// 2: column_name
