@@ -418,6 +418,10 @@ namespace PW.CustomCodeConverter
             }
 
             scTables = new StagingCreate(this.txtStgSrcConn.Text, this.txtStgDB.Text, this.txtStgSchema.Text,sFactPrefix ,sDimPrefix, this.txtStgFieldExcl.Text, this.txtSrcKeyName.Text, this.chkStageDrop.Checked);
+            if (this.chkStgAddSchemaPrefix.Checked)
+            {
+                scTables.bPrefixWithSchema = true;
+            }
             scTables.backWorker = this.backgroundWorkerStaging;
             scTables.CreateScript();
             scTables.OutputScript();

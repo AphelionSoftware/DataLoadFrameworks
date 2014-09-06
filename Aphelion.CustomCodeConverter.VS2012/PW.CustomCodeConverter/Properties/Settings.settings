@@ -161,5 +161,8 @@
       <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True
 </Value>
     </Setting>
+    <Setting Name="chkStgAddSchemaPrefix_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -179,6 +179,7 @@
             this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
+            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -1141,6 +1142,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.chkStgAddSchemaPrefix);
             this.tabPage3.Controls.Add(this.btnCreateO_S_E2);
             this.tabPage3.Controls.Add(this.chkRunScript);
             this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
@@ -1235,7 +1237,7 @@
             // 
             this.label48.AutoSize = true;
             this.label48.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label48.Location = new System.Drawing.Point(4, 372);
+            this.label48.Location = new System.Drawing.Point(4, 346);
             this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(144, 17);
@@ -1245,7 +1247,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(4, 313);
+            this.label47.Location = new System.Drawing.Point(4, 287);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(125, 17);
@@ -1255,7 +1257,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(4, 254);
+            this.label46.Location = new System.Drawing.Point(4, 228);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(110, 17);
@@ -1338,7 +1340,7 @@
             // txtSrcKeyName
             // 
             this.txtSrcKeyName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtSrcKeyName_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtSrcKeyName.Location = new System.Drawing.Point(180, 366);
+            this.txtSrcKeyName.Location = new System.Drawing.Point(180, 340);
             this.txtSrcKeyName.Margin = new System.Windows.Forms.Padding(4);
             this.txtSrcKeyName.Name = "txtSrcKeyName";
             this.txtSrcKeyName.Size = new System.Drawing.Size(1245, 22);
@@ -1362,7 +1364,7 @@
             // txtSchemaExclStg
             // 
             this.txtSchemaExclStg.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtSchemaExclStg_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtSchemaExclStg.Location = new System.Drawing.Point(180, 306);
+            this.txtSchemaExclStg.Location = new System.Drawing.Point(180, 280);
             this.txtSchemaExclStg.Margin = new System.Windows.Forms.Padding(4);
             this.txtSchemaExclStg.Multiline = true;
             this.txtSchemaExclStg.Name = "txtSchemaExclStg";
@@ -1373,7 +1375,7 @@
             // txtTableExclStg
             // 
             this.txtTableExclStg.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtTableExclStg_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtTableExclStg.Location = new System.Drawing.Point(180, 249);
+            this.txtTableExclStg.Location = new System.Drawing.Point(180, 223);
             this.txtTableExclStg.Margin = new System.Windows.Forms.Padding(4);
             this.txtTableExclStg.Multiline = true;
             this.txtTableExclStg.Name = "txtTableExclStg";
@@ -1922,6 +1924,21 @@
             this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
             this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
             // 
+            // chkStgAddSchemaPrefix
+            // 
+            this.chkStgAddSchemaPrefix.AutoSize = true;
+            this.chkStgAddSchemaPrefix.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStgAddSchemaPrefix_Checked;
+            this.chkStgAddSchemaPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkStgAddSchemaPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStgAddSchemaPrefix_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkStgAddSchemaPrefix.Location = new System.Drawing.Point(751, 409);
+            this.chkStgAddSchemaPrefix.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkStgAddSchemaPrefix.Name = "chkStgAddSchemaPrefix";
+            this.chkStgAddSchemaPrefix.Size = new System.Drawing.Size(208, 21);
+            this.chkStgAddSchemaPrefix.TabIndex = 88;
+            this.chkStgAddSchemaPrefix.Text = "Prefix schema to table name";
+            this.chkStgAddSchemaPrefix.UseVisualStyleBackColor = true;
+            this.chkStgAddSchemaPrefix.Visible = false;
+            // 
             // ProgramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2096,6 +2113,7 @@
         private System.Windows.Forms.Button btnCreateO_S_E_1;
         private System.Windows.Forms.Button btnCreateO_S_E2;
         private System.Windows.Forms.Button btnCreateO_S_E3;
+        private System.Windows.Forms.CheckBox chkStgAddSchemaPrefix;
 
     }
 }

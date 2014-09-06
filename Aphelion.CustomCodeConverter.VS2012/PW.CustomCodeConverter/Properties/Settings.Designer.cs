@@ -652,5 +652,17 @@ namespace PW.CustomCodeConverter.Properties {
                 this["txtStgSrcConn2_Text"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool chkStgAddSchemaPrefix_Checked {
+            get {
+                return ((bool)(this["chkStgAddSchemaPrefix_Checked"]));
+            }
+            set {
+                this["chkStgAddSchemaPrefix_Checked"] = value;
+            }
+        }
     }
 }

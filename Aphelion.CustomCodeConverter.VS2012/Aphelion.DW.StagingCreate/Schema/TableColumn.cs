@@ -7,6 +7,13 @@ namespace Aphelion.DW.StagingCreate.Schema
 {
     public class TableColumn
     {
+        /*public string TableSchema { get; 
+            set{
+                this.TableSchema = value;
+                this.TableAlias = this.TableSchema + "_" + this.TableAlias;
+            } 
+        }
+        */
         public string TableName;
         public string TableAlias;
         public string ColumnName;
@@ -26,6 +33,7 @@ namespace Aphelion.DW.StagingCreate.Schema
         public override string ToString()
         {
             return this.TableName + "." + this.ColumnName + " as " + this.Alias;
+            
         }
         
 

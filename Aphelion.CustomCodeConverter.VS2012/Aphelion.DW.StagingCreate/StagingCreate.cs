@@ -40,6 +40,7 @@ namespace Aphelion.DW.StagingCreate
         public string strTableExcl;
         public string strSchemaExcl;
         public string strSrcKeyName = "SourceKey";
+        public bool bPrefixWithSchema = false;
             
 
 
@@ -166,7 +167,11 @@ namespace Aphelion.DW.StagingCreate
             if (this.sFactTablePrefix == "" )
             {
                 command.CommandText = string.Format(QC.qryTableQueryExcl, this.strTableExcl,this.strSchemaExcl);
-            
+                /*command.CommandText = @"SELECT table_schema, table_name FROM 
+information_schema.tables
+WHERE table_name = 'FactProcessTransaction'
+AND Table_type = 'BASE TABLE' 
+ORDER BY table_schema, table_name";*/
             }
             else 
             {
@@ -239,6 +244,7 @@ namespace Aphelion.DW.StagingCreate
 
         public string OutputScript()
         {
+            this.strFullResult = this.strFullCreate;
             return this.strFullCreate;
         }
 
@@ -255,6 +261,7 @@ namespace Aphelion.DW.StagingCreate
             {
                 if (drRefs.GetBoolean(11) != true)
                 {
+
                     SC.AddTC(pTableName, ref lstTC, drRefs);
                 }
             }
@@ -352,9 +359,20 @@ namespace Aphelion.DW.StagingCreate
                         lstTC.Remove(lstTC.Find(item => item.ColumnName == sColumnName));
 
                     }
+                    string sStageColumnName;
+                    if (sDimColumnName.Length == sColumnName.Length)
+                    {
+                        sStageColumnName = sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName;
+                    }
+                    else
+                    {
+                        string sPrefix;
+                        string sSuffix;
+                        sStageColumnName = Extensions.ColumnNameFix(sDimColumnName, sColumnName, sDimTable, this.strSrcKeyName, out sPrefix, out sSuffix);
+                    }
                     //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + "SourceKey", "NO", "varchar", "255"));
                     //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, "varchar", "255"));
-                    lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, sDataType, sCharacterLength));
+                    lstTC.Add(new TableColumn(pTableName, sStageColumnName, sIsNullable, sDataType, sCharacterLength));
                     /*if (!lstTS.ContainsKey(sDimSchema + "." + sDimTable))
                     {
                         lstTS.Add(sDimSchema + "." + sDimTable
@@ -366,6 +384,7 @@ namespace Aphelion.DW.StagingCreate
                     }*/
 
                 }
+               
 
                 //drRefs.Read();
             }
@@ -375,13 +394,24 @@ namespace Aphelion.DW.StagingCreate
             for (int iLoop = 1; iLoop < lstTC.Count; iLoop++)
             {
                 strColumnList += "," + SC.AddColumn(lstTC, iLoop);
-                }
+            }
 
-            strCreate = string.Format(QC.qryCreateStageTable,
-                this.sSchema
-                , pTableName
-                , strColumnList
-                );
+            if (this.bPrefixWithSchema) {
+                strCreate = string.Format(QC.qryCreateStageTable,
+                    this.sSchema
+                    , pSchemaTable + "_" + pTableName
+                    , strColumnList
+                    );
+            
+            }
+            else
+            {
+                strCreate = string.Format(QC.qryCreateStageTable,
+                    this.sSchema
+                    , pTableName
+                    , strColumnList
+                    );
+            }
             
 
             return strCreate;

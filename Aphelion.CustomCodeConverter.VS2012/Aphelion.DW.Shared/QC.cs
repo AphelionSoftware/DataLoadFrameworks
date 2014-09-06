@@ -279,6 +279,7 @@ ORDER BY table_schema, table_name";
         ///9 Coalesce Fields in view
         ///10 Data type
         ///11 Character maximum length
+        ///12 Self referencing
         /// </summary>
         public const string qryReferenceQueryWithKeyCol = @"
 select 
@@ -294,6 +295,10 @@ select
 	, ISNULL(EPCoalesce.Value, 'False') CoalesceFields
 	, CKey.DATA_TYPE
 	, CKey.CHARACTER_MAXIMUM_LENGTH
+, SelfReferencing = 
+		CASE WHEN (KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
+	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
+	THEN 1 ELSE 0 END
 	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
 INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
 ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
@@ -320,10 +325,10 @@ INNER JOIN INFORMATION_SCHEMA.COLUMNS CKey
 
 WHERE CCU.TABLE_SCHEMA = '{0}'
 AND CCU.TABLE_NAME = '{1}'
-AND NOT 
+/*AND NOT 
 	(KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
 	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
-
+*/
 
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 ";
@@ -347,6 +352,7 @@ ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
         ///9 Coalesce Fields in view
         ///10 Data type
         ///11 Character maximum length
+        ///12 Self-referencing
         /// </summary>
         public const string qryReferenceQueryExclWithKeyCol = @"
 select 
@@ -362,6 +368,10 @@ select
 	, ISNULL(EPCoalesce.Value, 'False') CoalesceFields
 	, CKey.DATA_TYPE
 	, CKey.CHARACTER_MAXIMUM_LENGTH
+, SelfReferencing = 
+		CASE WHEN (KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
+	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
+	THEN 1 ELSE 0 END
 	 from INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS RC
 INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU
 ON RC.CONSTRAINT_SCHEMA = ccu.CONSTRAINT_SCHEMA
@@ -389,10 +399,10 @@ INNER JOIN INFORMATION_SCHEMA.COLUMNS CKey
 
 WHERE CCU.TABLE_SCHEMA = '{0}'
 AND CCU.TABLE_NAME = '{1}'
-AND NOT 
+/*AND NOT 
 	(KCU.TABLE_SCHEMA = CCU.TABLE_SCHEMA
 	AND KCU.TABLE_NAME = CCU.TABLE_NAME)
-
+*/
 
 and not kcu.TABLE_NAME in ({2})
 
