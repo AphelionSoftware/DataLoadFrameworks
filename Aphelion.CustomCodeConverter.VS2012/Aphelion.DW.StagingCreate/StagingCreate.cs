@@ -169,7 +169,7 @@ namespace Aphelion.DW.StagingCreate
                 command.CommandText = string.Format(QC.qryTableQueryExclSchema_EP, this.strTableExcl, this.strSchemaExcl, "Staging");
                 /*command.CommandText = @"SELECT table_schema, table_name FROM 
 information_schema.tables
-WHERE table_name = 'FactProcessTransaction'
+WHERE table_name = 'FactFinancialTransaction'
 AND Table_type = 'BASE TABLE' 
 ORDER BY table_schema, table_name";*/
             }
@@ -390,7 +390,8 @@ ORDER BY table_schema, table_name";*/
 
 
                 if (sDimTable != drRefs.GetString(6) ||
-                    sDimSchema != drRefs.GetString(5))
+                    sDimSchema != drRefs.GetString(5) ||
+                    sColumnName != drRefs.GetString(4))
                 {
 
                     sDimTable = drRefs.GetString(6);
