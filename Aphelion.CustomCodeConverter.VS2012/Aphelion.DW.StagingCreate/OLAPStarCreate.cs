@@ -217,7 +217,7 @@ GO
             string sAdditionalFields = "";
             string sAdditionalJoins = "";
             bool bCoalesce = false;
-            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl, "BASE TABLE", "Cube"), srcFactConn);
+            comm = new SqlCommand(string.Format(QC.qryListColumns, pTableName, pSchemaTable, pFieldExcl, "BASE TABLE", "OLAPViews"), srcFactConn);
             drRefs = comm.ExecuteReader();
             drRefs.Read();
             strColumnList = string.Format("\n\t[{0}].[{1}] ", pTableName, drRefs.GetString(0));
@@ -300,10 +300,10 @@ GO
             //Build related tables 
             if (sTableExcl != "") 
             {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExcl, pSchemaTable, pTableName, sTableExcl, "''", "OLAP"), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExcl, pSchemaTable, pTableName, sTableExcl, "''", "OLAPViews"), srcFactConn);
             
             } else {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName, "OLAP"), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQuery, pSchemaTable, pTableName, "OLAPViews"), srcFactConn);
             }
             drRefs = comm.ExecuteReader();
             

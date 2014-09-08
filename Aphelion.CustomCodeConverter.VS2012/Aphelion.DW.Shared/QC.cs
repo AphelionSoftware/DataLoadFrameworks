@@ -597,6 +597,17 @@ AND NOT EXISTS (
 	    AND OBJECT_NAME(epX.major_id) = CCU.TABLE_NAME
 	    AND col.Name = CCU.COLUMN_NAME
     )
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+      
+	    WHERE epX.Name = 'ExcludeFrom{4}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = KCU.TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = KCU.TABLE_NAME
+    )
 
 
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
@@ -669,6 +680,17 @@ AND NOT EXISTS (
 	    AND OBJECT_SCHEMA_NAME(epX.major_id) = CCU.TABLE_SCHEMA
 	    AND OBJECT_NAME(epX.major_id) = CCU.TABLE_NAME
 	    AND col.Name = CCU.COLUMN_NAME
+    )
+AND NOT EXISTS (
+    SELECT 1 
+    ,OBJECT_NAME(epX.major_id) 
+	    FROM sys.extended_properties  epX
+      
+	    WHERE epX.Name = 'ExcludeFrom{2}' 
+	    AND 
+		    (epX.Value = 'true' OR epX.VALUE = 1)
+	    AND OBJECT_SCHEMA_NAME(epX.major_id) = KCU.TABLE_SCHEMA
+	    AND OBJECT_NAME(epX.major_id) = KCU.TABLE_NAME
     )
 
 
