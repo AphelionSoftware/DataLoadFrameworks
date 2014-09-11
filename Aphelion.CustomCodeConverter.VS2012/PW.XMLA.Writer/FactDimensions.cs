@@ -234,7 +234,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
         private static void CreateDimensions(ref PW.XMLA.Reader.MultiDimensionalReader targetCubeReader, XMLAModel xModel, XMLAMeasureGroup xMG)
         {
 
-            DSV dsvDim = targetCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID == xMG.sDSVID);
+            DSV dsvDim = targetCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID.ToUpper() == xMG.sDSVID.ToUpper());
 
             //Copy the list of measures as we'll be writing back to it
             List<XMLAMeasure> lstMeasures = new List<XMLAMeasure>(xMG.lstMeasures);
@@ -250,8 +250,8 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                     //Hence we check for each measure if it's table exists as a dimension
                     bool   boolDimExists = true;
                     XMLADimension xSubDim = xModel.lstDimensions.Find(item =>
-                                item.sKeySchemaName == xMeasure.sDBSchemaName
-                                    && item.sKeyTableName == xMeasure.sDBTableName);
+                                item.sKeySchemaName.ToUpper() == xMeasure.sDBSchemaName.ToUpper()
+                                    && item.sKeyTableName.ToUpper() == xMeasure.sDBTableName.ToUpper());
 
                     XMLADimension dimNew = new XMLADimension();
                     if (xSubDim == null)
@@ -262,8 +262,8 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                         dimNew.sDSVID = xMG.sDSVID;
                         dimNew.sDataSourceID = dsvDim.sDataSourceID;
 
-                        DSVTable dsvtSubDim = dsvDim.lstDSVTables.Find(item => item.sSchemaName == xMeasure.sDBSchemaName
-                                                                                && item.sTableName == xMeasure.sDBTableName);
+                        DSVTable dsvtSubDim = dsvDim.lstDSVTables.Find(item => item.sSchemaName.ToUpper() == xMeasure.sDBSchemaName.ToUpper()
+                                                                                && item.sTableName.ToUpper() == xMeasure.sDBTableName.ToUpper());
 
                         dimNew.sID = FactDimensions.FixIDs( dsvtSubDim.sTableName );
                         dimNew.sName = dsvtSubDim.sTableName;
@@ -286,7 +286,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
 
 
                         //Set the Query Definition
-                        if (dsvtSubDim.sTableType == "View" || dsvtSubDim.sTableType == "Table")
+                        if (dsvtSubDim.sTableType.ToLower() == "view" || dsvtSubDim.sTableType.ToLower() == "table")
                         {
                             dimNew.sQueryDefinition = "SELECT * FROM [" + dsvtSubDim.sSchemaName + "].[" + dsvtSubDim.sTableName + "]";
                         }
@@ -302,9 +302,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                     }
                     //Add the current column
                     //Second clause added as a measure could exist already
-                    if (xMeasure.sName.Contains("Rates") || xMeasure.sDBColumnName.Contains("Rates"))
-                    {
-                    }
+                    //Third clause added in case its a calc
                     if (!xSubDim.lstDimensionAttributes.Exists(item => item.sDBSchemaName == xMeasure.sDBSchemaName &&
                                                                         item.sDBTableName == xMeasure.sDBTableName &&
                                                                         item.sDBColumnName == xMeasure.sDBColumnName
@@ -312,8 +310,9 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                         && !xSubDim.lstDimensionAttributes.Exists(item => item.sDBSchemaName == xMeasure.sDBSchemaName &&
                                                                         item.sDBTableName == xMeasure.sDBTableName &&
                                                                         item.sDBColumnName == xMeasure.sName
-                        
-                        ))
+                        )
+                        && xMeasure.sMeasureExpression == ""
+                        )
                     {
                         AddDimensionColumn(ref targetCubeReader, xMG, xMeasure, xSubDim);
 

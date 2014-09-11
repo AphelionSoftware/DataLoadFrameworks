@@ -664,5 +664,17 @@ namespace PW.CustomCodeConverter.Properties {
                 this["chkStgAddSchemaPrefix_Checked"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp\\item.data")]
+        public string txtTabularBackup_Text {
+            get {
+                return ((string)(this["txtTabularBackup_Text"]));
+            }
+            set {
+                this["txtTabularBackup_Text"] = value;
+            }
+        }
     }
 }

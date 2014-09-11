@@ -36,6 +36,12 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
             this.sCalculationType = pCalculationType;
             this.sFormatString = pFormatString;
         }
+        public MDXScriptCalcProp(string pCalculationReference, string pCalculationType, string pFormatString, string pFormat)
+        {
+            this.sID = pCalculationReference;
+            this.sCalculationType = pCalculationType;
+            this.sFormatString = pFormatString;
+        }
 
 
         public string sFormat = "General";

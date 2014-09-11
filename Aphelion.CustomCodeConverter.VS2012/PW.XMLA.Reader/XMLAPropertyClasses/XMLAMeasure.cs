@@ -16,6 +16,7 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
         public string sAggregationFunction;
         public string sMeasureExpression;
         public string sFormatString;
+        public string sFormatName;
         public string sAnnotations;
         public string sDataType;
         public string sDataSize;
@@ -28,6 +29,7 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
         public string sAttributeName;
         public bool boolVisible = true;
 
+        public List<XMLAKPI> lstKPIs = new List<XMLAKPI>();
         public XMLAMeasure()
         {
         }
