@@ -11,9 +11,77 @@ namespace PW.XMLA.Writer
     public class TabularXMLAWriter
     {
 
+        struct measureAtts
+        {
+            public string sName, sTable, sCalc, sAnnotations, sKPI;
+            public measureAtts(string pName, string pTable, string pCalc, string pAnnotations, string pKPI)
+            {
+                sName = pName;
+                sTable = pTable;
+                sCalc = pCalc;
+                sAnnotations = pAnnotations;
+                sKPI = pKPI;
+            }
+        }
+        public XmlaResultCollection result;
         public bool isTabularSource = false;
         public bool isNewPowerPivotSchema = true;
         #region constants
+        /// <summary>
+        /// 0 is Goal measure
+        /// 1 is Status measure
+        /// 2 is KPI create
+        /// </summary>
+        public const string constXMLAKPI = @"
+        {0}
+        {1}
+        {2}";
+
+        /// <summary>
+        /// 0 is measure group
+        /// 1 is meausre
+        /// 2 is Goal
+        /// </summary>
+        public const string constXMLAKPIGoal = @"
+        CREATE MEASURE '{0}'[_{1} Goal] = {2}; 
+";
+        /// <summary>
+        /// 0 is measure group
+        /// 1 is measure
+        /// 2 is GT
+        /// 3 is LT
+        /// </summary>
+        public const string constXMLAKPIStatus = @"
+        CREATE MEASURE '{0}'[_{1} Status] = if(ISBLANK('{0}'[{1}]),BLANK(),
+        If('{0}'[{1}]&lt;{2},-1,
+	    If('{0}'[{1}]&lt;{3},0,1)
+    )
+)
+;  
+";
+        /// <summary>
+        /// 0 is measure group
+        /// 1 is measure
+        /// 2 is Status Graphic
+        /// </summary>
+        public const string constXMLAKPIKPI = @"
+        CREATE KPI CURRENTCUBE.[{1}] AS Measures.[{1}], ASSOCIATED_MEASURE_GROUP = '{0}', GOAL = Measures.[_{1} Goal], STATUS = Measures.[_{1} Status], STATUS_GRAPHIC = '{2}';
+";
+
+
+
+        /// <summary>
+        /// 0: Database ID
+        /// 1: File
+        /// 2: AllowOverwrite
+        /// </summary>
+        public const string constXMLABackup = @"<Backup xmlns=""http://schemas.microsoft.com/analysisservices/2003/engine"">
+  <Object>
+    <DatabaseID>{0}</DatabaseID>
+  </Object>
+  <File>{1}</File>
+  <AllowOverwrite>{2}</AllowOverwrite>
+</Backup>";
 
         /// <summary>
         /// 0 is DB id
@@ -23,6 +91,47 @@ namespace PW.XMLA.Writer
         <DatabaseID>{0}</DatabaseID>
     </Object>
 </Delete>";
+
+        /// Individual commands
+        /// 0: Text
+        /// 1: Annotations
+        /// </summary>
+        public const string constXMLACommand = @"<Command>
+                                    <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+                                        {0}
+                                    </Text>
+                                    <Annotations>
+                                     {1}
+                                    </Annotations>
+                                </Command>
+                                ";
+
+
+        /// <summary>
+        /// 0 is the commands
+        /// 1 is the calculation properties
+        /// </summary>
+        public const string constXMLAMDXCommands = @"<MdxScript>
+                            <ID>MdxScript</ID>
+                            <Name>MdxScript</Name>
+                            <Commands>
+                                <Command>
+                                    <Text>CALCULATE; 
+CREATE MEMBER CURRENTCUBE.Measures.[__No measures defined] AS 1; 
+ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measures defined]; 
+</Text>
+                                </Command>
+                                {0}
+                            </Commands>
+                            <CalculationProperties>{1}
+                            </CalculationProperties>
+                        </MdxScript>
+                    ";
+
+
+
         /// <summary>
         /// 0 is DB ID
         /// 1 is Dimension ID
@@ -1536,7 +1645,19 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 cubeServer.Connect(this.connDestConnection);
             }
-            XmlaResultCollection result = cubeServer.Execute(this.sXMLAAlterStatement);
+            result = cubeServer.Execute(this.sXMLAAlterStatement);
+        }
+
+        public void BackupDatabase(string pDatabaseID, string pFilename)
+        {
+            if (!cubeServer.Connected)
+            {
+                cubeServer.Connect(this.connDestConnection);
+            }
+            string sFilename = pFilename + ".abf";
+            sFilename = sFilename.Replace(".abf.abf", ".abf");
+            string sComm = string.Format(constXMLABackup, pDatabaseID, sFilename, "true");
+            result = cubeServer.Execute(sComm);
         }
 
         public void ProcessCubeFull()
@@ -1546,7 +1667,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 cubeServer.Connect(this.connDestConnection);
             }
-            XmlaResultCollection result = cubeServer.Execute(sProcessCommand);
+             result = cubeServer.Execute(sProcessCommand);
        
         }
 
@@ -2168,6 +2289,9 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             string sMeasuresList ="";
             string sAnnotationsList = "";
             string sCalculationOptionsList = "";
+
+            Dictionary<string, measureAtts> dctMeasures = new Dictionary<string, measureAtts>();
+            
             foreach (XMLAMeasureGroup xMG in cmActiveModel.lstMeasureGroups) 
             {
                 //if (xMG.sID.Contains("DimPerson"))

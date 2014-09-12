@@ -490,9 +490,12 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {
+                /* 1 looked like a bug? Triple check this!*/
+                //Unless it's DSVTableID?
+                ///TODO:
                 this.sDSVID = drRefs.GetString(1);
                 DSVTable dsvT = new DSVTable(
-                    drRefs.GetString(1)  /* 1 looked like a bug? Triple check this!*/ ///TODO:
+                    drRefs.GetString(1)  
                     , drRefs.GetString(1)
                     , drRefs.GetString(1)
                     , drRefs.GetString(3)
