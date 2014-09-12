@@ -28,6 +28,14 @@ namespace PW.XMLA.Writer
         public bool isNewPowerPivotSchema = true;
         #region constants
         /// <summary>
+        /// 0 is name
+        /// 1 is value
+        /// </summary>
+        public const string constXMLACalcAnnotation = @"<Annotation>
+											<Name>{0}</Name>
+											<Value>{1}</Value>
+										</Annotation>";
+        /// <summary>
         /// 0 is Goal measure
         /// 1 is Status measure
         /// 2 is KPI create
@@ -92,44 +100,7 @@ namespace PW.XMLA.Writer
     </Object>
 </Delete>";
 
-        /// Individual commands
-        /// 0: Text
-        /// 1: Annotations
-        /// </summary>
-        public const string constXMLACommand = @"<Command>
-                                    <Text>----------------------------------------------------------
--- PowerPivot measures command (do not modify manually) --
-----------------------------------------------------------
-                                        {0}
-                                    </Text>
-                                    <Annotations>
-                                     {1}
-                                    </Annotations>
-                                </Command>
-                                ";
-
-
-        /// <summary>
-        /// 0 is the commands
-        /// 1 is the calculation properties
-        /// </summary>
-        public const string constXMLAMDXCommands = @"<MdxScript>
-                            <ID>MdxScript</ID>
-                            <Name>MdxScript</Name>
-                            <Commands>
-                                <Command>
-                                    <Text>CALCULATE; 
-CREATE MEMBER CURRENTCUBE.Measures.[__No measures defined] AS 1; 
-ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measures defined]; 
-</Text>
-                                </Command>
-                                {0}
-                            </Commands>
-                            <CalculationProperties>{1}
-                            </CalculationProperties>
-                        </MdxScript>
-                    ";
-
+        
 
 
         /// <summary>
@@ -963,7 +934,48 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                             <Value>{1}</Value>
                                         </Annotation>"            ;
 
+
+        /// Individual commands
+        /// 0: Text
+        /// 1: Annotations
+        /// </summary>
+        public const string constXMLACommand = @"<Command>
+                                    <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+                                        {0}
+                                    </Text>
+                                    <Annotations>
+                                     {1}
+                                    </Annotations>
+                                </Command>
+                                ";
+
+
         /// <summary>
+        /// 0 is the commands
+        /// 1 is the calculation properties
+        /// </summary>
+        public const string constXMLAMDXCommands = @"<MdxScript>
+                            <ID>MdxScript</ID>
+                            <Name>MdxScript</Name>
+                            <Commands>
+                                <Command>
+                                    <Text>CALCULATE; 
+CREATE MEMBER CURRENTCUBE.Measures.[__No measures defined] AS 1; 
+ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measures defined]; 
+</Text>
+                                </Command>
+                                {0}
+                            </Commands>
+                            <CalculationProperties>{1}
+                            </CalculationProperties>
+                        </MdxScript>
+                    ";
+
+
+        /// <summary>
+        /// There may be a problem with annotations if isNewPowerPivot is not true
         /// 0 is the measures
         /// 1 is the command text
         /// 2 is the calculation properties
@@ -985,6 +997,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                         {1}
                                     </Text>
                                     <Annotations>
+                                        {3}
                                     </Annotations>
                                 </Command>
                             </Commands>
@@ -1017,12 +1030,13 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         /// 0 is Measure name
         /// 1 is Format (Default to General"
         /// 2 is Format String (default to '')
+        /// 3 is Type 
         /// </summary>
         public const string constXMLACalcProp = @"<CalculationProperty>
                                     <Annotations>
                                         <Annotation>
                                             <Name>Type</Name>
-                                            <Value>User</Value>
+                                            <Value>{3}</Value>
                                         </Annotation>
                                         <Annotation>
                                             <Name>IsPrivate</Name>
@@ -1033,6 +1047,85 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                             <Value>
                                                 <Format Format=""{1}"" xmlns="""" />
                                             </Value>
+                                        </Annotation>
+                                    </Annotations>
+                                    <CalculationReference>{0}</CalculationReference>
+                                    <CalculationType>Member</CalculationType>
+                                    <FormatString>{2}</FormatString>
+                                </CalculationProperty>
+                                ";
+        /// <summary>
+        /// 0  is Measure name
+        /// 1  is Format (Default to General"
+        /// 2  is Format String (default to '')
+        /// 3  is Goal Type
+        /// 4  is Goal Value
+        /// 5  is Status Type
+        /// 6  is Threshold Type
+        /// 7  is Threshold Ordering
+        /// 8  is Threshold count
+        /// 9  is Threshold 0
+        /// 10 is Threshold 1
+        /// </summary>
+        public const string constXMLACalcPropKPI = @"<CalculationProperty>
+                                    <Annotations>
+                                        <Annotation>
+                                            <Name>Type</Name>
+                                            <Value>KPI</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>IsPrivate</Name>
+                                            <Value>False</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>Format</Name>
+                                            <Value>
+                                                <Format Format=""{1}"" xmlns="""" />
+                                            </Value>
+                                        </Annotation>
+<Annotation>
+                                            <Name>GoalType</Name>
+                                            <Value>{3}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>GoalValue</Name>
+                                            <Value>{4}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiStatusType</Name>
+                                            <Value>{5}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThresholdType</Name>
+                                            <Value>{6}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThresholdOrdering</Name>
+                                            <Value>{7}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThresholdCount</Name>
+                                            <Value>{8}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThreshold_0</Name>
+                                            <Value>{9}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThreshold_1</Name>
+                                            <Value>{10}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>ValueDescription</Name>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>GoalDescription</Name>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>StatusDescription</Name>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>TrendDescription</Name>
                                         </Annotation>
                                     </Annotations>
                                     <CalculationReference>{0}</CalculationReference>
@@ -2291,7 +2384,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             string sCalculationOptionsList = "";
 
             Dictionary<string, measureAtts> dctMeasures = new Dictionary<string, measureAtts>();
-            
+            List<KPICalcProp> lstKPIProps = new List<KPICalcProp>();
+                
             foreach (XMLAMeasureGroup xMG in cmActiveModel.lstMeasureGroups) 
             {
                 //if (xMG.sID.Contains("DimPerson"))
@@ -2321,7 +2415,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                 //}
                 //if( cmActiveModel.lstDimensions.Exists( item => item.sKeySchemaName == xMG.
-
                 foreach (XMLAMeasure xm in xMG.lstMeasures)
                 {
                     #region Build standard measures
@@ -2380,14 +2473,56 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     }
                     #endregion
 
-                    sAnnotationsList += string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
+                    #region KPIs
+                    string sKPI = "";
+                    string sGoal;
+                    string sStatus;
+                    string sCreateKPI;
+                    foreach (XMLAKPI xKPI in xm.lstKPIs)
+                    {
+                        sGoal = string.Format(constXMLAKPIGoal, xMG.sName, xm.sName, xKPI.sGoal);
+                        MDXScriptCalcProp cpGoal = new MDXScriptCalcProp("[_" + xm.sName + " Goal]");
+                        cpGoal.sMainObjectName = xm.sName;
+                        cpGoal.sType = "SupportMdx";
+                        cmActiveModel.mdxScript.CalcProps.Add(cpGoal);
+                        
+                        sStatus = string.Format(constXMLAKPIStatus, xMG.sName, xm.sName, xKPI.sGT, xKPI.sLT);
+                        MDXScriptCalcProp cpStatus = new MDXScriptCalcProp("[_" + xm.sName + " Status]");
+                        cpStatus.sMainObjectName = xm.sName;
+                        cpStatus.sType = "SupportMdx";
+                        cmActiveModel.mdxScript.CalcProps.Add(cpStatus);
+                        
+
+                        MDXScriptCalcProp cpKPISupport = new MDXScriptCalcProp("KPIs.[" + xm.sName + "]");
+                        cpKPISupport.sMainObjectName = xm.sName;
+                        cpKPISupport.sType = "SupportKpi";
+                        cmActiveModel.mdxScript.CalcProps.Add(cpKPISupport);
+
+                        KPICalcProp kpiProp = new KPICalcProp("[" + xm.sName + "]", "Member", "", xKPI.sGoal, xKPI.sGT, xKPI.sLT);
+                        lstKPIProps.Add(kpiProp);
+
+                        sCreateKPI = string.Format(constXMLAKPIKPI, xMG.sName, xm.sName, xKPI.sGraphic);
+                        sKPI += string.Format(constXMLAKPI, sGoal, sStatus, sCreateKPI);
+                    }
+                    #endregion
+
+                    string sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
+                    dctMeasures.Add(sMeasure, new measureAtts(xMG.sID, xm.sDimensionID, sMeasure, sAnnotation, sKPI));
+                    sAnnotationsList += sAnnotation; 
                     sMeasuresList += sMeasure + "\n";
 
                     //Any measures with no calc props need to have them added. Is this the right place? Perhaps not...
-                    if (!cmActiveModel.mdxScript.CalcProps.Exists(item => item.sCalculationReference == xm.sID))
+                    if (!cmActiveModel.mdxScript.CalcProps.Exists(item => item.sCalculationReference == xm.sID
+                        || item.sCalculationReference == "[" + xm.sID + "]" 
+                        ))
                     {
-                        //Adding [] to the calc reference
-                        cmActiveModel.mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID +"]", "Member", "''"));
+                        if (!lstKPIProps.Exists(item => item.sCalculationReference == xm.sID
+                           || item.sCalculationReference == "[" + xm.sID + "]"
+                         ))
+                        {
+                            //Adding [] to the calc reference
+                            cmActiveModel.mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID + "]", "Member", "''"));
+                        }
                     }
 
                     #endregion
@@ -2399,11 +2534,61 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             foreach (MDXScriptCalcProp calcProp in cmActiveModel.mdxScript.CalcProps)
             {
                 string sCalculationOptions = "";
-                sCalculationOptions = string.Format(constXMLACalcProp, calcProp.sCalculationReference, calcProp.sFormat, calcProp.sFormatString);
+                sCalculationOptions = string.Format(constXMLACalcProp, calcProp.sCalculationReference, calcProp.sFormat, calcProp.sFormatString, calcProp.sType);
                 sCalculationOptionsList += sCalculationOptions + "\n";
             }
 
-            if (isTabularSource)
+            foreach (KPICalcProp kpiProp in lstKPIProps)
+            {
+                /// 0  is Measure name
+                /// 1  is Format (Default to General"
+                /// 2  is Format String (default to '')
+                /// 3  is Goal Type
+                /// 4  is Goal Value
+                /// 5  is Status Type
+                /// 6  is Threshold Type
+                /// 7  is Threshold Ordering
+                /// 8  is Threshold count
+                /// 9  is Threshold 0
+                /// 10 is Threshold 1
+        
+                string sCalculationOptions = "";
+                sCalculationOptions = string.Format(constXMLACalcPropKPI,
+                    kpiProp.sCalculationReference
+                    , kpiProp.sFormat
+                    ,"'" +  kpiProp.sFormatString+ "'"
+                    , kpiProp.sGoalType
+                    , kpiProp.sGoalValue
+                    , kpiProp.sStatusType
+                    , kpiProp.sThresholdType
+                    , kpiProp.sThresholdOrdering
+                    , kpiProp.sThresholdCount
+                    , kpiProp.sThreshold0
+                    , kpiProp.sThreshold1
+                    );
+                sCalculationOptionsList += sCalculationOptions + "\n";
+             
+            }
+            if (isNewPowerPivotSchema)
+            {
+                string sPowerPivotCalc = string.Format(constPowerPivotCommand, sMeasuresList);
+                string sComm = "";
+                foreach (var T in dctMeasures)
+                {
+                    if (T.Value.sName.Contains("Status"))
+                    {
+                      //Allocate them to the first measure group as we don't have a measures group
+                      //sMDXComm = string.Format(constXMLAMeasureCustom, cmActiveModel.lstMeasureGroups[0].sID, T.Value.sName, T.Value.sCalc.Replace("&", "&amp;"));
+                      //sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
+
+                      string sCommSingle = string.Format(constXMLACommand, T.Value.sCalc + T.Value.sKPI, T.Value.sAnnotations);
+                      sComm += sCommSingle;
+                    }
+                   }
+                sMDX = string.Format(constXMLAMDXCommands, sComm, sCalculationOptionsList).Replace("\t", "");
+
+            }
+            else if (isTabularSource)
             {
                 sMDX = string.Format(constXMLAMDX, sMeasuresList, this.srcCubeReader.cbOriginalCube.lstCubeModels[0].sPowerPivotMDXCommand, sCalculationOptionsList, sAnnotationsList).Replace("\t", "");
             }
