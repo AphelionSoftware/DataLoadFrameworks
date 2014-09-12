@@ -234,7 +234,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
         private static void CreateDimensions(ref PW.XMLA.Reader.MultiDimensionalReader targetCubeReader, XMLAModel xModel, XMLAMeasureGroup xMG)
         {
 
-            DSV dsvDim = targetCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID.ToUpper() == xMG.sDSVID.ToUpper());
+            DSV dsvDim = targetCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID == xMG.sDSVID);
 
             //Copy the list of measures as we'll be writing back to it
             List<XMLAMeasure> lstMeasures = new List<XMLAMeasure>(xMG.lstMeasures);
@@ -316,6 +316,16 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                     {
                         AddDimensionColumn(ref targetCubeReader, xMG, xMeasure, xSubDim);
 
+                    }
+                    else
+                    {
+                        if (xMeasure.sMeasureExpression == "")
+                        {
+                            AddDimensionColumn(ref targetCubeReader, xMG, xMeasure, xSubDim);
+
+                    
+                            var x = 1;
+                        }
                     }
                     if (!boolDimExists)
                     {
