@@ -194,6 +194,14 @@ namespace PW.CustomCodeConverter
         private void btnTblCreateCube_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
+            chkTblProcess.Checked = false;
+            chkTblBackup.Checked = false;
+            SetupTabular();
+            backgroundWorkerTabular.RunWorkerAsync();
+        }
+
+        private void SetupTabular()
+        {
             this.TPR = new TabularPopulateStarFromViews(
                 txtTblCubeDB.Text
                 , txtTblDSConn.Text
@@ -209,13 +217,9 @@ namespace PW.CustomCodeConverter
                 , ""
                 );
 
-            MultiDimensionalReader mdr = new MultiDimensionalReader();
-            mdr.cbOriginalCube =
-                TPR.ScanDB();
+            }
 
-            TPR.CreateCube();
 
-        }
 
         private void btnInsert_Click_1(object sender, EventArgs e)
         {
@@ -243,11 +247,19 @@ namespace PW.CustomCodeConverter
         private void btnProcess_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
-            if (TPR == null)
+            if (TPR == null || TPR.xmlaWriter == null )
             {
-                btnTblCreateCube_Click(sender, e);
+                chkTblProcess.Checked = true;
+                chkTblBackup.Checked = false;
+                SetupTabular();
+                backgroundWorkerTabular.RunWorkerAsync();
+
+            } else
+            {
+                TPR.ProcessCube();
+                this.txtTabular.Text = "Processed cube";
             }
-            TPR.ProcessCube();
+           
         }
 
         private void btnInsert_Click_2(object sender, EventArgs e)
@@ -514,6 +526,58 @@ namespace PW.CustomCodeConverter
             btnStgCreateDB_Click(sender, e);
             btnErrorCreate_Click(sender, e);
         
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            chkTblProcess.Checked = true;
+            chkTblBackup.Checked = true;
+            SetupTabular();
+            backgroundWorkerTabular.RunWorkerAsync();
+
+        }
+
+        private void backgroundWorkerTabular_DoWork(object sender, DoWorkEventArgs e)
+        {
+            MultiDimensionalReader mdr = new MultiDimensionalReader();
+            TPR.backWorker = this.backgroundWorkerTabular;
+            mdr.cbOriginalCube =
+                TPR.ScanDB();
+
+            TPR.CreateCube();
+        
+        }
+
+        private void backgroundWorkerTabular_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            this.txtTabular.Text = e.UserState.ToString();
+        }
+
+        private void backgroundWorkerTabular_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (chkTblProcess.Checked)
+            {
+                TPR.ProcessCube();
+                this.txtTabular.Text = "Processed cube";
+            } 
+            if (chkTblBackup.Checked)
+            {
+                TPR.BackupCube(this.txtTblBackup.Text);
+                this.txtTabular.Text = "Backed up cube";
+            }
+        }
+
+        private void btnTblBackup_Click(object sender, EventArgs e)
+        {
+            if (TPR == null)
+            {
+                SetupTabular();
+            }
+            TPR.BackupCube(this.txtTblBackup.Text);
+            this.txtTabular.Text = "Backed up cube";
+            
         }
        
     }

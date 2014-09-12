@@ -56,7 +56,7 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
         /// <summary>
         /// For tabular generation from extended properties
         /// </summary>
-        public List<string> lstAggregationTypes = new List<string>();
+        public Dictionary<string, string> dctAggregationTypes = new Dictionary<string, string>();
 
         #endregion
 

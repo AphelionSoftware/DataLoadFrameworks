@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLAPropertyClasses\XMLADimensionHierarchy.cs" />
     <Compile Include="XMLAPropertyClasses\XMLADimensionHierarchyLevel.cs" />
+    <Compile Include="XMLAPropertyClasses\XMLAKPI.cs" />
     <Compile Include="XMLAPropertyClasses\XMLAMDXCommand.cs" />
     <Compile Include="XMLAPropertyClasses\XMLAMeasure.cs" />
     <Compile Include="XMLAPropertyClasses\XMLAMGDimension.cs" />

@@ -325,8 +325,76 @@ AND Table_Schema = '{1}'
     )
 
 ORDER BY table_schema, table_name";
+        /// <summary>
+        /// 0: EP name
+        /// 1: Measure name to create
+        /// 2: Calculation
+        /// 3: Format String
+        /// 4: Table
+        /// 5: Format Name
+        /// </summary>
+        public const string qryDAXMeasures = @"SELECT REPLACE(EPM.name, 'DAXMeasure', '') as Name,
+EPM.value as Measure
+,EPCalc.value  as Calculation
+,ISNULL(EPFormat.value, '') AS FormatStrinng
+,object_name(epm.major_id) as Table_name
+,ISNULL(EPFormatName.value, 'General') AS FormatName
+
+ from
+sys.extended_properties EPM
+JOIN sys.extended_properties EPCalc 
+	ON REPLACE(EPM.name, 'DAXMeasure', '') = REPLACE(EPCalc.Name,'DAXCalc','')
+	AND EPCalc.name like 'DAXCalc%'
+	and EPM.major_id = EPCalc.major_id
+LEFT JOIN sys.extended_properties EPFormat
+	ON REPLACE(EPM.name, 'DAXMeasure', '') = REPLACE(EPCalc.Name,'DAXFormatString','')
+	AND EPFormat.name like 'DAXFormatString%'
+	and epm.major_id = EPFormat.major_id
+LEFT JOIN sys.extended_properties EPFormatName
+	ON REPLACE(EPM.name, 'DAXMeasure', '') = REPLACE(EPCalc.Name,'DAXFormatName','')
+	AND EPFormat.name like 'DAXFormatName%'
+	and epm.major_id = EPFormat.major_id
+WHERE EPM.name like 'DAXMeasure%'";
 
 
+        /// <summary>
+        /// Gets all KPIs for DB
+        /// 0: Name
+        /// 1: MeasureName
+        /// 2: Goal
+        /// 3: LT
+        /// 4: GT
+        /// 5: Graphic
+        /// </summary>
+        public const string qryKPIs = @"SELECT REPLACE(EPM.name, 'KPIMeasure', '') as Name,
+EPM.value as Measure
+,ISNULL(EPGoal.value, 1) as Goal
+,ISNULL(EPLT.value, 1) as LT
+,ISNULL(EPGT.value, -1) as GT
+,ISNULL(EPGraphic.value, 'Three Symbols UnCircled Colored') as Graphic
+
+
+ from
+sys.extended_properties EPM
+LEFT JOIN sys.extended_properties EPGoal 
+	ON REPLACE(EPM.name, 'KPIMeasure', '') = REPLACE(EPGoal.Name,'KPIGoal','')
+	AND EPGoal.name like 'KPIGoal%'
+	AND EPM.major_id = EPGoal.major_id
+LEFT JOIN sys.extended_properties EPGT 
+	ON REPLACE(EPM.name, 'KPIMeasure', '') = REPLACE(EPGT.Name,'KPIGT','')
+	AND EPGT.name like 'KPIGT%'
+	AND EPM.major_id = EPGT.major_id
+LEFT JOIN sys.extended_properties EPLT 
+	ON REPLACE(EPM.name, 'KPIMeasure', '') = REPLACE(EPLT.Name,'KPILT','')
+	AND EPLT.name like 'KPILT%'
+	AND EPM.major_id = EPLT.major_id
+LEFT JOIN sys.extended_properties EPGraphic 
+	ON REPLACE(EPM.name, 'KPIMeasure', '') = REPLACE(EPGraphic.Name,'KPIGraphic','')
+	AND EPGraphic.name like 'KPIGraphic%'
+	AND EPM.major_id = EPGraphic.major_id
+
+where EPM.name like 'KPIMeasure%'
+";
 
      
 
@@ -340,13 +408,13 @@ ORDER BY table_schema, table_name";
         /// 1: Name
         /// 2: DisplayName
         /// 3: TableType
-        /// 4: Coalesce fields
+        /// 4: XMLA Table type
         /// </summary>
         public const string qryOLAPTablesQuery = @"SELECT 
 	table_schema
 	, table_name 
-    , table_type
 	, ISNULL(EPDisplay.value, table_name) DisplayName
+    , table_type
 	, ISNULL(EPTableType.Value, 'Table') XMLATableType
 FROM 
 information_schema.tables t

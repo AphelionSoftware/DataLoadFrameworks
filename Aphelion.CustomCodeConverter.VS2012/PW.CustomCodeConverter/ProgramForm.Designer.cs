@@ -39,26 +39,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
-            this.chkExInlMeasures = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.txtExDim = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.txtExDimValue = new System.Windows.Forms.TextBox();
             this.btnSubset = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtExInsertPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtExBackupPath = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtExDest = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtExTemplate = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtExDB = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtExServer = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.txtTemplateFileName = new System.Windows.Forms.TextBox();
@@ -87,7 +78,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnCreateO_S_E_1 = new System.Windows.Forms.Button();
             this.btnCancelOLAP = new System.Windows.Forms.Button();
-            this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
             this.label56 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -102,21 +92,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.chkSchema = new System.Windows.Forms.CheckBox();
-            this.txtDimFilter = new System.Windows.Forms.TextBox();
-            this.txtFactFilter = new System.Windows.Forms.TextBox();
-            this.txtDimPrefix = new System.Windows.Forms.TextBox();
-            this.txtSrcConn = new System.Windows.Forms.TextBox();
-            this.txtTableExcl = new System.Windows.Forms.TextBox();
-            this.txtFieldExcl = new System.Windows.Forms.TextBox();
-            this.txtFactPrefix = new System.Windows.Forms.TextBox();
-            this.txtSchema = new System.Windows.Forms.TextBox();
-            this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
             this.btnCreateO_S_E2 = new System.Windows.Forms.Button();
-            this.chkRunScript = new System.Windows.Forms.CheckBox();
-            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
             this.btnStgCreateDB = new System.Windows.Forms.Button();
             this.label48 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -128,6 +105,55 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnProcess = new System.Windows.Forms.Button();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtTabular = new System.Windows.Forms.TextBox();
+            this.btnTblCreateCube = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
+            this.chkRunError = new System.Windows.Forms.CheckBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.btnErrorCreate = new System.Windows.Forms.Button();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtErrorResult = new System.Windows.Forms.TextBox();
+            this.btnGenerateErrors = new System.Windows.Forms.Button();
+            this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerTabular = new System.ComponentModel.BackgroundWorker();
+            this.label57 = new System.Windows.Forms.Label();
+            this.btnCreateTabularBackup = new System.Windows.Forms.Button();
+            this.chkExInlMeasures = new System.Windows.Forms.CheckBox();
+            this.txtExDim = new System.Windows.Forms.TextBox();
+            this.txtExDimValue = new System.Windows.Forms.TextBox();
+            this.txtExInsertPath = new System.Windows.Forms.TextBox();
+            this.txtExBackupPath = new System.Windows.Forms.TextBox();
+            this.txtExDest = new System.Windows.Forms.TextBox();
+            this.txtExTemplate = new System.Windows.Forms.TextBox();
+            this.txtExDB = new System.Windows.Forms.TextBox();
+            this.txtExServer = new System.Windows.Forms.TextBox();
+            this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
+            this.chkSchema = new System.Windows.Forms.CheckBox();
+            this.txtDimFilter = new System.Windows.Forms.TextBox();
+            this.txtFactFilter = new System.Windows.Forms.TextBox();
+            this.txtDimPrefix = new System.Windows.Forms.TextBox();
+            this.txtSrcConn = new System.Windows.Forms.TextBox();
+            this.txtTableExcl = new System.Windows.Forms.TextBox();
+            this.txtFieldExcl = new System.Windows.Forms.TextBox();
+            this.txtFactPrefix = new System.Windows.Forms.TextBox();
+            this.txtSchema = new System.Windows.Forms.TextBox();
+            this.txtDestConn = new System.Windows.Forms.TextBox();
+            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
+            this.chkRunScript = new System.Windows.Forms.CheckBox();
+            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
             this.txtSrcKeyName = new System.Windows.Forms.TextBox();
             this.chkInclRefKeysStg = new System.Windows.Forms.CheckBox();
             this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
@@ -140,17 +166,7 @@
             this.txtStgFactPrefix = new System.Windows.Forms.TextBox();
             this.txtStgSchema = new System.Windows.Forms.TextBox();
             this.txtStgDB = new System.Windows.Forms.TextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnProcess = new System.Windows.Forms.Button();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnTblCreateCube = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
+            this.txtTblBackup = new System.Windows.Forms.TextBox();
             this.txtTblDSConn = new System.Windows.Forms.TextBox();
             this.txtTblImpersonationSecurity = new System.Windows.Forms.TextBox();
             this.txtTblCubeDB = new System.Windows.Forms.TextBox();
@@ -161,15 +177,6 @@
             this.txtTblConnSecurity = new System.Windows.Forms.TextBox();
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
-            this.chkRunError = new System.Windows.Forms.CheckBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.btnErrorCreate = new System.Windows.Forms.Button();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.txtErrorResult = new System.Windows.Forms.TextBox();
-            this.btnGenerateErrors = new System.Windows.Forms.Button();
             this.txtErrorsFieldExcl = new System.Windows.Forms.TextBox();
             this.chkErrorsDropDB = new System.Windows.Forms.CheckBox();
             this.txtErrorsSchema = new System.Windows.Forms.TextBox();
@@ -177,9 +184,9 @@
             this.txtErrorDB = new System.Windows.Forms.TextBox();
             this.txtErrorStg = new System.Windows.Forms.TextBox();
             this.txtErrorSrc = new System.Windows.Forms.TextBox();
-            this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
+            this.chkTblProcess = new System.Windows.Forms.CheckBox();
+            this.chkTblBackup = new System.Windows.Forms.CheckBox();
+            this.btnTblBackup = new System.Windows.Forms.Button();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -192,10 +199,10 @@
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).BeginInit();
             this.SuspendLayout();
             // 
             // label23
@@ -335,18 +342,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // chkExInlMeasures
-            // 
-            this.chkExInlMeasures.AutoSize = true;
-            this.chkExInlMeasures.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkExInlMeasures_Checked;
-            this.chkExInlMeasures.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkExInlMeasures_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkExInlMeasures.Location = new System.Drawing.Point(189, 278);
-            this.chkExInlMeasures.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkExInlMeasures.Name = "chkExInlMeasures";
-            this.chkExInlMeasures.Size = new System.Drawing.Size(18, 17);
-            this.chkExInlMeasures.TabIndex = 95;
-            this.chkExInlMeasures.UseVisualStyleBackColor = true;
-            // 
             // label45
             // 
             this.label45.AutoSize = true;
@@ -367,16 +362,6 @@
             this.label44.TabIndex = 93;
             this.label44.Text = "Subset dimension";
             // 
-            // txtExDim
-            // 
-            this.txtExDim.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDim_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDim.Location = new System.Drawing.Point(189, 207);
-            this.txtExDim.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDim.Name = "txtExDim";
-            this.txtExDim.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDim.TabIndex = 92;
-            this.txtExDim.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDim_Text;
-            // 
             // label43
             // 
             this.label43.AutoSize = true;
@@ -386,16 +371,6 @@
             this.label43.Size = new System.Drawing.Size(90, 17);
             this.label43.TabIndex = 91;
             this.label43.Text = "Subset value";
-            // 
-            // txtExDimValue
-            // 
-            this.txtExDimValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtexDimValue_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDimValue.Location = new System.Drawing.Point(191, 241);
-            this.txtExDimValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDimValue.Name = "txtExDimValue";
-            this.txtExDimValue.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDimValue.TabIndex = 90;
-            this.txtExDimValue.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtexDimValue_Text;
             // 
             // btnSubset
             // 
@@ -429,16 +404,6 @@
             this.label16.TabIndex = 87;
             this.label16.Text = "Remote backup";
             // 
-            // txtExInsertPath
-            // 
-            this.txtExInsertPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExInsertPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExInsertPath.Location = new System.Drawing.Point(189, 174);
-            this.txtExInsertPath.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExInsertPath.Name = "txtExInsertPath";
-            this.txtExInsertPath.Size = new System.Drawing.Size(1245, 22);
-            this.txtExInsertPath.TabIndex = 86;
-            this.txtExInsertPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExInsertPath_Text;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -448,16 +413,6 @@
             this.label17.Size = new System.Drawing.Size(92, 17);
             this.label17.TabIndex = 85;
             this.label17.Text = "Local backup";
-            // 
-            // txtExBackupPath
-            // 
-            this.txtExBackupPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExBackupPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExBackupPath.Location = new System.Drawing.Point(189, 142);
-            this.txtExBackupPath.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExBackupPath.Name = "txtExBackupPath";
-            this.txtExBackupPath.Size = new System.Drawing.Size(1245, 22);
-            this.txtExBackupPath.TabIndex = 84;
-            this.txtExBackupPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExBackupPath_Text;
             // 
             // label14
             // 
@@ -469,16 +424,6 @@
             this.label14.TabIndex = 83;
             this.label14.Text = "Excel Destination";
             // 
-            // txtExDest
-            // 
-            this.txtExDest.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDest_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDest.Location = new System.Drawing.Point(189, 110);
-            this.txtExDest.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDest.Name = "txtExDest";
-            this.txtExDest.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDest.TabIndex = 82;
-            this.txtExDest.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDest_Text;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -488,16 +433,6 @@
             this.label15.Size = new System.Drawing.Size(104, 17);
             this.label15.TabIndex = 81;
             this.label15.Text = "Excel Template";
-            // 
-            // txtExTemplate
-            // 
-            this.txtExTemplate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExTemplate_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExTemplate.Location = new System.Drawing.Point(189, 78);
-            this.txtExTemplate.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExTemplate.Name = "txtExTemplate";
-            this.txtExTemplate.Size = new System.Drawing.Size(1245, 22);
-            this.txtExTemplate.TabIndex = 80;
-            this.txtExTemplate.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExTemplate_Text;
             // 
             // label13
             // 
@@ -509,16 +444,6 @@
             this.label13.TabIndex = 79;
             this.label13.Text = "Database";
             // 
-            // txtExDB
-            // 
-            this.txtExDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExDB_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDB.Location = new System.Drawing.Point(189, 46);
-            this.txtExDB.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExDB.Name = "txtExDB";
-            this.txtExDB.Size = new System.Drawing.Size(1245, 22);
-            this.txtExDB.TabIndex = 78;
-            this.txtExDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExDB_Text;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -528,16 +453,6 @@
             this.label12.Size = new System.Drawing.Size(50, 17);
             this.label12.TabIndex = 77;
             this.label12.Text = "Server";
-            // 
-            // txtExServer
-            // 
-            this.txtExServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExServer_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExServer.Location = new System.Drawing.Point(189, 14);
-            this.txtExServer.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExServer.Name = "txtExServer";
-            this.txtExServer.Size = new System.Drawing.Size(1245, 22);
-            this.txtExServer.TabIndex = 76;
-            this.txtExServer.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExServer_Text;
             // 
             // tabPage1
             // 
@@ -814,7 +729,6 @@
             // 
             this.tabPage2.Controls.Add(this.btnCreateO_S_E_1);
             this.tabPage2.Controls.Add(this.btnCancelOLAP);
-            this.tabPage2.Controls.Add(this.numMaxRecurse);
             this.tabPage2.Controls.Add(this.label56);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button1);
@@ -830,6 +744,7 @@
             this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.numMaxRecurse);
             this.tabPage2.Controls.Add(this.chkSchema);
             this.tabPage2.Controls.Add(this.txtDimFilter);
             this.tabPage2.Controls.Add(this.txtFactFilter);
@@ -873,16 +788,6 @@
             this.btnCancelOLAP.Text = "Cancel";
             this.btnCancelOLAP.UseVisualStyleBackColor = true;
             this.btnCancelOLAP.Click += new System.EventHandler(this.btnCancelOLAP_Click);
-            // 
-            // numMaxRecurse
-            // 
-            this.numMaxRecurse.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::PW.CustomCodeConverter.Properties.Settings.Default, "numMaxRecurse_Value", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numMaxRecurse.Location = new System.Drawing.Point(183, 442);
-            this.numMaxRecurse.Margin = new System.Windows.Forms.Padding(4);
-            this.numMaxRecurse.Name = "numMaxRecurse";
-            this.numMaxRecurse.Size = new System.Drawing.Size(160, 22);
-            this.numMaxRecurse.TabIndex = 71;
-            this.numMaxRecurse.Value = global::PW.CustomCodeConverter.Properties.Settings.Default.numMaxRecurse_Value;
             // 
             // label56
             // 
@@ -1029,123 +934,10 @@
             this.label20.TabIndex = 45;
             this.label20.Text = "Dest Connection String";
             // 
-            // chkSchema
-            // 
-            this.chkSchema.AutoSize = true;
-            this.chkSchema.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkSchema_Checked;
-            this.chkSchema.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSchema.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkSchema_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkSchema.Location = new System.Drawing.Point(183, 105);
-            this.chkSchema.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkSchema.Name = "chkSchema";
-            this.chkSchema.Size = new System.Drawing.Size(110, 21);
-            this.chkSchema.TabIndex = 65;
-            this.chkSchema.Text = "Use Schema";
-            this.chkSchema.UseVisualStyleBackColor = true;
-            this.chkSchema.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // txtDimFilter
-            // 
-            this.txtDimFilter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDimFilter_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtDimFilter.Location = new System.Drawing.Point(183, 373);
-            this.txtDimFilter.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDimFilter.Multiline = true;
-            this.txtDimFilter.Name = "txtDimFilter";
-            this.txtDimFilter.Size = new System.Drawing.Size(1245, 54);
-            this.txtDimFilter.TabIndex = 62;
-            this.txtDimFilter.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDimFilter_Text;
-            // 
-            // txtFactFilter
-            // 
-            this.txtFactFilter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtFactFilter_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtFactFilter.Location = new System.Drawing.Point(183, 311);
-            this.txtFactFilter.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFactFilter.Multiline = true;
-            this.txtFactFilter.Name = "txtFactFilter";
-            this.txtFactFilter.Size = new System.Drawing.Size(1245, 54);
-            this.txtFactFilter.TabIndex = 60;
-            this.txtFactFilter.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtFactFilter_Text;
-            // 
-            // txtDimPrefix
-            // 
-            this.txtDimPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDimPrefix_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtDimPrefix.Location = new System.Drawing.Point(181, 162);
-            this.txtDimPrefix.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDimPrefix.Name = "txtDimPrefix";
-            this.txtDimPrefix.Size = new System.Drawing.Size(1245, 22);
-            this.txtDimPrefix.TabIndex = 58;
-            this.txtDimPrefix.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDimPrefix_Text;
-            // 
-            // txtSrcConn
-            // 
-            this.txtSrcConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtSrcConn_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtSrcConn.Location = new System.Drawing.Point(181, 14);
-            this.txtSrcConn.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSrcConn.Name = "txtSrcConn";
-            this.txtSrcConn.Size = new System.Drawing.Size(1245, 22);
-            this.txtSrcConn.TabIndex = 57;
-            this.txtSrcConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtSrcConn_Text;
-            // 
-            // txtTableExcl
-            // 
-            this.txtTableExcl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtTableExcl_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtTableExcl.Location = new System.Drawing.Point(181, 251);
-            this.txtTableExcl.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTableExcl.Multiline = true;
-            this.txtTableExcl.Name = "txtTableExcl";
-            this.txtTableExcl.Size = new System.Drawing.Size(1245, 52);
-            this.txtTableExcl.TabIndex = 53;
-            this.txtTableExcl.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtTableExcl_Text;
-            // 
-            // txtFieldExcl
-            // 
-            this.txtFieldExcl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtFieldExcl_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtFieldExcl.Location = new System.Drawing.Point(181, 192);
-            this.txtFieldExcl.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFieldExcl.Multiline = true;
-            this.txtFieldExcl.Name = "txtFieldExcl";
-            this.txtFieldExcl.Size = new System.Drawing.Size(1245, 50);
-            this.txtFieldExcl.TabIndex = 51;
-            this.txtFieldExcl.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtFieldExcl_Text;
-            // 
-            // txtFactPrefix
-            // 
-            this.txtFactPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtFactPrefix_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtFactPrefix.Location = new System.Drawing.Point(181, 133);
-            this.txtFactPrefix.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFactPrefix.Name = "txtFactPrefix";
-            this.txtFactPrefix.Size = new System.Drawing.Size(1245, 22);
-            this.txtFactPrefix.TabIndex = 48;
-            this.txtFactPrefix.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtFactPrefix_Text;
-            // 
-            // txtSchema
-            // 
-            this.txtSchema.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtSchema_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtSchema.Location = new System.Drawing.Point(181, 76);
-            this.txtSchema.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSchema.Name = "txtSchema";
-            this.txtSchema.Size = new System.Drawing.Size(1245, 22);
-            this.txtSchema.TabIndex = 46;
-            this.txtSchema.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtSchema_Text;
-            // 
-            // txtDestConn
-            // 
-            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("TextAlign", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConnOLAP_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConn2_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtDestConn.Location = new System.Drawing.Point(181, 44);
-            this.txtDestConn.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDestConn.Name = "txtDestConn";
-            this.txtDestConn.Size = new System.Drawing.Size(1245, 22);
-            this.txtDestConn.TabIndex = 44;
-            this.txtDestConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConn2_Text;
-            this.txtDestConn.TextAlign = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConnOLAP_Text;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.chkStgAddSchemaPrefix);
             this.tabPage3.Controls.Add(this.btnCreateO_S_E2);
-            this.tabPage3.Controls.Add(this.chkRunScript);
-            this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
             this.tabPage3.Controls.Add(this.btnStgCreateDB);
             this.tabPage3.Controls.Add(this.label48);
             this.tabPage3.Controls.Add(this.label47);
@@ -1158,6 +950,8 @@
             this.tabPage3.Controls.Add(this.label30);
             this.tabPage3.Controls.Add(this.label31);
             this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.chkRunScript);
+            this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
             this.tabPage3.Controls.Add(this.txtSrcKeyName);
             this.tabPage3.Controls.Add(this.chkInclRefKeysStg);
             this.tabPage3.Controls.Add(this.txtSchemaExclStg);
@@ -1178,20 +972,6 @@
             this.tabPage3.Text = "CreateStaging";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // chkStgAddSchemaPrefix
-            // 
-            this.chkStgAddSchemaPrefix.AutoSize = true;
-            this.chkStgAddSchemaPrefix.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStgAddSchemaPrefix_Checked;
-            this.chkStgAddSchemaPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStgAddSchemaPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStgAddSchemaPrefix_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkStgAddSchemaPrefix.Location = new System.Drawing.Point(751, 409);
-            this.chkStgAddSchemaPrefix.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkStgAddSchemaPrefix.Name = "chkStgAddSchemaPrefix";
-            this.chkStgAddSchemaPrefix.Size = new System.Drawing.Size(208, 21);
-            this.chkStgAddSchemaPrefix.TabIndex = 88;
-            this.chkStgAddSchemaPrefix.Text = "Prefix schema to table name";
-            this.chkStgAddSchemaPrefix.UseVisualStyleBackColor = true;
-            // 
             // btnCreateO_S_E2
             // 
             this.btnCreateO_S_E2.BackColor = System.Drawing.Color.DarkOrange;
@@ -1204,35 +984,6 @@
             this.btnCreateO_S_E2.Text = "Create OLAP, Staging, Error";
             this.btnCreateO_S_E2.UseVisualStyleBackColor = false;
             this.btnCreateO_S_E2.Click += new System.EventHandler(this.btnCreateO_S_E2_Click);
-            // 
-            // chkRunScript
-            // 
-            this.chkRunScript.AutoSize = true;
-            this.chkRunScript.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
-            this.chkRunScript.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRunScript.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkRunScript.Location = new System.Drawing.Point(628, 409);
-            this.chkRunScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkRunScript.Name = "chkRunScript";
-            this.chkRunScript.Size = new System.Drawing.Size(94, 21);
-            this.chkRunScript.TabIndex = 86;
-            this.chkRunScript.Text = "Run script";
-            this.chkRunScript.UseVisualStyleBackColor = true;
-            this.chkRunScript.Visible = false;
-            // 
-            // chkIgnorePrefixes
-            // 
-            this.chkIgnorePrefixes.AutoSize = true;
-            this.chkIgnorePrefixes.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
-            this.chkIgnorePrefixes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIgnorePrefixes.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkIgnorePrefixes.Location = new System.Drawing.Point(441, 408);
-            this.chkIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkIgnorePrefixes.Name = "chkIgnorePrefixes";
-            this.chkIgnorePrefixes.Size = new System.Drawing.Size(124, 21);
-            this.chkIgnorePrefixes.TabIndex = 85;
-            this.chkIgnorePrefixes.Text = "Ignore Prefixes";
-            this.chkIgnorePrefixes.UseVisualStyleBackColor = true;
             // 
             // btnStgCreateDB
             // 
@@ -1350,6 +1101,580 @@
             this.label32.Size = new System.Drawing.Size(79, 17);
             this.label32.TabIndex = 61;
             this.label32.Text = "Staging DB";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.btnTblBackup);
+            this.tabPage4.Controls.Add(this.chkTblBackup);
+            this.tabPage4.Controls.Add(this.chkTblProcess);
+            this.tabPage4.Controls.Add(this.btnCreateTabularBackup);
+            this.tabPage4.Controls.Add(this.label57);
+            this.tabPage4.Controls.Add(this.txtTblBackup);
+            this.tabPage4.Controls.Add(this.btnProcess);
+            this.tabPage4.Controls.Add(label42);
+            this.tabPage4.Controls.Add(this.label41);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(label39);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.label34);
+            this.tabPage4.Controls.Add(this.txtTabular);
+            this.tabPage4.Controls.Add(this.btnTblCreateCube);
+            this.tabPage4.Controls.Add(label33);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.txtTblDSConn);
+            this.tabPage4.Controls.Add(this.txtTblImpersonationSecurity);
+            this.tabPage4.Controls.Add(this.txtTblCubeDB);
+            this.tabPage4.Controls.Add(this.txtTblDestConn);
+            this.tabPage4.Controls.Add(this.txtTblPwd);
+            this.tabPage4.Controls.Add(this.txtTblUsername);
+            this.tabPage4.Controls.Add(this.txtTblImpersonationMode);
+            this.tabPage4.Controls.Add(this.txtTblConnSecurity);
+            this.tabPage4.Controls.Add(this.txtTblSrcConn);
+            this.tabPage4.Controls.Add(this.txtTblSchema);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1463, 803);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "CreateTabular";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.BackColor = System.Drawing.Color.Orange;
+            this.btnProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProcess.Location = new System.Drawing.Point(1305, 357);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(125, 60);
+            this.btnProcess.TabIndex = 98;
+            this.btnProcess.Text = "Process Tabular";
+            this.btnProcess.UseVisualStyleBackColor = false;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(11, 295);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(152, 17);
+            this.label41.TabIndex = 95;
+            this.label41.Text = "Impersonation Security";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(12, 266);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(105, 17);
+            this.label40.TabIndex = 93;
+            this.label40.Text = "Cube DB Name";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(12, 236);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(69, 17);
+            this.label38.TabIndex = 89;
+            this.label38.Text = "Password";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(12, 206);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(73, 17);
+            this.label37.TabIndex = 87;
+            this.label37.Text = "Username";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(12, 176);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(136, 17);
+            this.label36.TabIndex = 85;
+            this.label36.Text = "Impersonation Mode";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(12, 146);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(167, 17);
+            this.label34.TabIndex = 83;
+            this.label34.Text = "ConnectionStringSecurity";
+            // 
+            // txtTabular
+            // 
+            this.txtTabular.Location = new System.Drawing.Point(29, 442);
+            this.txtTabular.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTabular.Multiline = true;
+            this.txtTabular.Name = "txtTabular";
+            this.txtTabular.Size = new System.Drawing.Size(1401, 280);
+            this.txtTabular.TabIndex = 81;
+            // 
+            // btnTblCreateCube
+            // 
+            this.btnTblCreateCube.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnTblCreateCube.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTblCreateCube.Location = new System.Drawing.Point(1149, 357);
+            this.btnTblCreateCube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTblCreateCube.Name = "btnTblCreateCube";
+            this.btnTblCreateCube.Size = new System.Drawing.Size(125, 60);
+            this.btnTblCreateCube.TabIndex = 80;
+            this.btnTblCreateCube.Text = "Create Tabular";
+            this.btnTblCreateCube.UseVisualStyleBackColor = false;
+            this.btnTblCreateCube.Click += new System.EventHandler(this.btnTblCreateCube_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(12, 116);
+            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(59, 17);
+            this.label35.TabIndex = 75;
+            this.label35.Text = "Schema";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.btnCreateO_S_E3);
+            this.tabPage6.Controls.Add(this.chkRunError);
+            this.tabPage6.Controls.Add(this.label54);
+            this.tabPage6.Controls.Add(this.btnErrorCreate);
+            this.tabPage6.Controls.Add(this.label53);
+            this.tabPage6.Controls.Add(this.label55);
+            this.tabPage6.Controls.Add(label52);
+            this.tabPage6.Controls.Add(label51);
+            this.tabPage6.Controls.Add(this.txtErrorResult);
+            this.tabPage6.Controls.Add(this.btnGenerateErrors);
+            this.tabPage6.Controls.Add(label50);
+            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
+            this.tabPage6.Controls.Add(this.chkErrorsDropDB);
+            this.tabPage6.Controls.Add(this.txtErrorsSchema);
+            this.tabPage6.Controls.Add(this.txtErrorStagingSchema);
+            this.tabPage6.Controls.Add(this.txtErrorDB);
+            this.tabPage6.Controls.Add(this.txtErrorStg);
+            this.tabPage6.Controls.Add(this.txtErrorSrc);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1463, 803);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "CreateErrorDB";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
+            // 
+            // btnCreateO_S_E3
+            // 
+            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E3.Location = new System.Drawing.Point(1156, 357);
+            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
+            this.btnCreateO_S_E3.Size = new System.Drawing.Size(145, 56);
+            this.btnCreateO_S_E3.TabIndex = 103;
+            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
+            // 
+            // chkRunError
+            // 
+            this.chkRunError.AutoSize = true;
+            this.chkRunError.Location = new System.Drawing.Point(235, 359);
+            this.chkRunError.Name = "chkRunError";
+            this.chkRunError.Size = new System.Drawing.Size(98, 21);
+            this.chkRunError.TabIndex = 102;
+            this.chkRunError.Text = "RunCreate";
+            this.chkRunError.UseVisualStyleBackColor = true;
+            this.chkRunError.Visible = false;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(17, 185);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(104, 17);
+            this.label54.TabIndex = 101;
+            this.label54.Text = "FieldExclusions";
+            // 
+            // btnErrorCreate
+            // 
+            this.btnErrorCreate.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnErrorCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnErrorCreate.Location = new System.Drawing.Point(1331, 357);
+            this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnErrorCreate.Name = "btnErrorCreate";
+            this.btnErrorCreate.Size = new System.Drawing.Size(107, 56);
+            this.btnErrorCreate.TabIndex = 99;
+            this.btnErrorCreate.Text = "Create Error DB";
+            this.btnErrorCreate.UseVisualStyleBackColor = false;
+            this.btnErrorCreate.Click += new System.EventHandler(this.btnErrorCreate_Click);
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(17, 154);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(59, 17);
+            this.label53.TabIndex = 97;
+            this.label53.Text = "Schema";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(17, 94);
+            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(59, 17);
+            this.label55.TabIndex = 95;
+            this.label55.Text = "Schema";
+            // 
+            // txtErrorResult
+            // 
+            this.txtErrorResult.Location = new System.Drawing.Point(37, 447);
+            this.txtErrorResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtErrorResult.Multiline = true;
+            this.txtErrorResult.Name = "txtErrorResult";
+            this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtErrorResult.Size = new System.Drawing.Size(1401, 323);
+            this.txtErrorResult.TabIndex = 85;
+            // 
+            // btnGenerateErrors
+            // 
+            this.btnGenerateErrors.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnGenerateErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateErrors.Location = new System.Drawing.Point(39, 359);
+            this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGenerateErrors.Name = "btnGenerateErrors";
+            this.btnGenerateErrors.Size = new System.Drawing.Size(139, 54);
+            this.btnGenerateErrors.TabIndex = 84;
+            this.btnGenerateErrors.Text = "Create Error DB script";
+            this.btnGenerateErrors.UseVisualStyleBackColor = false;
+            this.btnGenerateErrors.Click += new System.EventHandler(this.btnGenerateErrors_Click);
+            // 
+            // backgroundWorkerOLAP
+            // 
+            this.backgroundWorkerOLAP.WorkerReportsProgress = true;
+            this.backgroundWorkerOLAP.WorkerSupportsCancellation = true;
+            this.backgroundWorkerOLAP.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerOLAP_DoWork);
+            this.backgroundWorkerOLAP.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerOLAP_ProgressChanged);
+            this.backgroundWorkerOLAP.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerOLAP_RunWorkerCompleted);
+            // 
+            // backgroundWorkerStaging
+            // 
+            this.backgroundWorkerStaging.WorkerReportsProgress = true;
+            this.backgroundWorkerStaging.WorkerSupportsCancellation = true;
+            this.backgroundWorkerStaging.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerStaging_DoWork);
+            this.backgroundWorkerStaging.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerStaging_ProgressChanged);
+            this.backgroundWorkerStaging.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerStaging_RunWorkerCompleted);
+            // 
+            // backgroundWorkerError
+            // 
+            this.backgroundWorkerError.WorkerReportsProgress = true;
+            this.backgroundWorkerError.WorkerSupportsCancellation = true;
+            this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
+            this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
+            this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
+            // 
+            // backgroundWorkerTabular
+            // 
+            this.backgroundWorkerTabular.WorkerReportsProgress = true;
+            this.backgroundWorkerTabular.WorkerSupportsCancellation = true;
+            this.backgroundWorkerTabular.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerTabular_DoWork);
+            this.backgroundWorkerTabular.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerTabular_ProgressChanged);
+            this.backgroundWorkerTabular.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerTabular_RunWorkerCompleted);
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(9, 324);
+            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(92, 17);
+            this.label57.TabIndex = 100;
+            this.label57.Text = "Local backup";
+            // 
+            // btnCreateTabularBackup
+            // 
+            this.btnCreateTabularBackup.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnCreateTabularBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateTabularBackup.Location = new System.Drawing.Point(969, 357);
+            this.btnCreateTabularBackup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateTabularBackup.Name = "btnCreateTabularBackup";
+            this.btnCreateTabularBackup.Size = new System.Drawing.Size(151, 60);
+            this.btnCreateTabularBackup.TabIndex = 101;
+            this.btnCreateTabularBackup.Text = "Create, Process, Backup";
+            this.btnCreateTabularBackup.UseVisualStyleBackColor = false;
+            this.btnCreateTabularBackup.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // chkExInlMeasures
+            // 
+            this.chkExInlMeasures.AutoSize = true;
+            this.chkExInlMeasures.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkExInlMeasures_Checked;
+            this.chkExInlMeasures.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkExInlMeasures_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkExInlMeasures.Location = new System.Drawing.Point(189, 278);
+            this.chkExInlMeasures.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkExInlMeasures.Name = "chkExInlMeasures";
+            this.chkExInlMeasures.Size = new System.Drawing.Size(18, 17);
+            this.chkExInlMeasures.TabIndex = 95;
+            this.chkExInlMeasures.UseVisualStyleBackColor = true;
+            // 
+            // txtExDim
+            // 
+            this.txtExDim.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDim_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDim.Location = new System.Drawing.Point(189, 207);
+            this.txtExDim.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDim.Name = "txtExDim";
+            this.txtExDim.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDim.TabIndex = 92;
+            this.txtExDim.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDim_Text;
+            // 
+            // txtExDimValue
+            // 
+            this.txtExDimValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtexDimValue_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDimValue.Location = new System.Drawing.Point(191, 241);
+            this.txtExDimValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDimValue.Name = "txtExDimValue";
+            this.txtExDimValue.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDimValue.TabIndex = 90;
+            this.txtExDimValue.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtexDimValue_Text;
+            // 
+            // txtExInsertPath
+            // 
+            this.txtExInsertPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExInsertPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExInsertPath.Location = new System.Drawing.Point(189, 174);
+            this.txtExInsertPath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExInsertPath.Name = "txtExInsertPath";
+            this.txtExInsertPath.Size = new System.Drawing.Size(1245, 22);
+            this.txtExInsertPath.TabIndex = 86;
+            this.txtExInsertPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExInsertPath_Text;
+            // 
+            // txtExBackupPath
+            // 
+            this.txtExBackupPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExBackupPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExBackupPath.Location = new System.Drawing.Point(189, 142);
+            this.txtExBackupPath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExBackupPath.Name = "txtExBackupPath";
+            this.txtExBackupPath.Size = new System.Drawing.Size(1245, 22);
+            this.txtExBackupPath.TabIndex = 84;
+            this.txtExBackupPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExBackupPath_Text;
+            // 
+            // txtExDest
+            // 
+            this.txtExDest.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDest_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDest.Location = new System.Drawing.Point(189, 110);
+            this.txtExDest.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDest.Name = "txtExDest";
+            this.txtExDest.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDest.TabIndex = 82;
+            this.txtExDest.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDest_Text;
+            // 
+            // txtExTemplate
+            // 
+            this.txtExTemplate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExTemplate_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExTemplate.Location = new System.Drawing.Point(189, 78);
+            this.txtExTemplate.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExTemplate.Name = "txtExTemplate";
+            this.txtExTemplate.Size = new System.Drawing.Size(1245, 22);
+            this.txtExTemplate.TabIndex = 80;
+            this.txtExTemplate.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExTemplate_Text;
+            // 
+            // txtExDB
+            // 
+            this.txtExDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExDB_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDB.Location = new System.Drawing.Point(189, 46);
+            this.txtExDB.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExDB.Name = "txtExDB";
+            this.txtExDB.Size = new System.Drawing.Size(1245, 22);
+            this.txtExDB.TabIndex = 78;
+            this.txtExDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExDB_Text;
+            // 
+            // txtExServer
+            // 
+            this.txtExServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExServer_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExServer.Location = new System.Drawing.Point(189, 14);
+            this.txtExServer.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExServer.Name = "txtExServer";
+            this.txtExServer.Size = new System.Drawing.Size(1245, 22);
+            this.txtExServer.TabIndex = 76;
+            this.txtExServer.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExServer_Text;
+            // 
+            // numMaxRecurse
+            // 
+            this.numMaxRecurse.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::PW.CustomCodeConverter.Properties.Settings.Default, "numMaxRecurse_Value", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numMaxRecurse.Location = new System.Drawing.Point(183, 442);
+            this.numMaxRecurse.Margin = new System.Windows.Forms.Padding(4);
+            this.numMaxRecurse.Name = "numMaxRecurse";
+            this.numMaxRecurse.Size = new System.Drawing.Size(160, 22);
+            this.numMaxRecurse.TabIndex = 71;
+            this.numMaxRecurse.Value = global::PW.CustomCodeConverter.Properties.Settings.Default.numMaxRecurse_Value;
+            // 
+            // chkSchema
+            // 
+            this.chkSchema.AutoSize = true;
+            this.chkSchema.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkSchema_Checked;
+            this.chkSchema.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSchema.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkSchema_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkSchema.Location = new System.Drawing.Point(183, 105);
+            this.chkSchema.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkSchema.Name = "chkSchema";
+            this.chkSchema.Size = new System.Drawing.Size(110, 21);
+            this.chkSchema.TabIndex = 65;
+            this.chkSchema.Text = "Use Schema";
+            this.chkSchema.UseVisualStyleBackColor = true;
+            this.chkSchema.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // txtDimFilter
+            // 
+            this.txtDimFilter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDimFilter_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDimFilter.Location = new System.Drawing.Point(183, 373);
+            this.txtDimFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDimFilter.Multiline = true;
+            this.txtDimFilter.Name = "txtDimFilter";
+            this.txtDimFilter.Size = new System.Drawing.Size(1245, 54);
+            this.txtDimFilter.TabIndex = 62;
+            this.txtDimFilter.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDimFilter_Text;
+            // 
+            // txtFactFilter
+            // 
+            this.txtFactFilter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtFactFilter_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFactFilter.Location = new System.Drawing.Point(183, 311);
+            this.txtFactFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFactFilter.Multiline = true;
+            this.txtFactFilter.Name = "txtFactFilter";
+            this.txtFactFilter.Size = new System.Drawing.Size(1245, 54);
+            this.txtFactFilter.TabIndex = 60;
+            this.txtFactFilter.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtFactFilter_Text;
+            // 
+            // txtDimPrefix
+            // 
+            this.txtDimPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDimPrefix_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDimPrefix.Location = new System.Drawing.Point(181, 162);
+            this.txtDimPrefix.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDimPrefix.Name = "txtDimPrefix";
+            this.txtDimPrefix.Size = new System.Drawing.Size(1245, 22);
+            this.txtDimPrefix.TabIndex = 58;
+            this.txtDimPrefix.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDimPrefix_Text;
+            // 
+            // txtSrcConn
+            // 
+            this.txtSrcConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtSrcConn_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtSrcConn.Location = new System.Drawing.Point(181, 14);
+            this.txtSrcConn.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSrcConn.Name = "txtSrcConn";
+            this.txtSrcConn.Size = new System.Drawing.Size(1245, 22);
+            this.txtSrcConn.TabIndex = 57;
+            this.txtSrcConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtSrcConn_Text;
+            // 
+            // txtTableExcl
+            // 
+            this.txtTableExcl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtTableExcl_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtTableExcl.Location = new System.Drawing.Point(181, 251);
+            this.txtTableExcl.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTableExcl.Multiline = true;
+            this.txtTableExcl.Name = "txtTableExcl";
+            this.txtTableExcl.Size = new System.Drawing.Size(1245, 52);
+            this.txtTableExcl.TabIndex = 53;
+            this.txtTableExcl.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtTableExcl_Text;
+            // 
+            // txtFieldExcl
+            // 
+            this.txtFieldExcl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtFieldExcl_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFieldExcl.Location = new System.Drawing.Point(181, 192);
+            this.txtFieldExcl.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldExcl.Multiline = true;
+            this.txtFieldExcl.Name = "txtFieldExcl";
+            this.txtFieldExcl.Size = new System.Drawing.Size(1245, 50);
+            this.txtFieldExcl.TabIndex = 51;
+            this.txtFieldExcl.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtFieldExcl_Text;
+            // 
+            // txtFactPrefix
+            // 
+            this.txtFactPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtFactPrefix_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFactPrefix.Location = new System.Drawing.Point(181, 133);
+            this.txtFactPrefix.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFactPrefix.Name = "txtFactPrefix";
+            this.txtFactPrefix.Size = new System.Drawing.Size(1245, 22);
+            this.txtFactPrefix.TabIndex = 48;
+            this.txtFactPrefix.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtFactPrefix_Text;
+            // 
+            // txtSchema
+            // 
+            this.txtSchema.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtSchema_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtSchema.Location = new System.Drawing.Point(181, 76);
+            this.txtSchema.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSchema.Name = "txtSchema";
+            this.txtSchema.Size = new System.Drawing.Size(1245, 22);
+            this.txtSchema.TabIndex = 46;
+            this.txtSchema.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtSchema_Text;
+            // 
+            // txtDestConn
+            // 
+            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("TextAlign", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConnOLAP_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDestConn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtDestConn2_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDestConn.Location = new System.Drawing.Point(181, 44);
+            this.txtDestConn.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDestConn.Name = "txtDestConn";
+            this.txtDestConn.Size = new System.Drawing.Size(1245, 22);
+            this.txtDestConn.TabIndex = 44;
+            this.txtDestConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConn2_Text;
+            this.txtDestConn.TextAlign = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConnOLAP_Text;
+            // 
+            // chkStgAddSchemaPrefix
+            // 
+            this.chkStgAddSchemaPrefix.AutoSize = true;
+            this.chkStgAddSchemaPrefix.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStgAddSchemaPrefix_Checked;
+            this.chkStgAddSchemaPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkStgAddSchemaPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStgAddSchemaPrefix_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkStgAddSchemaPrefix.Location = new System.Drawing.Point(751, 409);
+            this.chkStgAddSchemaPrefix.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkStgAddSchemaPrefix.Name = "chkStgAddSchemaPrefix";
+            this.chkStgAddSchemaPrefix.Size = new System.Drawing.Size(208, 21);
+            this.chkStgAddSchemaPrefix.TabIndex = 88;
+            this.chkStgAddSchemaPrefix.Text = "Prefix schema to table name";
+            this.chkStgAddSchemaPrefix.UseVisualStyleBackColor = true;
+            // 
+            // chkRunScript
+            // 
+            this.chkRunScript.AutoSize = true;
+            this.chkRunScript.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
+            this.chkRunScript.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRunScript.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkRunScript.Location = new System.Drawing.Point(628, 409);
+            this.chkRunScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkRunScript.Name = "chkRunScript";
+            this.chkRunScript.Size = new System.Drawing.Size(94, 21);
+            this.chkRunScript.TabIndex = 86;
+            this.chkRunScript.Text = "Run script";
+            this.chkRunScript.UseVisualStyleBackColor = true;
+            this.chkRunScript.Visible = false;
+            // 
+            // chkIgnorePrefixes
+            // 
+            this.chkIgnorePrefixes.AutoSize = true;
+            this.chkIgnorePrefixes.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkStageDrop_Checked;
+            this.chkIgnorePrefixes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIgnorePrefixes.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkStageDrop_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkIgnorePrefixes.Location = new System.Drawing.Point(441, 408);
+            this.chkIgnorePrefixes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIgnorePrefixes.Name = "chkIgnorePrefixes";
+            this.chkIgnorePrefixes.Size = new System.Drawing.Size(124, 21);
+            this.chkIgnorePrefixes.TabIndex = 85;
+            this.chkIgnorePrefixes.Text = "Ignore Prefixes";
+            this.chkIgnorePrefixes.UseVisualStyleBackColor = true;
             // 
             // txtSrcKeyName
             // 
@@ -1486,139 +1811,15 @@
             this.txtStgDB.TabIndex = 60;
             this.txtStgDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtStgDB_Text;
             // 
-            // tabPage4
+            // txtTblBackup
             // 
-            this.tabPage4.Controls.Add(this.btnProcess);
-            this.tabPage4.Controls.Add(label42);
-            this.tabPage4.Controls.Add(this.label41);
-            this.tabPage4.Controls.Add(this.label40);
-            this.tabPage4.Controls.Add(label39);
-            this.tabPage4.Controls.Add(this.label38);
-            this.tabPage4.Controls.Add(this.label37);
-            this.tabPage4.Controls.Add(this.label36);
-            this.tabPage4.Controls.Add(this.label34);
-            this.tabPage4.Controls.Add(this.textBox1);
-            this.tabPage4.Controls.Add(this.btnTblCreateCube);
-            this.tabPage4.Controls.Add(label33);
-            this.tabPage4.Controls.Add(this.label35);
-            this.tabPage4.Controls.Add(this.txtTblDSConn);
-            this.tabPage4.Controls.Add(this.txtTblImpersonationSecurity);
-            this.tabPage4.Controls.Add(this.txtTblCubeDB);
-            this.tabPage4.Controls.Add(this.txtTblDestConn);
-            this.tabPage4.Controls.Add(this.txtTblPwd);
-            this.tabPage4.Controls.Add(this.txtTblUsername);
-            this.tabPage4.Controls.Add(this.txtTblImpersonationMode);
-            this.tabPage4.Controls.Add(this.txtTblConnSecurity);
-            this.tabPage4.Controls.Add(this.txtTblSrcConn);
-            this.tabPage4.Controls.Add(this.txtTblSchema);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1463, 803);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "CreateTabular";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnProcess
-            // 
-            this.btnProcess.Location = new System.Drawing.Point(187, 350);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(125, 23);
-            this.btnProcess.TabIndex = 98;
-            this.btnProcess.Text = "Process Tabular";
-            this.btnProcess.UseVisualStyleBackColor = true;
-            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(11, 295);
-            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(152, 17);
-            this.label41.TabIndex = 95;
-            this.label41.Text = "Impersonation Security";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(12, 266);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(105, 17);
-            this.label40.TabIndex = 93;
-            this.label40.Text = "Cube DB Name";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(12, 236);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(69, 17);
-            this.label38.TabIndex = 89;
-            this.label38.Text = "Password";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(12, 206);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(73, 17);
-            this.label37.TabIndex = 87;
-            this.label37.Text = "Username";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(12, 176);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(136, 17);
-            this.label36.TabIndex = 85;
-            this.label36.Text = "Impersonation Mode";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(12, 146);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(167, 17);
-            this.label34.TabIndex = 83;
-            this.label34.Text = "ConnectionStringSecurity";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(29, 388);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1401, 280);
-            this.textBox1.TabIndex = 81;
-            // 
-            // btnTblCreateCube
-            // 
-            this.btnTblCreateCube.Location = new System.Drawing.Point(31, 350);
-            this.btnTblCreateCube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTblCreateCube.Name = "btnTblCreateCube";
-            this.btnTblCreateCube.Size = new System.Drawing.Size(125, 23);
-            this.btnTblCreateCube.TabIndex = 80;
-            this.btnTblCreateCube.Text = "Create Tabular";
-            this.btnTblCreateCube.UseVisualStyleBackColor = true;
-            this.btnTblCreateCube.Click += new System.EventHandler(this.btnTblCreateCube_Click);
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(12, 116);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(59, 17);
-            this.label35.TabIndex = 75;
-            this.label35.Text = "Schema";
+            this.txtTblBackup.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtTabularBackup_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtTblBackup.Location = new System.Drawing.Point(185, 320);
+            this.txtTblBackup.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTblBackup.Name = "txtTblBackup";
+            this.txtTblBackup.Size = new System.Drawing.Size(1245, 22);
+            this.txtTblBackup.TabIndex = 99;
+            this.txtTblBackup.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtTabularBackup_Text;
             // 
             // txtTblDSConn
             // 
@@ -1720,125 +1921,6 @@
             this.txtTblSchema.TabIndex = 74;
             this.txtTblSchema.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtTblSchema_Text;
             // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.btnCreateO_S_E3);
-            this.tabPage6.Controls.Add(this.chkRunError);
-            this.tabPage6.Controls.Add(this.label54);
-            this.tabPage6.Controls.Add(this.btnErrorCreate);
-            this.tabPage6.Controls.Add(this.label53);
-            this.tabPage6.Controls.Add(this.label55);
-            this.tabPage6.Controls.Add(label52);
-            this.tabPage6.Controls.Add(label51);
-            this.tabPage6.Controls.Add(this.txtErrorResult);
-            this.tabPage6.Controls.Add(this.btnGenerateErrors);
-            this.tabPage6.Controls.Add(label50);
-            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
-            this.tabPage6.Controls.Add(this.chkErrorsDropDB);
-            this.tabPage6.Controls.Add(this.txtErrorsSchema);
-            this.tabPage6.Controls.Add(this.txtErrorStagingSchema);
-            this.tabPage6.Controls.Add(this.txtErrorDB);
-            this.tabPage6.Controls.Add(this.txtErrorStg);
-            this.tabPage6.Controls.Add(this.txtErrorSrc);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1463, 803);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "CreateErrorDB";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
-            // 
-            // btnCreateO_S_E3
-            // 
-            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateO_S_E3.Location = new System.Drawing.Point(1156, 357);
-            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
-            this.btnCreateO_S_E3.Size = new System.Drawing.Size(145, 56);
-            this.btnCreateO_S_E3.TabIndex = 103;
-            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
-            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
-            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
-            // 
-            // chkRunError
-            // 
-            this.chkRunError.AutoSize = true;
-            this.chkRunError.Location = new System.Drawing.Point(235, 359);
-            this.chkRunError.Name = "chkRunError";
-            this.chkRunError.Size = new System.Drawing.Size(98, 21);
-            this.chkRunError.TabIndex = 102;
-            this.chkRunError.Text = "RunCreate";
-            this.chkRunError.UseVisualStyleBackColor = true;
-            this.chkRunError.Visible = false;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(17, 185);
-            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(104, 17);
-            this.label54.TabIndex = 101;
-            this.label54.Text = "FieldExclusions";
-            // 
-            // btnErrorCreate
-            // 
-            this.btnErrorCreate.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnErrorCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnErrorCreate.Location = new System.Drawing.Point(1331, 357);
-            this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnErrorCreate.Name = "btnErrorCreate";
-            this.btnErrorCreate.Size = new System.Drawing.Size(107, 56);
-            this.btnErrorCreate.TabIndex = 99;
-            this.btnErrorCreate.Text = "Create Error DB";
-            this.btnErrorCreate.UseVisualStyleBackColor = false;
-            this.btnErrorCreate.Click += new System.EventHandler(this.btnErrorCreate_Click);
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(17, 154);
-            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(59, 17);
-            this.label53.TabIndex = 97;
-            this.label53.Text = "Schema";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(17, 94);
-            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(59, 17);
-            this.label55.TabIndex = 95;
-            this.label55.Text = "Schema";
-            // 
-            // txtErrorResult
-            // 
-            this.txtErrorResult.Location = new System.Drawing.Point(37, 447);
-            this.txtErrorResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtErrorResult.Multiline = true;
-            this.txtErrorResult.Name = "txtErrorResult";
-            this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorResult.Size = new System.Drawing.Size(1401, 323);
-            this.txtErrorResult.TabIndex = 85;
-            // 
-            // btnGenerateErrors
-            // 
-            this.btnGenerateErrors.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnGenerateErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateErrors.Location = new System.Drawing.Point(39, 359);
-            this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGenerateErrors.Name = "btnGenerateErrors";
-            this.btnGenerateErrors.Size = new System.Drawing.Size(139, 54);
-            this.btnGenerateErrors.TabIndex = 84;
-            this.btnGenerateErrors.Text = "Create Error DB script";
-            this.btnGenerateErrors.UseVisualStyleBackColor = false;
-            this.btnGenerateErrors.Click += new System.EventHandler(this.btnGenerateErrors_Click);
-            // 
             // txtErrorsFieldExcl
             // 
             this.txtErrorsFieldExcl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtErrorsFieldExcl_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1914,29 +1996,40 @@
             this.txtErrorSrc.TabIndex = 83;
             this.txtErrorSrc.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtErrorSrc_Text;
             // 
-            // backgroundWorkerOLAP
+            // chkTblProcess
             // 
-            this.backgroundWorkerOLAP.WorkerReportsProgress = true;
-            this.backgroundWorkerOLAP.WorkerSupportsCancellation = true;
-            this.backgroundWorkerOLAP.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerOLAP_DoWork);
-            this.backgroundWorkerOLAP.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerOLAP_ProgressChanged);
-            this.backgroundWorkerOLAP.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerOLAP_RunWorkerCompleted);
+            this.chkTblProcess.AutoSize = true;
+            this.chkTblProcess.Location = new System.Drawing.Point(1332, 422);
+            this.chkTblProcess.Name = "chkTblProcess";
+            this.chkTblProcess.Size = new System.Drawing.Size(123, 21);
+            this.chkTblProcess.TabIndex = 102;
+            this.chkTblProcess.Text = "chkTblProcess";
+            this.chkTblProcess.UseVisualStyleBackColor = true;
+            this.chkTblProcess.Visible = false;
             // 
-            // backgroundWorkerStaging
+            // chkTblBackup
             // 
-            this.backgroundWorkerStaging.WorkerReportsProgress = true;
-            this.backgroundWorkerStaging.WorkerSupportsCancellation = true;
-            this.backgroundWorkerStaging.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerStaging_DoWork);
-            this.backgroundWorkerStaging.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerStaging_ProgressChanged);
-            this.backgroundWorkerStaging.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerStaging_RunWorkerCompleted);
+            this.chkTblBackup.AutoSize = true;
+            this.chkTblBackup.Location = new System.Drawing.Point(1022, 422);
+            this.chkTblBackup.Name = "chkTblBackup";
+            this.chkTblBackup.Size = new System.Drawing.Size(119, 21);
+            this.chkTblBackup.TabIndex = 103;
+            this.chkTblBackup.Text = "chkTblBackup";
+            this.chkTblBackup.UseVisualStyleBackColor = true;
+            this.chkTblBackup.Visible = false;
             // 
-            // backgroundWorkerError
+            // btnTblBackup
             // 
-            this.backgroundWorkerError.WorkerReportsProgress = true;
-            this.backgroundWorkerError.WorkerSupportsCancellation = true;
-            this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
-            this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
-            this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
+            this.btnTblBackup.BackColor = System.Drawing.Color.Orange;
+            this.btnTblBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTblBackup.Location = new System.Drawing.Point(817, 357);
+            this.btnTblBackup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTblBackup.Name = "btnTblBackup";
+            this.btnTblBackup.Size = new System.Drawing.Size(125, 60);
+            this.btnTblBackup.TabIndex = 104;
+            this.btnTblBackup.Text = "Backup Tabular";
+            this.btnTblBackup.UseVisualStyleBackColor = false;
+            this.btnTblBackup.Click += new System.EventHandler(this.btnTblBackup_Click);
             // 
             // ProgramForm
             // 
@@ -1956,13 +2049,13 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2031,7 +2124,7 @@
         private System.Windows.Forms.TextBox txtStgDB;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.CheckBox chkStageDrop;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTabular;
         private System.Windows.Forms.Button btnTblCreateCube;
         private System.Windows.Forms.TextBox txtTblSrcConn;
         private System.Windows.Forms.Label label35;
@@ -2113,6 +2206,13 @@
         private System.Windows.Forms.Button btnCreateO_S_E2;
         private System.Windows.Forms.Button btnCreateO_S_E3;
         private System.Windows.Forms.CheckBox chkStgAddSchemaPrefix;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerTabular;
+        private System.Windows.Forms.Button btnCreateTabularBackup;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TextBox txtTblBackup;
+        private System.Windows.Forms.CheckBox chkTblProcess;
+        private System.Windows.Forms.CheckBox chkTblBackup;
+        private System.Windows.Forms.Button btnTblBackup;
 
     }
 }
