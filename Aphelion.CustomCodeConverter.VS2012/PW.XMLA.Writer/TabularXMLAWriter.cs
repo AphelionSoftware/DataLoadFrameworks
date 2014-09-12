@@ -2464,7 +2464,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                         if ((xm.sAttributeName == null || xm.sAttributeName == "") && !(xm.sMeasureExpression == null))
                         {
-                            sMeasure = string.Format(constXMLAMeasureCustom, xm.sDimensionID, xm.sID, xm.sMeasureExpression);
+                            sMeasure = string.Format(constXMLAMeasureCustom, xm.sDimensionID, xm.sID.Replace("[[", "[").Replace("]]","]"), xm.sMeasureExpression);
                         }
                         else
                         {
@@ -2507,9 +2507,9 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     #endregion
 
                     string sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
-                    dctMeasures.Add(sMeasure, new measureAtts(xMG.sID, xm.sDimensionID, sMeasure, sAnnotation, sKPI));
-                    sAnnotationsList += sAnnotation; 
-                    sMeasuresList += sMeasure + "\n";
+                    dctMeasures.Add(sMeasure.Replace("[[", "[").Replace("]]", "]"), new measureAtts(xMG.sID, xm.sDimensionID, sMeasure.Replace("[[", "[").Replace("]]", "]"), sAnnotation, sKPI));
+                    sAnnotationsList += sAnnotation;
+                    sMeasuresList += sMeasure.Replace("[[", "[").Replace("]]", "]") + "\n";
 
                     //Any measures with no calc props need to have them added. Is this the right place? Perhaps not...
                     if (!cmActiveModel.mdxScript.CalcProps.Exists(item => item.sCalculationReference == xm.sID
