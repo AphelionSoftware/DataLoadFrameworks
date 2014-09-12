@@ -584,6 +584,16 @@ namespace PW.CustomCodeConverter
         {
             backgroundWorkerStaging.CancelAsync();
         }
+
+        private void btnTblCancel_Click(object sender, EventArgs e)
+        {
+            backgroundWorkerTabular.CancelAsync();
+        }
+
+        private void btnCancelError_Click(object sender, EventArgs e)
+        {
+            backgroundWorkerError.CancelAsync();
+        }
        
     }
 }
