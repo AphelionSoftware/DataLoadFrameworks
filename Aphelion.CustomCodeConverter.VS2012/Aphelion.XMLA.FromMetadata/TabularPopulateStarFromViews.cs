@@ -153,7 +153,7 @@ namespace Aphelion.XMLA.FromMetadata
             {
                 SetupWriter();
             }
-            //xmlaWriter.BackupDatabase(this.sCubeName, pFilename);
+            xmlaWriter.BackupDatabase(this.sCubeName, pFilename);
         }
 
         

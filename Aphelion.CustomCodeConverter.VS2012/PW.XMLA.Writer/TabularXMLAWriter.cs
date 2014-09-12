@@ -2534,7 +2534,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             foreach (MDXScriptCalcProp calcProp in cmActiveModel.mdxScript.CalcProps)
             {
                 string sCalculationOptions = "";
-                sCalculationOptions = string.Format(constXMLACalcProp, calcProp.sCalculationReference, calcProp.sFormat, calcProp.sFormatString, calcProp.sType);
+                sCalculationOptions = string.Format(constXMLACalcProp, calcProp.sCalculationReference.Replace("[[","[").Replace("]]","]")   , calcProp.sFormat, calcProp.sFormatString, calcProp.sType);
                 sCalculationOptionsList += sCalculationOptions + "\n";
             }
 
