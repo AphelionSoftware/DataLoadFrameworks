@@ -150,7 +150,7 @@ namespace Aphelion.DW.StagingCreate
             {
                 backWorker.ReportProgress(0, new ProgressReport(string.Format("Creating scripts")));
             }
-
+            this.strFullResult = "";
             srcConn = new SqlConnection(this.srcDBConn);
             srcConn.Open();
             srcFactConn = new SqlConnection(this.srcDBConn);
@@ -313,6 +313,11 @@ ORDER BY table_schema, table_name";*/
 
             //Build related tables 
             #region Related tables
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport(string.Format("Building related tables for {0} ", pTableName)));
+            }
+
             if (this.sFactTablePrefix == "")
             {
                 comm = new SqlCommand(string.Format(QC.qryReferenceQueryExclWithKeyCol, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl,  this.strSrcKeyName), srcFactConn);
@@ -407,6 +412,9 @@ ORDER BY table_schema, table_name";*/
                         lstTC.Remove(lstTC.Find(item => item.ColumnName == sColumnName));
 
                     }
+
+                    
+
                     string sStageColumnName;
                     if (sDimColumnName.Length == sColumnName.Length)
                     {
@@ -416,7 +424,15 @@ ORDER BY table_schema, table_name";*/
                     {
                         string sPrefix;
                         string sSuffix;
-                        sStageColumnName = Extensions.ColumnNameFix(sDimColumnName, sColumnName, sDimTable, this.strSrcKeyName, out sPrefix, out sSuffix);
+                        if (sColumnName.Length < sDimColumnName.Length)
+                        {
+                            this.strFullResult += string.Format("/*\nFact Table field related to dimension table field doesn't contain DimFieldName:\n {0} in table {1} \nrelated to {2} in table {3}\n*\\n", sColumnName, pTableName, sDimColumnName, sDimTable);
+                            sStageColumnName = Extensions.ColumnNameFix(sColumnName,sDimColumnName, sDimTable, this.strSrcKeyName, out sPrefix, out sSuffix);
+                        }
+                        else
+                        {
+                            sStageColumnName = Extensions.ColumnNameFix(sDimColumnName, sColumnName, sDimTable, this.strSrcKeyName, out sPrefix, out sSuffix);
+                        }
                     }
                     //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + "SourceKey", "NO", "varchar", "255"));
                     //lstTC.Add(new TableColumn(pTableName, sDimTable.Replace(this.sDimTablePrefix, "", StringComparison.CurrentCultureIgnoreCase) + this.strSrcKeyName, sIsNullable, "varchar", "255"));
