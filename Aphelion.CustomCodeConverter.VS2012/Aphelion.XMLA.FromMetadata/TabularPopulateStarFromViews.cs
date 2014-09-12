@@ -237,7 +237,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 xm.sDimensionName = drRefs.GetString(4);
                 xm.sDBTableName = drRefs.GetString(4);
                 xm.sFormatName = drRefs.GetString(5);
-                xm.sDBSchemaName = this.sDSVID;//DSVID is schema? 
+                xm.sDBSchemaName = this.sSchema;
                 lstDAXMeasures.Add(xm);
             }
             drRefs.Close();
@@ -258,7 +258,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 List<XMLADimensionAttribute> lstXDA = new List<XMLADimensionAttribute>();
                 List<XMLAMeasure> lstMeasures = new List<XMLAMeasure>();
                 #region Calced measures
-                /*foreach (XMLAMeasure xm in lstDAXMeasures.FindAll(item => item.sDimensionID == dsvT.sID))
+                foreach (XMLAMeasure xm in lstDAXMeasures.FindAll(item => item.sDimensionID == dsvT.sID))
                 {
 
                     //Get associated KPIs
@@ -268,7 +268,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     }
                     lstMeasures.Add(xm);
                     this.cbNewCube.lstCubeModels[0].mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID + "]", "Member", "'" + xm.sFormatString + "'", xm.sFormatName));
-                }*/
+                }
                 #endregion
 
                 #region Columns
@@ -493,7 +493,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 /* 1 looked like a bug? Triple check this!*/
                 //Unless it's DSVTableID?
                 ///TODO:
-                this.sDSVID = drRefs.GetString(1);
+                this.sDSVID = drRefs.GetString(0);
                 DSVTable dsvT = new DSVTable(
                     drRefs.GetString(1)  
                     , drRefs.GetString(1)

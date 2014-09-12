@@ -2575,15 +2575,15 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 string sComm = "";
                 foreach (var T in dctMeasures)
                 {
-                    if (T.Value.sName.Contains("Status"))
-                    {
+                    //if (T.Value.sName.Contains("Status"))
+                    //{
                       //Allocate them to the first measure group as we don't have a measures group
                       //sMDXComm = string.Format(constXMLAMeasureCustom, cmActiveModel.lstMeasureGroups[0].sID, T.Value.sName, T.Value.sCalc.Replace("&", "&amp;"));
                       //sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
 
                       string sCommSingle = string.Format(constXMLACommand, T.Value.sCalc + T.Value.sKPI, T.Value.sAnnotations);
                       sComm += sCommSingle;
-                    }
+                    //}
                    }
                 sMDX = string.Format(constXMLAMDXCommands, sComm, sCalculationOptionsList).Replace("\t", "");
 

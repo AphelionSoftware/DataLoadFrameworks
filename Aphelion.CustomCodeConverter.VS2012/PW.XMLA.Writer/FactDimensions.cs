@@ -41,7 +41,7 @@ namespace PW.XMLA.Writer
                             XMLADimensionAttribute xda = xD.lstDimensionAttributes.Find(item => item.sDBColumnName == xMeasure.sDBColumnName);
                             if (xda == null)
                             {
-                                DSV dsvSrc = srcCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID == xMG.sDSVID);
+                                DSV dsvSrc = srcCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID.ToUpper() == xMG.sDSVID.ToUpper());
                                 DSVTable dsvT = dsvSrc.lstDSVTables.Find(item => item.sSchemaName == xD.sKeySchemaName && item.sTableName == xD.sKeyTableName);
                                 DSVColumn dsvC = dsvT.lstColumns.Find(item => item.sDBColumnName == xMeasure.sDBColumnName);
                                 if (dsvC != null)
@@ -250,8 +250,8 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                     //Hence we check for each measure if it's table exists as a dimension
                     bool   boolDimExists = true;
                     XMLADimension xSubDim = xModel.lstDimensions.Find(item =>
-                                item.sKeySchemaName == xMeasure.sDBSchemaName
-                                    && item.sKeyTableName == xMeasure.sDBTableName);
+                                item.sKeySchemaName.ToUpper() == xMeasure.sDBSchemaName.ToUpper()
+                                    && item.sKeyTableName.ToUpper() == xMeasure.sDBTableName.ToUpper());
 
                     XMLADimension dimNew = new XMLADimension();
                     if (xSubDim == null)
@@ -302,9 +302,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                     }
                     //Add the current column
                     //Second clause added as a measure could exist already
-                    if (xMeasure.sName.Contains("Rates") || xMeasure.sDBColumnName.Contains("Rates"))
-                    {
-                    }
+                    
                     if (!xSubDim.lstDimensionAttributes.Exists(item => item.sDBSchemaName == xMeasure.sDBSchemaName &&
                                                                         item.sDBTableName == xMeasure.sDBTableName &&
                                                                         item.sDBColumnName == xMeasure.sDBColumnName
