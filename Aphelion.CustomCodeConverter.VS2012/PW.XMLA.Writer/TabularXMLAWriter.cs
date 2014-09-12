@@ -2569,6 +2569,14 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 sCalculationOptionsList += sCalculationOptions + "\n";
              
             }
+
+            ///TODO: 
+            sCalculationOptionsList += @"<CalculationProperty>
+                                    <CalculationReference>[__No measures defined]</CalculationReference>
+                                    <CalculationType>Member</CalculationType>
+                                    <Visible>false</Visible>
+                                </CalculationProperty>";
+
             if (isNewPowerPivotSchema)
             {
                 string sPowerPivotCalc = string.Format(constPowerPivotCommand, sMeasuresList);

@@ -260,7 +260,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 #region Calced measures
                 foreach (XMLAMeasure xm in lstDAXMeasures.FindAll(item => item.sDimensionID == dsvT.sID))
                 {
-
                     //Get associated KPIs
                     foreach (XMLAKPI xKPI in lstKPI.FindAll(item => item.sMeasure == xm.sName))
                     {
@@ -292,6 +291,11 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     #region Measures
                     foreach ( var  T in dsvC.dctAggregationTypes)
                     {
+
+                        ///TODO: Remove for prod {COMMENTED OUT)
+                        ///
+                        //if (dsvC.sDBColumnName.Contains("StatusType") && T.Value.Contains("Sum"))
+                        //{
                         XMLAMeasure xm = new XMLAMeasure(
                                 T.Value
                                 , T.Value /*Ensure uniqueness in ID by using column SID*/
@@ -317,7 +321,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                             xm.lstKPIs.Add(xKPI);
                         }
                         lstMeasures.Add(xm);
-                    }
+                        }
+                    //}
 
 
 
