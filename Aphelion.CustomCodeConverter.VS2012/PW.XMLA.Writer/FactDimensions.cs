@@ -41,7 +41,7 @@ namespace PW.XMLA.Writer
                             XMLADimensionAttribute xda = xD.lstDimensionAttributes.Find(item => item.sDBColumnName == xMeasure.sDBColumnName);
                             if (xda == null)
                             {
-                                DSV dsvSrc = srcCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID == xMG.sDSVID);
+                                DSV dsvSrc = srcCubeReader.cbOriginalCube.lstDSV.Find(item => item.sID.ToUpper() == xMG.sDSVID.ToUpper());
                                 DSVTable dsvT = dsvSrc.lstDSVTables.Find(item => item.sSchemaName == xD.sKeySchemaName && item.sTableName == xD.sKeyTableName);
                                 DSVColumn dsvC = dsvT.lstColumns.Find(item => item.sDBColumnName == xMeasure.sDBColumnName);
                                 if (dsvC != null)
@@ -262,8 +262,8 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                         dimNew.sDSVID = xMG.sDSVID;
                         dimNew.sDataSourceID = dsvDim.sDataSourceID;
 
-                        DSVTable dsvtSubDim = dsvDim.lstDSVTables.Find(item => item.sSchemaName.ToUpper() == xMeasure.sDBSchemaName.ToUpper()
-                                                                                && item.sTableName.ToUpper() == xMeasure.sDBTableName.ToUpper());
+                        DSVTable dsvtSubDim = dsvDim.lstDSVTables.Find(item => item.sSchemaName == xMeasure.sDBSchemaName
+                                                                                && item.sTableName == xMeasure.sDBTableName);
 
                         dimNew.sID = FactDimensions.FixIDs( dsvtSubDim.sTableName );
                         dimNew.sName = dsvtSubDim.sTableName;
@@ -286,7 +286,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
 
 
                         //Set the Query Definition
-                        if (dsvtSubDim.sTableType.ToLower() == "view" || dsvtSubDim.sTableType.ToLower() == "table")
+                        if (dsvtSubDim.sTableType == "View" || dsvtSubDim.sTableType == "Table")
                         {
                             dimNew.sQueryDefinition = "SELECT * FROM [" + dsvtSubDim.sSchemaName + "].[" + dsvtSubDim.sTableName + "]";
                         }
@@ -302,7 +302,7 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                     }
                     //Add the current column
                     //Second clause added as a measure could exist already
-                    //Third clause added in case its a calc
+                    
                     if (!xSubDim.lstDimensionAttributes.Exists(item => item.sDBSchemaName == xMeasure.sDBSchemaName &&
                                                                         item.sDBTableName == xMeasure.sDBTableName &&
                                                                         item.sDBColumnName == xMeasure.sDBColumnName
@@ -310,22 +310,11 @@ new string[] { "CREATE MEMBER CURRENTCUBE." }, StringSplitOptions.RemoveEmptyEnt
                         && !xSubDim.lstDimensionAttributes.Exists(item => item.sDBSchemaName == xMeasure.sDBSchemaName &&
                                                                         item.sDBTableName == xMeasure.sDBTableName &&
                                                                         item.sDBColumnName == xMeasure.sName
-                        )
-                        && xMeasure.sMeasureExpression == ""
-                        )
+                        
+                        ))
                     {
                         AddDimensionColumn(ref targetCubeReader, xMG, xMeasure, xSubDim);
 
-                    }
-                    else
-                    {
-                        if (xMeasure.sMeasureExpression == "")
-                        {
-                            AddDimensionColumn(ref targetCubeReader, xMG, xMeasure, xSubDim);
-
-                    
-                            var x = 1;
-                        }
                     }
                     if (!boolDimExists)
                     {

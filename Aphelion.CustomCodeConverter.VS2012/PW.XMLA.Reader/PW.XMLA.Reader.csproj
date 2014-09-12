@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XMLAPropertyClasses\KPICalcProp.cs" />
     <Compile Include="XMLAPropertyClasses\MDXScriptCalcProp.cs" />
     <Compile Include="XMLAPropertyClasses\DSVRelationship.cs" />
     <Compile Include="XMLAPropertyClasses\XMLADatabase.cs" />

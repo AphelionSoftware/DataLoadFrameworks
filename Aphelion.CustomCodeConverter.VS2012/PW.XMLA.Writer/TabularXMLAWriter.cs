@@ -10,6 +10,7 @@ namespace PW.XMLA.Writer
 {
     public class TabularXMLAWriter
     {
+
         struct measureAtts
         {
             public string sName, sTable, sCalc, sAnnotations, sKPI;
@@ -26,7 +27,14 @@ namespace PW.XMLA.Writer
         public bool isTabularSource = false;
         public bool isNewPowerPivotSchema = true;
         #region constants
-
+        /// <summary>
+        /// 0 is name
+        /// 1 is value
+        /// </summary>
+        public const string constXMLACalcAnnotation = @"<Annotation>
+											<Name>{0}</Name>
+											<Value>{1}</Value>
+										</Annotation>";
         /// <summary>
         /// 0 is Goal measure
         /// 1 is Status measure
@@ -91,6 +99,10 @@ namespace PW.XMLA.Writer
         <DatabaseID>{0}</DatabaseID>
     </Object>
 </Delete>";
+
+        
+
+
         /// <summary>
         /// 0 is DB ID
         /// 1 is Dimension ID
@@ -922,7 +934,7 @@ namespace PW.XMLA.Writer
                                             <Value>{1}</Value>
                                         </Annotation>"            ;
 
-        /// <summary>
+
         /// Individual commands
         /// 0: Text
         /// 1: Annotations
@@ -938,8 +950,8 @@ namespace PW.XMLA.Writer
                                     </Annotations>
                                 </Command>
                                 ";
-        
-        
+
+
         /// <summary>
         /// 0 is the commands
         /// 1 is the calculation properties
@@ -963,6 +975,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
 
         /// <summary>
+        /// There may be a problem with annotations if isNewPowerPivot is not true
         /// 0 is the measures
         /// 1 is the command text
         /// 2 is the calculation properties
@@ -984,7 +997,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                         {1}
                                     </Text>
                                     <Annotations>
-                                     {3}
+                                        {3}
                                     </Annotations>
                                 </Command>
                             </Commands>
@@ -1017,12 +1030,13 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         /// 0 is Measure name
         /// 1 is Format (Default to General"
         /// 2 is Format String (default to '')
+        /// 3 is Type 
         /// </summary>
         public const string constXMLACalcProp = @"<CalculationProperty>
                                     <Annotations>
                                         <Annotation>
                                             <Name>Type</Name>
-                                            <Value>User</Value>
+                                            <Value>{3}</Value>
                                         </Annotation>
                                         <Annotation>
                                             <Name>IsPrivate</Name>
@@ -1033,6 +1047,85 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                             <Value>
                                                 <Format Format=""{1}"" xmlns="""" />
                                             </Value>
+                                        </Annotation>
+                                    </Annotations>
+                                    <CalculationReference>{0}</CalculationReference>
+                                    <CalculationType>Member</CalculationType>
+                                    <FormatString>{2}</FormatString>
+                                </CalculationProperty>
+                                ";
+        /// <summary>
+        /// 0  is Measure name
+        /// 1  is Format (Default to General"
+        /// 2  is Format String (default to '')
+        /// 3  is Goal Type
+        /// 4  is Goal Value
+        /// 5  is Status Type
+        /// 6  is Threshold Type
+        /// 7  is Threshold Ordering
+        /// 8  is Threshold count
+        /// 9  is Threshold 0
+        /// 10 is Threshold 1
+        /// </summary>
+        public const string constXMLACalcPropKPI = @"<CalculationProperty>
+                                    <Annotations>
+                                        <Annotation>
+                                            <Name>Type</Name>
+                                            <Value>KPI</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>IsPrivate</Name>
+                                            <Value>False</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>Format</Name>
+                                            <Value>
+                                                <Format Format=""{1}"" xmlns="""" />
+                                            </Value>
+                                        </Annotation>
+<Annotation>
+                                            <Name>GoalType</Name>
+                                            <Value>{3}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>GoalValue</Name>
+                                            <Value>{4}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiStatusType</Name>
+                                            <Value>{5}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThresholdType</Name>
+                                            <Value>{6}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThresholdOrdering</Name>
+                                            <Value>{7}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThresholdCount</Name>
+                                            <Value>{8}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThreshold_0</Name>
+                                            <Value>{9}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>KpiThreshold_1</Name>
+                                            <Value>{10}</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>ValueDescription</Name>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>GoalDescription</Name>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>StatusDescription</Name>
+                                        </Annotation>
+                                        <Annotation>
+                                            <Name>TrendDescription</Name>
                                         </Annotation>
                                     </Annotations>
                                     <CalculationReference>{0}</CalculationReference>
@@ -1657,7 +1750,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             string sFilename = pFilename + ".abf";
             sFilename = sFilename.Replace(".abf.abf", ".abf");
             string sComm = string.Format(constXMLABackup, pDatabaseID, sFilename, "true");
-            XmlaResultCollection result = cubeServer.Execute(sComm);
+            result = cubeServer.Execute(sComm);
         }
 
         public void ProcessCubeFull()
@@ -1667,7 +1760,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 cubeServer.Connect(this.connDestConnection);
             }
-            XmlaResultCollection result = cubeServer.Execute(sProcessCommand);
+             result = cubeServer.Execute(sProcessCommand);
        
         }
 
@@ -2290,17 +2383,16 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             string sAnnotationsList = "";
             string sCalculationOptionsList = "";
 
-            
             Dictionary<string, measureAtts> dctMeasures = new Dictionary<string, measureAtts>();
-            
+            List<KPICalcProp> lstKPIProps = new List<KPICalcProp>();
+                
             foreach (XMLAMeasureGroup xMG in cmActiveModel.lstMeasureGroups) 
             {
                 //if (xMG.sID.Contains("DimPerson"))
                 //{
                     //We need to map up measures to dimensions where we have non-degenerate relationships
-                //Use the first measure
-
-                if (xMG.lstMeasures.Count > 0 && (xMG.lstMeasures[0].sAggregationFunction != "Count"))
+                    //Use the first measure
+                    if (xMG.lstMeasures.Count > 0&& (xMG.lstMeasures[0].sAggregationFunction != "Count"))
                         {
                             XMLADimension xd = cmActiveModel.lstDimensions.Find(item => item.sKeySchemaName == xMG.lstMeasures[0].sDBSchemaName && item.sKeyTableName == xMG.lstMeasures[0].sDBTableName);
                             if (xd != null)
@@ -2323,13 +2415,11 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                 //}
                 //if( cmActiveModel.lstDimensions.Exists( item => item.sKeySchemaName == xMG.
-
                 foreach (XMLAMeasure xm in xMG.lstMeasures)
                 {
                     #region Build standard measures
                     string sMeasure = "";
                     #region aggsWork
-
                     if (xm.sAggregationFunction == "Count")
                     {
                         //sMeasure = string.Format(constXMLAMeasure, xm.sDBTableName, xm.sName, "COUNTROWS", xm.sDBColumnName); 
@@ -2374,7 +2464,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                         if ((xm.sAttributeName == null || xm.sAttributeName == "") && !(xm.sMeasureExpression == null))
                         {
-                            sMeasure = string.Format(constXMLAMeasureCustom, xm.sDimensionID, xm.sID, xm.sMeasureExpression);
+                            sMeasure = string.Format(constXMLAMeasureCustom, xm.sDimensionID, xm.sID.Replace("[[", "[").Replace("]]","]"), xm.sMeasureExpression);
                         }
                         else
                         {
@@ -2391,24 +2481,48 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                     foreach (XMLAKPI xKPI in xm.lstKPIs)
                     {
                         sGoal = string.Format(constXMLAKPIGoal, xMG.sName, xm.sName, xKPI.sGoal);
+                        MDXScriptCalcProp cpGoal = new MDXScriptCalcProp("[_" + xm.sName + " Goal]");
+                        cpGoal.sMainObjectName = xm.sName;
+                        cpGoal.sType = "SupportMdx";
+                        cmActiveModel.mdxScript.CalcProps.Add(cpGoal);
+                        
                         sStatus = string.Format(constXMLAKPIStatus, xMG.sName, xm.sName, xKPI.sGT, xKPI.sLT);
+                        MDXScriptCalcProp cpStatus = new MDXScriptCalcProp("[_" + xm.sName + " Status]");
+                        cpStatus.sMainObjectName = xm.sName;
+                        cpStatus.sType = "SupportMdx";
+                        cmActiveModel.mdxScript.CalcProps.Add(cpStatus);
+                        
+
+                        MDXScriptCalcProp cpKPISupport = new MDXScriptCalcProp("KPIs.[" + xm.sName + "]");
+                        cpKPISupport.sMainObjectName = xm.sName;
+                        cpKPISupport.sType = "SupportKpi";
+                        cmActiveModel.mdxScript.CalcProps.Add(cpKPISupport);
+
+                        KPICalcProp kpiProp = new KPICalcProp("[" + xm.sName + "]", "Member", "", xKPI.sGoal, xKPI.sGT, xKPI.sLT);
+                        lstKPIProps.Add(kpiProp);
+
                         sCreateKPI = string.Format(constXMLAKPIKPI, xMG.sName, xm.sName, xKPI.sGraphic);
                         sKPI += string.Format(constXMLAKPI, sGoal, sStatus, sCreateKPI);
                     }
                     #endregion
 
                     string sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
-                    dctMeasures.Add(sMeasure, new measureAtts(xMG.sID,xm.sDimensionID,sMeasure, sAnnotation, sKPI));
+                    dctMeasures.Add(sMeasure.Replace("[[", "[").Replace("]]", "]"), new measureAtts(xMG.sID, xm.sDimensionID, sMeasure.Replace("[[", "[").Replace("]]", "]"), sAnnotation, sKPI));
                     sAnnotationsList += sAnnotation;
-                    sMeasuresList += sMeasure + "\n";
+                    sMeasuresList += sMeasure.Replace("[[", "[").Replace("]]", "]") + "\n";
 
                     //Any measures with no calc props need to have them added. Is this the right place? Perhaps not...
                     if (!cmActiveModel.mdxScript.CalcProps.Exists(item => item.sCalculationReference == xm.sID
-                        || item.sCalculationReference == "[" + xm.sID + "]"
+                        || item.sCalculationReference == "[" + xm.sID + "]" 
                         ))
                     {
-                        //Adding [] to the calc reference
-                        cmActiveModel.mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID +"]", "Member", "''"));
+                        if (!lstKPIProps.Exists(item => item.sCalculationReference == xm.sID
+                           || item.sCalculationReference == "[" + xm.sID + "]"
+                         ))
+                        {
+                            //Adding [] to the calc reference
+                            cmActiveModel.mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID + "]", "Member", "''"));
+                        }
                     }
 
                     #endregion
@@ -2420,25 +2534,60 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             foreach (MDXScriptCalcProp calcProp in cmActiveModel.mdxScript.CalcProps)
             {
                 string sCalculationOptions = "";
-                sCalculationOptions = string.Format(constXMLACalcProp, calcProp.sCalculationReference, calcProp.sFormat, calcProp.sFormatString);
+                sCalculationOptions = string.Format(constXMLACalcProp, calcProp.sCalculationReference.Replace("[[","[").Replace("]]","]")   , calcProp.sFormat, calcProp.sFormatString, calcProp.sType);
                 sCalculationOptionsList += sCalculationOptions + "\n";
             }
 
+            foreach (KPICalcProp kpiProp in lstKPIProps)
+            {
+                /// 0  is Measure name
+                /// 1  is Format (Default to General"
+                /// 2  is Format String (default to '')
+                /// 3  is Goal Type
+                /// 4  is Goal Value
+                /// 5  is Status Type
+                /// 6  is Threshold Type
+                /// 7  is Threshold Ordering
+                /// 8  is Threshold count
+                /// 9  is Threshold 0
+                /// 10 is Threshold 1
+        
+                string sCalculationOptions = "";
+                sCalculationOptions = string.Format(constXMLACalcPropKPI,
+                    kpiProp.sCalculationReference
+                    , kpiProp.sFormat
+                    ,"'" +  kpiProp.sFormatString+ "'"
+                    , kpiProp.sGoalType
+                    , kpiProp.sGoalValue
+                    , kpiProp.sStatusType
+                    , kpiProp.sThresholdType
+                    , kpiProp.sThresholdOrdering
+                    , kpiProp.sThresholdCount
+                    , kpiProp.sThreshold0
+                    , kpiProp.sThreshold1
+                    );
+                sCalculationOptionsList += sCalculationOptions + "\n";
+             
+            }
             if (isNewPowerPivotSchema)
             {
                 string sPowerPivotCalc = string.Format(constPowerPivotCommand, sMeasuresList);
                 string sComm = "";
                 foreach (var T in dctMeasures)
                 {
-                        //Allocate them to the first measure group as we don't have a measures group
-                        //sMDXComm = string.Format(constXMLAMeasureCustom, cmActiveModel.lstMeasureGroups[0].sID, T.Value.sName, T.Value.sCalc.Replace("&", "&amp;"));
-                        //sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
+                    //if (T.Value.sName.Contains("Status"))
+                    //{
+                      //Allocate them to the first measure group as we don't have a measures group
+                      //sMDXComm = string.Format(constXMLAMeasureCustom, cmActiveModel.lstMeasureGroups[0].sID, T.Value.sName, T.Value.sCalc.Replace("&", "&amp;"));
+                      //sAnnotation = string.Format(constXMLAMeasureAnnotation, xm.sID, xm.sDimensionID);
 
-                        sComm += string.Format(constXMLACommand, T.Value.sCalc + T.Value.sKPI, T.Value.sAnnotations);
-                }
+                      string sCommSingle = string.Format(constXMLACommand, T.Value.sCalc + T.Value.sKPI, T.Value.sAnnotations);
+                      sComm += sCommSingle;
+                    //}
+                   }
                 sMDX = string.Format(constXMLAMDXCommands, sComm, sCalculationOptionsList).Replace("\t", "");
-            
-            } 
+
+            }
             else if (isTabularSource)
             {
                 sMDX = string.Format(constXMLAMDX, sMeasuresList, this.srcCubeReader.cbOriginalCube.lstCubeModels[0].sPowerPivotMDXCommand, sCalculationOptionsList, sAnnotationsList).Replace("\t", "");

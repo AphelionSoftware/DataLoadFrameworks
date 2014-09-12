@@ -410,13 +410,11 @@ where EPM.name like 'KPIMeasure%'
         /// 3: TableType
         /// 4: XMLA Table type
         /// </summary>
-        /// ///TODO: TBALE TYPE IISUE
         public const string qryOLAPTablesQuery = @"SELECT 
 	table_schema
 	, table_name 
-, table_type	
-, ISNULL(EPDisplay.value, table_name) DisplayName
-    
+	, ISNULL(EPDisplay.value, table_name) DisplayName
+    , table_type
 	, ISNULL(EPTableType.Value, 'Table') XMLATableType
 FROM 
 information_schema.tables t

@@ -14,7 +14,6 @@ using System.ComponentModel;
 
 namespace Aphelion.XMLA.FromMetadata
 {
-
     public class ProgressReport
     {
         public string Message = "";
@@ -29,13 +28,12 @@ namespace Aphelion.XMLA.FromMetadata
 
     }
 
-
     public class TabularPopulateStarFromViews
     {
         #region Properties
 
-
         public BackgroundWorker backWorker { get; set; }
+
 
         public PW.XMLA.Writer.TabularXMLAWriter xmlaWriter;
         public PW.XMLA.Reader.CubeDatabase cbNewCube;
@@ -122,7 +120,7 @@ namespace Aphelion.XMLA.FromMetadata
             {
                 backWorker.ReportProgress(0, new ProgressReport("Cube created"));
             }
-            
+
         }
 
         private void SetupWriter()
@@ -158,15 +156,16 @@ namespace Aphelion.XMLA.FromMetadata
             xmlaWriter.BackupDatabase(this.sCubeName, pFilename);
         }
 
+        
 
         public CubeDatabase ScanDB()
         {
             #region Setup basic cube
+
             if (backWorker != null)
             {
                 backWorker.ReportProgress(0, new ProgressReport("Scanning database structure"));
             }
-            
             cbNewCube = new CubeDatabase();
             cbNewCube.sID = this.sCubeName;
             cbNewCube.sName = this.sCubeName;
@@ -194,8 +193,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         /// </summary>
         public void CreateDimensions()
         {
-
-
             #region KPIs
             SqlCommand comm;
             SqlDataReader drRefs;
@@ -240,7 +237,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 xm.sDimensionName = drRefs.GetString(4);
                 xm.sDBTableName = drRefs.GetString(4);
                 xm.sFormatName = drRefs.GetString(5);
-                xm.sDBSchemaName = this.sDSVID;//DSVID is schema? 
+                xm.sDBSchemaName = this.sSchema;
                 lstDAXMeasures.Add(xm);
             }
             drRefs.Close();
@@ -251,7 +248,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 backWorker.ReportProgress(0, new ProgressReport("Create dimensions"));
             }
-            
             List<DSVTable> lstDSVT = new List<DSVTable>(this.cbNewCube.lstDSV[0].lstDSVTables);
             //Make a copy as we're modifying the list of dimensions
                 
@@ -261,19 +257,20 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 sSelect = "SELECT ";
                 List<XMLADimensionAttribute> lstXDA = new List<XMLADimensionAttribute>();
                 List<XMLAMeasure> lstMeasures = new List<XMLAMeasure>();
-            #region Calced measures
+                #region Calced measures
                 foreach (XMLAMeasure xm in lstDAXMeasures.FindAll(item => item.sDimensionID == dsvT.sID))
-                    {
+                {
 
-                        //Get associated KPIs
-                        foreach (XMLAKPI xKPI in lstKPI.FindAll(item => item.sMeasure == xm.sName))
-                        {
-                            xm.lstKPIs.Add(xKPI);
-                        }
-                        lstMeasures.Add(xm);
-                        this.cbNewCube.lstCubeModels[0].mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID +"]", "Member", "'" + xm.sFormatString + "'", xm.sFormatName));
+                    //Get associated KPIs
+                    foreach (XMLAKPI xKPI in lstKPI.FindAll(item => item.sMeasure == xm.sName))
+                    {
+                        xm.lstKPIs.Add(xKPI);
                     }
-             #endregion
+                    lstMeasures.Add(xm);
+                    this.cbNewCube.lstCubeModels[0].mdxScript.CalcProps.Add(new MDXScriptCalcProp("[" + xm.sID + "]", "Member", "'" + xm.sFormatString + "'", xm.sFormatName));
+                }
+                #endregion
+
                 #region Columns
                 foreach (DSVColumn dsvC in dsvT.lstColumns)
                 {
@@ -293,13 +290,9 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         ;
 
                     #region Measures
-
-                    
                     foreach ( var  T in dsvC.dctAggregationTypes)
                     {
-                        //if (T.Value == "StatusAverage" )
-                        //{
-                            XMLAMeasure xm = new XMLAMeasure(
+                        XMLAMeasure xm = new XMLAMeasure(
                                 T.Value
                                 , T.Value /*Ensure uniqueness in ID by using column SID*/
                                 , T.Key
@@ -319,13 +312,12 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                                 );
 
                         //Get associated KPIs
-                            foreach (XMLAKPI xKPI in lstKPI.FindAll(item => item.sMeasure == xm.sName))
-                            {
-                                xm.lstKPIs.Add(xKPI);
-                            }
-                            lstMeasures.Add(xm);
+                        foreach (XMLAKPI xKPI in lstKPI.FindAll(item => item.sMeasure == xm.sName))
+                        {
+                            xm.lstKPIs.Add(xKPI);
                         }
-                    //}
+                        lstMeasures.Add(xm);
+                    }
 
 
 
@@ -414,12 +406,11 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 #endregion
 
                 #region ReferenceDimension
-                //Set up reference dimensions for all measure groups
                 if (backWorker != null)
                 {
                     backWorker.ReportProgress(0, new ProgressReport("Reference dims for measure groups"));
                 }
-            
+                //Set up reference dimensions for all measure groups
                 if (dsvT.sXMLATableType == "MeasureGroup")
                 {
                     foreach (DSVRelationship dsvR in
@@ -485,24 +476,26 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             DSV dsv = new DSV(this.sSchema, this.sSchema, this.sCubeName + "src");
 
             #region Fields
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport("Adding DSV tables..."));
+            }
             SqlCommand comm;
             SqlCommand commCol;
             SqlDataReader drRefs;
             SqlDataReader drCustomRefs;
             SqlDataReader drCols;
             //Build field list
-            if (backWorker != null)
-            {
-                backWorker.ReportProgress(0, new ProgressReport("Adding DSV tables..."));
-            }
-            
             comm = new SqlCommand(string.Format(QC.qryOLAPTablesQuery, this.sTableExcl, this.sSchema), srcConn);
             drRefs = comm.ExecuteReader();
             while (drRefs.Read())
             {
+                /* 1 looked like a bug? Triple check this!*/
+                //Unless it's DSVTableID?
+                ///TODO:
                 this.sDSVID = drRefs.GetString(0);
                 DSVTable dsvT = new DSVTable(
-                    drRefs.GetString(1)
+                    drRefs.GetString(1)  
                     , drRefs.GetString(1)
                     , drRefs.GetString(1)
                     , drRefs.GetString(3)
@@ -706,7 +699,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 {
                     backWorker.ReportProgress(0, new ProgressReport("Fixing primary keys"));
                 }
-            
+
                 commCol = new SqlCommand(string.Format(QC.qryViewPrimaryKeys, this.sSchema, drRefs.GetString(1)), srcFactConn);
                 drCols = commCol.ExecuteReader();
                 while (drCols.Read())
@@ -727,7 +720,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 backWorker.ReportProgress(0, new ProgressReport("Build relationship list"));
             }
-            
             comm = new SqlCommand(string.Format(QC.qryViewReferences, this.sSchema), srcFactConn);
             
             drRefs = comm.ExecuteReader();
@@ -787,7 +779,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             #endregion
 
         }
-
         #region Commented Out
         /*public 
             void PopulateFactTable(string pSchemaTable, string pTableName, string pFieldExcl, string pTableExcl, ref List<TableColumn> lstTC)

@@ -7,6 +7,9 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
 {
     public class MDXScriptCalcProp
     {
+
+        //public Dictionary<string, string> dctAdditionalAnnotations = new Dictionary<string, string>();
+
         public override string ToString()
         {
             return this.sID;
@@ -18,13 +21,17 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
             set { sID = value; }
         }
 
+        public string sMainObjectName { get; set; }
+
         public string sCalculationReference
         {
             get { return sID; }
             set { sID = value; }
         }
 
-
+        public  MDXScriptCalcProp()
+        {
+        }
         public MDXScriptCalcProp(string pName)
         {
             this.sID = pName;
@@ -47,5 +54,6 @@ namespace PW.XMLA.Reader.XMLAPropertyClasses
         public string sFormat = "General";
         public string sFormatString = "''";
         public string sCalculationType = "Member";
+        public string sType = "User";
     }
 }
