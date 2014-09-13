@@ -39,9 +39,24 @@ namespace Aphelion.DW.StagingCreate
             {
                 string pFix;
                 string pSuf;
-                sReplaceKey = StringExtract(sTable, pInner, out pFix, out pSuf);
+                try
+                {
+                    sReplaceKey = StringExtract(sTable, pInner, out pFix, out pSuf);
+                }
+                catch (System.Exception ex)
+                {
+                    sReplaceKey = StringExtract(sTable, pOuter, out pFix, out pSuf);
+                    /*if (pOuter.Length <= pInner.Length)
+                    {
+                        sReplaceKey = StringExtract(pOuter, pInner, out pFix, out pSuf);
+                    }
+                    else
+                    {
+                        sReplaceKey = StringExtract(pInner, pOuter, out pFix, out pSuf);
+                    }*/
+                }
             }
-            if (Suffix == "")
+            if (Suffix == "" || sReplaceKey == "")
             {
                 return Prefix + sMid + sSourceKey;
             }

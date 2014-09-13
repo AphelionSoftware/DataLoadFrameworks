@@ -167,5 +167,8 @@
     <Setting Name="txtTabularBackup_Text" Type="System.String" Scope="User">
       <Value Profile="(Default)">c:\temp\item.data</Value>
     </Setting>
+    <Setting Name="chkIgnorePrefixes_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

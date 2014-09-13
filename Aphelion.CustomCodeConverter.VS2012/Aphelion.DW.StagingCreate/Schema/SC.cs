@@ -43,6 +43,7 @@ namespace Aphelion.DW.StagingCreate.Schema
                 case "bigint":
                 case "money":
                 case "float":
+                case "bit":
 
                     strColumnList = string.Format("\n\t[{0}] {1} {2}", lstTC[iLoop].ColumnName, lstTC[iLoop].DataType, lstTC[iLoop].Nullable);
 
@@ -114,6 +115,13 @@ namespace Aphelion.DW.StagingCreate.Schema
                             , drRefs.GetString(4)
                             , drRefs.GetString(5)
                             , "0"
+                            ));
+                    break;
+                case "bit":
+                    lstTC.Add(new TableColumn(pTableName
+                            , drRefs.GetString(0)
+                            , sIsNullable
+                            , drRefs.GetString(2)
                             ));
                     break;
             }

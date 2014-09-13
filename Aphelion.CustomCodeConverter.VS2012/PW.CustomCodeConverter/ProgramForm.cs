@@ -579,6 +579,21 @@ namespace PW.CustomCodeConverter
             this.txtTabular.Text = "Backed up cube";
             
         }
+
+        private void btnCancelStaging_Click(object sender, EventArgs e)
+        {
+            backgroundWorkerStaging.CancelAsync();
+        }
+
+        private void btnTblCancel_Click(object sender, EventArgs e)
+        {
+            backgroundWorkerTabular.CancelAsync();
+        }
+
+        private void btnCancelError_Click(object sender, EventArgs e)
+        {
+            backgroundWorkerError.CancelAsync();
+        }
        
     }
 }
