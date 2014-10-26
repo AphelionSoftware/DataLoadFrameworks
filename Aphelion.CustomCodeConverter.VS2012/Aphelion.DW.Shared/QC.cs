@@ -686,6 +686,13 @@ and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = EPCoalesce.maj
 and CCU_C.COLUMN_NAME = COL_NAME(EPCoalesce.major_id, EPCoalesce.minor_ID)
 ) 
 
+and  not exists (
+
+select 1 FROM sys.extended_properties
+WHERE name = 'ExcludeFromOLAP'
+and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
+and CCU_C.COLUMN_NAME = COL_NAME(EPCoalesce.major_id, EPCoalesce.minor_ID)
+) 
 
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 ";
@@ -775,6 +782,15 @@ and  not exists (
 
 select 1 FROM sys.extended_properties
 WHERE name = 'ExcludeFromFlattenedViews'
+and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
+and CCU_C.COLUMN_NAME = COL_NAME(EPCoalesce.major_id, EPCoalesce.minor_ID)
+) 
+
+
+and  not exists (
+
+select 1 FROM sys.extended_properties
+WHERE name = 'ExcludeFromOLAP'
 and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = EPCoalesce.major_id
 and CCU_C.COLUMN_NAME = COL_NAME(EPCoalesce.major_id, EPCoalesce.minor_ID)
 ) 
