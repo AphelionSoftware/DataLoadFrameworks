@@ -5,11 +5,27 @@ using System.Text;
 using System.Xml;
 using Microsoft.AnalysisServices;
 using PW.XMLA.Reader.XMLAPropertyClasses;
+using System.ComponentModel;
 
 namespace PW.XMLA.Writer
 {
+    public class ProgressReport
+    {
+        public string Message = "";
+        public ProgressReport(string pMsg)
+        {
+            this.Message = pMsg;
+        }
+        public override string ToString()
+        {
+            return this.Message;
+        }
+
+    }
     public class TabularXMLAWriter
     {
+
+        public BackgroundWorker backWorker { get; set; }
 
         struct measureAtts
         {
@@ -1723,10 +1739,30 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
         {
             //FixUp the snowflake dimensions
 
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport("Processing Snowflakes for cube"));
+            }
+
             
             SnowflakeDimensions.ProcessSnowflakes(ref this.srcCubeReader);
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport("Processing Facts for cube"));
+            }
+
             FactDimensions.ProcessFacts (ref this.srcCubeReader);
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport("Fixing DSV names for cube"));
+            }
+
             DSVRename.FixDSVTableNames(ref this.srcCubeReader);
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport("Build XMLA"));
+            }
+
             this.BuildDataSourceXMLA();
             this.BuildDSVXMLA();
             this.BuildDbDimensionXMLA();
@@ -1738,7 +1774,18 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 cubeServer.Connect(this.connDestConnection);
             }
+            if (backWorker != null)
+            {
+                backWorker.ReportProgress(0, new ProgressReport("Executing Create"));
+            }
+
             result = cubeServer.Execute(this.sXMLAAlterStatement);
+            if (result.Count > 0)
+            {
+                throw new Exception("Cube process failed! Examine generated XMLA");
+                
+            }
+
         }
 
         public void BackupDatabase(string pDatabaseID, string pFilename)

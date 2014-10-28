@@ -115,10 +115,20 @@ namespace Aphelion.XMLA.FromMetadata
             }
             SetupWriter();
 
-            xmlaWriter.BuildTabularXMLA();
-            if (backWorker != null)
+            try
             {
-                backWorker.ReportProgress(0, new ProgressReport("Cube created"));
+                xmlaWriter.BuildTabularXMLA();
+                if (backWorker != null)
+                {
+                    backWorker.ReportProgress(0, new ProgressReport("Cube created \n" + xmlaWriter.sXMLAAlterStatement));
+                }
+            }
+            catch 
+            {
+                if (backWorker != null)
+                {
+                    backWorker.ReportProgress(0, new ProgressReport("Cube creat failed \n" + xmlaWriter.sXMLAAlterStatement));
+                }
             }
 
         }
@@ -702,7 +712,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 #region Keys 
                 if (backWorker != null)
                 {
-                    backWorker.ReportProgress(0, new ProgressReport("Fixing primary keys"));
+                    backWorker.ReportProgress(0, new ProgressReport("Fixing primary keys for " + drRefs.GetString(1)));
                 }
 
                 commCol = new SqlCommand(string.Format(QC.qryViewPrimaryKeys, this.sSchema, drRefs.GetString(1)), srcFactConn);

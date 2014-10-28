@@ -1444,7 +1444,7 @@ and NOT VTU.table_name = CTUUnq.TABLE_NAME
 ORDER BY VTU.VIEW_NAME, CTEChild.Column_name
 ";
 
-              /// <summary>
+        /// <summary>
         /// 0: Schema
         /// 1: View name
         /// Fields:
@@ -1453,7 +1453,6 @@ ORDER BY VTU.VIEW_NAME, CTEChild.Column_name
 	    /// 2: TABLE_SCHEMA
 	    /// 3: TABLE_NAME
 	    /// 4: COLUMN_NAME
-	    
         /// </summary>
         public const string qryViewPrimaryKeys = @";WITH SrcQuery AS (select 
 	VTU.VIEW_SCHEMA
