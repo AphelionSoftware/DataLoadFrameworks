@@ -120,14 +120,14 @@ namespace Aphelion.XMLA.FromMetadata
                 xmlaWriter.BuildTabularXMLA();
                 if (backWorker != null)
                 {
-                    backWorker.ReportProgress(0, new ProgressReport("Cube created \n" + xmlaWriter.sXMLAAlterStatement));
+                    backWorker.ReportProgress(0, new ProgressReport("<!--Cube created \n-->" + xmlaWriter.sXMLAAlterStatement));
                 }
             }
             catch 
             {
                 if (backWorker != null)
                 {
-                    backWorker.ReportProgress(0, new ProgressReport("Cube creat failed \n" + xmlaWriter.sXMLAAlterStatement));
+                    backWorker.ReportProgress(0, new ProgressReport("<!--Cube create failed \n-->" + xmlaWriter.sXMLAAlterStatement));
                 }
             }
 
