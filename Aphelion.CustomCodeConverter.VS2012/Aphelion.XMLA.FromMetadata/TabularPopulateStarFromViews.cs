@@ -438,7 +438,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
                         if (!(xDim.lstReferenceDimensions.Exists(item => item.sID == dsvR.sID)))
                         {
-
                             XMLAReferenceDimension xrDim = new XMLAReferenceDimension(dsvR.ToString()
                                 , dsvR.sID
                                 , dsvR.childTable
@@ -735,6 +734,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             {
                 backWorker.ReportProgress(0, new ProgressReport("Build relationship list"));
             }
+
+            
             comm = new SqlCommand(string.Format(QC.qryViewReferences, this.sSchema), srcFactConn);
             
             drRefs = comm.ExecuteReader();
@@ -748,38 +749,55 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             drCustomRefs.Close();
             foreach (DSVTable dTable in dsv.lstDSVTables)
             {
+
+                string sPrevTable = "";
+                string sPrevSchema = "";
                 DataRow[] lstRows ;
                 lstRows = dt.Select("VIEW_NAME = '" + dTable.sID + "'");
+
                 foreach (DataRow dr in lstRows)
                 {
-                    DSVRelationship dsvR = new DSVRelationship();
-                    
-                    dsvR.parentSchema = this.sSchema;
-                    dsvR.parentTable = dr["UNIQUE_TABLE_NAME"].ToString();
-                    dsvR.parentColumn = dr["UNIQUE_COLUMN_NAME"].ToString();
-                    dsvR.childSchema = this.sSchema;
-                    dsvR.childTable =  dr["TABLE_NAME"].ToString();
-                    dsvR.childColumn = dr["COLUMN_NAME"].ToString();
-                    dsvR.sID = dsvR.parentTable + "-" + dsvR.childColumn;
-                    dsv.lstRelationships.Add(dsvR);
+                    if (dr["UNIQUE_TABLE_NAME"].ToString() == sPrevTable && dr["UNIQUE_TABLE_SCHEMA"].ToString() == sPrevSchema)
+                    {
+                        ///TODO: We need to add additional role playing dimension handling here
+                    }
+                    else
+                    {
+                        DSVRelationship dsvR = new DSVRelationship();
+
+                        dsvR.parentSchema = this.sSchema;
+                        dsvR.parentTable = dr["UNIQUE_TABLE_NAME"].ToString();
+                        dsvR.parentColumn = dr["UNIQUE_COLUMN_NAME"].ToString();
+                        dsvR.childSchema = this.sSchema;
+                        dsvR.childTable = dr["TABLE_NAME"].ToString();
+                        dsvR.childColumn = dr["COLUMN_NAME"].ToString();
+                        dsvR.sID = dsvR.parentTable + "-" + dsvR.childColumn;
+                        dsv.lstRelationships.Add(dsvR);
+                    }
+
+                    sPrevSchema = dr["UNIQUE_TABLE_SCHEMA"].ToString();
+                    sPrevTable = dr["UNIQUE_TABLE_NAME"].ToString();
+                
                 }
 
                 #region  CustomRelationships
-
+                
+               
                 DataRow[] lstRowRefs = dtCustomRefs.Select("TABLE_NAME = '" + dTable.sID + "'");
                 foreach (DataRow dr in lstRowRefs)
                 {
-                    DSVRelationship dsvR = new DSVRelationship();
+                   
+                        DSVRelationship dsvR = new DSVRelationship();
 
-                    dsvR.parentSchema = this.sSchema;
-                    dsvR.parentTable = dr["UNIQUE_TABLE_NAME"].ToString();
-                    dsvR.parentColumn = dr["UNIQUE_COLUMN_NAME"].ToString();
-                    dsvR.childSchema = this.sSchema;
-                    dsvR.childTable = dr["TABLE_NAME"].ToString();
-                    dsvR.childColumn = dr["COLUMN_NAME"].ToString();
-                    dsvR.sID = dsvR.parentTable + "-" + dsvR.childColumn;
-                    dsv.lstRelationships.Add(dsvR);
-                }
+                        dsvR.parentSchema = this.sSchema;
+                        dsvR.parentTable = dr["UNIQUE_TABLE_NAME"].ToString();
+                        dsvR.parentColumn = dr["UNIQUE_COLUMN_NAME"].ToString();
+                        dsvR.childSchema = this.sSchema;
+                        dsvR.childTable = dr["TABLE_NAME"].ToString();
+                        dsvR.childColumn = dr["COLUMN_NAME"].ToString();
+                        dsvR.sID = dsvR.parentTable + "-" + dsvR.childColumn;
+                        dsv.lstRelationships.Add(dsvR);
+                    }
 
 
                 

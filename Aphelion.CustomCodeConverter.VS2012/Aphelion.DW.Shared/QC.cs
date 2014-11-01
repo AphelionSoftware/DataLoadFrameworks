@@ -1375,6 +1375,7 @@ AND VIEW_NAME = '{1}'
 , MAX(CASE WHEN ep.name = 'SrcTable' THEN ep.value  END) as SrcTable_Name
 , MAX(CASE WHEN ep.name = 'SrcSchema' THEN ep.value  END) as SrcSchema_Name
 
+, MAX(CASE WHEN ep.name = 'PrimaryRelationship' THEN ep.value  END) as PrimaryRelationship
 FROM sys.extended_properties AS ep
 INNER JOIN sys.views v on ep.major_id = v.object_id
 iNNER JOIN sys.columns c on ep.minor_id = c.column_id
@@ -1382,7 +1383,7 @@ iNNER JOIN sys.columns c on ep.minor_id = c.column_id
 and v.object_id = c.object_id
 
 
-WHERE ep.name in ( 'SrcColumn', 'SrcTable', 'SrcSchema')
+WHERE ep.name in ( 'SrcColumn', 'SrcTable', 'SrcSchema', 'PrimaryRelationship')
 
 GROUP BY c.name, v.name
 )
@@ -1398,6 +1399,7 @@ select DISTINCT
 	, /*CCUUnq.COLUMN_NAME UNIQUE_COLUMN_NAME*/
 	CTEParent.Column_Name UNIQUE_COLUMN_NAME
 
+	, CASE WHEN CTEChild.PrimaryRelationship = 'True' THEN '_' + CTEChild.Column_Name ELSE CTEChild.Column_name END AS OrderColumn
 
  from INFORMATION_SCHEMA.VIEW_TABLE_USAGE VTU
  INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_TABLE_USAGE CTU
@@ -1441,7 +1443,8 @@ JOIN CTE CTEChild
  
  WHERE VIEW_SCHEMA = '{0}'
 and NOT VTU.table_name = CTUUnq.TABLE_NAME 
-ORDER BY VTU.VIEW_NAME, CTEChild.Column_name
+ORDER BY VTU.VIEW_NAME, CTUUnq.TABLE_SCHEMA, CTUUnq.TABLE_NAME, CASE WHEN CTEChild.PrimaryRelationship = 'True' THEN '_' + CTEChild.Column_Name ELSE CTEChild.Column_name END
+
 ";
 
         /// <summary>

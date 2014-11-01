@@ -1780,11 +1780,12 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             }
 
             result = cubeServer.Execute(this.sXMLAAlterStatement);
-            if (result.Count > 0)
-            {
-                throw new Exception("Cube process failed! Examine generated XMLA");
+            
+            //if (result.Count > 0)
+            //{
+            //    throw new Exception("Cube process failed! Examine generated XMLA");
                 
-            }
+            //}
 
         }
 

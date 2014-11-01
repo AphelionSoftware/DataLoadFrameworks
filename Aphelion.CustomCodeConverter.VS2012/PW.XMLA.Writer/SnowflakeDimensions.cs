@@ -99,39 +99,47 @@ namespace PW.XMLA.Writer
                     item => item.sKeyTableName == dsvR.parentTable
                            && item.sKeySchemaName == dsvR.parentSchema);
                     //Create a relationship
-                    string fromColumn = xDimChild.lstDimensionAttributes.Find(item => item.sDBColumnName == dsvR.childColumn).sID;
-                    string ToColumn = xDimParent.lstDimensionAttributes.Find(item => item.sDBColumnName == dsvR.parentColumn).sID;
-
-                    if (!xDimChild.lstRelationships.Exists(item => item.fromColumn == fromColumn
-                        && item.toColumn == ToColumn
-                        && item.fromTable == xDimChild.sID
-                        && item.toTable == xDimParent.sID
-                        ))
+                    if (xDimChild.lstDimensionAttributes.Exists(item => item.sDBColumnName == dsvR.childColumn))
                     {
-                        cbOriginalCube.lstCubeModels[0].lstDimensions.Find(
-                        item => item.sKeyTableName == dsvR.childTable
-                               && item.sKeySchemaName == dsvR.childSchema).lstRelationships.Add(
-                            new XMLARelationship(
-                                dsvR.sID, xDimChild.sID, fromColumn, xDimParent.sID, ToColumn)
-                                );
+                        string fromColumn = xDimChild.lstDimensionAttributes.Find(item => item.sDBColumnName == dsvR.childColumn).sID;
+                        string ToColumn = xDimParent.lstDimensionAttributes.Find(item => item.sDBColumnName == dsvR.parentColumn).sID;
 
-                        //Set the attributes for the key column
+                        if (!xDimChild.lstRelationships.Exists(item => item.fromColumn == fromColumn
+                            && item.toColumn == ToColumn
+                            && item.fromTable == xDimChild.sID
+                            && item.toTable == xDimParent.sID
+                            ))
+                        {
+                            cbOriginalCube.lstCubeModels[0].lstDimensions.Find(
+                            item => item.sKeyTableName == dsvR.childTable
+                                   && item.sKeySchemaName == dsvR.childSchema).lstRelationships.Add(
+                                new XMLARelationship(
+                                    dsvR.sID, xDimChild.sID, fromColumn, xDimParent.sID, ToColumn)
+                                    );
 
-                        cbOriginalCube.lstCubeModels[0].lstDimensions.Find(
-                        item => item.sKeyTableName == dsvR.parentTable
-                               && item.sKeySchemaName == dsvR.parentSchema)
-                               .lstDimensionAttributes.Find(item => item.sDBColumnName == ToColumn)
-                               .sCardinality = "One";
+                            //Set the attributes for the key column
 
-                        cbOriginalCube.lstCubeModels[0].lstDimensions.Find(
-                        item => item.sKeyTableName == dsvR.parentTable
-                               && item.sKeySchemaName == dsvR.parentSchema)
-                               .lstDimensionAttributes.Find(item => item.sDBColumnName == ToColumn)
-                               .sNullProcessing = "Error";
+                            cbOriginalCube.lstCubeModels[0].lstDimensions.Find(
+                            item => item.sKeyTableName == dsvR.parentTable
+                                   && item.sKeySchemaName == dsvR.parentSchema)
+                                   .lstDimensionAttributes.Find(item => item.sDBColumnName == ToColumn)
+                                   .sCardinality = "One";
+
+                            cbOriginalCube.lstCubeModels[0].lstDimensions.Find(
+                            item => item.sKeyTableName == dsvR.parentTable
+                                   && item.sKeySchemaName == dsvR.parentSchema)
+                                   .lstDimensionAttributes.Find(item => item.sDBColumnName == ToColumn)
+                                   .sNullProcessing = "Error";
+                        }
+                        else
+                        {
+                        }
                     }
-                    else
-                    {
+                    else {
+                        var x = 1;
+                        ///TODO: This happens when we excluded non primary relationships
                     }
+                    
 
                 }
                 else { 
