@@ -39,17 +39,26 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
+            this.chkExInlMeasures = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
+            this.txtExDim = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.txtExDimValue = new System.Windows.Forms.TextBox();
             this.btnSubset = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
+            this.txtExInsertPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.txtExBackupPath = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtExDest = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.txtExTemplate = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtExDB = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.txtExServer = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.txtTemplateFileName = new System.Windows.Forms.TextBox();
@@ -92,7 +101,20 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
+            this.chkSchema = new System.Windows.Forms.CheckBox();
+            this.txtDimFilter = new System.Windows.Forms.TextBox();
+            this.txtFactFilter = new System.Windows.Forms.TextBox();
+            this.txtDimPrefix = new System.Windows.Forms.TextBox();
+            this.txtSrcConn = new System.Windows.Forms.TextBox();
+            this.txtTableExcl = new System.Windows.Forms.TextBox();
+            this.txtFieldExcl = new System.Windows.Forms.TextBox();
+            this.txtFactPrefix = new System.Windows.Forms.TextBox();
+            this.txtSchema = new System.Windows.Forms.TextBox();
+            this.txtDestConn = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnCancelStaging = new System.Windows.Forms.Button();
+            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
             this.btnCreateO_S_E2 = new System.Windows.Forms.Button();
             this.btnStgCreateDB = new System.Windows.Forms.Button();
             this.label48 = new System.Windows.Forms.Label();
@@ -105,7 +127,22 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.chkRunScript = new System.Windows.Forms.CheckBox();
+            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
+            this.txtSrcKeyName = new System.Windows.Forms.TextBox();
+            this.chkInclRefKeysStg = new System.Windows.Forms.CheckBox();
+            this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
+            this.txtTableExclStg = new System.Windows.Forms.TextBox();
+            this.chkInclKeysStg = new System.Windows.Forms.CheckBox();
+            this.chkStageDrop = new System.Windows.Forms.CheckBox();
+            this.txtStgDimPrefix = new System.Windows.Forms.TextBox();
+            this.txtStgSrcConn = new System.Windows.Forms.TextBox();
+            this.txtStgFieldExcl = new System.Windows.Forms.TextBox();
+            this.txtStgFactPrefix = new System.Windows.Forms.TextBox();
+            this.txtStgSchema = new System.Windows.Forms.TextBox();
+            this.txtStgDB = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnTblCancel = new System.Windows.Forms.Button();
             this.btnTblBackup = new System.Windows.Forms.Button();
             this.chkTblBackup = new System.Windows.Forms.CheckBox();
             this.chkTblProcess = new System.Windows.Forms.CheckBox();
@@ -121,55 +158,6 @@
             this.txtTabular = new System.Windows.Forms.TextBox();
             this.btnTblCreateCube = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
-            this.chkRunError = new System.Windows.Forms.CheckBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.btnErrorCreate = new System.Windows.Forms.Button();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.txtErrorResult = new System.Windows.Forms.TextBox();
-            this.btnGenerateErrors = new System.Windows.Forms.Button();
-            this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerTabular = new System.ComponentModel.BackgroundWorker();
-            this.btnCancelStaging = new System.Windows.Forms.Button();
-            this.chkExInlMeasures = new System.Windows.Forms.CheckBox();
-            this.txtExDim = new System.Windows.Forms.TextBox();
-            this.txtExDimValue = new System.Windows.Forms.TextBox();
-            this.txtExInsertPath = new System.Windows.Forms.TextBox();
-            this.txtExBackupPath = new System.Windows.Forms.TextBox();
-            this.txtExDest = new System.Windows.Forms.TextBox();
-            this.txtExTemplate = new System.Windows.Forms.TextBox();
-            this.txtExDB = new System.Windows.Forms.TextBox();
-            this.txtExServer = new System.Windows.Forms.TextBox();
-            this.numMaxRecurse = new System.Windows.Forms.NumericUpDown();
-            this.chkSchema = new System.Windows.Forms.CheckBox();
-            this.txtDimFilter = new System.Windows.Forms.TextBox();
-            this.txtFactFilter = new System.Windows.Forms.TextBox();
-            this.txtDimPrefix = new System.Windows.Forms.TextBox();
-            this.txtSrcConn = new System.Windows.Forms.TextBox();
-            this.txtTableExcl = new System.Windows.Forms.TextBox();
-            this.txtFieldExcl = new System.Windows.Forms.TextBox();
-            this.txtFactPrefix = new System.Windows.Forms.TextBox();
-            this.txtSchema = new System.Windows.Forms.TextBox();
-            this.txtDestConn = new System.Windows.Forms.TextBox();
-            this.chkStgAddSchemaPrefix = new System.Windows.Forms.CheckBox();
-            this.chkRunScript = new System.Windows.Forms.CheckBox();
-            this.chkIgnorePrefixes = new System.Windows.Forms.CheckBox();
-            this.txtSrcKeyName = new System.Windows.Forms.TextBox();
-            this.chkInclRefKeysStg = new System.Windows.Forms.CheckBox();
-            this.txtSchemaExclStg = new System.Windows.Forms.TextBox();
-            this.txtTableExclStg = new System.Windows.Forms.TextBox();
-            this.chkInclKeysStg = new System.Windows.Forms.CheckBox();
-            this.chkStageDrop = new System.Windows.Forms.CheckBox();
-            this.txtStgDimPrefix = new System.Windows.Forms.TextBox();
-            this.txtStgSrcConn = new System.Windows.Forms.TextBox();
-            this.txtStgFieldExcl = new System.Windows.Forms.TextBox();
-            this.txtStgFactPrefix = new System.Windows.Forms.TextBox();
-            this.txtStgSchema = new System.Windows.Forms.TextBox();
-            this.txtStgDB = new System.Windows.Forms.TextBox();
             this.txtTblBackup = new System.Windows.Forms.TextBox();
             this.txtTblDSConn = new System.Windows.Forms.TextBox();
             this.txtTblImpersonationSecurity = new System.Windows.Forms.TextBox();
@@ -181,6 +169,16 @@
             this.txtTblConnSecurity = new System.Windows.Forms.TextBox();
             this.txtTblSrcConn = new System.Windows.Forms.TextBox();
             this.txtTblSchema = new System.Windows.Forms.TextBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnCancelError = new System.Windows.Forms.Button();
+            this.btnCreateO_S_E3 = new System.Windows.Forms.Button();
+            this.chkRunError = new System.Windows.Forms.CheckBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.btnErrorCreate = new System.Windows.Forms.Button();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtErrorResult = new System.Windows.Forms.TextBox();
+            this.btnGenerateErrors = new System.Windows.Forms.Button();
             this.txtErrorsFieldExcl = new System.Windows.Forms.TextBox();
             this.chkErrorsDropDB = new System.Windows.Forms.CheckBox();
             this.txtErrorsSchema = new System.Windows.Forms.TextBox();
@@ -188,8 +186,10 @@
             this.txtErrorDB = new System.Windows.Forms.TextBox();
             this.txtErrorStg = new System.Windows.Forms.TextBox();
             this.txtErrorSrc = new System.Windows.Forms.TextBox();
-            this.btnTblCancel = new System.Windows.Forms.Button();
-            this.btnCancelError = new System.Windows.Forms.Button();
+            this.backgroundWorkerOLAP = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerStaging = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerError = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerTabular = new System.ComponentModel.BackgroundWorker();
             label23 = new System.Windows.Forms.Label();
             label28 = new System.Windows.Forms.Label();
             label33 = new System.Windows.Forms.Label();
@@ -202,10 +202,10 @@
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).BeginInit();
             this.SuspendLayout();
             // 
             // label23
@@ -289,7 +289,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(9, 10);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1103, 724);
@@ -319,7 +319,7 @@
             this.tabPage5.Controls.Add(this.label12);
             this.tabPage5.Controls.Add(this.txtExServer);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1095, 698);
             this.tabPage5.TabIndex = 4;
@@ -329,13 +329,25 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(399, 252);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(316, 23);
             this.button3.TabIndex = 96;
             this.button3.Text = "Recreate OLAP, recreate cube, Insert into PowerPivot";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // chkExInlMeasures
+            // 
+            this.chkExInlMeasures.AutoSize = true;
+            this.chkExInlMeasures.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkExInlMeasures_Checked;
+            this.chkExInlMeasures.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkExInlMeasures_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkExInlMeasures.Location = new System.Drawing.Point(142, 226);
+            this.chkExInlMeasures.Margin = new System.Windows.Forms.Padding(2);
+            this.chkExInlMeasures.Name = "chkExInlMeasures";
+            this.chkExInlMeasures.Size = new System.Drawing.Size(15, 14);
+            this.chkExInlMeasures.TabIndex = 95;
+            this.chkExInlMeasures.UseVisualStyleBackColor = true;
             // 
             // label45
             // 
@@ -355,6 +367,15 @@
             this.label44.TabIndex = 93;
             this.label44.Text = "Subset dimension";
             // 
+            // txtExDim
+            // 
+            this.txtExDim.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDim_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDim.Location = new System.Drawing.Point(142, 168);
+            this.txtExDim.Name = "txtExDim";
+            this.txtExDim.Size = new System.Drawing.Size(935, 20);
+            this.txtExDim.TabIndex = 92;
+            this.txtExDim.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDim_Text;
+            // 
             // label43
             // 
             this.label43.AutoSize = true;
@@ -363,6 +384,15 @@
             this.label43.Size = new System.Drawing.Size(69, 13);
             this.label43.TabIndex = 91;
             this.label43.Text = "Subset value";
+            // 
+            // txtExDimValue
+            // 
+            this.txtExDimValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtexDimValue_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDimValue.Location = new System.Drawing.Point(143, 196);
+            this.txtExDimValue.Name = "txtExDimValue";
+            this.txtExDimValue.Size = new System.Drawing.Size(935, 20);
+            this.txtExDimValue.TabIndex = 90;
+            this.txtExDimValue.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtexDimValue_Text;
             // 
             // btnSubset
             // 
@@ -393,6 +423,15 @@
             this.label16.TabIndex = 87;
             this.label16.Text = "Remote backup";
             // 
+            // txtExInsertPath
+            // 
+            this.txtExInsertPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExInsertPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExInsertPath.Location = new System.Drawing.Point(142, 141);
+            this.txtExInsertPath.Name = "txtExInsertPath";
+            this.txtExInsertPath.Size = new System.Drawing.Size(935, 20);
+            this.txtExInsertPath.TabIndex = 86;
+            this.txtExInsertPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExInsertPath_Text;
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -401,6 +440,15 @@
             this.label17.Size = new System.Drawing.Size(72, 13);
             this.label17.TabIndex = 85;
             this.label17.Text = "Local backup";
+            // 
+            // txtExBackupPath
+            // 
+            this.txtExBackupPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExBackupPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExBackupPath.Location = new System.Drawing.Point(142, 115);
+            this.txtExBackupPath.Name = "txtExBackupPath";
+            this.txtExBackupPath.Size = new System.Drawing.Size(935, 20);
+            this.txtExBackupPath.TabIndex = 84;
+            this.txtExBackupPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExBackupPath_Text;
             // 
             // label14
             // 
@@ -411,6 +459,15 @@
             this.label14.TabIndex = 83;
             this.label14.Text = "Excel Destination";
             // 
+            // txtExDest
+            // 
+            this.txtExDest.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDest_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDest.Location = new System.Drawing.Point(142, 89);
+            this.txtExDest.Name = "txtExDest";
+            this.txtExDest.Size = new System.Drawing.Size(935, 20);
+            this.txtExDest.TabIndex = 82;
+            this.txtExDest.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDest_Text;
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -419,6 +476,15 @@
             this.label15.Size = new System.Drawing.Size(80, 13);
             this.label15.TabIndex = 81;
             this.label15.Text = "Excel Template";
+            // 
+            // txtExTemplate
+            // 
+            this.txtExTemplate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExTemplate_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExTemplate.Location = new System.Drawing.Point(142, 63);
+            this.txtExTemplate.Name = "txtExTemplate";
+            this.txtExTemplate.Size = new System.Drawing.Size(935, 20);
+            this.txtExTemplate.TabIndex = 80;
+            this.txtExTemplate.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExTemplate_Text;
             // 
             // label13
             // 
@@ -429,6 +495,15 @@
             this.label13.TabIndex = 79;
             this.label13.Text = "Database";
             // 
+            // txtExDB
+            // 
+            this.txtExDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExDB_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExDB.Location = new System.Drawing.Point(142, 37);
+            this.txtExDB.Name = "txtExDB";
+            this.txtExDB.Size = new System.Drawing.Size(935, 20);
+            this.txtExDB.TabIndex = 78;
+            this.txtExDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExDB_Text;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -437,6 +512,15 @@
             this.label12.Size = new System.Drawing.Size(38, 13);
             this.label12.TabIndex = 77;
             this.label12.Text = "Server";
+            // 
+            // txtExServer
+            // 
+            this.txtExServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExServer_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtExServer.Location = new System.Drawing.Point(142, 11);
+            this.txtExServer.Name = "txtExServer";
+            this.txtExServer.Size = new System.Drawing.Size(935, 20);
+            this.txtExServer.TabIndex = 76;
+            this.txtExServer.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExServer_Text;
             // 
             // tabPage1
             // 
@@ -465,9 +549,9 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.txtsrcConnectionString);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(1095, 698);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CubeConverter";
@@ -716,9 +800,9 @@
             this.tabPage2.Controls.Add(this.txtSchema);
             this.tabPage2.Controls.Add(this.txtDestConn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1095, 698);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CreateOLAPSchema";
@@ -732,7 +816,7 @@
             this.btnCreateO_S_E_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateO_S_E_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateO_S_E_1.Location = new System.Drawing.Point(855, 393);
-            this.btnCreateO_S_E_1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateO_S_E_1.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateO_S_E_1.Name = "btnCreateO_S_E_1";
             this.btnCreateO_S_E_1.Size = new System.Drawing.Size(109, 46);
             this.btnCreateO_S_E_1.TabIndex = 73;
@@ -747,7 +831,7 @@
             this.btnCancelOLAP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelOLAP.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelOLAP.Location = new System.Drawing.Point(1041, 359);
-            this.btnCancelOLAP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelOLAP.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelOLAP.Name = "btnCancelOLAP";
             this.btnCancelOLAP.Size = new System.Drawing.Size(30, 30);
             this.btnCancelOLAP.TabIndex = 72;
@@ -767,7 +851,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(346, 420);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(316, 19);
             this.button2.TabIndex = 68;
@@ -778,7 +862,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(139, 420);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(189, 19);
             this.button1.TabIndex = 67;
@@ -798,7 +882,7 @@
             // txtResults
             // 
             this.txtResults.Location = new System.Drawing.Point(20, 443);
-            this.txtResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtResults.Margin = new System.Windows.Forms.Padding(2);
             this.txtResults.Multiline = true;
             this.txtResults.Name = "txtResults";
             this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -857,7 +941,7 @@
             this.btnStage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStage.Location = new System.Drawing.Point(977, 393);
-            this.btnStage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStage.Margin = new System.Windows.Forms.Padding(2);
             this.btnStage.Name = "btnStage";
             this.btnStage.Size = new System.Drawing.Size(94, 46);
             this.btnStage.TabIndex = 50;
@@ -891,632 +975,6 @@
             this.label20.Size = new System.Drawing.Size(116, 13);
             this.label20.TabIndex = 45;
             this.label20.Text = "Dest Connection String";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btnCancelStaging);
-            this.tabPage3.Controls.Add(this.chkStgAddSchemaPrefix);
-            this.tabPage3.Controls.Add(this.btnCreateO_S_E2);
-            this.tabPage3.Controls.Add(this.btnStgCreateDB);
-            this.tabPage3.Controls.Add(this.label48);
-            this.tabPage3.Controls.Add(this.label47);
-            this.tabPage3.Controls.Add(this.label46);
-            this.tabPage3.Controls.Add(this.txtStageScript);
-            this.tabPage3.Controls.Add(this.btnStaging);
-            this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(label28);
-            this.tabPage3.Controls.Add(this.label29);
-            this.tabPage3.Controls.Add(this.label30);
-            this.tabPage3.Controls.Add(this.label31);
-            this.tabPage3.Controls.Add(this.label32);
-            this.tabPage3.Controls.Add(this.chkRunScript);
-            this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
-            this.tabPage3.Controls.Add(this.txtSrcKeyName);
-            this.tabPage3.Controls.Add(this.chkInclRefKeysStg);
-            this.tabPage3.Controls.Add(this.txtSchemaExclStg);
-            this.tabPage3.Controls.Add(this.txtTableExclStg);
-            this.tabPage3.Controls.Add(this.chkInclKeysStg);
-            this.tabPage3.Controls.Add(this.chkStageDrop);
-            this.tabPage3.Controls.Add(this.txtStgDimPrefix);
-            this.tabPage3.Controls.Add(this.txtStgSrcConn);
-            this.tabPage3.Controls.Add(this.txtStgFieldExcl);
-            this.tabPage3.Controls.Add(this.txtStgFactPrefix);
-            this.tabPage3.Controls.Add(this.txtStgSchema);
-            this.tabPage3.Controls.Add(this.txtStgDB);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1095, 698);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "CreateStaging";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnCreateO_S_E2
-            // 
-            this.btnCreateO_S_E2.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnCreateO_S_E2.FlatAppearance.BorderSize = 0;
-            this.btnCreateO_S_E2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateO_S_E2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateO_S_E2.Location = new System.Drawing.Point(821, 332);
-            this.btnCreateO_S_E2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCreateO_S_E2.Name = "btnCreateO_S_E2";
-            this.btnCreateO_S_E2.Size = new System.Drawing.Size(109, 53);
-            this.btnCreateO_S_E2.TabIndex = 87;
-            this.btnCreateO_S_E2.Text = "Create OLAP, Staging, Error";
-            this.btnCreateO_S_E2.UseVisualStyleBackColor = false;
-            this.btnCreateO_S_E2.Click += new System.EventHandler(this.btnCreateO_S_E2_Click);
-            // 
-            // btnStgCreateDB
-            // 
-            this.btnStgCreateDB.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnStgCreateDB.FlatAppearance.BorderSize = 0;
-            this.btnStgCreateDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStgCreateDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStgCreateDB.Location = new System.Drawing.Point(944, 332);
-            this.btnStgCreateDB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnStgCreateDB.Name = "btnStgCreateDB";
-            this.btnStgCreateDB.Size = new System.Drawing.Size(122, 53);
-            this.btnStgCreateDB.TabIndex = 84;
-            this.btnStgCreateDB.Text = "Create Staging";
-            this.btnStgCreateDB.UseVisualStyleBackColor = false;
-            this.btnStgCreateDB.Click += new System.EventHandler(this.btnStgCreateDB_Click);
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label48.Location = new System.Drawing.Point(3, 281);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(109, 13);
-            this.label48.TabIndex = 83;
-            this.label48.Text = "SourceKeyFieldName";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(3, 233);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(96, 13);
-            this.label47.TabIndex = 80;
-            this.label47.Text = "SchemaExclusions";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(3, 185);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(84, 13);
-            this.label46.TabIndex = 78;
-            this.label46.Text = "TableExclusions";
-            // 
-            // txtStageScript
-            // 
-            this.txtStageScript.Location = new System.Drawing.Point(14, 388);
-            this.txtStageScript.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtStageScript.Multiline = true;
-            this.txtStageScript.Name = "txtStageScript";
-            this.txtStageScript.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtStageScript.Size = new System.Drawing.Size(1052, 253);
-            this.txtStageScript.TabIndex = 73;
-            // 
-            // btnStaging
-            // 
-            this.btnStaging.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnStaging.FlatAppearance.BorderSize = 0;
-            this.btnStaging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStaging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStaging.Location = new System.Drawing.Point(14, 332);
-            this.btnStaging.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnStaging.Name = "btnStaging";
-            this.btnStaging.Size = new System.Drawing.Size(118, 53);
-            this.btnStaging.TabIndex = 72;
-            this.btnStaging.Text = "Create Staging script";
-            this.btnStaging.UseVisualStyleBackColor = false;
-            this.btnStaging.Click += new System.EventHandler(this.btnStaging_Click);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 115);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(78, 13);
-            this.label27.TabIndex = 71;
-            this.label27.Text = "DimTablePrefix";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(3, 139);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(79, 13);
-            this.label29.TabIndex = 67;
-            this.label29.Text = "FieldExclusions";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(3, 90);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(81, 13);
-            this.label30.TabIndex = 65;
-            this.label30.Text = "FactTablePrefix";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(3, 64);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(46, 13);
-            this.label31.TabIndex = 63;
-            this.label31.Text = "Schema";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 38);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(61, 13);
-            this.label32.TabIndex = 61;
-            this.label32.Text = "Staging DB";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.btnTblCancel);
-            this.tabPage4.Controls.Add(this.btnTblBackup);
-            this.tabPage4.Controls.Add(this.chkTblBackup);
-            this.tabPage4.Controls.Add(this.chkTblProcess);
-            this.tabPage4.Controls.Add(this.btnCreateTabularBackup);
-            this.tabPage4.Controls.Add(this.label57);
-            this.tabPage4.Controls.Add(this.btnProcess);
-            this.tabPage4.Controls.Add(label42);
-            this.tabPage4.Controls.Add(this.label41);
-            this.tabPage4.Controls.Add(this.label40);
-            this.tabPage4.Controls.Add(label39);
-            this.tabPage4.Controls.Add(this.label38);
-            this.tabPage4.Controls.Add(this.label37);
-            this.tabPage4.Controls.Add(this.label36);
-            this.tabPage4.Controls.Add(this.label34);
-            this.tabPage4.Controls.Add(this.txtTabular);
-            this.tabPage4.Controls.Add(this.btnTblCreateCube);
-            this.tabPage4.Controls.Add(label33);
-            this.tabPage4.Controls.Add(this.label35);
-            this.tabPage4.Controls.Add(this.txtTblBackup);
-            this.tabPage4.Controls.Add(this.txtTblDSConn);
-            this.tabPage4.Controls.Add(this.txtTblImpersonationSecurity);
-            this.tabPage4.Controls.Add(this.txtTblCubeDB);
-            this.tabPage4.Controls.Add(this.txtTblDestConn);
-            this.tabPage4.Controls.Add(this.txtTblPwd);
-            this.tabPage4.Controls.Add(this.txtTblUsername);
-            this.tabPage4.Controls.Add(this.txtTblImpersonationMode);
-            this.tabPage4.Controls.Add(this.txtTblConnSecurity);
-            this.tabPage4.Controls.Add(this.txtTblSrcConn);
-            this.tabPage4.Controls.Add(this.txtTblSchema);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1095, 698);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "CreateTabular";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnTblBackup
-            // 
-            this.btnTblBackup.BackColor = System.Drawing.Color.Orange;
-            this.btnTblBackup.FlatAppearance.BorderSize = 0;
-            this.btnTblBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTblBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTblBackup.Location = new System.Drawing.Point(616, 317);
-            this.btnTblBackup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnTblBackup.Name = "btnTblBackup";
-            this.btnTblBackup.Size = new System.Drawing.Size(94, 49);
-            this.btnTblBackup.TabIndex = 104;
-            this.btnTblBackup.Text = "Backup Tabular";
-            this.btnTblBackup.UseVisualStyleBackColor = false;
-            this.btnTblBackup.Click += new System.EventHandler(this.btnTblBackup_Click);
-            // 
-            // chkTblBackup
-            // 
-            this.chkTblBackup.AutoSize = true;
-            this.chkTblBackup.Location = new System.Drawing.Point(769, 370);
-            this.chkTblBackup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chkTblBackup.Name = "chkTblBackup";
-            this.chkTblBackup.Size = new System.Drawing.Size(96, 17);
-            this.chkTblBackup.TabIndex = 103;
-            this.chkTblBackup.Text = "chkTblBackup";
-            this.chkTblBackup.UseVisualStyleBackColor = true;
-            this.chkTblBackup.Visible = false;
-            // 
-            // chkTblProcess
-            // 
-            this.chkTblProcess.AutoSize = true;
-            this.chkTblProcess.Location = new System.Drawing.Point(1002, 370);
-            this.chkTblProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chkTblProcess.Name = "chkTblProcess";
-            this.chkTblProcess.Size = new System.Drawing.Size(97, 17);
-            this.chkTblProcess.TabIndex = 102;
-            this.chkTblProcess.Text = "chkTblProcess";
-            this.chkTblProcess.UseVisualStyleBackColor = true;
-            this.chkTblProcess.Visible = false;
-            // 
-            // btnCreateTabularBackup
-            // 
-            this.btnCreateTabularBackup.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnCreateTabularBackup.FlatAppearance.BorderSize = 0;
-            this.btnCreateTabularBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateTabularBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateTabularBackup.Location = new System.Drawing.Point(730, 317);
-            this.btnCreateTabularBackup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCreateTabularBackup.Name = "btnCreateTabularBackup";
-            this.btnCreateTabularBackup.Size = new System.Drawing.Size(113, 49);
-            this.btnCreateTabularBackup.TabIndex = 101;
-            this.btnCreateTabularBackup.Text = "Create, Process, Backup";
-            this.btnCreateTabularBackup.UseVisualStyleBackColor = false;
-            this.btnCreateTabularBackup.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(7, 263);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(72, 13);
-            this.label57.TabIndex = 100;
-            this.label57.Text = "Local backup";
-            // 
-            // btnProcess
-            // 
-            this.btnProcess.BackColor = System.Drawing.Color.Orange;
-            this.btnProcess.FlatAppearance.BorderSize = 0;
-            this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProcess.Location = new System.Drawing.Point(982, 317);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(94, 49);
-            this.btnProcess.TabIndex = 98;
-            this.btnProcess.Text = "Process Tabular";
-            this.btnProcess.UseVisualStyleBackColor = false;
-            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(8, 240);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(114, 13);
-            this.label41.TabIndex = 95;
-            this.label41.Text = "Impersonation Security";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(9, 216);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(81, 13);
-            this.label40.TabIndex = 93;
-            this.label40.Text = "Cube DB Name";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(9, 192);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(53, 13);
-            this.label38.TabIndex = 89;
-            this.label38.Text = "Password";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(9, 167);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(55, 13);
-            this.label37.TabIndex = 87;
-            this.label37.Text = "Username";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(9, 143);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(103, 13);
-            this.label36.TabIndex = 85;
-            this.label36.Text = "Impersonation Mode";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(9, 119);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(126, 13);
-            this.label34.TabIndex = 83;
-            this.label34.Text = "ConnectionStringSecurity";
-            // 
-            // txtTabular
-            // 
-            this.txtTabular.Location = new System.Drawing.Point(25, 386);
-            this.txtTabular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtTabular.Multiline = true;
-            this.txtTabular.Name = "txtTabular";
-            this.txtTabular.Size = new System.Drawing.Size(1052, 228);
-            this.txtTabular.TabIndex = 81;
-            // 
-            // btnTblCreateCube
-            // 
-            this.btnTblCreateCube.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnTblCreateCube.FlatAppearance.BorderSize = 0;
-            this.btnTblCreateCube.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTblCreateCube.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTblCreateCube.Location = new System.Drawing.Point(865, 317);
-            this.btnTblCreateCube.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnTblCreateCube.Name = "btnTblCreateCube";
-            this.btnTblCreateCube.Size = new System.Drawing.Size(94, 49);
-            this.btnTblCreateCube.TabIndex = 80;
-            this.btnTblCreateCube.Text = "Create Tabular";
-            this.btnTblCreateCube.UseVisualStyleBackColor = false;
-            this.btnTblCreateCube.Click += new System.EventHandler(this.btnTblCreateCube_Click);
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(9, 94);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(46, 13);
-            this.label35.TabIndex = 75;
-            this.label35.Text = "Schema";
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.btnCancelError);
-            this.tabPage6.Controls.Add(this.btnCreateO_S_E3);
-            this.tabPage6.Controls.Add(this.chkRunError);
-            this.tabPage6.Controls.Add(this.label54);
-            this.tabPage6.Controls.Add(this.btnErrorCreate);
-            this.tabPage6.Controls.Add(this.label53);
-            this.tabPage6.Controls.Add(this.label55);
-            this.tabPage6.Controls.Add(label52);
-            this.tabPage6.Controls.Add(label51);
-            this.tabPage6.Controls.Add(this.txtErrorResult);
-            this.tabPage6.Controls.Add(this.btnGenerateErrors);
-            this.tabPage6.Controls.Add(label50);
-            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
-            this.tabPage6.Controls.Add(this.chkErrorsDropDB);
-            this.tabPage6.Controls.Add(this.txtErrorsSchema);
-            this.tabPage6.Controls.Add(this.txtErrorStagingSchema);
-            this.tabPage6.Controls.Add(this.txtErrorDB);
-            this.tabPage6.Controls.Add(this.txtErrorStg);
-            this.tabPage6.Controls.Add(this.txtErrorSrc);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1095, 698);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "CreateErrorDB";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
-            // 
-            // btnCreateO_S_E3
-            // 
-            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnCreateO_S_E3.FlatAppearance.BorderSize = 0;
-            this.btnCreateO_S_E3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateO_S_E3.Location = new System.Drawing.Point(867, 290);
-            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
-            this.btnCreateO_S_E3.Size = new System.Drawing.Size(109, 46);
-            this.btnCreateO_S_E3.TabIndex = 103;
-            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
-            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
-            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
-            // 
-            // chkRunError
-            // 
-            this.chkRunError.AutoSize = true;
-            this.chkRunError.Location = new System.Drawing.Point(176, 292);
-            this.chkRunError.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chkRunError.Name = "chkRunError";
-            this.chkRunError.Size = new System.Drawing.Size(77, 17);
-            this.chkRunError.TabIndex = 102;
-            this.chkRunError.Text = "RunCreate";
-            this.chkRunError.UseVisualStyleBackColor = true;
-            this.chkRunError.Visible = false;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(13, 150);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(79, 13);
-            this.label54.TabIndex = 101;
-            this.label54.Text = "FieldExclusions";
-            // 
-            // btnErrorCreate
-            // 
-            this.btnErrorCreate.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnErrorCreate.FlatAppearance.BorderSize = 0;
-            this.btnErrorCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnErrorCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnErrorCreate.Location = new System.Drawing.Point(998, 290);
-            this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnErrorCreate.Name = "btnErrorCreate";
-            this.btnErrorCreate.Size = new System.Drawing.Size(80, 46);
-            this.btnErrorCreate.TabIndex = 99;
-            this.btnErrorCreate.Text = "Create Error DB";
-            this.btnErrorCreate.UseVisualStyleBackColor = false;
-            this.btnErrorCreate.Click += new System.EventHandler(this.btnErrorCreate_Click);
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(13, 125);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(46, 13);
-            this.label53.TabIndex = 97;
-            this.label53.Text = "Schema";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(13, 76);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(46, 13);
-            this.label55.TabIndex = 95;
-            this.label55.Text = "Schema";
-            // 
-            // txtErrorResult
-            // 
-            this.txtErrorResult.Location = new System.Drawing.Point(28, 363);
-            this.txtErrorResult.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtErrorResult.Multiline = true;
-            this.txtErrorResult.Name = "txtErrorResult";
-            this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorResult.Size = new System.Drawing.Size(1052, 263);
-            this.txtErrorResult.TabIndex = 85;
-            // 
-            // btnGenerateErrors
-            // 
-            this.btnGenerateErrors.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnGenerateErrors.FlatAppearance.BorderSize = 0;
-            this.btnGenerateErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateErrors.Location = new System.Drawing.Point(29, 292);
-            this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnGenerateErrors.Name = "btnGenerateErrors";
-            this.btnGenerateErrors.Size = new System.Drawing.Size(104, 44);
-            this.btnGenerateErrors.TabIndex = 84;
-            this.btnGenerateErrors.Text = "Create Error DB script";
-            this.btnGenerateErrors.UseVisualStyleBackColor = false;
-            this.btnGenerateErrors.Click += new System.EventHandler(this.btnGenerateErrors_Click);
-            // 
-            // backgroundWorkerOLAP
-            // 
-            this.backgroundWorkerOLAP.WorkerReportsProgress = true;
-            this.backgroundWorkerOLAP.WorkerSupportsCancellation = true;
-            this.backgroundWorkerOLAP.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerOLAP_DoWork);
-            this.backgroundWorkerOLAP.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerOLAP_ProgressChanged);
-            this.backgroundWorkerOLAP.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerOLAP_RunWorkerCompleted);
-            // 
-            // backgroundWorkerStaging
-            // 
-            this.backgroundWorkerStaging.WorkerReportsProgress = true;
-            this.backgroundWorkerStaging.WorkerSupportsCancellation = true;
-            this.backgroundWorkerStaging.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerStaging_DoWork);
-            this.backgroundWorkerStaging.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerStaging_ProgressChanged);
-            this.backgroundWorkerStaging.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerStaging_RunWorkerCompleted);
-            // 
-            // backgroundWorkerError
-            // 
-            this.backgroundWorkerError.WorkerReportsProgress = true;
-            this.backgroundWorkerError.WorkerSupportsCancellation = true;
-            this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
-            this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
-            this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
-            // 
-            // backgroundWorkerTabular
-            // 
-            this.backgroundWorkerTabular.WorkerReportsProgress = true;
-            this.backgroundWorkerTabular.WorkerSupportsCancellation = true;
-            this.backgroundWorkerTabular.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerTabular_DoWork);
-            this.backgroundWorkerTabular.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerTabular_ProgressChanged);
-            this.backgroundWorkerTabular.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerTabular_RunWorkerCompleted);
-            // 
-            // btnCancelStaging
-            // 
-            this.btnCancelStaging.BackColor = System.Drawing.Color.IndianRed;
-            this.btnCancelStaging.FlatAppearance.BorderSize = 0;
-            this.btnCancelStaging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelStaging.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelStaging.Location = new System.Drawing.Point(1026, 301);
-            this.btnCancelStaging.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelStaging.Name = "btnCancelStaging";
-            this.btnCancelStaging.Size = new System.Drawing.Size(40, 27);
-            this.btnCancelStaging.TabIndex = 89;
-            this.btnCancelStaging.Text = "X";
-            this.btnCancelStaging.UseVisualStyleBackColor = false;
-            this.btnCancelStaging.Click += new System.EventHandler(this.btnCancelStaging_Click);
-            // 
-            // chkExInlMeasures
-            // 
-            this.chkExInlMeasures.AutoSize = true;
-            this.chkExInlMeasures.Checked = global::PW.CustomCodeConverter.Properties.Settings.Default.chkExInlMeasures_Checked;
-            this.chkExInlMeasures.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::PW.CustomCodeConverter.Properties.Settings.Default, "chkExInlMeasures_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkExInlMeasures.Location = new System.Drawing.Point(142, 226);
-            this.chkExInlMeasures.Margin = new System.Windows.Forms.Padding(2);
-            this.chkExInlMeasures.Name = "chkExInlMeasures";
-            this.chkExInlMeasures.Size = new System.Drawing.Size(15, 14);
-            this.chkExInlMeasures.TabIndex = 95;
-            this.chkExInlMeasures.UseVisualStyleBackColor = true;
-            // 
-            // txtExDim
-            // 
-            this.txtExDim.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDim_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDim.Location = new System.Drawing.Point(142, 168);
-            this.txtExDim.Name = "txtExDim";
-            this.txtExDim.Size = new System.Drawing.Size(935, 20);
-            this.txtExDim.TabIndex = 92;
-            this.txtExDim.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDim_Text;
-            // 
-            // txtExDimValue
-            // 
-            this.txtExDimValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtexDimValue_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDimValue.Location = new System.Drawing.Point(143, 196);
-            this.txtExDimValue.Name = "txtExDimValue";
-            this.txtExDimValue.Size = new System.Drawing.Size(935, 20);
-            this.txtExDimValue.TabIndex = 90;
-            this.txtExDimValue.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtexDimValue_Text;
-            // 
-            // txtExInsertPath
-            // 
-            this.txtExInsertPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExInsertPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExInsertPath.Location = new System.Drawing.Point(142, 141);
-            this.txtExInsertPath.Name = "txtExInsertPath";
-            this.txtExInsertPath.Size = new System.Drawing.Size(935, 20);
-            this.txtExInsertPath.TabIndex = 86;
-            this.txtExInsertPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExInsertPath_Text;
-            // 
-            // txtExBackupPath
-            // 
-            this.txtExBackupPath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExBackupPath_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExBackupPath.Location = new System.Drawing.Point(142, 115);
-            this.txtExBackupPath.Name = "txtExBackupPath";
-            this.txtExBackupPath.Size = new System.Drawing.Size(935, 20);
-            this.txtExBackupPath.TabIndex = 84;
-            this.txtExBackupPath.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExBackupPath_Text;
-            // 
-            // txtExDest
-            // 
-            this.txtExDest.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExDest_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDest.Location = new System.Drawing.Point(142, 89);
-            this.txtExDest.Name = "txtExDest";
-            this.txtExDest.Size = new System.Drawing.Size(935, 20);
-            this.txtExDest.TabIndex = 82;
-            this.txtExDest.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExDest_Text;
-            // 
-            // txtExTemplate
-            // 
-            this.txtExTemplate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExTemplate_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExTemplate.Location = new System.Drawing.Point(142, 63);
-            this.txtExTemplate.Name = "txtExTemplate";
-            this.txtExTemplate.Size = new System.Drawing.Size(935, 20);
-            this.txtExTemplate.TabIndex = 80;
-            this.txtExTemplate.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExTemplate_Text;
-            // 
-            // txtExDB
-            // 
-            this.txtExDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txExDB_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExDB.Location = new System.Drawing.Point(142, 37);
-            this.txtExDB.Name = "txtExDB";
-            this.txtExDB.Size = new System.Drawing.Size(935, 20);
-            this.txtExDB.TabIndex = 78;
-            this.txtExDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txExDB_Text;
-            // 
-            // txtExServer
-            // 
-            this.txtExServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtExServer_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtExServer.Location = new System.Drawing.Point(142, 11);
-            this.txtExServer.Name = "txtExServer";
-            this.txtExServer.Size = new System.Drawing.Size(935, 20);
-            this.txtExServer.TabIndex = 76;
-            this.txtExServer.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtExServer_Text;
             // 
             // numMaxRecurse
             // 
@@ -1629,6 +1087,60 @@
             this.txtDestConn.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConn2_Text;
             this.txtDestConn.TextAlign = global::PW.CustomCodeConverter.Properties.Settings.Default.txtDestConnOLAP_Text;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnCancelStaging);
+            this.tabPage3.Controls.Add(this.chkStgAddSchemaPrefix);
+            this.tabPage3.Controls.Add(this.btnCreateO_S_E2);
+            this.tabPage3.Controls.Add(this.btnStgCreateDB);
+            this.tabPage3.Controls.Add(this.label48);
+            this.tabPage3.Controls.Add(this.label47);
+            this.tabPage3.Controls.Add(this.label46);
+            this.tabPage3.Controls.Add(this.txtStageScript);
+            this.tabPage3.Controls.Add(this.btnStaging);
+            this.tabPage3.Controls.Add(this.label27);
+            this.tabPage3.Controls.Add(label28);
+            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.chkRunScript);
+            this.tabPage3.Controls.Add(this.chkIgnorePrefixes);
+            this.tabPage3.Controls.Add(this.txtSrcKeyName);
+            this.tabPage3.Controls.Add(this.chkInclRefKeysStg);
+            this.tabPage3.Controls.Add(this.txtSchemaExclStg);
+            this.tabPage3.Controls.Add(this.txtTableExclStg);
+            this.tabPage3.Controls.Add(this.chkInclKeysStg);
+            this.tabPage3.Controls.Add(this.chkStageDrop);
+            this.tabPage3.Controls.Add(this.txtStgDimPrefix);
+            this.tabPage3.Controls.Add(this.txtStgSrcConn);
+            this.tabPage3.Controls.Add(this.txtStgFieldExcl);
+            this.tabPage3.Controls.Add(this.txtStgFactPrefix);
+            this.tabPage3.Controls.Add(this.txtStgSchema);
+            this.tabPage3.Controls.Add(this.txtStgDB);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1095, 698);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "CreateStaging";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelStaging
+            // 
+            this.btnCancelStaging.BackColor = System.Drawing.Color.IndianRed;
+            this.btnCancelStaging.FlatAppearance.BorderSize = 0;
+            this.btnCancelStaging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelStaging.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelStaging.Location = new System.Drawing.Point(1026, 301);
+            this.btnCancelStaging.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelStaging.Name = "btnCancelStaging";
+            this.btnCancelStaging.Size = new System.Drawing.Size(40, 27);
+            this.btnCancelStaging.TabIndex = 89;
+            this.btnCancelStaging.Text = "X";
+            this.btnCancelStaging.UseVisualStyleBackColor = false;
+            this.btnCancelStaging.Click += new System.EventHandler(this.btnCancelStaging_Click);
+            // 
             // chkStgAddSchemaPrefix
             // 
             this.chkStgAddSchemaPrefix.AutoSize = true;
@@ -1642,6 +1154,134 @@
             this.chkStgAddSchemaPrefix.TabIndex = 88;
             this.chkStgAddSchemaPrefix.Text = "Prefix schema to table name";
             this.chkStgAddSchemaPrefix.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateO_S_E2
+            // 
+            this.btnCreateO_S_E2.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E2.FlatAppearance.BorderSize = 0;
+            this.btnCreateO_S_E2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateO_S_E2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E2.Location = new System.Drawing.Point(821, 332);
+            this.btnCreateO_S_E2.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCreateO_S_E2.Name = "btnCreateO_S_E2";
+            this.btnCreateO_S_E2.Size = new System.Drawing.Size(109, 53);
+            this.btnCreateO_S_E2.TabIndex = 87;
+            this.btnCreateO_S_E2.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E2.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E2.Click += new System.EventHandler(this.btnCreateO_S_E2_Click);
+            // 
+            // btnStgCreateDB
+            // 
+            this.btnStgCreateDB.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnStgCreateDB.FlatAppearance.BorderSize = 0;
+            this.btnStgCreateDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStgCreateDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStgCreateDB.Location = new System.Drawing.Point(944, 332);
+            this.btnStgCreateDB.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStgCreateDB.Name = "btnStgCreateDB";
+            this.btnStgCreateDB.Size = new System.Drawing.Size(122, 53);
+            this.btnStgCreateDB.TabIndex = 84;
+            this.btnStgCreateDB.Text = "Create Staging";
+            this.btnStgCreateDB.UseVisualStyleBackColor = false;
+            this.btnStgCreateDB.Click += new System.EventHandler(this.btnStgCreateDB_Click);
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label48.Location = new System.Drawing.Point(3, 281);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(109, 13);
+            this.label48.TabIndex = 83;
+            this.label48.Text = "SourceKeyFieldName";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(3, 233);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(96, 13);
+            this.label47.TabIndex = 80;
+            this.label47.Text = "SchemaExclusions";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(3, 185);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(84, 13);
+            this.label46.TabIndex = 78;
+            this.label46.Text = "TableExclusions";
+            // 
+            // txtStageScript
+            // 
+            this.txtStageScript.Location = new System.Drawing.Point(14, 388);
+            this.txtStageScript.Margin = new System.Windows.Forms.Padding(2);
+            this.txtStageScript.Multiline = true;
+            this.txtStageScript.Name = "txtStageScript";
+            this.txtStageScript.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtStageScript.Size = new System.Drawing.Size(1052, 253);
+            this.txtStageScript.TabIndex = 73;
+            // 
+            // btnStaging
+            // 
+            this.btnStaging.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnStaging.FlatAppearance.BorderSize = 0;
+            this.btnStaging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStaging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStaging.Location = new System.Drawing.Point(14, 332);
+            this.btnStaging.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStaging.Name = "btnStaging";
+            this.btnStaging.Size = new System.Drawing.Size(118, 53);
+            this.btnStaging.TabIndex = 72;
+            this.btnStaging.Text = "Create Staging script";
+            this.btnStaging.UseVisualStyleBackColor = false;
+            this.btnStaging.Click += new System.EventHandler(this.btnStaging_Click);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(3, 115);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(78, 13);
+            this.label27.TabIndex = 71;
+            this.label27.Text = "DimTablePrefix";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(3, 139);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(79, 13);
+            this.label29.TabIndex = 67;
+            this.label29.Text = "FieldExclusions";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(3, 90);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(81, 13);
+            this.label30.TabIndex = 65;
+            this.label30.Text = "FactTablePrefix";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(3, 64);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(46, 13);
+            this.label31.TabIndex = 63;
+            this.label31.Text = "Schema";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 38);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(61, 13);
+            this.label32.TabIndex = 61;
+            this.label32.Text = "Staging DB";
             // 
             // chkRunScript
             // 
@@ -1798,6 +1438,226 @@
             this.txtStgDB.TabIndex = 60;
             this.txtStgDB.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtStgDB_Text;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.btnTblCancel);
+            this.tabPage4.Controls.Add(this.btnTblBackup);
+            this.tabPage4.Controls.Add(this.chkTblBackup);
+            this.tabPage4.Controls.Add(this.chkTblProcess);
+            this.tabPage4.Controls.Add(this.btnCreateTabularBackup);
+            this.tabPage4.Controls.Add(this.label57);
+            this.tabPage4.Controls.Add(this.btnProcess);
+            this.tabPage4.Controls.Add(label42);
+            this.tabPage4.Controls.Add(this.label41);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(label39);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.label34);
+            this.tabPage4.Controls.Add(this.txtTabular);
+            this.tabPage4.Controls.Add(this.btnTblCreateCube);
+            this.tabPage4.Controls.Add(label33);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.txtTblBackup);
+            this.tabPage4.Controls.Add(this.txtTblDSConn);
+            this.tabPage4.Controls.Add(this.txtTblImpersonationSecurity);
+            this.tabPage4.Controls.Add(this.txtTblCubeDB);
+            this.tabPage4.Controls.Add(this.txtTblDestConn);
+            this.tabPage4.Controls.Add(this.txtTblPwd);
+            this.tabPage4.Controls.Add(this.txtTblUsername);
+            this.tabPage4.Controls.Add(this.txtTblImpersonationMode);
+            this.tabPage4.Controls.Add(this.txtTblConnSecurity);
+            this.tabPage4.Controls.Add(this.txtTblSrcConn);
+            this.tabPage4.Controls.Add(this.txtTblSchema);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1095, 698);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "CreateTabular";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnTblCancel
+            // 
+            this.btnTblCancel.BackColor = System.Drawing.Color.IndianRed;
+            this.btnTblCancel.FlatAppearance.BorderSize = 0;
+            this.btnTblCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTblCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTblCancel.Location = new System.Drawing.Point(1043, 286);
+            this.btnTblCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTblCancel.Name = "btnTblCancel";
+            this.btnTblCancel.Size = new System.Drawing.Size(32, 27);
+            this.btnTblCancel.TabIndex = 105;
+            this.btnTblCancel.Text = "X";
+            this.btnTblCancel.UseVisualStyleBackColor = false;
+            this.btnTblCancel.Click += new System.EventHandler(this.btnTblCancel_Click);
+            // 
+            // btnTblBackup
+            // 
+            this.btnTblBackup.BackColor = System.Drawing.Color.Orange;
+            this.btnTblBackup.FlatAppearance.BorderSize = 0;
+            this.btnTblBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTblBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTblBackup.Location = new System.Drawing.Point(616, 317);
+            this.btnTblBackup.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTblBackup.Name = "btnTblBackup";
+            this.btnTblBackup.Size = new System.Drawing.Size(94, 49);
+            this.btnTblBackup.TabIndex = 104;
+            this.btnTblBackup.Text = "Backup Tabular";
+            this.btnTblBackup.UseVisualStyleBackColor = false;
+            this.btnTblBackup.Click += new System.EventHandler(this.btnTblBackup_Click);
+            // 
+            // chkTblBackup
+            // 
+            this.chkTblBackup.AutoSize = true;
+            this.chkTblBackup.Location = new System.Drawing.Point(769, 370);
+            this.chkTblBackup.Margin = new System.Windows.Forms.Padding(2);
+            this.chkTblBackup.Name = "chkTblBackup";
+            this.chkTblBackup.Size = new System.Drawing.Size(96, 17);
+            this.chkTblBackup.TabIndex = 103;
+            this.chkTblBackup.Text = "chkTblBackup";
+            this.chkTblBackup.UseVisualStyleBackColor = true;
+            this.chkTblBackup.Visible = false;
+            // 
+            // chkTblProcess
+            // 
+            this.chkTblProcess.AutoSize = true;
+            this.chkTblProcess.Location = new System.Drawing.Point(1002, 370);
+            this.chkTblProcess.Margin = new System.Windows.Forms.Padding(2);
+            this.chkTblProcess.Name = "chkTblProcess";
+            this.chkTblProcess.Size = new System.Drawing.Size(97, 17);
+            this.chkTblProcess.TabIndex = 102;
+            this.chkTblProcess.Text = "chkTblProcess";
+            this.chkTblProcess.UseVisualStyleBackColor = true;
+            this.chkTblProcess.Visible = false;
+            // 
+            // btnCreateTabularBackup
+            // 
+            this.btnCreateTabularBackup.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnCreateTabularBackup.FlatAppearance.BorderSize = 0;
+            this.btnCreateTabularBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateTabularBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateTabularBackup.Location = new System.Drawing.Point(730, 317);
+            this.btnCreateTabularBackup.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCreateTabularBackup.Name = "btnCreateTabularBackup";
+            this.btnCreateTabularBackup.Size = new System.Drawing.Size(113, 49);
+            this.btnCreateTabularBackup.TabIndex = 101;
+            this.btnCreateTabularBackup.Text = "Create, Process, Backup";
+            this.btnCreateTabularBackup.UseVisualStyleBackColor = false;
+            this.btnCreateTabularBackup.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(7, 263);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(72, 13);
+            this.label57.TabIndex = 100;
+            this.label57.Text = "Local backup";
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.BackColor = System.Drawing.Color.Orange;
+            this.btnProcess.FlatAppearance.BorderSize = 0;
+            this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProcess.Location = new System.Drawing.Point(982, 317);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(2);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(94, 49);
+            this.btnProcess.TabIndex = 98;
+            this.btnProcess.Text = "Process Tabular";
+            this.btnProcess.UseVisualStyleBackColor = false;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(8, 240);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(114, 13);
+            this.label41.TabIndex = 95;
+            this.label41.Text = "Impersonation Security";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(9, 216);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(81, 13);
+            this.label40.TabIndex = 93;
+            this.label40.Text = "Cube DB Name";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(9, 192);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(53, 13);
+            this.label38.TabIndex = 89;
+            this.label38.Text = "Password";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(9, 167);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(55, 13);
+            this.label37.TabIndex = 87;
+            this.label37.Text = "Username";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(9, 143);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(103, 13);
+            this.label36.TabIndex = 85;
+            this.label36.Text = "Impersonation Mode";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(9, 119);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(126, 13);
+            this.label34.TabIndex = 83;
+            this.label34.Text = "ConnectionStringSecurity";
+            // 
+            // txtTabular
+            // 
+            this.txtTabular.Location = new System.Drawing.Point(25, 386);
+            this.txtTabular.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTabular.Multiline = true;
+            this.txtTabular.Name = "txtTabular";
+            this.txtTabular.Size = new System.Drawing.Size(1052, 228);
+            this.txtTabular.TabIndex = 81;
+            // 
+            // btnTblCreateCube
+            // 
+            this.btnTblCreateCube.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnTblCreateCube.FlatAppearance.BorderSize = 0;
+            this.btnTblCreateCube.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTblCreateCube.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTblCreateCube.Location = new System.Drawing.Point(865, 317);
+            this.btnTblCreateCube.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTblCreateCube.Name = "btnTblCreateCube";
+            this.btnTblCreateCube.Size = new System.Drawing.Size(94, 49);
+            this.btnTblCreateCube.TabIndex = 80;
+            this.btnTblCreateCube.Text = "Create Tabular";
+            this.btnTblCreateCube.UseVisualStyleBackColor = false;
+            this.btnTblCreateCube.Click += new System.EventHandler(this.btnTblCreateCube_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(9, 94);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(46, 13);
+            this.label35.TabIndex = 75;
+            this.label35.Text = "Schema";
+            // 
             // txtTblBackup
             // 
             this.txtTblBackup.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtTabularBackup_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1897,6 +1757,144 @@
             this.txtTblSchema.TabIndex = 74;
             this.txtTblSchema.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtTblSchema_Text;
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.btnCancelError);
+            this.tabPage6.Controls.Add(this.btnCreateO_S_E3);
+            this.tabPage6.Controls.Add(this.chkRunError);
+            this.tabPage6.Controls.Add(this.label54);
+            this.tabPage6.Controls.Add(this.btnErrorCreate);
+            this.tabPage6.Controls.Add(this.label53);
+            this.tabPage6.Controls.Add(this.label55);
+            this.tabPage6.Controls.Add(label52);
+            this.tabPage6.Controls.Add(label51);
+            this.tabPage6.Controls.Add(this.txtErrorResult);
+            this.tabPage6.Controls.Add(this.btnGenerateErrors);
+            this.tabPage6.Controls.Add(label50);
+            this.tabPage6.Controls.Add(this.txtErrorsFieldExcl);
+            this.tabPage6.Controls.Add(this.chkErrorsDropDB);
+            this.tabPage6.Controls.Add(this.txtErrorsSchema);
+            this.tabPage6.Controls.Add(this.txtErrorStagingSchema);
+            this.tabPage6.Controls.Add(this.txtErrorDB);
+            this.tabPage6.Controls.Add(this.txtErrorStg);
+            this.tabPage6.Controls.Add(this.txtErrorSrc);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1095, 698);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "CreateErrorDB";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
+            // 
+            // btnCancelError
+            // 
+            this.btnCancelError.BackColor = System.Drawing.Color.IndianRed;
+            this.btnCancelError.FlatAppearance.BorderSize = 0;
+            this.btnCancelError.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelError.Location = new System.Drawing.Point(1046, 259);
+            this.btnCancelError.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelError.Name = "btnCancelError";
+            this.btnCancelError.Size = new System.Drawing.Size(32, 27);
+            this.btnCancelError.TabIndex = 106;
+            this.btnCancelError.Text = "X";
+            this.btnCancelError.UseVisualStyleBackColor = false;
+            this.btnCancelError.Click += new System.EventHandler(this.btnCancelError_Click);
+            // 
+            // btnCreateO_S_E3
+            // 
+            this.btnCreateO_S_E3.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCreateO_S_E3.FlatAppearance.BorderSize = 0;
+            this.btnCreateO_S_E3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateO_S_E3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateO_S_E3.Location = new System.Drawing.Point(867, 290);
+            this.btnCreateO_S_E3.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCreateO_S_E3.Name = "btnCreateO_S_E3";
+            this.btnCreateO_S_E3.Size = new System.Drawing.Size(109, 46);
+            this.btnCreateO_S_E3.TabIndex = 103;
+            this.btnCreateO_S_E3.Text = "Create OLAP, Staging, Error";
+            this.btnCreateO_S_E3.UseVisualStyleBackColor = false;
+            this.btnCreateO_S_E3.Click += new System.EventHandler(this.btnCreateO_S_E3_Click);
+            // 
+            // chkRunError
+            // 
+            this.chkRunError.AutoSize = true;
+            this.chkRunError.Location = new System.Drawing.Point(176, 292);
+            this.chkRunError.Margin = new System.Windows.Forms.Padding(2);
+            this.chkRunError.Name = "chkRunError";
+            this.chkRunError.Size = new System.Drawing.Size(77, 17);
+            this.chkRunError.TabIndex = 102;
+            this.chkRunError.Text = "RunCreate";
+            this.chkRunError.UseVisualStyleBackColor = true;
+            this.chkRunError.Visible = false;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(13, 150);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(79, 13);
+            this.label54.TabIndex = 101;
+            this.label54.Text = "FieldExclusions";
+            // 
+            // btnErrorCreate
+            // 
+            this.btnErrorCreate.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnErrorCreate.FlatAppearance.BorderSize = 0;
+            this.btnErrorCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnErrorCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnErrorCreate.Location = new System.Drawing.Point(998, 290);
+            this.btnErrorCreate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnErrorCreate.Name = "btnErrorCreate";
+            this.btnErrorCreate.Size = new System.Drawing.Size(80, 46);
+            this.btnErrorCreate.TabIndex = 99;
+            this.btnErrorCreate.Text = "Create Error DB";
+            this.btnErrorCreate.UseVisualStyleBackColor = false;
+            this.btnErrorCreate.Click += new System.EventHandler(this.btnErrorCreate_Click);
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(13, 125);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(46, 13);
+            this.label53.TabIndex = 97;
+            this.label53.Text = "Schema";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(13, 76);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(46, 13);
+            this.label55.TabIndex = 95;
+            this.label55.Text = "Schema";
+            // 
+            // txtErrorResult
+            // 
+            this.txtErrorResult.Location = new System.Drawing.Point(28, 363);
+            this.txtErrorResult.Margin = new System.Windows.Forms.Padding(2);
+            this.txtErrorResult.Multiline = true;
+            this.txtErrorResult.Name = "txtErrorResult";
+            this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtErrorResult.Size = new System.Drawing.Size(1052, 263);
+            this.txtErrorResult.TabIndex = 85;
+            // 
+            // btnGenerateErrors
+            // 
+            this.btnGenerateErrors.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnGenerateErrors.FlatAppearance.BorderSize = 0;
+            this.btnGenerateErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateErrors.Location = new System.Drawing.Point(29, 292);
+            this.btnGenerateErrors.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGenerateErrors.Name = "btnGenerateErrors";
+            this.btnGenerateErrors.Size = new System.Drawing.Size(104, 44);
+            this.btnGenerateErrors.TabIndex = 84;
+            this.btnGenerateErrors.Text = "Create Error DB script";
+            this.btnGenerateErrors.UseVisualStyleBackColor = false;
+            this.btnGenerateErrors.Click += new System.EventHandler(this.btnGenerateErrors_Click);
+            // 
             // txtErrorsFieldExcl
             // 
             this.txtErrorsFieldExcl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::PW.CustomCodeConverter.Properties.Settings.Default, "txtErrorsFieldExcl_Text", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1966,35 +1964,37 @@
             this.txtErrorSrc.TabIndex = 83;
             this.txtErrorSrc.Text = global::PW.CustomCodeConverter.Properties.Settings.Default.txtErrorSrc_Text;
             // 
-            // btnTblCancel
+            // backgroundWorkerOLAP
             // 
-            this.btnTblCancel.BackColor = System.Drawing.Color.IndianRed;
-            this.btnTblCancel.FlatAppearance.BorderSize = 0;
-            this.btnTblCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTblCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTblCancel.Location = new System.Drawing.Point(1043, 286);
-            this.btnTblCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTblCancel.Name = "btnTblCancel";
-            this.btnTblCancel.Size = new System.Drawing.Size(32, 27);
-            this.btnTblCancel.TabIndex = 105;
-            this.btnTblCancel.Text = "X";
-            this.btnTblCancel.UseVisualStyleBackColor = false;
-            this.btnTblCancel.Click += new System.EventHandler(this.btnTblCancel_Click);
+            this.backgroundWorkerOLAP.WorkerReportsProgress = true;
+            this.backgroundWorkerOLAP.WorkerSupportsCancellation = true;
+            this.backgroundWorkerOLAP.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerOLAP_DoWork);
+            this.backgroundWorkerOLAP.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerOLAP_ProgressChanged);
+            this.backgroundWorkerOLAP.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerOLAP_RunWorkerCompleted);
             // 
-            // btnCancelError
+            // backgroundWorkerStaging
             // 
-            this.btnCancelError.BackColor = System.Drawing.Color.IndianRed;
-            this.btnCancelError.FlatAppearance.BorderSize = 0;
-            this.btnCancelError.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelError.Location = new System.Drawing.Point(1046, 259);
-            this.btnCancelError.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelError.Name = "btnCancelError";
-            this.btnCancelError.Size = new System.Drawing.Size(32, 27);
-            this.btnCancelError.TabIndex = 106;
-            this.btnCancelError.Text = "X";
-            this.btnCancelError.UseVisualStyleBackColor = false;
-            this.btnCancelError.Click += new System.EventHandler(this.btnCancelError_Click);
+            this.backgroundWorkerStaging.WorkerReportsProgress = true;
+            this.backgroundWorkerStaging.WorkerSupportsCancellation = true;
+            this.backgroundWorkerStaging.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerStaging_DoWork);
+            this.backgroundWorkerStaging.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerStaging_ProgressChanged);
+            this.backgroundWorkerStaging.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerStaging_RunWorkerCompleted);
+            // 
+            // backgroundWorkerError
+            // 
+            this.backgroundWorkerError.WorkerReportsProgress = true;
+            this.backgroundWorkerError.WorkerSupportsCancellation = true;
+            this.backgroundWorkerError.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerError_DoWork);
+            this.backgroundWorkerError.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerError_ProgressChanged);
+            this.backgroundWorkerError.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerError_RunWorkerCompleted);
+            // 
+            // backgroundWorkerTabular
+            // 
+            this.backgroundWorkerTabular.WorkerReportsProgress = true;
+            this.backgroundWorkerTabular.WorkerSupportsCancellation = true;
+            this.backgroundWorkerTabular.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerTabular_DoWork);
+            this.backgroundWorkerTabular.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerTabular_ProgressChanged);
+            this.backgroundWorkerTabular.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerTabular_RunWorkerCompleted);
             // 
             // ProgramForm
             // 
@@ -2013,13 +2013,13 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMaxRecurse)).EndInit();
             this.ResumeLayout(false);
 
         }

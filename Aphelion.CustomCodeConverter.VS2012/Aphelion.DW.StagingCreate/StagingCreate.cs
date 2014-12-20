@@ -320,13 +320,13 @@ ORDER BY table_schema, table_name";*/
 
             if (this.sFactTablePrefix == "")
             {
-                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExclWithKeyCol, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl,  this.strSrcKeyName), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryExclWithKeyCol, pSchemaTable, pTableName, this.strTableExcl, this.strSchemaExcl,  this.strSrcKeyName, "Staging"), srcFactConn);
             
             }
             else
             {
                
-                comm = new SqlCommand(string.Format(QC.qryReferenceQueryWithKeyCol, pSchemaTable, pTableName, this.strSrcKeyName), srcFactConn);
+                comm = new SqlCommand(string.Format(QC.qryReferenceQueryWithKeyCol, pSchemaTable, pTableName, this.strSrcKeyName, "Staging"), srcFactConn);
             }
             drRefs = comm.ExecuteReader();
             //drRefs.Read();

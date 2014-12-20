@@ -439,6 +439,7 @@ ORDER BY table_schema, table_name";
         /// 0: Table Schema
         /// 1: Table name
         /// 2: Lookup Key column
+        /// 3: Exc lusions
         /// Results:
         ///0 RC.CONSTRAINT_SCHEMA
         ///1 RC.CONSTRAINT_NAME	
@@ -507,18 +508,11 @@ AND CCU.TABLE_NAME = '{1}'
 and  not exists (
 
 select 1 FROM sys.extended_properties epV
-WHERE name like 'ExcludeFromFlattenedView%'
+WHERE name like 'ExcludeFrom{3}%'
 and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = epV.major_id
 and CCU_C.COLUMN_NAME = COL_NAME(epV.major_id, epV.minor_ID)
 ) 
-
-and  not exists (
-
-select 1 FROM sys.extended_properties epO
-WHERE name = 'ExcludeFromOLAP'
-and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = epO.major_id
-and CCU_C.COLUMN_NAME = COL_NAME(epO.major_id, epO.minor_ID)
-) 
+ 
 
 
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
@@ -604,20 +598,11 @@ and not kcu.TABLE_SCHEMA in ({3})
 and  not exists (
 
 select 1 FROM sys.extended_properties epV
-WHERE name like 'ExcludeFromFlattenedView%'
+WHERE name like 'ExcludeFrom{5}%'
 and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = epV.major_id
 and CCU_C.COLUMN_NAME = COL_NAME(epV.major_id, epV.minor_ID)
 ) 
-
-and  not exists (
-
-select 1 FROM sys.extended_properties epO
-WHERE name = 'ExcludeFromOLAP'
-and OBJECT_ID(CCU.TABLE_SCHEMA +'.' + CCU.TABLE_NAME, 'TABLE')  = epO.major_id
-and CCU_C.COLUMN_NAME = COL_NAME(epO.major_id, epO.minor_ID)
-) 
-
-
+ 
 ORDER BY CONSTRAINT_SCHEMA, CONSTRAINT_NAME
 ";
 

@@ -158,7 +158,7 @@
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="txtStgSrcConn2_Text" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True
+      <Value Profile="(Default)">Data Source=.\sql2012;Initial Catalog=Meerkat;Integrated Security=True;Connection Timeout=120
 </Value>
     </Setting>
     <Setting Name="chkStgAddSchemaPrefix_Checked" Type="System.Boolean" Scope="User">

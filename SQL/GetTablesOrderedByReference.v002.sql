@@ -68,21 +68,21 @@ EXEC sys.sp_addextendedproperty @name=N''RelationshipDepth'', @value=N''' + cast
 '
 	FROM #key_hierarchy
 	ORDER BY lvl asc, QualName asc
-	--select @exec
+	select @exec
 	exec (@exec )
 
 
 
-	SET @exec = 'USE MeerkatStaging
+	SET @exec = 'USE Paga_EDW
 	'
 	
 	SELect @exec = @exec + 'if exists( select 1 from sys.extended_properties ep where name = ''RelationshipDepth'' and class_desc = ''OBJECT_OR_COLUMN'' and major_id = ' +cast( id as varchar(20))  +' )
 BEGIN
-EXEC sys.sp_dropextendedproperty @name=N''RelationshipDepth'' , @level0type=N''SCHEMA'',@level0name=N''Staging'', @level1type=N''TABLE'',@level1name=N'''+ tbl_name + '''
+EXEC sys.sp_dropextendedproperty @name=N''RelationshipDepth'' , @level0type=N''SCHEMA'',@level0name=N''' + schemaname  +''', @level1type=N''TABLE'',@level1name=N'''+ tbl_name + '''
 END
-if exists (select 1 from information_schema.tables where table_schema = ''Staging'' and table_name = '''+ tbl_name  + ''' )
+if exists (select 1 from information_schema.tables where table_schema = ''' + schemaname  +''' and table_name = '''+ tbl_name  + ''' )
 BEGIN
-EXEC sys.sp_addextendedproperty @name=N''RelationshipDepth'', @value=N''' + cast(lvl as varchar(3)) + ''' , @level0type=N''SCHEMA'',@level0name=N''Staging'', @level1type=N''TABLE'',@level1name=N'''+ tbl_name  + '''
+EXEC sys.sp_addextendedproperty @name=N''RelationshipDepth'', @value=N''' + cast(lvl as varchar(3)) + ''' , @level0type=N''SCHEMA'',@level0name=N''' + schemaname  +''', @level1type=N''TABLE'',@level1name=N'''+ tbl_name  + '''
 END
 '
 	FROM #key_hierarchy
